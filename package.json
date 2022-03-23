@@ -6,6 +6,10 @@
   "repository": "https://github.com/GNS-Science/toshi-nest.git",
   "author": "GNS Science",
   "license": "MIT",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build": "yarn run clean && tsc && cp package.json README.md ./dist"
+  },
   "devDependencies": {
     "@types/react": "^17.0.42",
     "eslint-config-prettier": "^8.5.0",
