@@ -1,25 +1,18 @@
-import logo from "./logo.svg";
 import "./App.css";
-import Hello from "./component-lib";
+import { Hello } from "./component-lib";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <h1>Toshi Nest</h1>
+        <p>Toshi Nest is a GNS Science component library</p>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          you will be able to find all the documentation for the components
+          here.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Hello></Hello>
       </header>
-      <Hello></Hello>
     </div>
   );
 }
