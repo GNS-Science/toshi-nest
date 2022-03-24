@@ -2,13 +2,17 @@
   "name": "toshi-nest",
   "version": "1.0.0",
   "description": "The toshi-nest is for fledgling work e.g. reusable Node components to share across TUI and other projects",
-  "main": "build/index.js",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
   "repository": "https://github.com/GNS-Science/toshi-nest.git",
   "author": "GNS Science",
   "license": "MIT",
   "scripts": {
-    "clean": "rm -rf dist",
-    "build": "yarn run clean && tsc && cp package.json README.md ./dist"
+    "build": "rollup -c",
+    "build-watch": "rollup -c -w",
+    "start-documentation": "cd documentation && yarn run start",
+    "i-all": "yarn && cd documentation && yarn",
+    "dev": "npm-run-all --parallel build-watch start-documentation"
   },
   "devDependencies": {
     "@types/react": "^17.0.42",
@@ -16,7 +20,11 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "react": "^17.0.2",
-    "typescript": "^4.6.2"
+    "rollup": "^2.70.1",
+    "rollup-plugin-delete": "^2.0.0",
+    "rollup-plugin-typescript2": "^0.31.2",
+    "typescript": "^4.6.2",
+    "yarn-run-all": "^3.1.1"
   },
   "dependencies": {
     "@emotion/react": "^11.8.2",
