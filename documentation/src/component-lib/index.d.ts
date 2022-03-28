@@ -1,3 +1,3 @@
-import ControlsBar from "./ControlsBar";
-import Hello from "./Hello";
-export { ControlsBar, Hello };
+import ControlsBar from "./common/ControlsBar";
+import SelectControl from "./common/SelectControl";
+export { ControlsBar, SelectControl };

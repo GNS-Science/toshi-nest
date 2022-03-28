@@ -1,5 +1,5 @@
 import "./App.css";
-import { Hello } from "./component-lib";
+import Home from "./components/Home";
 
 function App() {
   return (
@@ -11,8 +11,8 @@ function App() {
           you will be able to find all the documentation for the components
           here.
         </p>
-        <Hello></Hello>
       </header>
+      <Home />
     </div>
   );
 }
