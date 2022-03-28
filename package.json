@@ -26,7 +26,6 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react-hooks": "^4.3.0",
-    "react": "^17.0.2",
     "rollup": "^2.70.1",
     "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-typescript2": "^0.31.2",
@@ -34,8 +33,21 @@
     "yarn-run-all": "^3.1.1"
   },
   "dependencies": {
+    "react": "^17.0.2",
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
-    "@mui/material": "^5.5.2"
+    "@mui/material": "^5.5.2",
+    "@visx/legend": "^2.2.2",
+    "@visx/scale": "^2.2.2",
+    "@visx/xychart": "^2.9.0"
+  },
+  "peerDependencies": {
+    "react": "^17.0.2",
+    "@emotion/react": "^11.8.2",
+    "@emotion/styled": "^11.8.1",
+    "@mui/material": "^5.5.2",
+    "@visx/legend": "^2.2.2",
+    "@visx/scale": "^2.2.2",
+    "@visx/xychart": "^2.9.0"
   }
 }
