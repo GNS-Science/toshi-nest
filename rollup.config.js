@@ -7,7 +7,7 @@ export default [
     input: "src/index.ts",
     output: [
       {
-        file: "documentation/src/component-lib/index.js",
+        file: "playground/src/component-lib/index.js",
         format: "esm",
         banner: "/* eslint-disable */",
       },
@@ -21,7 +21,7 @@ export default [
       },
     ],
     plugins: [
-      del({ targets: ["dist/*", "documentation/src/component-lib"] }),
+      del({ targets: ["dist/*", "playground/src/component-lib"] }),
       typescript(),
     ],
     external: Object.keys(pkg.peerDependencies || {}),

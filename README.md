@@ -2,7 +2,7 @@
 
 The toshi-nest is for fledgling work e.g. reusable Node components to share across TUI and other projects
 
-to see the documentation, run `yarn i-all`, and then `yarn run dev`
+to run the component playground, run `yarn i-all`, and then `yarn run dev`
 
 ### How to add the package to your project
 
