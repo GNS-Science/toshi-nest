@@ -17,9 +17,9 @@
   "scripts": {
     "build": "rollup -c",
     "build-watch": "rollup -c -w",
-    "start-documentation": "cd documentation && yarn run start",
-    "i-all": "yarn && cd documentation && yarn",
-    "dev": "npm-run-all --parallel build-watch start-documentation"
+    "start-playground": "cd playground && yarn run start",
+    "i-all": "yarn && cd playground && yarn",
+    "dev": "npm-run-all --parallel build-watch start-playground"
   },
   "devDependencies": {
     "@types/react": "^17.0.42",
