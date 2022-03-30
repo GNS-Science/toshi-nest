@@ -2,22 +2,13 @@ import React, { useState } from "react";
 
 import ControlsBar from "../common/ControlsBar";
 import SelectControl from "../common/SelectControl";
-
-interface HazardViewOptions {
-  locations: string[];
-  PGA: string[];
-  forecastTimes: string[];
-  gmpe: string[];
-  backgroundSeismicity: string[];
-}
+import { HazardViewOptions } from "../interfaces/HazardView";
 
 interface HazardViewProps {
-  id: string;
   options: HazardViewOptions;
 }
 
 const HazardView: React.FC<HazardViewProps> = ({
-  id,
   options,
 }: HazardViewProps) => {
   const [location, setLocation] = useState<string>(options.locations[0]);
@@ -28,12 +19,11 @@ const HazardView: React.FC<HazardViewProps> = ({
   const [backgroundSeismicity, setBackgroundSeismicity] = useState<string>(
     options.backgroundSeismicity[0]
   );
-  const [POE, setPOE] = useState<string>("None");
   const [gmpe, setGmpe] = useState<string>(options.gmpe[0]);
+  const [POE, setPOE] = useState<string>("None");
 
   return (
     <>
-      <p>hazard view</p>
       <ControlsBar>
         <SelectControl
           name="Location"
