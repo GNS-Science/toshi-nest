@@ -14,8 +14,12 @@ interface SelectControlProps {
   name: string;
 }
 
-const SelectControl: React.FC<SelectControlProps> = ({ options, selection, setSelection, name }: SelectControlProps) => {
-
+const SelectControl: React.FC<SelectControlProps> = ({
+  options,
+  selection,
+  setSelection,
+  name,
+}: SelectControlProps) => {
   const handleChange = (event: SelectChangeEvent<string>) => {
     const value = (event.target.value as string) || '';
     setSelection(value);
