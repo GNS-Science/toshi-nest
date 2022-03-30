@@ -24,11 +24,7 @@ const HazardView: React.FC<HazardViewProps> = ({ options }: HazardViewProps) => 
         <SelectControl name="Location" options={options.locations} setSelection={setLocation} />
         {/* need multiSelectHere for PGA */}
         <SelectControl name="Forecast Timespan" options={options.forecastTimes} setSelection={setForecastTime} />
-        <SelectControl
-          name="Background Seismicity"
-          options={options.backgroundSeismicity}
-          setSelection={setBackgroundSeismicity}
-        />
+        <SelectControl name="Background Seismicity" options={options.backgroundSeismicity} setSelection={setBackgroundSeismicity} />
         <SelectControl name="Ground Motion Model" options={options.gmpe} setSelection={setGmpe} />
         <SelectControl name="Probability of Exceedence" options={['None', '2%', '10%']} setSelection={setPOE} />
       </ControlsBar>
