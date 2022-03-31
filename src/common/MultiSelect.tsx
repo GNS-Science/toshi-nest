@@ -1,28 +1,21 @@
-import { Checkbox, FormControl, Input, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
-import { styled } from '@mui/material/styles';
-import React, { useEffect, useState } from 'react';
+import {
+  Checkbox,
+  FormControl,
+  Input,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
+import { styled } from "@mui/material/styles";
+import React, { useEffect, useState } from "react";
 
-const PREFIX = 'MultiSelect';
+const MultiSelectContainer = styled("div")({
+  margin: 10,
+  minWidth: 200,
+  maxWidth: 300,
+});
 
-const classes = {
-  formControl: `${PREFIX}-formControl`,
-};
-
-const Root = styled('div')(({ theme }) => ({
-  [`& .${classes.formControl}`]: {
-    margin: theme.spacing(2),
-    minWidth: 200,
-    maxWidth: 300,
-  },
-}));
-
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: 500,
-    },
-  },
-};
 interface MultiSelectProps {
   options: string[];
   selected: string[];
@@ -30,7 +23,12 @@ interface MultiSelectProps {
   name: string;
 }
 
-const MultiSelect: React.FC<MultiSelectProps> = ({ options, selected, setOptions, name }: MultiSelectProps) => {
+const MultiSelect: React.FC<MultiSelectProps> = ({
+  options,
+  selected,
+  setOptions,
+  name,
+}: MultiSelectProps) => {
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
 
   useEffect(() => {
@@ -43,8 +41,8 @@ const MultiSelect: React.FC<MultiSelectProps> = ({ options, selected, setOptions
   };
 
   return (
-    <Root>
-      <FormControl className={classes.formControl} variant="standard">
+    <MultiSelectContainer>
+      <FormControl variant="standard" fullWidth>
         <InputLabel>{name}</InputLabel>
         <Select
           name={name}
@@ -52,13 +50,10 @@ const MultiSelect: React.FC<MultiSelectProps> = ({ options, selected, setOptions
           multiple
           onChange={handleChange}
           input={<Input />}
-          MenuProps={MenuProps}
           renderValue={(selected) => {
             const selectedArray = selected as string[];
-            if (selectedArray.length === 1) {
-              return selectedItems[0];
-            }
-            if (selectedArray.length > 1) return 'Multiple selected';
+            if (selectedArray.length === 1) return selectedItems[0];
+            if (selectedArray.length > 1) return "Multiple selected";
           }}
           variant="standard"
         >
@@ -70,7 +65,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({ options, selected, setOptions
           ))}
         </Select>
       </FormControl>
-    </Root>
+    </MultiSelectContainer>
   );
 };
 
