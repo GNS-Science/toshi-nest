@@ -19,35 +19,49 @@
     "build-watch": "rollup -c -w",
     "start-playground": "cd playground && yarn run start",
     "i-all": "yarn && cd playground && yarn",
-    "dev": "npm-run-all --parallel build-watch start-playground"
+    "dev": "npm-run-all --parallel build-watch start-playground",
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "@types/jest": "^27.4.1",
     "@types/react": "^17.0.42",
+    "babel-jest": "^27.5.1",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react-hooks": "^4.3.0",
+    "jest": "^27.5.1",
+    "react-test-renderer": "^18.0.0",
     "rollup": "^2.70.1",
     "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-typescript2": "^0.31.2",
+    "ts-jest": "^27.1.4",
     "typescript": "^4.6.2",
     "yarn-run-all": "^3.1.1"
   },
   "dependencies": {
-    "react": "^17.0.2",
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
     "@mui/material": "^5.5.2",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.0.0",
     "@visx/legend": "^2.2.2",
     "@visx/scale": "^2.2.2",
-    "@visx/xychart": "^2.9.0"
+    "@visx/xychart": "^2.9.0",
+    "install": "^0.13.0",
+    "react": "^17.0.2",
+    "react-dom": "^18.0.0",
+    "ts-node": "^10.7.0"
   },
   "peerDependencies": {
-    "react": "^17.0.2",
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
     "@mui/material": "^5.5.2",
     "@visx/legend": "^2.2.2",
     "@visx/scale": "^2.2.2",
-    "@visx/xychart": "^2.9.0"
+    "@visx/xychart": "^2.9.0",
+    "react": "^17.0.2"
   }
 }
