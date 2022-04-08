@@ -5,11 +5,15 @@
 
 export default {
   preset: 'ts-jest',
-  testEnvironment: 'node',
+  testEnvironment: 'jsdom',
   transform: {
-    '^.+\\.ts?$': 'ts-jest',
+    "^.+\\.(ts|js)x?$": "ts-jest"
   },
   transformIgnorePatterns: ['<rootDir>/node_modules/'],
+  moduleDirectories: ['<rootDir>/node_modules', '<rootDir>/src'],
+  setupFilesAfterEnv: [
+    "<rootDir>/src/setupTests.ts"
+  ],
   // All imported modules in your tests should be mocked automatically
   // automock: false,
 
