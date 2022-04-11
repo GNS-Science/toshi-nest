@@ -1,36 +1,24 @@
-import React, { useState } from "react";
-import { styled } from "@mui/material/styles";
-import {
-  FormControl,
-  Input,
-  InputLabel,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
-} from "@mui/material";
+import React, { useState } from 'react';
+import { styled } from '@mui/material/styles';
+import { FormControl, Input, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 
-const SelectControlContainer = styled("div")({
+const SelectControlContainer = styled('div')({
   minWidth: 200,
   maxWidth: 300,
 });
 
 interface SelectControlProps {
   options: string[];
-  setOptions: (selection: string) => void;
+  selection: string;
+  setSelection: (selection: string) => void;
   name: string;
 }
 
-const SelectControl: React.FC<SelectControlProps> = ({
-  options,
-  setOptions,
-  name,
-}: SelectControlProps) => {
-  const [selectedItems, setSelectedItems] = useState<string>(options[0] ?? "");
+const SelectControl: React.FC<SelectControlProps> = ({ options, selection, setSelection, name }: SelectControlProps) => {
 
   const handleChange = (event: SelectChangeEvent<string>) => {
-    const value = (event.target.value as string) || "";
-    setSelectedItems(value);
-    setOptions(value);
+    const value = (event.target.value as string) || '';
+    setSelection(value);
   };
 
   return (
@@ -41,7 +29,7 @@ const SelectControl: React.FC<SelectControlProps> = ({
           labelId={`report-hash-label`}
           label={name}
           name={name}
-          value={selectedItems}
+          value={selection}
           onChange={handleChange}
           input={<Input />}
           variant="standard"

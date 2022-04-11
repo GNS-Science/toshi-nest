@@ -9,6 +9,6 @@
     "outDir": "./dist",
     "moduleResolution": "node"
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "src/setupTests.ts"],
   "exclude": ["node_modules", "dist"]
 }

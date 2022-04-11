@@ -1,28 +1,32 @@
-import typescript from "rollup-plugin-typescript2";
-import del from "rollup-plugin-delete";
-import pkg from "./package.json";
+import typescript from 'rollup-plugin-typescript2';
+import del from 'rollup-plugin-delete';
+import pkg from './package.json';
 
 export default [
   {
-    input: "src/index.ts",
+    input: 'src/index.ts',
     output: [
       {
-        file: "playground/src/component-lib/index.js",
-        format: "esm",
-        banner: "/* eslint-disable */",
+        file: 'playground/src/component-lib/index.js',
+        format: 'esm',
+        banner: '/* eslint-disable */',
       },
       {
         file: pkg.main,
-        format: "cjs",
+        format: 'cjs',
       },
       {
         file: pkg.module,
-        format: "esm",
+        format: 'esm',
       },
     ],
     plugins: [
-      del({ targets: ["dist/*", "playground/src/component-lib"] }),
-      typescript(),
+      del({ targets: ['dist/*', 'playground/src/component-lib'] }),
+      typescript({
+        tsconfigOverride: {
+          exclude: ['**/__tests__', '**/*.test.ts'],
+        },
+      }),
     ],
     external: Object.keys(pkg.peerDependencies || {}),
   },
