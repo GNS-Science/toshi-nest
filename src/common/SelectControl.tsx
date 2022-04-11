@@ -9,17 +9,16 @@ const SelectControlContainer = styled('div')({
 
 interface SelectControlProps {
   options: string[];
-  setOptions: (selection: string) => void;
+  selection: string;
+  setSelection: (selection: string) => void;
   name: string;
 }
 
-const SelectControl: React.FC<SelectControlProps> = ({ options, setOptions, name }: SelectControlProps) => {
-  const [selectedItems, setSelectedItems] = useState<string>(options[0] ?? '');
+const SelectControl: React.FC<SelectControlProps> = ({ options, selection, setSelection, name }: SelectControlProps) => {
 
   const handleChange = (event: SelectChangeEvent<string>) => {
     const value = (event.target.value as string) || '';
-    setSelectedItems(value);
-    setOptions(value);
+    setSelection(value);
   };
 
   return (
@@ -30,7 +29,7 @@ const SelectControl: React.FC<SelectControlProps> = ({ options, setOptions, name
           labelId={`report-hash-label`}
           label={name}
           name={name}
-          value={selectedItems}
+          value={selection}
           onChange={handleChange}
           input={<Input />}
           variant="standard"

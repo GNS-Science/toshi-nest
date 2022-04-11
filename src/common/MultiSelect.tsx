@@ -18,26 +18,24 @@ const MultiSelectContainer = styled("div")({
 
 interface MultiSelectProps {
   options: string[];
-  selected: string[];
-  setOptions: (selections: string[]) => void;
+  selection: string[];
+  setSelection: (selections: string[]) => void;
   name: string;
 }
 
 const MultiSelect: React.FC<MultiSelectProps> = ({
   options,
-  selected,
-  setOptions,
+  selection,
+  setSelection,
   name,
 }: MultiSelectProps) => {
-  const [selectedItems, setSelectedItems] = useState<string[]>([]);
 
   useEffect(() => {
-    if (selected.length) setSelectedItems(selected);
-  }, [selected]);
+    if (selection.length) setSelection(selection);
+  }, [selection]);
 
   const handleChange = (event: SelectChangeEvent<string[]>) => {
-    setSelectedItems(event.target.value as string[]);
-    setOptions(event.target.value as string[]);
+    setSelection(event.target.value as string[]);
   };
 
   return (
@@ -46,20 +44,20 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
         <InputLabel>{name}</InputLabel>
         <Select
           name={name}
-          value={selectedItems}
+          value={selection}
           multiple
           onChange={handleChange}
           input={<Input />}
           renderValue={(selected) => {
             const selectedArray = selected as string[];
-            if (selectedArray.length === 1) return selectedItems[0];
+            if (selectedArray.length === 1) return selection[0];
             if (selectedArray.length > 1) return "Multiple selected";
           }}
           variant="standard"
         >
           {options.map((opt) => (
             <MenuItem key={opt} value={opt}>
-              <Checkbox checked={selectedItems.indexOf(opt) > -1} />
+              <Checkbox checked={selection.indexOf(opt) > -1} />
               {opt}
             </MenuItem>
           ))}

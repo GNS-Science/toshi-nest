@@ -17,19 +17,20 @@ const Home = () => {
       <p> name: string</p>
       <SelectControl
         options={["1", "2", "3"]}
-        setOptions={setSampleSelection}
+        selection={sampleSelection}
+        setSelection={setSampleSelection}
         name={"select control demo"}
       />
       <p>Current selection: {sampleSelection}</p>
       <h4>MultiSelect Component</h4>
       <p> options: string[]</p>
-      <p> selected: string[]</p>
-      <p> setOptions: (selections: string[]) => void;</p>
+      <p> selection: string[]</p>
+      <p> setSelection: (selection: string[]) =&gt; void;</p>
       <p> name: string;</p>
       <MultiSelect
         options={["1", "2", "3"]}
-        setOptions={setSampleMultiSelection}
-        selected={sampleMultiSelection}
+        setSelection={setSampleMultiSelection}
+        selection={sampleMultiSelection}
         name={"MultiSelect"}
       />
       <p>Current selection: {`[${sampleMultiSelection.join(", ")}]`}</p>
