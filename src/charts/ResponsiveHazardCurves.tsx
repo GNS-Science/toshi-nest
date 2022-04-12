@@ -1,17 +1,18 @@
 import React from 'react';
 import { ParentSize } from '@visx/responsive';
-import HazardCurves, { HazardTableFilteredData, XYChartScaleConfig } from './HazardCurves';
+import HazardCurves, { HazardCurveColors, HazardTableFilteredData, XYChartScaleConfig } from './HazardCurves';
 
 interface ResponsiveHazardCurvesProps {
   curves: HazardTableFilteredData;
   scalesConfig: XYChartScaleConfig;
-  colors: string[];
+  colors: HazardCurveColors;
   width: number;
   heading?: string;
   subHeading?: string;
+  gridNumTicks: number;
 }
 
-const ResponsiveHazardCurves: React.FC<ResponsiveHazardCurvesProps> = ({ curves, scalesConfig, colors, width, heading, subHeading }: ResponsiveHazardCurvesProps) => {
+const ResponsiveHazardCurves: React.FC<ResponsiveHazardCurvesProps> = ({ curves, scalesConfig, colors, width, heading, subHeading, gridNumTicks }: ResponsiveHazardCurvesProps) => {
   return (
     <>
       <ParentSize>
@@ -25,6 +26,7 @@ const ResponsiveHazardCurves: React.FC<ResponsiveHazardCurvesProps> = ({ curves,
             width={parent.width}
             parentRef={parent.ref}
             resizeParent={parent.resize}
+            gridNumTicks={gridNumTicks}
           />
         )}
       </ParentSize>
