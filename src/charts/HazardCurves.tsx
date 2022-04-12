@@ -17,18 +17,21 @@ export interface XYChartScaleConfig {
   y: ScaleConfig;
 }
 
+export type HazardCurveColors = Record<string, string>;
+
 interface HazardCurvesProps {
   curves: HazardTableFilteredData;
   scalesConfig: XYChartScaleConfig;
-  colors: string[];
+  colors: HazardCurveColors;
   width: number;
   heading?: string;
   subHeading?: string;
   parentRef?: HTMLDivElement | null;
   resizeParent?: (state: any) => void;
+  gridNumTicks: number;
 }
 
-const HazardCurves: React.FC<HazardCurvesProps> = ({ curves, scalesConfig, colors, width, heading, subHeading, parentRef }: HazardCurvesProps) => {
+const HazardCurves: React.FC<HazardCurvesProps> = ({ curves, scalesConfig, colors, width, heading, subHeading, parentRef, gridNumTicks }: HazardCurvesProps) => {
   const [headingSize, setHeadingSize] = useState<number>(0);
   const [subHeadingSize, setSubHeadingSize] = useState<number>(0);
 
@@ -58,11 +61,11 @@ const HazardCurves: React.FC<HazardCurvesProps> = ({ curves, scalesConfig, color
         )}
         <AnimatedAxis label="Acceleration (g)" orientation="bottom" />
         <AnimatedAxis label={`Probability of Exceedance`} labelOffset={20} orientation="left" />
-        <Grid rows columns lineStyle={{ opacity: '90%' }} numTicks={10} />
+        <Grid rows columns lineStyle={{ opacity: '90%' }} numTicks={gridNumTicks} />
         <RectClipPath id={parentRef ? 'responsive-clip' : 'clip'} x={50} y={-50} width={width} height={width * 0.75} />
         <Group clipPath={parentRef ? 'url(#responsive-clip)' : 'url(#clip)'}>
           {Object.keys(curves).map((key, index) => {
-            return <AnimatedLineSeries key={key} dataKey={key} data={curves[key]} xAccessor={(d: XY) => d?.x} yAccessor={(d: XY) => d?.y} stroke={colors[index]} />;
+            return <AnimatedLineSeries key={key} dataKey={key} data={curves[key]} xAccessor={(d: XY) => d?.x} yAccessor={(d: XY) => d?.y} stroke={colors[key]} />;
           })}
         </Group>
       </XYChart>
