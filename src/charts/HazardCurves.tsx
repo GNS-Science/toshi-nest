@@ -4,20 +4,7 @@ import { RectClipPath } from '@visx/clip-path';
 import { Group } from '@visx/group';
 
 import { XY } from '../interfaces/common';
-
-export type HazardTableFilteredData = Record<string, XY[]>;
-
-export interface ScaleConfig {
-  type: 'log' | 'linear' | 'band';
-  domain: number[];
-}
-
-export interface XYChartScaleConfig {
-  x: ScaleConfig;
-  y: ScaleConfig;
-}
-
-export type HazardCurveColors = Record<string, string>;
+import { HazardCurveColors, HazardTableFilteredData, XYChartScaleConfig } from '../interfaces/HazardView';
 
 interface HazardCurvesProps {
   curves: HazardTableFilteredData;
