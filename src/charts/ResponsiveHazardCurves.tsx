@@ -1,6 +1,7 @@
 import React from 'react';
 import { ParentSize } from '@visx/responsive';
-import HazardCurves, { HazardCurveColors, HazardTableFilteredData, XYChartScaleConfig } from './HazardCurves';
+import HazardCurves from './HazardCurves';
+import { HazardCurveColors, HazardTableFilteredData, XYChartScaleConfig } from '../interfaces/HazardView';
 
 interface ResponsiveHazardCurvesProps {
   curves: HazardTableFilteredData;
