@@ -1954,6 +1954,14 @@
     "@types/react-dom" "*"
     prop-types "^15.5.10"
 
+"@visx/clip-path@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@visx/clip-path/-/clip-path-2.1.0.tgz#5730ebda167493a56d033c454453900ed0b4904b"
+  integrity sha512-g8OC8M4H+AunfT2taKyy++X7muMrhlqITNDan25gVopGuHxydiDYatu4qdZIGbYjAoiI0KHEB07/HV8iePcTdQ==
+  dependencies:
+    "@types/react" "*"
+    prop-types "^15.5.10"
+
 "@visx/curve@2.1.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@visx/curve/-/curve-2.1.0.tgz#f614bfe3db66df7db7382db7a75ced1506b94602"
@@ -2006,7 +2014,7 @@
     classnames "^2.3.1"
     prop-types "^15.6.2"
 
-"@visx/group@2.1.0":
+"@visx/group@2.1.0", "@visx/group@^2.1.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@visx/group/-/group-2.1.0.tgz#65d4a72feb20dd09443f73cdc12ad5fb339792ef"
   integrity sha512-bZKa54yVjGYPZZhzYHLz4AVlidSr4ET9B/xmSa7nnictMJWr7e/IuZThB/bMfDQlgdtvhcfTgs+ZluySc5SBUg==
@@ -2044,7 +2052,7 @@
     classnames "^2.3.1"
     prop-types "^15.6.2"
 
-"@visx/responsive@2.8.0":
+"@visx/responsive@2.8.0", "@visx/responsive@^2.8.0":
   version "2.8.0"
   resolved "https://registry.yarnpkg.com/@visx/responsive/-/responsive-2.8.0.tgz#96fac67b77e9573393be780d9657337bef9b72b2"
   integrity sha512-/CDL6aWvQARwv1CkNh1bZ6QW7Q982UU3UVESZ5Sffp1s3toygvdCmuDreL8UpDjJp0PQNtoc2alee5VUSCxg3Q==
