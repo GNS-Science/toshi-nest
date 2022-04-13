@@ -84,6 +84,7 @@
     "@visx/clip-path": "^2.1.0",
     "@visx/group": "^2.1.0",
     "@visx/legend": "^2.2.2",
+    "@visx/responsive": "^2.8.0",
     "@visx/scale": "^2.2.2",
     "@visx/xychart": "^2.9.0",
     "react": "^18",
