@@ -99,11 +99,11 @@ const HazardPage = () => {
     <>
       <p>Hazard Page</p>
       <div style={{ border: 'solid black 1px', width: '100vw' }}>
-        <HazardCurves curves={curves} width={500} scalesConfig={scalesConfig} colors={colors} heading={'Static Hazard Curves'} subHeading={'subHeading'} gridNumTicks={5} />
+        <HazardCurves curves={curves} width={500} scalesConfig={scalesConfig} colors={colors} heading={'Static Hazard Curves'} subHeading={'subHeading'} gridNumTicks={5} POE={'None'} />
       </div>
       <div style={{ border: 'solid black 1px', width: '100vw', display: 'flex', justifyContent: 'center' }}>
         <div style={{ width: '50vw', display: 'flex', justifyContent: 'center' }}>
-          <ResponsiveHazardCurves curves={curves} scalesConfig={scalesConfig} colors={colors} heading={'Responsive Hazard Curves'} subHeading={'subHeading'} gridNumTicks={5} />
+          <ResponsiveHazardCurves curves={curves} scalesConfig={scalesConfig} colors={colors} heading={'Responsive Hazard Curves'} subHeading={'subHeading'} gridNumTicks={5} POE={'2%'} />
         </div>
       </div>
     </>

@@ -11,9 +11,10 @@ interface ResponsiveHazardCurvesProps {
   heading?: string;
   subHeading?: string;
   gridNumTicks: number;
+  POE: 'None' | '2%' | '10%';
 }
 
-const ResponsiveHazardCurves: React.FC<ResponsiveHazardCurvesProps> = ({ curves, scalesConfig, colors, width, heading, subHeading, gridNumTicks }: ResponsiveHazardCurvesProps) => {
+const ResponsiveHazardCurves: React.FC<ResponsiveHazardCurvesProps> = ({ curves, scalesConfig, colors, width, heading, subHeading, gridNumTicks, POE }: ResponsiveHazardCurvesProps) => {
   return (
     <>
       <ParentSize>
@@ -28,6 +29,7 @@ const ResponsiveHazardCurves: React.FC<ResponsiveHazardCurvesProps> = ({ curves,
             parentRef={parent.ref}
             resizeParent={parent.resize}
             gridNumTicks={gridNumTicks}
+            POE={POE}
           />
         )}
       </ParentSize>

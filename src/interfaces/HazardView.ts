@@ -1,3 +1,5 @@
+import { XY } from './common';
+
 export interface HazardViewOptions {
   locations: string[];
   PGA: string[];
@@ -19,3 +21,8 @@ export interface XYChartScaleConfig {
 export type HazardCurveColors = Record<string, string>;
 
 export type HazardTableFilteredData = Record<string, XY[]>;
+
+export interface HazardColorScale {
+  domain: string[];
+  range: string[];
+}

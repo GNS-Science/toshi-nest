@@ -2,9 +2,11 @@ import React, { useEffect, useState, useMemo } from 'react';
 import { AnimatedAxis, AnimatedLineSeries, Grid, Tooltip, XYChart } from '@visx/xychart';
 import { RectClipPath } from '@visx/clip-path';
 import { Group } from '@visx/group';
+import { scaleOrdinal } from '@visx/scale';
 
 import { XY } from '../interfaces/common';
-import { HazardCurveColors, HazardTableFilteredData, XYChartScaleConfig } from '../interfaces/HazardView';
+import { HazardColorScale, HazardCurveColors, HazardTableFilteredData, XYChartScaleConfig } from '../interfaces/HazardView';
+import { Typography } from '@mui/material';
 
 interface HazardCurvesProps {
   curves: HazardTableFilteredData;
@@ -16,9 +18,10 @@ interface HazardCurvesProps {
   parentRef?: HTMLDivElement | null;
   resizeParent?: (state: any) => void;
   gridNumTicks: number;
+  POE: 'None' | '2%' | '10%';
 }
 
-const HazardCurves: React.FC<HazardCurvesProps> = ({ curves, scalesConfig, colors, width, heading, subHeading, parentRef, gridNumTicks }: HazardCurvesProps) => {
+const HazardCurves: React.FC<HazardCurvesProps> = ({ curves, scalesConfig, colors, width, heading, subHeading, parentRef, gridNumTicks, POE }: HazardCurvesProps) => {
   const [headingSize, setHeadingSize] = useState<number>(0);
   const [subHeadingSize, setSubHeadingSize] = useState<number>(0);
 
@@ -27,6 +30,38 @@ const HazardCurves: React.FC<HazardCurvesProps> = ({ curves, scalesConfig, color
     dominantBaseline: 'middle',
     textAnchor: 'middle',
   };
+
+  const curvesDomain = useMemo(() => {
+    const colorScale: HazardColorScale = {
+      domain: [],
+      range: [],
+    };
+    Object.keys(colors).map((key) => {
+      colorScale.domain.push(key);
+      colorScale.range.push(colors[key]);
+    });
+    return colorScale;
+  }, [curves]);
+
+  const ordinalColorScale = useMemo(() => {
+    return scaleOrdinal({
+      domain: POE === 'None' ? [...curvesDomain.domain] : [...curvesDomain.domain, `PoE ${POE}`],
+      range: POE === 'None' ? [...curvesDomain.range] : [...curvesDomain.range, '#989C9C'],
+    });
+  }, [POE, curvesDomain]);
+
+  const POEline = useMemo(() => {
+    const getPoE = () => {
+      const yValue = POE === '2%' ? 0.02 : 0.1;
+      return [
+        { x: 1e-3, y: yValue },
+        { x: 10, y: yValue },
+      ];
+    };
+    if (POE !== 'None') {
+    }
+    return getPoE();
+  }, [POE]);
 
   useEffect(() => {
     width * 0.035 >= 24 ? setHeadingSize(24) : setHeadingSize(width * 0.035);
@@ -54,7 +89,42 @@ const HazardCurves: React.FC<HazardCurvesProps> = ({ curves, scalesConfig, color
           {Object.keys(curves).map((key, index) => {
             return <AnimatedLineSeries key={key} dataKey={key} data={curves[key]} xAccessor={(d: XY) => d?.x} yAccessor={(d: XY) => d?.y} stroke={colors[key]} />;
           })}
+          {POE !== 'None' && <AnimatedLineSeries dataKey={POE} data={POEline} xAccessor={(d) => d.x} yAccessor={(d) => d.y} stroke={'#989C9C'} />}
         </Group>
+        <Tooltip
+          showHorizontalCrosshair
+          showVerticalCrosshair
+          snapTooltipToDatumX
+          snapTooltipToDatumY
+          showDatumGlyph
+          glyphStyle={{ fill: '#000' }}
+          renderTooltip={({ tooltipData }) => {
+            const datum = tooltipData?.nearestDatum?.datum as XY;
+            const key = tooltipData?.nearestDatum?.key as string;
+            if (key !== '2%' && key !== '10%' && datum) {
+              return (
+                <>
+                  <Typography>
+                    <span
+                      style={{
+                        background: ordinalColorScale(key as string),
+                        width: 8,
+                        height: 8,
+                        display: 'inline-block',
+                        marginRight: 4,
+                        borderRadius: 8,
+                      }}
+                    />
+                    &nbsp;&nbsp;&nbsp;
+                    {key}
+                  </Typography>
+                  <Typography>x: {datum.x.toExponential(2)}</Typography>
+                  <Typography>y: {datum.y.toExponential(2)}</Typography>
+                </>
+              );
+            }
+          }}
+        />
       </XYChart>
     </>
   );
