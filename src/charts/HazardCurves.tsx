@@ -3,6 +3,8 @@ import { AnimatedAxis, AnimatedLineSeries, Grid, Tooltip, XYChart } from '@visx/
 import { RectClipPath } from '@visx/clip-path';
 import { Group } from '@visx/group';
 import { scaleOrdinal } from '@visx/scale';
+import { LegendOrdinal } from '@visx/legend';
+import { styled } from '@mui/material/styles';
 
 import { XY } from '../interfaces/common';
 import { HazardColorScale, HazardCurveColors, HazardTableFilteredData, XYChartScaleConfig } from '../interfaces/HazardView';
@@ -24,6 +26,11 @@ interface HazardCurvesProps {
 const HazardCurves: React.FC<HazardCurvesProps> = ({ curves, scalesConfig, colors, width, heading, subHeading, parentRef, gridNumTicks, POE }: HazardCurvesProps) => {
   const [headingSize, setHeadingSize] = useState<number>(0);
   const [subHeadingSize, setSubHeadingSize] = useState<number>(0);
+
+  const containerStyles = {
+    width: parentRef ? '100%' : width,
+    position: 'relative',
+  };
 
   const headingProps = {
     alignmnetBaseline: 'middle',
@@ -70,62 +77,67 @@ const HazardCurves: React.FC<HazardCurvesProps> = ({ curves, scalesConfig, color
 
   return (
     <>
-      <XYChart height={width * 0.75} width={width} xScale={scalesConfig.x} yScale={scalesConfig.y}>
-        {heading && (
-          <text y={18} x={'50%'} {...headingProps}>
-            {heading}
-          </text>
-        )}
-        {subHeading && (
-          <text y={headingSize + 18} x={'50%'} {...headingProps} fontSize={subHeadingSize}>
-            {subHeading}
-          </text>
-        )}
-        <AnimatedAxis label="Acceleration (g)" orientation="bottom" />
-        <AnimatedAxis label={`Probability of Exceedance`} labelOffset={20} orientation="left" />
-        <Grid rows columns lineStyle={{ opacity: '90%' }} numTicks={gridNumTicks} />
-        <RectClipPath id={parentRef ? 'responsive-clip' : 'clip'} x={50} y={-50} width={width} height={width * 0.75} />
-        <Group clipPath={parentRef ? 'url(#responsive-clip)' : 'url(#clip)'}>
-          {Object.keys(curves).map((key, index) => {
-            return <AnimatedLineSeries key={key} dataKey={key} data={curves[key]} xAccessor={(d: XY) => d?.x} yAccessor={(d: XY) => d?.y} stroke={colors[key]} />;
-          })}
-          {POE !== 'None' && <AnimatedLineSeries dataKey={POE} data={POEline} xAccessor={(d) => d.x} yAccessor={(d) => d.y} stroke={'#989C9C'} />}
-        </Group>
-        <Tooltip
-          showHorizontalCrosshair
-          showVerticalCrosshair
-          snapTooltipToDatumX
-          snapTooltipToDatumY
-          showDatumGlyph
-          glyphStyle={{ fill: '#000' }}
-          renderTooltip={({ tooltipData }) => {
-            const datum = tooltipData?.nearestDatum?.datum as XY;
-            const key = tooltipData?.nearestDatum?.key as string;
-            if (key !== '2%' && key !== '10%' && datum) {
-              return (
-                <>
-                  <Typography>
-                    <span
-                      style={{
-                        background: ordinalColorScale(key as string),
-                        width: 8,
-                        height: 8,
-                        display: 'inline-block',
-                        marginRight: 4,
-                        borderRadius: 8,
-                      }}
-                    />
-                    &nbsp;&nbsp;&nbsp;
-                    {key}
-                  </Typography>
-                  <Typography>x: {datum.x.toExponential(2)}</Typography>
-                  <Typography>y: {datum.y.toExponential(2)}</Typography>
-                </>
-              );
-            }
-          }}
-        />
-      </XYChart>
+      <div style={{ position: 'relative', width: width }}>
+        <XYChart height={width * 0.75} width={width} xScale={scalesConfig.x} yScale={scalesConfig.y}>
+          {heading && (
+            <text y={18} x={'50%'} {...headingProps}>
+              {heading}
+            </text>
+          )}
+          {subHeading && (
+            <text y={headingSize + 18} x={'50%'} {...headingProps} fontSize={subHeadingSize}>
+              {subHeading}
+            </text>
+          )}
+          <AnimatedAxis label="Acceleration (g)" orientation="bottom" />
+          <AnimatedAxis label={`Probability of Exceedance`} labelOffset={20} orientation="left" />
+          <Grid rows columns lineStyle={{ opacity: '90%' }} numTicks={gridNumTicks} />
+          <RectClipPath id={parentRef ? 'responsive-clip' : 'clip'} x={50} y={-50} width={width} height={width * 0.75} />
+          <Group clipPath={parentRef ? 'url(#responsive-clip)' : 'url(#clip)'}>
+            {Object.keys(curves).map((key, index) => {
+              return <AnimatedLineSeries key={key} dataKey={key} data={curves[key]} xAccessor={(d: XY) => d?.x} yAccessor={(d: XY) => d?.y} stroke={colors[key]} />;
+            })}
+            {POE !== 'None' && <AnimatedLineSeries dataKey={POE} data={POEline} xAccessor={(d) => d.x} yAccessor={(d) => d.y} stroke={'#989C9C'} />}
+          </Group>
+          <Tooltip
+            showHorizontalCrosshair
+            showVerticalCrosshair
+            snapTooltipToDatumX
+            snapTooltipToDatumY
+            showDatumGlyph
+            glyphStyle={{ fill: '#000' }}
+            renderTooltip={({ tooltipData }) => {
+              const datum = tooltipData?.nearestDatum?.datum as XY;
+              const key = tooltipData?.nearestDatum?.key as string;
+              if (key !== '2%' && key !== '10%' && datum) {
+                return (
+                  <>
+                    <Typography>
+                      <span
+                        style={{
+                          background: ordinalColorScale(key as string),
+                          width: 8,
+                          height: 8,
+                          display: 'inline-block',
+                          marginRight: 4,
+                          borderRadius: 8,
+                        }}
+                      />
+                      &nbsp;&nbsp;&nbsp;
+                      {key}
+                    </Typography>
+                    <Typography>x: {datum.x.toExponential(2)}</Typography>
+                    <Typography>y: {datum.y.toExponential(2)}</Typography>
+                  </>
+                );
+              }
+            }}
+          />
+        </XYChart>
+        <div style={{ width: 100, height: 100, position: 'absolute', top: width * 0.35, left: 70, display: 'flex' }}>
+          <LegendOrdinal direction="column" scale={ordinalColorScale} shape="line" style={{ fontSize: width * 0.02 }} shapeHeight={width * 0.02} />
+        </div>
+      </div>
     </>
   );
 };
