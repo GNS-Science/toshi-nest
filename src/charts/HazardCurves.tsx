@@ -33,7 +33,7 @@ const HazardCurves: React.FC<HazardCurvesProps> = ({ curves, scalesConfig, color
   };
 
   const headingProps = {
-    alignmnetBaseline: 'middle',
+    alignmnetbaseline: 'middle',
     dominantBaseline: 'middle',
     textAnchor: 'middle',
   };
@@ -95,9 +95,9 @@ const HazardCurves: React.FC<HazardCurvesProps> = ({ curves, scalesConfig, color
           <RectClipPath id={parentRef ? 'responsive-clip' : 'clip'} x={50} y={-50} width={width} height={width * 0.75} />
           <Group clipPath={parentRef ? 'url(#responsive-clip)' : 'url(#clip)'}>
             {Object.keys(curves).map((key, index) => {
-              return <AnimatedLineSeries key={key} dataKey={key} data={curves[key]} xAccessor={(d: XY) => d?.x} yAccessor={(d: XY) => d?.y} stroke={colors[key]} />;
+              return <AnimatedLineSeries role="curve" key={key} dataKey={key} data={curves[key]} xAccessor={(d: XY) => d?.x} yAccessor={(d: XY) => d?.y} stroke={colors[key]} />;
             })}
-            {POE !== 'None' && <AnimatedLineSeries dataKey={POE} data={POEline} xAccessor={(d) => d.x} yAccessor={(d) => d.y} stroke={'#989C9C'} />}
+            {POE !== 'None' && <AnimatedLineSeries role="POE" dataKey={POE} data={POEline} xAccessor={(d) => d.x} yAccessor={(d) => d.y} stroke={'#989C9C'} />}
           </Group>
           <Tooltip
             showHorizontalCrosshair
