@@ -44,7 +44,7 @@ export default HazardPage;
 | curves | `Record<string(curveKey), XY[]>`|
 | scalesConfig | <pre>{<br> x: {<br> type : `'log' | 'linear' | 'band',`<br> domain: number[],<br> }<br > y: {<br> type : `'log' | 'linear' | 'band',`<br> domain: number[],<br> }<br >} </pre>|
 | colors | `Record<string(curveKey), string(color)>`|
-| width   **only when using static HazardCurves*` | number |
+| width \*_only when using static HazardCurves_ | number |
 | heading? | string |
 | subHeading? | string |
 | gridNumTicks | number |
