@@ -1,5 +1,3 @@
-[Home](../../README.md)
-
 ### SelectControl
 
 The `<SelectControl/>` component allows users SINGLE SELECT from a list of options.
@@ -30,3 +28,5 @@ const SelectControlExample = () => {
 |name |string|
 
 ---
+
+[Home](../../README.md)

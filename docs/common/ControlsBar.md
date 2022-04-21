@@ -1,5 +1,3 @@
-[Home](../../README.md)
-
 ### ControlsBar
 
 The `<ControlsBar/>` component takes a list of children, displays them with flex with wrapping, and adds `margin: 10px` to each children.
@@ -19,3 +17,5 @@ const ControlsBarDemo = () => {
   )
 };
 ```
+
+[Home](../../README.md)

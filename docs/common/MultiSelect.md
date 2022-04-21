@@ -1,5 +1,3 @@
-[Home](../../README.md)
-
 ### MultiSelect
 
 The `<MultiSelect/>` component allows multiple selections from a list of options.
@@ -32,3 +30,5 @@ const MultiSelectExample = () => {
 | selected | string[]; |
 | setOptions | (selections: string[]) => void |
 | name | string |
+
+[Home](../../README.md)
