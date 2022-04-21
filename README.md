@@ -16,4 +16,4 @@ to run the component playground, run `yarn i-all`, and then `yarn run dev`
 
 [SelectControl](./docs/common/SelectControl.md)  
 [MultiSelect](./docs/common/MultiSelect.md)  
-[ControlsBar]('./docs/common/ControlsBar.md)
+[ControlsBar](./docs/common/ControlsBar.md)
