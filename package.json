@@ -21,7 +21,9 @@
     "i-all": "yarn && cd playground && yarn",
     "dev": "npm-run-all --parallel build-watch start-playground",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "lint": "eslint ./src/**/*.{js,ts,tsx} --quiet --fix",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.16.11",
@@ -38,7 +40,9 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react-hooks": "^4.3.0",
+    "husky": "^7.0.4",
     "jest": "^27.5.1",
+    "lint-staged": "^12.4.0",
     "react-test-renderer": "^18.0.0",
     "rollup": "^2.70.1",
     "rollup-plugin-delete": "^2.0.0",
