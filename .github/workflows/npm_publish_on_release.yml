@@ -31,11 +31,10 @@ jobs:
         with:
           node-version: 16
           registry-url: https://npm.pkg.github.com/
+          scope: '@gns-science'
       - run: yarn i-all
       - run: yarn build
-      - run: |
-           echo @gns-science:https://npm.pkg.github.com >> .npmrc
-           echo '//npm.pkg.github.come/:_authToken=${NODE_AUTH_TOKEN}' >> .npmrc
+      - run: echo registry=https://npm.pkg.github.com/YOUR_USERNAME >> .npmrc
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.PUBLISH_GITHUB_TOKEN}}
