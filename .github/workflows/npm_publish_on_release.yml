@@ -33,6 +33,7 @@ jobs:
           registry-url: https://npm.pkg.github.com/
       - run: yarn i-all
       - run: yarn build
+      - run: echo registry=https://npm.pkg.github.com/@gns-science >> .npmrc
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.PUBLISH_GITHUB_TOKEN}}
