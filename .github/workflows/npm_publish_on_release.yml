@@ -34,7 +34,7 @@ jobs:
           scope: '@gns-science'
       - run: yarn i-all
       - run: yarn build
-      - run: echo registry=https://npm.pkg.github.com/YOUR_USERNAME >> .npmrc
+      - run: echo registry=https://npm.pkg.github.com/@gns-science >> .npmrc
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
