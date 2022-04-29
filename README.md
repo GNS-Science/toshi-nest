@@ -11,3 +11,10 @@ to run the component playground, run `yarn i-all`, and then `yarn run dev`
 - add a file in the root directory of your project called `.npmrc`.
 - add this line to the file `@gns-science:registry=https://npm.pkg.github.com/`
 - in your terminal, in your project directory, run `yarn add @gns-science/toshi-nest`
+
+### Component Documentation
+
+[SelectControl](./docs/common/SelectControl.md)  
+[MultiSelect](./docs/common/MultiSelect.md)  
+[ControlsBar](./docs/common/ControlsBar.md)  
+[HazardCurves](./docs/charts/HazardCurves.md)
