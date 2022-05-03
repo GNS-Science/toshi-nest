@@ -1,17 +1,23 @@
 import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
+
+import UtilsPage from './pages/UtilsPage';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <p>Toshi Nest Typescript Playground</p>
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+          <a href="/Utils">Utils</a>
         </p>
-        <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          Learn React
-        </a>
       </header>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/Utils" element={<UtilsPage />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
