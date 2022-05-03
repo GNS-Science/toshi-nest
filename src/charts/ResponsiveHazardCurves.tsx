@@ -7,14 +7,13 @@ interface ResponsiveHazardCurvesProps {
   curves: HazardTableFilteredData;
   scalesConfig: XYChartScaleConfig;
   colors: HazardCurveColors;
-  width: number;
   heading?: string;
   subHeading?: string;
   gridNumTicks: number;
   POE: 'None' | '2%' | '10%';
 }
 
-const ResponsiveHazardCurves: React.FC<ResponsiveHazardCurvesProps> = ({ curves, scalesConfig, colors, width, heading, subHeading, gridNumTicks, POE }: ResponsiveHazardCurvesProps) => {
+const ResponsiveHazardCurves: React.FC<ResponsiveHazardCurvesProps> = ({ curves, scalesConfig, colors, heading, subHeading, gridNumTicks, POE }: ResponsiveHazardCurvesProps) => {
   return (
     <>
       <ParentSize>
