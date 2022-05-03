@@ -12,6 +12,11 @@ export default [
         banner: '/* eslint-disable */',
       },
       {
+        file: 'playground-ts/src/component-lib/index.js',
+        format: 'esm',
+        banner: '/* eslint-disable */',
+      },
+      {
         file: pkg.main,
         format: 'cjs',
       },
@@ -21,10 +26,10 @@ export default [
       },
     ],
     plugins: [
-      del({ targets: ['dist/*', 'playground/src/component-lib'] }),
+      del({ targets: ['dist/*', 'playground/src/component-lib', 'playground-ts/src/component-lib'] }),
       typescript({
         tsconfigOverride: {
-          exclude: ['**/__tests__', '**/*.test.ts'],
+          exclude: ['**/__tests__', '**/*.test.ts', '*/setupTests.ts'],
         },
       }),
     ],
