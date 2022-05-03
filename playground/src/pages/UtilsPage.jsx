@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SelectControl } from '../component-lib';
 import { styled } from '@mui/material/styles';
 
@@ -14,7 +14,7 @@ const UtilsPage = () => {
       <p>options: string[]</p>
       <p> setOptions: (selection: string) ={'>'} void</p>
       <p> name: string</p>
-      <SelectControl options={['1', '2', '3']} setOptions={setSampleSelection} name={'select control demo'} />
+      <SelectControl options={['1', '2', '3']} selection={sampleSelection} setSelection={setSampleSelection} name={'select control demo'} />
       <p>Current selection: {sampleSelection}</p>
     </HomeContainer>
   );
