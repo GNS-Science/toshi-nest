@@ -17,7 +17,7 @@ const ResponsiveHazardCurves: React.FC<ResponsiveHazardCurvesProps> = ({ curves,
   return (
     <>
       <ParentSize>
-        {(parent) => (
+        {(parent: any) => (
           <HazardCurves
             curves={curves}
             scalesConfig={scalesConfig}
