@@ -1,16 +1,8 @@
-import {
-  Checkbox,
-  FormControl,
-  Input,
-  InputLabel,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
-} from "@mui/material";
-import { styled } from "@mui/material/styles";
-import React, { useEffect, useState } from "react";
+import { Checkbox, FormControl, Input, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import React, { useEffect } from 'react';
 
-const MultiSelectContainer = styled("div")({
+const MultiSelectContainer = styled('div')({
   margin: 10,
   minWidth: 200,
   maxWidth: 300,
@@ -23,16 +15,10 @@ interface MultiSelectProps {
   name: string;
 }
 
-const MultiSelect: React.FC<MultiSelectProps> = ({
-  options,
-  selection,
-  setSelection,
-  name,
-}: MultiSelectProps) => {
-
+const MultiSelect: React.FC<MultiSelectProps> = ({ options, selection, setSelection, name }: MultiSelectProps) => {
   useEffect(() => {
     if (selection.length) setSelection(selection);
-  }, [selection]);
+  }, [selection, setSelection]);
 
   const handleChange = (event: SelectChangeEvent<string[]>) => {
     setSelection(event.target.value as string[]);
@@ -51,7 +37,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
           renderValue={(selected) => {
             const selectedArray = selected as string[];
             if (selectedArray.length === 1) return selection[0];
-            if (selectedArray.length > 1) return "Multiple selected";
+            if (selectedArray.length > 1) return 'Multiple selected';
           }}
           variant="standard"
         >
