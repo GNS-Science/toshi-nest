@@ -1,13 +1,5 @@
 import { XY } from './common';
 
-export interface HazardViewOptions {
-  locations: string[];
-  PGA: string[];
-  forecastTimes: string[];
-  gmpe: string[];
-  backgroundSeismicity: string[];
-}
-
 export interface ScaleConfig {
   type: 'log' | 'linear' | 'band';
   domain: number[];
