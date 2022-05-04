@@ -12,9 +12,10 @@ const UtilsPage = () => {
     <HomeContainer>
       <h4>Select Control Component</h4>
       <p>options: string[]</p>
-      <p> setOptions: (selection: string) ={'>'} void</p>
-      <p> name: string</p>
-      <SelectControl options={['1', '2', '3']} setOptions={setSampleSelection} name={'select control demo'} />
+      <p>selection: string</p>
+      <p>setSelection: (selection: string) ={'>'} void</p>
+      <p>name: string</p>
+      <SelectControl options={['1', '2', '3']} selection={sampleSelection} setSelection={setSampleSelection} name={'select control demo'} />
       <p>Current selection: {sampleSelection}</p>
     </HomeContainer>
   );
