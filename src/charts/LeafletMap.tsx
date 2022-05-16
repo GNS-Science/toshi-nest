@@ -17,16 +17,11 @@ const LeafletMap: React.FC<LeafletMapProps> = ({ rupturesData, locationsData, nz
   const locations = JSON.parse(locationsData) as GeoJsonObject;
   return (
     <>
-      <MapContainer center={nzCentre} zoom={zoom} scrollWheelZoom={true} style={{ height: '700px' }}>
-        <TileLayer url={providerUrl} />
+      <MapContainer id={'leaflet-map-container'} center={nzCentre} zoom={zoom} scrollWheelZoom={true} style={{ height: '700px' }}>
+        <TileLayer id={'leaflet-tile-layer'} url={providerUrl} />
         {ruptures && <GeoJSON key={Math.random()} data={ruptures} style={myStyle} />}
         {showLocation && locations && <GeoJSON key={Math.random()} data={locations} style={myStyle} />}
-        <Fullscreen
-        // eventHandlers={{
-        //   enterFullscreen: (event) => console.log('entered fullscreen', event),
-        //   exitFullscreen: (event) => console.log('exited fullscreen', event),
-        // }}
-        />
+        <Fullscreen />
       </MapContainer>
     </>
   );
