@@ -4,7 +4,6 @@ import { RectClipPath } from '@visx/clip-path';
 import { Group } from '@visx/group';
 import { scaleOrdinal } from '@visx/scale';
 import { LegendOrdinal } from '@visx/legend';
-import { styled } from '@mui/material/styles';
 
 import { XY } from '../interfaces/common';
 import { HazardColorScale, HazardCurveColors, HazardTableFilteredData, XYChartScaleConfig } from '../interfaces/HazardView';
@@ -18,6 +17,7 @@ interface HazardCurvesProps {
   heading?: string;
   subHeading?: string;
   parentRef?: HTMLDivElement | null;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   resizeParent?: (state: any) => void;
   gridNumTicks: number;
   POE: 'None' | '2%' | '10%';
@@ -26,11 +26,6 @@ interface HazardCurvesProps {
 const HazardCurves: React.FC<HazardCurvesProps> = ({ curves, scalesConfig, colors, width, heading, subHeading, parentRef, gridNumTicks, POE }: HazardCurvesProps) => {
   const [headingSize, setHeadingSize] = useState<number>(0);
   const [subHeadingSize, setSubHeadingSize] = useState<number>(0);
-
-  const containerStyles = {
-    width: parentRef ? '100%' : width,
-    position: 'relative',
-  };
 
   const headingProps = {
     alignmnetbaseline: 'middle',
@@ -48,7 +43,7 @@ const HazardCurves: React.FC<HazardCurvesProps> = ({ curves, scalesConfig, color
       colorScale.range.push(colors[key]);
     });
     return colorScale;
-  }, [curves]);
+  }, [colors]);
 
   const ordinalColorScale = useMemo(() => {
     return scaleOrdinal({
@@ -94,7 +89,7 @@ const HazardCurves: React.FC<HazardCurvesProps> = ({ curves, scalesConfig, color
           <Grid rows columns lineStyle={{ opacity: '90%' }} numTicks={gridNumTicks} />
           <RectClipPath id={parentRef ? 'responsive-clip' : 'clip'} x={50} y={-50} width={width} height={width * 0.75} />
           <Group clipPath={parentRef ? 'url(#responsive-clip)' : 'url(#clip)'}>
-            {Object.keys(curves).map((key, index) => {
+            {Object.keys(curves).map((key) => {
               return <AnimatedLineSeries role="curve" key={key} dataKey={key} data={curves[key]} xAccessor={(d: XY) => d?.x} yAccessor={(d: XY) => d?.y} stroke={colors[key]} />;
             })}
             {POE !== 'None' && <AnimatedLineSeries role="POE" dataKey={POE} data={POEline} xAccessor={(d) => d.x} yAccessor={(d) => d.y} stroke={'#989C9C'} />}
