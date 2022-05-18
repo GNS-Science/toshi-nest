@@ -6,25 +6,11 @@ import userEvent from '@testing-library/user-event';
 describe('MultiSelect', () => {
   const Wrapper = () => {
     const [sampleSelection, setSampleSelection] = React.useState<string[]>(['1']);
-    return (
-      <MultiSelect
-        name={'test'}
-        selection={sampleSelection}
-        options={['1', '2', '3']}
-        setSelection={setSampleSelection}
-      />
-    );
+    return <MultiSelect name={'test'} selection={sampleSelection} options={['1', '2', '3']} setSelection={setSampleSelection} />;
   };
   const NoSelectionWrapper = () => {
     const [sampleSelection, setSampleSelection] = React.useState<string[]>([]);
-    return (
-      <MultiSelect
-        name={'test'}
-        selection={sampleSelection}
-        options={['1', '2', '3']}
-        setSelection={setSampleSelection}
-      />
-    );
+    return <MultiSelect name={'test'} selection={sampleSelection} options={['1', '2', '3']} setSelection={setSampleSelection} />;
   };
   const user = userEvent.setup();
 
