@@ -1,17 +1,8 @@
 import React from 'react';
 import { ParentSize } from '@visx/responsive';
-import HazardCurves from './HazardCurves';
-import { HazardCurveColors, HazardTableFilteredData, XYChartScaleConfig } from '../interfaces/HazardView';
 
-interface ResponsiveHazardCurvesProps {
-  curves: HazardTableFilteredData;
-  scalesConfig: XYChartScaleConfig;
-  colors: HazardCurveColors;
-  heading?: string;
-  subHeading?: string;
-  gridNumTicks: number;
-  POE: 'None' | '2%' | '10%';
-}
+import HazardCurves from './HazardCurves';
+import { ResponsiveHazardCurvesProps } from '../types/hazardCurves.types';
 
 const ResponsiveHazardCurves: React.FC<ResponsiveHazardCurvesProps> = ({ curves, scalesConfig, colors, heading, subHeading, gridNumTicks, POE }: ResponsiveHazardCurvesProps) => {
   return (
