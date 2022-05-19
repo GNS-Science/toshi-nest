@@ -7,6 +7,7 @@ export interface HazardChartsDataItem {
   column_headers: string[];
   column_types: string[];
   rows: string[][];
+  dimensions: { k: string; v: string[] }[];
 }
 
 export interface HazardData {
