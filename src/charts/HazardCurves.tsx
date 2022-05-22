@@ -5,25 +5,12 @@ import { Group } from '@visx/group';
 import { scaleOrdinal } from '@visx/scale';
 import { LegendOrdinal } from '@visx/legend';
 
-import { XY } from '../interfaces/common';
-import { HazardColorScale, HazardCurveColors, HazardTableFilteredData, XYChartScaleConfig } from '../interfaces/HazardView';
+import { XY } from '../types/common.types';
 import { Typography } from '@mui/material';
+import { HazardCurvesProps, HazardColorScale } from '../types/hazardCurves.types';
 
-interface HazardCurvesProps {
-  curves: HazardTableFilteredData;
-  scalesConfig: XYChartScaleConfig;
-  colors: HazardCurveColors;
-  width: number;
-  heading?: string;
-  subHeading?: string;
-  parentRef?: HTMLDivElement | null;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  resizeParent?: (state: any) => void;
-  gridNumTicks: number;
-  POE: 'None' | '2%' | '10%';
-}
-
-const HazardCurves: React.FC<HazardCurvesProps> = ({ curves, scalesConfig, colors, width, heading, subHeading, parentRef, gridNumTicks, POE }: HazardCurvesProps) => {
+const HazardCurves: React.FC<HazardCurvesProps> = (props: HazardCurvesProps) => {
+  const { curves, scalesConfig, colors, width, heading, subHeading, parentRef, gridNumTicks, POE } = props;
   const [headingSize, setHeadingSize] = useState<number>(0);
   const [subHeadingSize, setSubHeadingSize] = useState<number>(0);
 
