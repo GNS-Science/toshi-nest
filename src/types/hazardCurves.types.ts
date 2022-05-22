@@ -1,4 +1,4 @@
-import { XY } from './common';
+import { XY } from './common.types';
 
 export interface ResponsiveHazardCurvesProps {
   curves: HazardTableFilteredData;

@@ -5,7 +5,7 @@ import { Group } from '@visx/group';
 import { scaleOrdinal } from '@visx/scale';
 import { LegendOrdinal } from '@visx/legend';
 
-import { XY } from '../types/common';
+import { XY } from '../types/common.types';
 import { Typography } from '@mui/material';
 import { HazardCurvesProps, HazardColorScale } from '../types/hazardCurves.types';
 
