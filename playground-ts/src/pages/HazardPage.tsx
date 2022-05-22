@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { HazardCurves, ResponsiveHazardCurves, SpectralAccelerationChart } from '../component-lib';
+import { HazardCurves, ResponsiveHazardCurves, SpectralAccelerationChart, SpectralAccelerationChartResponsive } from '../component-lib';
 import { hazardChartsData } from '../constants/hazardChartsData';
 import { filterMultipleCurves, getHazardTableOptions, getSpectralAccelerationData } from '../service/hazardPage.service';
 
@@ -47,6 +47,9 @@ const HazardPage: React.FC = () => {
       <div style={{ border: 'solid black 1px', width: '100vw', display: 'flex', justifyContent: 'center' }}>
         <div style={{ width: '50vw', display: 'flex', justifyContent: 'center' }}>
           <ResponsiveHazardCurves curves={curves} scalesConfig={scalesConfig} colors={colors} heading={'Responsive Hazard Curves'} subHeading={'subHeading'} gridNumTicks={10} POE={'2%'} />
+        </div>
+        <div style={{ width: '50vw', display: 'flex', justifyContent: 'center' }}>
+          <SpectralAccelerationChartResponsive data={SAdata} heading={'Spectral Acceleration Chart Responsive'} subHeading={'subHeading'} />
         </div>
       </div>
     </>

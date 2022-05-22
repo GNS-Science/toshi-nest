@@ -8,6 +8,11 @@ export type SpectralAccelerationChartProps = {
   resizeParent?: (state: any) => void;
 };
 
+export type SpectralAccelerationChartResponsiveProps = {
+  data: XY[];
+  heading?: string;
+  subHeading?: string;
+};
 export interface XY {
   x: number;
   y: number;
