@@ -9,6 +9,12 @@ const SpectralAccelerationChart: React.FC<SpectralAccelerationChartProps> = ({ d
   const [headingSize, setHeadingSize] = useState<number>(0);
   const [subHeadingSize, setSubHeadingSize] = useState<number>(0);
 
+  const headingProps = {
+    alignmnetbaseline: 'middle',
+    dominantBaseline: 'middle',
+    textAnchor: 'middle',
+  };
+
   useEffect(() => {
     width * 0.035 >= 24 ? setHeadingSize(24) : setHeadingSize(width * 0.035);
     width * 0.025 >= 15 ? setSubHeadingSize(15) : setSubHeadingSize(width * 0.025);
@@ -16,12 +22,12 @@ const SpectralAccelerationChart: React.FC<SpectralAccelerationChartProps> = ({ d
 
   return (
     <>
-      <div style={{ position: 'relative', width: '100%' }}>
+      <div style={{ position: 'relative', width: width }}>
         <XYChart height={width * 0.75} width={width} xScale={{ type: 'linear', domain: [-1, 10] }} yScale={{ type: 'linear', domain: [0, 3] }}>
-          <text y={18} x={'50%'} alignmentBaseline="middle" dominantBaseline="middle" textAnchor="middle" fontSize={headingSize} fontWeight="bold">
+          <text y={18} x={'50%'} {...headingProps} fontSize={headingSize} fontWeight="bold">
             {heading}
           </text>
-          <text y={headingSize + 18} x={'50%'} alignmentBaseline="middle" dominantBaseline="middle" textAnchor="middle" fontSize={subHeadingSize} style={{ margin: 10 }}>
+          <text y={headingSize + 18} x={'50%'} {...headingProps} fontSize={subHeadingSize} style={{ margin: 10 }}>
             {subHeading}
           </text>
           <AnimatedAxis label="Spectral Period (s)" orientation="bottom" />

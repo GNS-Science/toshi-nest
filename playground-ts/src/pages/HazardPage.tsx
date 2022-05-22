@@ -1,5 +1,6 @@
 import React from 'react';
-import { HazardCurves, ResponsiveHazardCurves } from '../component-lib';
+
+import { HazardCurves, ResponsiveHazardCurves, SpectralAccelerationChart } from '../component-lib';
 import { hazardChartsData } from '../constants/hazardChartsData';
 import { filterMultipleCurves, getHazardTableOptions } from '../service/hazardPage.service';
 
@@ -16,6 +17,12 @@ const HazardPage: React.FC = () => {
     hazardPageOption.backgroundSeismicity[0],
   );
 
+  const SAdata = [
+    { x: 1, y: 1 },
+    { x: 2, y: 2 },
+    { x: 3, y: 3 },
+  ];
+
   const scalesConfig = {
     x: { type: 'log', domain: [1e-3, 10] },
     y: { type: 'log', domain: [1e-5, 1] },
@@ -30,6 +37,7 @@ const HazardPage: React.FC = () => {
       <p>Hazard Page</p>
       <div style={{ border: 'solid black 1px', width: '100vw' }}>
         <HazardCurves curves={curves} width={500} scalesConfig={scalesConfig} colors={colors} heading={'Static Hazard Curves'} subHeading={'subHeading'} gridNumTicks={10} POE={'None'} />
+        <SpectralAccelerationChart width={500} data={SAdata} heading={'Heading'} subHeading={'subHeading'} />
       </div>
       <div style={{ border: 'solid black 1px', width: '100vw', display: 'flex', justifyContent: 'center' }}>
         <div style={{ width: '50vw', display: 'flex', justifyContent: 'center' }}>
