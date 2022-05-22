@@ -2,11 +2,22 @@ import React from 'react';
 
 import { HazardCurves, ResponsiveHazardCurves, SpectralAccelerationChart } from '../component-lib';
 import { hazardChartsData } from '../constants/hazardChartsData';
-import { filterMultipleCurves, getHazardTableOptions } from '../service/hazardPage.service';
+import { filterMultipleCurves, getHazardTableOptions, getSpectralAccelerationData } from '../service/hazardPage.service';
 
 const HazardPage: React.FC = () => {
   const hazardPageOption = getHazardTableOptions(hazardChartsData);
   const colorsArray = ['#000000', '#FE1100', '#73d629', '#ffd700', '#7fe5f0', '#003366', '#ff7f50', '#047806', '#4ca3dd'];
+
+  const allCurves = filterMultipleCurves(
+    hazardPageOption.PGA,
+    hazardChartsData,
+    hazardPageOption.locations[0],
+    hazardPageOption.forecastTimes[0],
+    hazardPageOption.gmpe[0],
+    hazardPageOption.backgroundSeismicity[0],
+  );
+
+  const SAdata = getSpectralAccelerationData(hazardPageOption.PGA, 0.02, allCurves);
 
   const curves = filterMultipleCurves(
     ['PGA', '0.1'],
@@ -16,12 +27,6 @@ const HazardPage: React.FC = () => {
     hazardPageOption.gmpe[0],
     hazardPageOption.backgroundSeismicity[0],
   );
-
-  const SAdata = [
-    { x: 1, y: 1 },
-    { x: 2, y: 2 },
-    { x: 3, y: 3 },
-  ];
 
   const scalesConfig = {
     x: { type: 'log', domain: [1e-3, 10] },
