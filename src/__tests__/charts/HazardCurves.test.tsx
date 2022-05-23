@@ -1,8 +1,7 @@
 import React from 'react';
 import HazardCurves from '../../charts/HazardCurves';
-import { screen, waitFor, fireEvent } from '@testing-library/react';
-import { XY } from '../../interfaces/common';
-import { HazardCurveColors, XYChartScaleConfig } from '../../interfaces/HazardView';
+import { screen } from '@testing-library/react';
+import { HazardCurveColors, XYChartScaleConfig } from '../../types/hazardCurves.types';
 import { render } from '@testing-library/react';
 import { testData } from '../testData/hazardCurveTestData';
 import userEvent from '@testing-library/user-event';
