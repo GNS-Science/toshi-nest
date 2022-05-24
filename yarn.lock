@@ -2721,6 +2721,11 @@ combined-stream@^1.0.8:
   dependencies:
     delayed-stream "~1.0.0"
 
+commander@^2.20.0:
+  version "2.20.3"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
+  integrity sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==
+
 commander@^8.3.0:
   version "8.3.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-8.3.0.tgz#4837ea1b2da67b9c616a67afbb0fafee567bca66"
@@ -3342,6 +3347,13 @@ execa@^5.0.0, execa@^5.1.1:
     signal-exit "^3.0.3"
     strip-final-newline "^2.0.0"
 
+executioner@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/executioner/-/executioner-2.0.1.tgz#add328e03bc45dd598f358fbb529fc0be0ec6fcd"
+  integrity sha1-rdMo4DvEXdWY81j7tSn8C+Dsb80=
+  dependencies:
+    mixly "^1.0.0"
+
 exit@^0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/exit/-/exit-0.1.2.tgz#0632638f8d877cc82107d30a0fff1a17cba1cd0c"
@@ -3499,6 +3511,11 @@ fsevents@^2.3.2, fsevents@~2.3.2:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.3.2.tgz#8a526f78b8fdf4623b709e0b975c52c24c02fd1a"
   integrity sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==
+
+fulcon@^1.0.1:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/fulcon/-/fulcon-1.0.2.tgz#8a4dfda4c73fcd9cc62a79d5045c392b45547320"
+  integrity sha1-ik39pMc/zZzGKnnVBFw5K0VUcyA=
 
 function-bind@^1.1.1:
   version "1.1.1"
@@ -3770,6 +3787,14 @@ inherits@2, inherits@^2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.4.tgz#0fa2c64f932917c3433a0ded55363aae37416b7c"
   integrity sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==
+
+install-peers-cli@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/install-peers-cli/-/install-peers-cli-2.2.0.tgz#f76f1ec8ac9fa7f920c05743e011554edad85f8d"
+  integrity sha512-scSNvF49HDOLNm2xLFwST23g/OvfsceiA087bcGBgZP/ZNCrvpSaCn5IrWNZ2XYmFFykXF/6J1Zgm+D/JgRgtA==
+  dependencies:
+    commander "^2.20.0"
+    executioner "^2.0.1"
 
 internal-slot@^1.0.3:
   version "1.0.3"
@@ -4719,6 +4744,13 @@ mitt@^2.1.0:
   resolved "https://registry.yarnpkg.com/mitt/-/mitt-2.1.0.tgz#f740577c23176c6205b121b2973514eade1b2230"
   integrity sha512-ILj2TpLiysu2wkBbWjAmww7TkZb65aiQO+DkVdUTBpBXq+MHYiETENkKFMtsJZX1Lf4pe4QOrTSjIfUwN5lRdg==
 
+mixly@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/mixly/-/mixly-1.0.0.tgz#9b5a2e1f63e6dfba0d30e6797ffae62ab1dc24ef"
+  integrity sha1-m1ouH2Pm37oNMOZ5f/rmKrHcJO8=
+  dependencies:
+    fulcon "^1.0.1"
+
 ms@2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
@@ -5128,15 +5160,6 @@ queue-microtask@^1.2.2:
   resolved "https://registry.yarnpkg.com/queue-microtask/-/queue-microtask-1.2.3.tgz#4929228bbc724dfac43e0efb058caf7b6cfb6243"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
 
-react-dom@^17.0.2:
-  version "17.0.2"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-17.0.2.tgz#ecffb6845e3ad8dbfcdc498f0d0a939736502c23"
-  integrity sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA==
-  dependencies:
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
-    scheduler "^0.20.2"
-
 "react-is@^16.12.0 || ^17.0.0 || ^18.0.0":
   version "18.1.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-18.1.0.tgz#61aaed3096d30eacf2a2127118b5b41387d32a67"
@@ -5225,14 +5248,6 @@ react-use-measure@^2.0.4:
   integrity sha512-nocZhN26cproIiIduswYpV5y5lQpSQS1y/4KuvUCjSKmw7ZWIS/+g3aFnX3WdBkyuGUtTLif3UTqnLLhbDoQig==
   dependencies:
     debounce "^1.2.1"
-
-react@^17.0.2:
-  version "17.0.2"
-  resolved "https://registry.yarnpkg.com/react/-/react-17.0.2.tgz#d0b5cc516d29eb3eee383f75b62864cfb6800037"
-  integrity sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==
-  dependencies:
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
 
 read-pkg-up@^1.0.1:
   version "1.0.1"
