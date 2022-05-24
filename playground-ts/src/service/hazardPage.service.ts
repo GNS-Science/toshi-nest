@@ -1,4 +1,5 @@
 import { HazardData } from '../constants/hazardChartsData';
+import * as mathjs from 'mathjs';
 
 interface XY {
   x: number;
@@ -80,4 +81,32 @@ export const filterData = (data: HazardData, location: string, pgaValue: string,
   });
 
   return xy;
+};
+
+export const getSpectralAccelerationData = (pgaValues: string[], xValue: number, filteredCurves: Record<string, XY[]>): XY[] => {
+  const dataSet: XY[] = [];
+
+  pgaValues.map((value) => {
+    try {
+      let p1: number[] = [];
+      let p2: number[] = [];
+      const p3 = [Math.log(2e-3), Math.log(xValue)];
+      const p4 = [Math.log(10), Math.log(xValue)];
+
+      filteredCurves[value].find((xy, i) => {
+        if (xy.y <= xValue) {
+          p1 = [Math.log(xy.x), Math.log(xy.y)];
+          p2 = [Math.log(filteredCurves[value][i - 1].x), Math.log(filteredCurves[value][i - 1].y)];
+          return true;
+        }
+      });
+      const point = mathjs.intersect(p1, p2, p3, p4);
+      const result = [Math.exp(point[0] as number), mathjs.exp(mathjs.exp(point[1] as number))];
+      dataSet.push({ x: value === 'PGA' ? 0.01 : parseFloat(value), y: result[0] });
+    } catch {
+      dataSet.push({ x: value === 'PGA' ? 0.01 : parseFloat(value), y: 0 });
+    }
+  });
+
+  return dataSet;
 };
