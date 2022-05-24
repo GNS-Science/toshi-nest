@@ -79,8 +79,6 @@
     "@visx/responsive": "^2.8.0",
     "@visx/scale": "^2.2.2",
     "@visx/xychart": "^2.9.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
     "react-spring": "^9.4.4"
   },
   "peerDependencies": {
