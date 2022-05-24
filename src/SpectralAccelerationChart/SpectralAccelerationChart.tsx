@@ -53,7 +53,7 @@ const SpectralAccelerationChart: React.FC<SpectralAccelerationChartProps> = ({ d
             }}
           />
           <Grid rows columns lineStyle={{ opacity: '90%' }} numTicks={6} />
-          <AnimatedLineSeries dataKey="Spectral Acceleration" data={data} xAccessor={(d) => d.x} yAccessor={(d) => d.y} curve={curveLinear} />
+          <AnimatedLineSeries role="curve" dataKey="Spectral Acceleration" data={data} xAccessor={(d) => d.x} yAccessor={(d) => d.y} curve={curveLinear} />
         </XYChart>
       </div>
     </>
