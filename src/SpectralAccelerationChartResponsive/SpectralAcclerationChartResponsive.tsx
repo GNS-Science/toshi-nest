@@ -1,8 +1,8 @@
 import React from 'react';
 import { ParentSize } from '@visx/responsive';
 
-import SpectralAccelerationChart from './SpectralAccelerationChart';
-import { SpectralAccelerationChartResponsiveProps } from '../types/spectralAccelerationChart.types';
+import SpectralAccelerationChart from '../SpectralAccelerationChart/SpectralAccelerationChart';
+import { SpectralAccelerationChartResponsiveProps } from './spectralAccelerationChartResponsive.type';
 
 const SpectralAccelerationChartResponsive: React.FC<SpectralAccelerationChartResponsiveProps> = (props: SpectralAccelerationChartResponsiveProps) => {
   const { data, heading, subHeading } = props;

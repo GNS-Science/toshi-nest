@@ -3,7 +3,8 @@ import { Typography } from '@mui/material';
 import { curveLinear } from '@visx/curve';
 import { AnimatedAxis, AnimatedLineSeries, Grid, Tooltip, XYChart } from '@visx/xychart';
 
-import { SpectralAccelerationChartProps, XY } from '../types/spectralAccelerationChart.types';
+import { SpectralAccelerationChartProps } from './spectralAccelerationChart.types';
+import { XY } from '../types/common.types';
 
 const SpectralAccelerationChart: React.FC<SpectralAccelerationChartProps> = ({ data, heading, subHeading, width }: SpectralAccelerationChartProps) => {
   const [headingSize, setHeadingSize] = useState<number>(0);
