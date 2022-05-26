@@ -6,5 +6,6 @@ import ResponsiveHazardCurves from './charts/ResponsiveHazardCurves';
 import { default as SpectralAccelerationChart } from './SpectralAccelerationChart';
 import { default as SpectralAccelerationChartResponsive } from './SpectralAccelerationChartResponsive';
 import { default as LeafletMap } from './LeafletMap/LeafletMap';
+import { default as LeafletDrawer } from './LeafletDrawer/LeafletDrawer';
 
-export { ControlsBar, SelectControl, MultiSelect, HazardCurves, ResponsiveHazardCurves, SpectralAccelerationChart, SpectralAccelerationChartResponsive, LeafletMap };
+export { ControlsBar, SelectControl, MultiSelect, HazardCurves, ResponsiveHazardCurves, SpectralAccelerationChart, SpectralAccelerationChartResponsive, LeafletMap, LeafletDrawer };

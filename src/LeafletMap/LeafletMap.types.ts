@@ -5,6 +5,5 @@ export interface LeafletMapProps {
   locationsData: string;
   nzCentre: LatLngExpression;
   zoom: number;
-  providerUrl: string;
   showLocation: boolean;
 }
