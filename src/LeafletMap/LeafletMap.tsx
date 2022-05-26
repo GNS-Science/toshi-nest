@@ -2,7 +2,7 @@
 import React from 'react';
 import { GeoJsonObject } from 'geojson';
 import 'leaflet/dist/leaflet.css';
-import { LeafletMapProps } from '../interfaces/LeafletMap';
+import { LeafletMapProps } from './LeafletMap.types';
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
 import Fullscreen from 'react-leaflet-fullscreen-plugin';
 

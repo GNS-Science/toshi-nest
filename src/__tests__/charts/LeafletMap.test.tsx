@@ -1,5 +1,5 @@
 import React from 'react';
-import LeafletMap from '../../charts/LeafletMap';
+import LeafletMap from '../../LeafletMap/LeafletMap';
 import { solvisResponse } from '../testData/leafletMapTestData';
 import { render } from '@testing-library/react';
 import { LatLngExpression } from 'leaflet';

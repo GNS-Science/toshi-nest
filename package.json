@@ -45,6 +45,7 @@
     "@types/jest": "^27.4.1",
     "@types/leaflet": "^1.7.9",
     "@types/react": "^17.0.42",
+    "@types/react-leaflet-fullscreen-plugin": "^1.0.0",
     "@types/testing-library__jest-dom": "^5.14.3",
     "@typescript-eslint/eslint-plugin": "^5.21.0",
     "@typescript-eslint/parser": "^5.21.0",
@@ -57,9 +58,14 @@
     "husky": "^7.0.4",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.5.1",
+    "leaflet": "^1.8.0",
     "lint-staged": "^12.4.0",
     "prettier": "^2.6.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "react-konva": "^17.0.0-0",
+    "react-leaflet": ">=3.1.0 <3.2.0 || ^3.2.1",
+    "react-leaflet-fullscreen-plugin": "^1.0.1",
     "react-test-renderer": "^17.0.2",
     "rollup": "^2.70.1",
     "rollup-plugin-delete": "^2.0.0",
@@ -69,15 +75,12 @@
     "ts-node": "^10.7.0",
     "typescript": "^4.6.2",
     "yarn-run-all": "^3.1.1",
-    "zdog": "1.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "zdog": "1.0"
   },
   "dependencies": {
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
     "@mui/material": "^5.5.2",
-    "@types/react-leaflet-fullscreen-plugin": "^1.0.0",
     "@visx/clip-path": "^2.1.0",
     "@visx/group": "^2.1.0",
     "@visx/legend": "^2.2.2",
@@ -88,7 +91,7 @@
     "leaflet": "^1.8.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-leaflet": "3.2.5",
+    "react-leaflet": ">=3.1.0 <3.2.0 || ^3.2.1",
     "react-leaflet-fullscreen-plugin": "^1.0.1",
     "react-spring": "^9.4.4"
   },
@@ -102,8 +105,12 @@
     "@visx/responsive": "^2.8.0",
     "@visx/scale": "^2.2.2",
     "@visx/xychart": "^2.9.0",
+    "geojson": "^0.5.0",
+    "leaflet": "^1.8.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-leaflet": ">=3.1.0 <3.2.0 || ^3.2.1",
+    "react-leaflet-fullscreen-plugin": "^1.0.1",
     "react-spring": "^9.4.4"
   }
 }
