@@ -1,6 +1,17 @@
 import React from 'react';
 import { solvisResponse } from '../constants/geojsonData';
-import { LeafletMap, LeafletDrawer } from '../component-lib';
+import { LeafletMap, LeafletDrawer, LeafletRuptureSetControls } from '../component-lib';
+import { ThemeProvider } from '@mui/material';
+import { createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#B70500',
+    },
+  },
+  zIndex: { modal: 120000, drawer: 110000 },
+});
 
 const LeafletMapPage: React.FC = () => {
   const rupturesData = solvisResponse.ruptures;
@@ -10,10 +21,10 @@ const LeafletMapPage: React.FC = () => {
   const nzCentre = [-40.946, 174.167];
 
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <LeafletMap zoom={zoom} nzCentre={nzCentre} rupturesData={rupturesData} locationsData={locationsData} showLocation={showLocation} />
-      <LeafletDrawer />
-    </>
+      <LeafletDrawer drawerContent={<LeafletRuptureSetControls />} />
+    </ThemeProvider>
   );
 };
 

@@ -38,7 +38,7 @@ const LeafletMap: React.FC<LeafletMapProps> = ({ rupturesData, locationsData, nz
         </LayersControl>
         {ruptures && <GeoJSON key={Math.random()} data={ruptures} style={mapStyle} />}
         {showLocation && locations && <GeoJSON key={Math.random()} data={locations} style={mapStyle} />}
-        <Fullscreen />
+        <Fullscreen forcePseudoFullscreen={true} />
       </MapContainer>
     </>
   );
