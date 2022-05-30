@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { AnimatedAxis, AnimatedLineSeries, Grid, Tooltip, XYChart } from '@visx/xychart';
 import { RectClipPath } from '@visx/clip-path';
 import { Group } from '@visx/group';
@@ -8,17 +8,10 @@ import { LegendOrdinal } from '@visx/legend';
 import { XY } from '../types/common.types';
 import { Typography } from '@mui/material';
 import { HazardCurvesProps, HazardColorScale } from '../types/hazardCurves.types';
+import PlotHeadings from '../common/PlotHeadings';
 
 const HazardCurves: React.FC<HazardCurvesProps> = (props: HazardCurvesProps) => {
   const { curves, scalesConfig, colors, width, heading, subHeading, parentRef, gridNumTicks, POE } = props;
-  const [headingSize, setHeadingSize] = useState<number>(0);
-  const [subHeadingSize, setSubHeadingSize] = useState<number>(0);
-
-  const headingProps = {
-    alignmnetbaseline: 'middle',
-    dominantBaseline: 'middle',
-    textAnchor: 'middle',
-  };
 
   const curvesDomain = useMemo(() => {
     const colorScale: HazardColorScale = {
@@ -41,7 +34,7 @@ const HazardCurves: React.FC<HazardCurvesProps> = (props: HazardCurvesProps) => 
 
   const POEline = useMemo(() => {
     const getPoE = () => {
-      const yValue = POE === '2%' ? 0.02 : 0.1;
+      const yValue = POE === '2%' ? -Math.log(1 - 0.02) / 50 : -Math.log(1 - 0.1) / 50;
       return [
         { x: 1e-3, y: yValue },
         { x: 10, y: yValue },
@@ -52,25 +45,11 @@ const HazardCurves: React.FC<HazardCurvesProps> = (props: HazardCurvesProps) => 
     return getPoE();
   }, [POE]);
 
-  useEffect(() => {
-    width * 0.035 >= 24 ? setHeadingSize(24) : setHeadingSize(width * 0.035);
-    width * 0.025 >= 15 ? setSubHeadingSize(15) : setSubHeadingSize(width * 0.025);
-  }, [width]);
-
   return (
     <>
       <div style={{ position: 'relative', width: width }}>
         <XYChart height={width * 0.75} width={width} xScale={scalesConfig.x} yScale={scalesConfig.y}>
-          {heading && (
-            <text y={18} x={'50%'} {...headingProps}>
-              {heading}
-            </text>
-          )}
-          {subHeading && (
-            <text y={headingSize + 18} x={'50%'} {...headingProps} fontSize={subHeadingSize}>
-              {subHeading}
-            </text>
-          )}
+          <PlotHeadings heading={heading} subHeading={subHeading} width={width} />
           <AnimatedAxis label="Acceleration (g)" orientation="bottom" />
           <AnimatedAxis label={`Probability of Exceedance`} labelOffset={20} orientation="left" />
           <Grid rows columns lineStyle={{ opacity: '90%' }} numTicks={gridNumTicks} />
