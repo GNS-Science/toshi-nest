@@ -41,7 +41,7 @@ const HazardCurves: React.FC<HazardCurvesProps> = (props: HazardCurvesProps) => 
 
   const POEline = useMemo(() => {
     const getPoE = () => {
-      const yValue = POE === '2%' ? 0.02 : 0.1;
+      const yValue = POE === '2%' ? -Math.log(1 - 0.02) / 50 : -Math.log(1 - 0.1) / 50;
       return [
         { x: 1e-3, y: yValue },
         { x: 10, y: yValue },
