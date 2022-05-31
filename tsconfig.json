@@ -26,5 +26,6 @@
     "src/**/*",
     "*.config.js",
     "decs.d.ts"
-  ]
+  ],
+  "exclude": ["node_modules", "dist"]
 }
