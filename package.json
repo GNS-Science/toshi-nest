@@ -89,8 +89,6 @@
     "@visx/xychart": "^2.9.0",
     "geojson": "^0.5.0",
     "leaflet": "^1.8.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
     "react-leaflet": ">=3.1.0 <3.2.0 || ^3.2.1",
     "react-leaflet-fullscreen-plugin": "^1.0.1",
     "react-spring": "^9.4.4"
