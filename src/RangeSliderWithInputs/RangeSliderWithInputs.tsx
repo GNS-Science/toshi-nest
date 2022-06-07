@@ -1,21 +1,7 @@
 import { Box, Grid, Input, Slider, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import React from 'react';
-
-interface RangeSliderWithInputsProps {
-  label: string;
-  inputProps: InputProps;
-  valuesRange: number[];
-  setValues: (values: number[]) => void;
-  valueLabelFormat?: (value: number) => string;
-}
-
-interface InputProps {
-  step: number;
-  min: number;
-  max: number;
-  type: string;
-}
+import { RangeSliderWithInputsProps } from './RangeSliderWithInputs.types';
 
 const SmallInput = styled(Input)({
   width: 42,

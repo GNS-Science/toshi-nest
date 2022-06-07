@@ -1,19 +1,12 @@
 import { Checkbox, FormControl, Input, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import React, { useEffect } from 'react';
-
+import { MultiSelectProps } from './MultiSelect.types';
 const MultiSelectContainer = styled('div')({
   margin: 10,
   minWidth: 200,
   maxWidth: 300,
 });
-
-interface MultiSelectProps {
-  options: string[];
-  selection: string[];
-  setSelection: (selections: string[]) => void;
-  name: string;
-}
 
 const MultiSelect: React.FC<MultiSelectProps> = ({ options, selection, setSelection, name }: MultiSelectProps) => {
   useEffect(() => {

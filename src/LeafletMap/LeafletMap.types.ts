@@ -6,4 +6,6 @@ export interface LeafletMapProps {
   nzCentre: LatLngExpression;
   zoom: number;
   showLocation: boolean;
+  height: string;
+  width: string;
 }

@@ -32,7 +32,7 @@ const StyledDrawer = styled(Drawer)({
   border: '2px solid #ccc',
 });
 
-const LeafletDrawer: React.FC<LeafletDrawerProps> = ({ drawerContent }: LeafletDrawerProps) => {
+const LeafletDrawer: React.FC<LeafletDrawerProps> = ({ children }: LeafletDrawerProps) => {
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
@@ -52,7 +52,7 @@ const LeafletDrawer: React.FC<LeafletDrawerProps> = ({ drawerContent }: LeafletD
         <Button onClick={handleDrawerClose}>
           <ChevronLeftIcon />
         </Button>
-        {drawerContent}
+        {children}
       </StyledDrawer>
     </>
   );

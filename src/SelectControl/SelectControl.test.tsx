@@ -1,5 +1,5 @@
 import React from 'react';
-import SelectControl from '../common/SelectControl';
+import SelectControl from './SelectControl';
 import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 

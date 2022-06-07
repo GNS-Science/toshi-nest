@@ -14,13 +14,13 @@ const mapStyle = {
 
 const { BaseLayer } = LayersControl;
 
-const LeafletMap: React.FC<LeafletMapProps> = ({ rupturesData, locationsData, nzCentre, zoom, showLocation }: LeafletMapProps) => {
+const LeafletMap: React.FC<LeafletMapProps> = ({ rupturesData, locationsData, nzCentre, zoom, showLocation, height, width }: LeafletMapProps) => {
   const ruptures = JSON.parse(rupturesData) as GeoJsonObject;
   const locations = JSON.parse(locationsData) as GeoJsonObject;
 
   return (
     <>
-      <MapContainer id={'leaflet-map-container'} center={nzCentre} zoom={zoom} scrollWheelZoom={true} style={{ height: '700px' }}>
+      <MapContainer id={'leaflet-map-container'} center={nzCentre} zoom={zoom} scrollWheelZoom={true} style={{ height: height, width: width }}>
         <LayersControl>
           <BaseLayer name="Ocean Basemap" checked={true}>
             <TileLayer url={'https://server.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}'} attribution="&copy; Ocean Basemap, image service by ArcGIS" />

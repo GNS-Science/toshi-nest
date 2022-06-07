@@ -1,18 +1,12 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
 import { FormControl, Input, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
+import { SelectControlProps } from './SelectControl.types';
 
 const SelectControlContainer = styled('div')({
   minWidth: 200,
   maxWidth: 300,
 });
-
-interface SelectControlProps {
-  options: string[];
-  selection: string;
-  setSelection: (selection: string) => void;
-  name: string;
-}
 
 const SelectControl: React.FC<SelectControlProps> = ({ options, selection, setSelection, name }: SelectControlProps) => {
   const handleChange = (event: SelectChangeEvent<string>) => {

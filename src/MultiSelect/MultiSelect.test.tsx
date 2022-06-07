@@ -1,5 +1,5 @@
 import React from 'react';
-import MultiSelect from '../common/MultiSelect';
+import MultiSelect from './MultiSelect';
 import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
