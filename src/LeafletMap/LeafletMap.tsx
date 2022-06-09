@@ -14,7 +14,7 @@ const mapStyle = {
 
 const { BaseLayer } = LayersControl;
 
-const LeafletMap: React.FC<LeafletMapProps> = ({ rupturesData, locationsData, nzCentre, zoom, showLocation, height, width }: LeafletMapProps) => {
+const LeafletMap: React.FC<LeafletMapProps> = ({ rupturesData, locationsData, nzCentre, zoom, showLocation, height, width, setFullscreen }: LeafletMapProps) => {
   const ruptures = JSON.parse(rupturesData) as GeoJsonObject;
   const locations = JSON.parse(locationsData) as GeoJsonObject;
 
@@ -38,7 +38,13 @@ const LeafletMap: React.FC<LeafletMapProps> = ({ rupturesData, locationsData, nz
         </LayersControl>
         {ruptures && <GeoJSON key={Math.random()} data={ruptures} style={mapStyle} />}
         {showLocation && locations && <GeoJSON key={Math.random()} data={locations} style={mapStyle} />}
-        <Fullscreen forcePseudoFullscreen={true} />
+        <Fullscreen
+          eventHandlers={{
+            enterFullscreen: () => setFullscreen(true),
+            exitFullscreen: () => setFullscreen(false),
+          }}
+          forcePseudoFullscreen={true}
+        />
       </MapContainer>
     </>
   );

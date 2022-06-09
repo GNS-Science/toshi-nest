@@ -21,18 +21,12 @@ const MenuOpenButton = styled(Button)({
   color: 'black',
 });
 
-const drawerWidth = 400;
 const StyledDrawer = styled(Drawer)({
-  width: drawerWidth,
   flexShrink: 0,
-  '& .MuiDrawer-paper': {
-    width: drawerWidth,
-    boxSizing: 'border-box',
-  },
   border: '2px solid #ccc',
 });
 
-const LeafletDrawer: React.FC<LeafletDrawerProps> = ({ children }: LeafletDrawerProps) => {
+const LeafletDrawer: React.FC<LeafletDrawerProps> = ({ children, drawerHeight, headerHeight, fullscreen, width }: LeafletDrawerProps) => {
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
@@ -43,17 +37,52 @@ const LeafletDrawer: React.FC<LeafletDrawerProps> = ({ children }: LeafletDrawer
     setOpen(false);
   };
 
+  const fullscreenDrawer = (
+    <StyledDrawer
+      PaperProps={{
+        sx: {
+          width: width,
+          boxSizing: 'border-box',
+        },
+      }}
+      variant="persistent"
+      anchor="left"
+      open={open}
+    >
+      <Button onClick={handleDrawerClose}>
+        <ChevronLeftIcon />
+      </Button>
+      {children}
+    </StyledDrawer>
+  );
+
+  const drawer = (
+    <StyledDrawer
+      PaperProps={{
+        sx: {
+          width: width,
+          boxSizing: 'border-box',
+          height: drawerHeight,
+          marginTop: headerHeight,
+        },
+      }}
+      variant="persistent"
+      anchor="left"
+      open={open}
+    >
+      <Button onClick={handleDrawerClose}>
+        <ChevronLeftIcon />
+      </Button>
+      {children}
+    </StyledDrawer>
+  );
+
   return (
     <>
       <MenuOpenButton onClick={handleDrawerOpen}>
         <ChevronRightIcon />
       </MenuOpenButton>
-      <StyledDrawer variant="persistent" anchor="left" open={open}>
-        <Button onClick={handleDrawerClose}>
-          <ChevronLeftIcon />
-        </Button>
-        {children}
-      </StyledDrawer>
+      {fullscreen ? fullscreenDrawer : drawer}
     </>
   );
 };

@@ -6,7 +6,7 @@ import LeafletDrawer from './LeafletDrawer';
 describe('LeafletDrawer', () => {
   const Wrapper = () => {
     return (
-      <LeafletDrawer>
+      <LeafletDrawer drawerHeight={'700px'} headerHeight={'10vh'} width={'400px'} fullscreen={false}>
         <div>Test</div>
       </LeafletDrawer>
     );
