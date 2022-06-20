@@ -1,6 +1,6 @@
 import ControlsBar from './common/ControlsBar';
-import SelectControl from './SelectControl/SelectControl';
-import MultiSelect from './MultiSelect/MultiSelect';
+import { default as SelectControl } from './SelectControl';
+import { default as MultiSelect } from './MultiSelect';
 import { default as HazardCurves } from './HazardCurves';
 import { default as ResponsiveHazardCurves } from './ResponsiveHazardCurves';
 import { default as SpectralAccelerationChart } from './SpectralAccelerationChart';
