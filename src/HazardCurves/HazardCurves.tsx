@@ -11,7 +11,7 @@ import { HazardCurvesProps, HazardColorScale } from '../types/hazardCurves.types
 import PlotHeadings from '../common/PlotHeadings';
 
 const HazardCurves: React.FC<HazardCurvesProps> = (props: HazardCurvesProps) => {
-  const { curves, scalesConfig, colors, width, heading, subHeading, parentRef, gridNumTicks, POE } = props;
+  const { curves, scalesConfig, colors, width, heading, subHeading, parentRef, gridNumTicks, poe } = props;
 
   const curvesDomain = useMemo(() => {
     const colorScale: HazardColorScale = {
@@ -27,23 +27,21 @@ const HazardCurves: React.FC<HazardCurvesProps> = (props: HazardCurvesProps) => 
 
   const ordinalColorScale = useMemo(() => {
     return scaleOrdinal({
-      domain: POE === 'None' ? [...curvesDomain.domain] : [...curvesDomain.domain, `PoE ${POE}`],
-      range: POE === 'None' ? [...curvesDomain.range] : [...curvesDomain.range, '#989C9C'],
+      domain: !poe ? [...curvesDomain.domain] : [...curvesDomain.domain, `PoE ${poe * 100}% (50 Yrs)`],
+      range: !poe ? [...curvesDomain.range] : [...curvesDomain.range, '#989C9C'],
     });
-  }, [POE, curvesDomain]);
+  }, [poe, curvesDomain]);
 
   const POEline = useMemo(() => {
-    const getPoE = () => {
-      const yValue = POE === '2%' ? -Math.log(1 - 0.02) / 50 : -Math.log(1 - 0.1) / 50;
+    const getPoE = (poeValue: number) => {
+      const yValue = -Math.log(1 - poeValue) / 50;
       return [
         { x: 1e-3, y: yValue },
         { x: 10, y: yValue },
       ];
     };
-    if (POE !== 'None') {
-    }
-    return getPoE();
-  }, [POE]);
+    return poe ? getPoE(poe) : [];
+  }, [poe]);
 
   return (
     <>
@@ -58,7 +56,7 @@ const HazardCurves: React.FC<HazardCurvesProps> = (props: HazardCurvesProps) => 
             {Object.keys(curves).map((key) => {
               return <AnimatedLineSeries role="curve" key={key} dataKey={key} data={curves[key]} xAccessor={(d: XY) => d?.x} yAccessor={(d: XY) => d?.y} stroke={colors[key]} />;
             })}
-            {POE !== 'None' && <AnimatedLineSeries role="POE" dataKey={POE} data={POEline} xAccessor={(d) => d.x} yAccessor={(d) => d.y} stroke={'#989C9C'} />}
+            {poe && <AnimatedLineSeries role="POE" dataKey={poe.toString()} data={POEline} xAccessor={(d) => d.x} yAccessor={(d) => d.y} stroke={'#989C9C'} />}
           </Group>
           <Tooltip
             showHorizontalCrosshair
