@@ -1,1 +1,1 @@
-export { default as LeafletDrawer } from './LeafletDrawer';
+export { default } from './LeafletDrawer';

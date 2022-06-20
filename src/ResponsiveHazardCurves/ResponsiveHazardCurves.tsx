@@ -1,7 +1,7 @@
 import React from 'react';
 import { ParentSize } from '@visx/responsive';
 
-import HazardCurves from './HazardCurves';
+import HazardCurves from '../HazardCurves/HazardCurves';
 import { ResponsiveHazardCurvesProps } from '../types/hazardCurves.types';
 
 const ResponsiveHazardCurves: React.FC<ResponsiveHazardCurvesProps> = ({ curves, scalesConfig, colors, heading, subHeading, gridNumTicks, POE }: ResponsiveHazardCurvesProps) => {

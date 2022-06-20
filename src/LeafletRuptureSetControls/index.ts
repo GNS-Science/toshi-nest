@@ -1,1 +1,1 @@
-export { default as LeafletRuptureSetControls } from './LeafletRuptureSetControls';
+export { default } from './LeafletRuptureSetControls';
