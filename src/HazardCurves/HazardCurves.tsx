@@ -93,7 +93,7 @@ const HazardCurves: React.FC<HazardCurvesProps> = (props: HazardCurvesProps) => 
             }}
           />
         </XYChart>
-        <div style={{ width: 150, height: 100, position: 'absolute', top: width * 0.35, left: 70, display: 'flex' }}>
+        <div style={{ width: 200, height: 100, position: 'absolute', top: width * 0.35, left: 70, display: 'flex' }}>
           <LegendOrdinal direction="column" scale={ordinalColorScale} shape="line" style={{ fontSize: width * 0.02 }} shapeHeight={width * 0.02} />
         </div>
       </div>

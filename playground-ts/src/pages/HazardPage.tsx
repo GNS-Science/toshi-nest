@@ -41,7 +41,7 @@ const HazardPage: React.FC = () => {
     <>
       <p>Hazard Page</p>
       <div style={{ border: 'solid black 1px', width: '100vw' }}>
-        <HazardCurves curves={curves} width={500} scalesConfig={scalesConfig} colors={colors} heading={'Static Hazard Curves'} subHeading={'subHeading'} gridNumTicks={10} poe={0.1} />
+        <HazardCurves curves={curves} width={500} scalesConfig={scalesConfig} colors={colors} heading={'Static Hazard Curves'} subHeading={'subHeading'} gridNumTicks={10} poe={undefined} />
         <SpectralAccelerationChart width={500} data={SAdata} heading={'Heading'} subHeading={'subHeading'} />
       </div>
       <div style={{ border: 'solid black 1px', width: '100vw', display: 'flex', justifyContent: 'center' }}>
