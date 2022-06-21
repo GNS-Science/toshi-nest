@@ -1,9 +1,9 @@
 import React from 'react';
-import HazardCurves from '../../charts/HazardCurves';
+import HazardCurves from './HazardCurves';
 import { screen } from '@testing-library/react';
-import { HazardCurveColors, XYChartScaleConfig } from '../../types/hazardCurves.types';
+import { HazardCurveColors, XYChartScaleConfig } from '../types/hazardCurves.types';
 import { render } from '@testing-library/react';
-import { testData } from '../testData/hazardCurveTestData';
+import { testData } from '../__tests__/testData/hazardCurveTestData';
 import userEvent from '@testing-library/user-event';
 
 const colors: HazardCurveColors = {
@@ -18,7 +18,7 @@ const scalesConfig: XYChartScaleConfig = {
 
 describe('Hazard Curves works as expected', () => {
   const Wrapper = () => {
-    return <HazardCurves curves={testData} width={500} scalesConfig={scalesConfig} colors={colors} heading={'Test Heading'} subHeading={'Test Subheading'} gridNumTicks={5} POE={'None'} />;
+    return <HazardCurves curves={testData} width={500} scalesConfig={scalesConfig} colors={colors} heading={'Test Heading'} subHeading={'Test Subheading'} gridNumTicks={5} poe={undefined} />;
   };
   const user = userEvent.setup();
 
@@ -27,7 +27,7 @@ describe('Hazard Curves works as expected', () => {
     expect(screen.getByText('Test Heading')).toBeInTheDocument();
     expect(screen.getByText('Test Subheading')).toBeInTheDocument();
     expect(screen.getByText('Acceleration (g)')).toBeInTheDocument();
-    expect(screen.getByText('Probability of Exceedance')).toBeInTheDocument();
+    expect(screen.getByText('Annual Probability of Exceedance')).toBeInTheDocument();
     expect(screen.getByText('PGA')).toBeInTheDocument();
     expect(screen.getByText('0.1')).toBeInTheDocument();
   });
@@ -41,7 +41,7 @@ describe('Hazard Curves works as expected', () => {
 
 test('displays POE line when given a value', () => {
   const Wrapper = () => {
-    return <HazardCurves curves={testData} width={500} scalesConfig={scalesConfig} colors={colors} heading={'Test Heading'} subHeading={'Test Subheading'} gridNumTicks={5} POE={'2%'} />;
+    return <HazardCurves curves={testData} width={500} scalesConfig={scalesConfig} colors={colors} heading={'Test Heading'} subHeading={'Test Subheading'} gridNumTicks={5} poe={0.02} />;
   };
   render(<Wrapper />);
   const POEline = screen.getByRole('POE');

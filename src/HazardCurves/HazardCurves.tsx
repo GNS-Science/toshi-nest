@@ -11,7 +11,7 @@ import { HazardCurvesProps, HazardColorScale } from '../types/hazardCurves.types
 import PlotHeadings from '../common/PlotHeadings';
 
 const HazardCurves: React.FC<HazardCurvesProps> = (props: HazardCurvesProps) => {
-  const { curves, scalesConfig, colors, width, heading, subHeading, parentRef, gridNumTicks, POE } = props;
+  const { curves, scalesConfig, colors, width, heading, subHeading, parentRef, gridNumTicks, poe } = props;
 
   const curvesDomain = useMemo(() => {
     const colorScale: HazardColorScale = {
@@ -27,23 +27,21 @@ const HazardCurves: React.FC<HazardCurvesProps> = (props: HazardCurvesProps) => 
 
   const ordinalColorScale = useMemo(() => {
     return scaleOrdinal({
-      domain: POE === 'None' ? [...curvesDomain.domain] : [...curvesDomain.domain, `PoE ${POE}`],
-      range: POE === 'None' ? [...curvesDomain.range] : [...curvesDomain.range, '#989C9C'],
+      domain: !poe ? [...curvesDomain.domain] : [...curvesDomain.domain, `PoE ${poe * 100}% (50 Yrs)`],
+      range: !poe ? [...curvesDomain.range] : [...curvesDomain.range, '#989C9C'],
     });
-  }, [POE, curvesDomain]);
+  }, [poe, curvesDomain]);
 
   const POEline = useMemo(() => {
-    const getPoE = () => {
-      const yValue = POE === '2%' ? -Math.log(1 - 0.02) / 50 : -Math.log(1 - 0.1) / 50;
+    const getPoE = (poeValue: number) => {
+      const yValue = -Math.log(1 - poeValue) / 50;
       return [
         { x: 1e-3, y: yValue },
         { x: 10, y: yValue },
       ];
     };
-    if (POE !== 'None') {
-    }
-    return getPoE();
-  }, [POE]);
+    return poe ? getPoE(poe) : [];
+  }, [poe]);
 
   return (
     <>
@@ -51,14 +49,14 @@ const HazardCurves: React.FC<HazardCurvesProps> = (props: HazardCurvesProps) => 
         <XYChart height={width * 0.75} width={width} xScale={scalesConfig.x} yScale={scalesConfig.y}>
           <PlotHeadings heading={heading} subHeading={subHeading} width={width} />
           <AnimatedAxis label="Acceleration (g)" orientation="bottom" />
-          <AnimatedAxis label={`Probability of Exceedance`} labelOffset={20} orientation="left" />
+          <AnimatedAxis label={`Annual Probability of Exceedance`} labelOffset={20} orientation="left" />
           <Grid rows columns lineStyle={{ opacity: '90%' }} numTicks={gridNumTicks} />
           <RectClipPath id={parentRef ? 'responsive-clip' : 'clip'} x={50} y={-50} width={width} height={width * 0.75} />
           <Group clipPath={parentRef ? 'url(#responsive-clip)' : 'url(#clip)'}>
             {Object.keys(curves).map((key) => {
               return <AnimatedLineSeries role="curve" key={key} dataKey={key} data={curves[key]} xAccessor={(d: XY) => d?.x} yAccessor={(d: XY) => d?.y} stroke={colors[key]} />;
             })}
-            {POE !== 'None' && <AnimatedLineSeries role="POE" dataKey={POE} data={POEline} xAccessor={(d) => d.x} yAccessor={(d) => d.y} stroke={'#989C9C'} />}
+            {poe && <AnimatedLineSeries role="POE" dataKey={poe.toString()} data={POEline} xAccessor={(d) => d.x} yAccessor={(d) => d.y} stroke={'#989C9C'} />}
           </Group>
           <Tooltip
             showHorizontalCrosshair
@@ -95,7 +93,7 @@ const HazardCurves: React.FC<HazardCurvesProps> = (props: HazardCurvesProps) => 
             }}
           />
         </XYChart>
-        <div style={{ width: 100, height: 100, position: 'absolute', top: width * 0.35, left: 70, display: 'flex' }}>
+        <div style={{ width: 200, height: 100, position: 'absolute', top: width * 0.35, left: 70, display: 'flex' }}>
           <LegendOrdinal direction="column" scale={ordinalColorScale} shape="line" style={{ fontSize: width * 0.02 }} shapeHeight={width * 0.02} />
         </div>
       </div>

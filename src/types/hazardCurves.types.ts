@@ -1,13 +1,13 @@
 import { XY } from './common.types';
 
-export interface ResponsiveHazardCurvesProps {
+export interface HazardCurvesResponsiveProps {
   curves: HazardTableFilteredData;
   scalesConfig: XYChartScaleConfig;
   colors: HazardCurveColors;
   heading?: string;
   subHeading?: string;
   gridNumTicks: number;
-  POE: 'None' | '2%' | '10%';
+  poe: number | undefined;
 }
 
 export interface HazardCurvesProps {
@@ -21,7 +21,7 @@ export interface HazardCurvesProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   resizeParent?: (state: any) => void;
   gridNumTicks: number;
-  POE: 'None' | '2%' | '10%';
+  poe: number | undefined;
 }
 
 export interface HazardViewOptions {
