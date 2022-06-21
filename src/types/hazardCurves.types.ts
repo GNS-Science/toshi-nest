@@ -1,6 +1,6 @@
 import { XY } from './common.types';
 
-export interface ResponsiveHazardCurvesProps {
+export interface HazardCurvesResponsiveProps {
   curves: HazardTableFilteredData;
   scalesConfig: XYChartScaleConfig;
   colors: HazardCurveColors;
