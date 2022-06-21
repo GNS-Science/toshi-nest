@@ -1,21 +1,18 @@
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import React, { useState } from 'react';
+import { ComponentMeta } from '@storybook/react';
 
 import SelectControl from './SelectControl';
 
 export default {
-  title: 'Example/SelectControl',
+  title: 'Controls/SelectControl',
   component: SelectControl,
-  argTypes: {
-    options: {},
-  },
 } as ComponentMeta<typeof SelectControl>;
 
-const Template: ComponentStory<typeof SelectControl> = (args) => <SelectControl {...args} />;
+export const Primary = () => {
+  // Sets the hooks for both the label and primary props
+  const [selected, setSelected] = useState<string>('1');
 
-export const Primary = Template.bind({});
+  // Sets a click handler to change the label's value
 
-Primary.args = {
-  name: 'Label',
-  options: ['1', '2', '3'],
+  return <SelectControl options={['1', '2', '3']} name="name" selection={selected} setSelection={setSelected} />;
 };
