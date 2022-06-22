@@ -14,6 +14,8 @@ const theme = createTheme({
 });
 
 const LeafletMapPage: React.FC = () => {
+  const [fullscreen, setFullscreen] = useState<boolean>(false)
+
   const rupturesData = solvisResponse.ruptures;
   const locationsData = solvisResponse.locations;
   const showLocation = true;
@@ -39,10 +41,8 @@ const LeafletMapPage: React.FC = () => {
     type: 'number',
   };
 
-  return (
-    <ThemeProvider theme={theme}>
-      <LeafletMap zoom={zoom} nzCentre={nzCentre} rupturesData={rupturesData} locationsData={locationsData} showLocation={showLocation} height={'700px'} width={'100%'} />
-      <LeafletDrawer>
+  const drawer = (
+      <LeafletDrawer drawerHeight={'700px'} headerHeight={'10vh'} width={'400px'} fullscreen={fullscreen}>
         <LeafletRuptureSetControls
           selection={sampleSelection}
           setSelection={setSampleSelection}
@@ -56,6 +56,12 @@ const LeafletMapPage: React.FC = () => {
           ruptureRateInputProps={ruptureRateInputProps}
         />
       </LeafletDrawer>
+  )
+
+  return (
+    <ThemeProvider theme={theme}>
+      <LeafletMap zoom={zoom} nzCentre={nzCentre} rupturesData={rupturesData} locationsData={locationsData} showLocation={showLocation} height={'700px'} width={'100%'} setFullscreen={setFullscreen} />
+      {drawer}
     </ThemeProvider>
   );
 };

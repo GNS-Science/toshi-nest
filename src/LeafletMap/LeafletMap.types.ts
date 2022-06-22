@@ -8,4 +8,5 @@ export interface LeafletMapProps {
   showLocation: boolean;
   height: string;
   width: string;
+  setFullscreen: (setFullscreen: boolean) => null;
 }
