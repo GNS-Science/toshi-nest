@@ -83,7 +83,7 @@ export const filterData = (data: HazardData, location: string, pgaValue: string,
   return xy;
 };
 
-export const getSpectralAccelerationData = (pgaValues: string[], xValue: number, filteredCurves: Record<string, XY[]>): XY[] => {
+export const getSpectralAccelerationData = (pgaValues: string[], xValue: number, filteredCurves: Record<string, XY[]>): Record<string, XY[]> => {
   const dataSet: XY[] = [];
 
   pgaValues.map((value) => {
@@ -108,5 +108,8 @@ export const getSpectralAccelerationData = (pgaValues: string[], xValue: number,
     }
   });
 
-  return dataSet;
+  return {
+    'WLG 250': dataSet,
+    'AKL 250': dataSet,
+  };
 };

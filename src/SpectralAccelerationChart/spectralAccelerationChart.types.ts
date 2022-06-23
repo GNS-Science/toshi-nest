@@ -1,7 +1,8 @@
 import { XY } from '../types/common.types';
 
 export type SpectralAccelerationChartProps = {
-  data: XY[];
+  data: Record<string, XY[]>;
+  colors: Record<string, string>;
   width: number;
   heading?: string;
   subHeading?: string;
