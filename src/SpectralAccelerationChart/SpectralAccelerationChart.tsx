@@ -65,7 +65,7 @@ const SpectralAccelerationChart: React.FC<SpectralAccelerationChartProps> = ({ d
             }}
           />
         </XYChart>
-        <div style={{ width: 200, height: 100, position: 'absolute', top: width * 0.35, right: 50, display: 'flex' }}>
+        <div style={{ width: 200, height: 100, position: 'absolute', top: width * 0.15, right: 50, display: 'flex' }}>
           <LegendOrdinal direction="column" scale={ordinalColorScale} shape="line" style={{ fontSize: width * 0.02 }} shapeHeight={width * 0.02} />
         </div>
       </div>
