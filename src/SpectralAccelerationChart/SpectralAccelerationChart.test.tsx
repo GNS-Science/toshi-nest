@@ -3,24 +3,26 @@ import { screen, render } from '@testing-library/react';
 
 import SpectralAccelerationChart from './SpectralAccelerationChart';
 
-const testData = [
-  {
-    x: 1,
-    y: 1,
-  },
-  {
-    x: 2,
-    y: 2,
-  },
-  {
-    x: 3,
-    y: 3,
-  },
-];
+const testData = {
+  'test curve': [
+    {
+      x: 1,
+      y: 1,
+    },
+    {
+      x: 2,
+      y: 2,
+    },
+    {
+      x: 3,
+      y: 3,
+    },
+  ],
+};
 
 describe('Spectral Acceleration Chart as expected', () => {
   const Wrapper = () => {
-    return <SpectralAccelerationChart data={testData} width={500} heading={'test heading'} subHeading={'test subHeading'} />;
+    return <SpectralAccelerationChart data={testData} colors={{ 'test curve': '#000000' }} width={500} heading={'test heading'} subHeading={'test subHeading'} />;
   };
 
   test('graph is displayed with headings', () => {

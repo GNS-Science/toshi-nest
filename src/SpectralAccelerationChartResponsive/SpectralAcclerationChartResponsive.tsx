@@ -5,11 +5,11 @@ import SpectralAccelerationChart from '../SpectralAccelerationChart/SpectralAcce
 import { SpectralAccelerationChartResponsiveProps } from './spectralAccelerationChartResponsive.type';
 
 const SpectralAccelerationChartResponsive: React.FC<SpectralAccelerationChartResponsiveProps> = (props: SpectralAccelerationChartResponsiveProps) => {
-  const { data, heading, subHeading } = props;
+  const { colors, data, heading, subHeading } = props;
   return (
     <>
       <ParentSize>
-        {(parent) => <SpectralAccelerationChart data={data} heading={heading} subHeading={subHeading} width={parent.width} parentRef={parent.ref} resizeParent={parent.resize} />}
+        {(parent) => <SpectralAccelerationChart data={data} colors={colors} heading={heading} subHeading={subHeading} width={parent.width} parentRef={parent.ref} resizeParent={parent.resize} />}
       </ParentSize>
     </>
   );

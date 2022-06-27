@@ -37,19 +37,20 @@ const HazardPage: React.FC = () => {
     PGA: '#000000',
     0.1: '#FE1100',
   };
+
   return (
     <>
       <p>Hazard Page</p>
       <div style={{ border: 'solid black 1px', width: '100vw' }}>
         <HazardCurves curves={curves} width={500} scalesConfig={scalesConfig} colors={colors} heading={'Static Hazard Curves'} subHeading={'subHeading'} gridNumTicks={10} poe={undefined} />
-        <SpectralAccelerationChart width={500} data={SAdata} heading={'Heading'} subHeading={'subHeading'} />
+        <SpectralAccelerationChart width={500} data={SAdata} colors={{ 'WGL 250': '#213945', 'AKL 250': '#213945' }} heading={'Heading'} subHeading={'subHeading'} />
       </div>
       <div style={{ border: 'solid black 1px', width: '100vw', display: 'flex', justifyContent: 'center' }}>
         <div style={{ width: '50vw', display: 'flex', justifyContent: 'center' }}>
           <HazardCurvesResponsive curves={curves} scalesConfig={scalesConfig} colors={colors} heading={'Responsive Hazard Curves'} subHeading={'subHeading'} gridNumTicks={10} poe={0.02} />
         </div>
         <div style={{ width: '50vw', display: 'flex', justifyContent: 'center' }}>
-          <SpectralAccelerationChartResponsive data={SAdata} heading={'Spectral Acceleration Chart Responsive'} subHeading={'subHeading'} />
+          <SpectralAccelerationChartResponsive data={SAdata} colors={{ 'WGL 250': '#213945', 'AKL 250': '#213945' }} heading={'Spectral Acceleration Chart Responsive'} subHeading={'subHeading'} />
         </div>
       </div>
     </>
