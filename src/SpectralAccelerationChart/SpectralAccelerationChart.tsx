@@ -4,6 +4,7 @@ import { curveLinear } from '@visx/curve';
 import { AnimatedAxis, AnimatedLineSeries, Grid, Tooltip, XYChart } from '@visx/xychart';
 import { LegendOrdinal } from '@visx/legend';
 import { scaleOrdinal } from '@visx/scale';
+import { Group } from '@visx/group';
 
 import { SpectralAccelerationChartProps } from './spectralAccelerationChart.types';
 import { XY } from '../types/common.types';
@@ -38,6 +39,12 @@ const SpectralAccelerationChart: React.FC<SpectralAccelerationChartProps> = ({ d
           <PlotHeadings heading={heading} subHeading={subHeading} width={width} />
           <AnimatedAxis label="Spectral Period (s)" orientation="bottom" />
           <AnimatedAxis label="Pseudo-Spectral Acceleration (g)" orientation="left" />
+          <Grid rows columns lineStyle={{ opacity: '90%' }} numTicks={6} />
+          <Group>
+            {Object.keys(data).map((key) => (
+              <AnimatedLineSeries key={key} role="curve" dataKey={key} data={data[key]} xAccessor={(d) => d.x} yAccessor={(d) => d.y} curve={curveLinear} stroke={colors[key]} />
+            ))}
+          </Group>
           <Tooltip
             showHorizontalCrosshair
             showVerticalCrosshair
@@ -57,12 +64,8 @@ const SpectralAccelerationChart: React.FC<SpectralAccelerationChartProps> = ({ d
               }
             }}
           />
-          <Grid rows columns lineStyle={{ opacity: '90%' }} numTicks={6} />
-          {Object.keys(data).map((key) => {
-            return <AnimatedLineSeries key={key} role="curve" dataKey="Spectral Acceleration" data={data[key]} xAccessor={(d) => d.x} yAccessor={(d) => d.y} curve={curveLinear} />;
-          })}
         </XYChart>
-        <div style={{ width: 200, height: 100, position: 'absolute', top: width * 0.35, left: 70, display: 'flex' }}>
+        <div style={{ width: 200, height: 100, position: 'absolute', top: width * 0.35, right: 50, display: 'flex' }}>
           <LegendOrdinal direction="column" scale={ordinalColorScale} shape="line" style={{ fontSize: width * 0.02 }} shapeHeight={width * 0.02} />
         </div>
       </div>
