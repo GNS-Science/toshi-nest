@@ -14,4 +14,5 @@ export const Primary = Template.bind({});
 
 Primary.args = {
   id: '',
+  width: 600,
 };
