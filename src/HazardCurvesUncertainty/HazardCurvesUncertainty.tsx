@@ -1,11 +1,10 @@
 import React from 'react';
 import { Group } from '@visx/group';
-import { AxisBottom, AxisLeft, AxisTop, AxisRight } from '@visx/axis';
+import { AxisBottom, AxisLeft } from '@visx/axis';
 import { GridRows, GridColumns } from '@visx/grid';
 import { scaleLog } from '@visx/scale';
 import { LinePath } from '@visx/shape';
 import { Threshold } from '@visx/threshold';
-import { RectClipPath } from '@visx/clip-path';
 
 export interface HazardCurvesUncertaintyProps {
   width: number;
@@ -24,13 +23,13 @@ const HazardCurvesUncertianty: React.FC<HazardCurvesUncertaintyProps> = (props: 
   const gridColor = '#e0e0e0';
 
   const xScale = scaleLog<number>({
-    domain: [0.01, 5],
-    range: [1, xMax],
+    domain: [1e-2, 10],
+    range: [0, xMax],
   });
 
   const yScale = scaleLog<number>({
-    domain: [1, 0.01],
-    range: [marginBottom, yMax],
+    domain: [1e-6, 1],
+    range: [yMax, 0],
   });
 
   const colors: Record<string, string> = {
@@ -46,25 +45,21 @@ const HazardCurvesUncertianty: React.FC<HazardCurvesUncertaintyProps> = (props: 
       <p>Uncertainty</p>
       <div>
         <svg width={width} height={height}>
-          <rect x={0} y={0} width={width} height={height} fill={'#f3f3f3'} rx={14} />
-          <Group left={marginLeft}>
-            <AxisBottom top={yMax} scale={xScale} />
-            <AxisLeft scale={yScale} />
-            <GridColumns scale={xScale} top={marginTop} width={xMax} height={yMax} stroke={gridColor} />
+          <rect x={0} y={0} width={width} height={height} fill={'#f3f6f4'} rx={14} />
+          <Group left={marginLeft} top={marginTop}>
+            <AxisBottom top={yMax} scale={xScale} numTicks={5} stroke={gridColor} tickLength={3} tickStroke={gridColor} />
+            <AxisLeft scale={yScale} numTicks={5} stroke={gridColor} tickLength={3} tickStroke={gridColor} />
+            <GridColumns scale={xScale} width={xMax} height={yMax} stroke={gridColor} />
             <GridRows scale={yScale} width={xMax} height={yMax} stroke={gridColor} />
-            <RectClipPath id="clip-path" height={yMax} width={xMax} x={marginLeft} y={marginTop} />
+            {/* <RectClipPath id="clip-path" height={yMax} width={xMax} x={marginLeft} y={marginTop} /> */}
             <Threshold<number[]>
               id={`${Math.random()}`}
               data={area}
               x={(d) => xScale(d[0])}
               y0={(d) => yScale(d[2])}
               y1={(d) => yScale(d[1])}
-              clipAboveTo={marginTop}
+              clipAboveTo={0}
               clipBelowTo={yMax}
-              belowAreaProps={{
-                fill: '#4eb3d3',
-                fillOpacity: 0.4,
-              }}
               aboveAreaProps={{
                 fill: '#4eb3de',
                 fillOpacity: 0.4,
