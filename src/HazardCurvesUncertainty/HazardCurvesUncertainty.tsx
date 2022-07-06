@@ -5,6 +5,7 @@ import { GridRows, GridColumns } from '@visx/grid';
 import { scaleLog } from '@visx/scale';
 import { LinePath } from '@visx/shape';
 import { Threshold } from '@visx/threshold';
+import { RectClipPath } from '@visx/clip-path';
 
 export interface HazardCurvesUncertaintyProps {
   width: number;
@@ -51,23 +52,25 @@ const HazardCurvesUncertianty: React.FC<HazardCurvesUncertaintyProps> = (props: 
             <AxisLeft scale={yScale} numTicks={5} stroke={gridColor} tickLength={3} tickStroke={gridColor} />
             <GridColumns scale={xScale} width={xMax} height={yMax} stroke={gridColor} />
             <GridRows scale={yScale} width={xMax} height={yMax} stroke={gridColor} />
-            {/* <RectClipPath id="clip-path" height={yMax} width={xMax} x={marginLeft} y={marginTop} /> */}
-            <Threshold<number[]>
-              id={`${Math.random()}`}
-              data={area}
-              x={(d) => xScale(d[0])}
-              y0={(d) => yScale(d[2])}
-              y1={(d) => yScale(d[1])}
-              clipAboveTo={0}
-              clipBelowTo={yMax}
-              aboveAreaProps={{
-                fill: '#4eb3de',
-                fillOpacity: 0.4,
-              }}
-            />
-            {Object.keys(curves).map((key) => (
-              <LinePath key={key} data={curves[key]} x={(d) => xScale(d[0])} y={(d) => yScale(d[1])} stroke={colors[key]} />
-            ))}
+            <RectClipPath id="uncertainty-clip" height={yMax} width={xMax} />
+            <Group clipPath={'url(#uncertainty-clip'}>
+              <Threshold<number[]>
+                id={`${Math.random()}`}
+                data={area}
+                x={(d) => xScale(d[0])}
+                y0={(d) => yScale(d[2])}
+                y1={(d) => yScale(d[1])}
+                clipAboveTo={0}
+                clipBelowTo={yMax}
+                aboveAreaProps={{
+                  fill: '#4eb3de',
+                  fillOpacity: 0.4,
+                }}
+              />
+              {Object.keys(curves).map((key) => (
+                <LinePath key={key} data={curves[key]} x={(d) => xScale(d[0])} y={(d) => yScale(d[1])} stroke={colors[key]} />
+              ))}
+            </Group>
           </Group>
         </svg>
       </div>
