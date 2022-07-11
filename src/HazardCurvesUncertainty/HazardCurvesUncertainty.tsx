@@ -68,7 +68,7 @@ const HazardCurvesUncertianty: React.FC<HazardCurvesUncertaintyProps> = (props: 
             <RectClipPath id="uncertainty-clip" height={yMax} width={xMax} />
             <Group clipPath={'url(#uncertainty-clip'}>
               <Threshold<number[]>
-                id={`${Math.random()}`}
+                id={'hazard-uncertianty-area'}
                 data={area}
                 x={(d) => xScale(d[0])}
                 y0={(d) => yScale(d[2])}
@@ -81,7 +81,7 @@ const HazardCurvesUncertianty: React.FC<HazardCurvesUncertaintyProps> = (props: 
                 }}
               />
               {Object.keys(curves).map((key) => (
-                <LinePath key={key} data={curves[key]} x={(d) => xScale(d[0])} y={(d) => yScale(d[1])} stroke={colors[key]} />
+                <LinePath key={key} role="curve" data={curves[key]} x={(d) => xScale(d[0])} y={(d) => yScale(d[1])} stroke={colors[key]} />
               ))}
             </Group>
           </Group>
