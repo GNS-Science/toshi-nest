@@ -29,7 +29,7 @@ export default [
       del({ targets: ['dist/*', 'playground/src/component-lib', 'playground-ts/src/component-lib'] }),
       typescript({
         tsconfigOverride: {
-          exclude: ['**/__tests__', '**/*.test.ts', '*/setupTests.ts'],
+          exclude: ['**/__tests__', '**/*.test.ts', '*/setupTests.ts', '**/*.test.tsx', '**/*.stories.tsx', '**/*TestData.ts'],
         },
       }),
     ],

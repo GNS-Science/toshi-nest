@@ -1,7 +1,8 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 
-import HazardCurvesUncertianty, { HazardCurvesUncertaintyProps } from './HazardCurvesUncertainty';
+import HazardCurvesUncertianty from './HazardCurvesUncertainty';
+import { HazardCurvesUncertaintyProps } from './hazardCurvesUncertainty.types';
 import { area, curves } from './uncertaintyTestData';
 
 const props: HazardCurvesUncertaintyProps = {
