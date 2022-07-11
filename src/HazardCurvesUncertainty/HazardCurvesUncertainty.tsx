@@ -7,18 +7,8 @@ import { LinePath } from '@visx/shape';
 import { Threshold } from '@visx/threshold';
 import { RectClipPath } from '@visx/clip-path';
 
-export interface HazardCurvesUncertaintyProps {
-  scaleType: 'log' | 'linear';
-  xLimits: number[];
-  yLimits: number[];
-  gridColor: string;
-  backgroundColor: string;
-  numTickX: number;
-  numTickY: number;
-  width: number;
-  curves: Record<string, number[][]>;
-  area: number[][];
-}
+import { HazardCurvesUncertaintyProps } from './hazardCurvesUncertainty.types';
+
 const HazardCurvesUncertianty: React.FC<HazardCurvesUncertaintyProps> = (props: HazardCurvesUncertaintyProps) => {
   const { scaleType, xLimits, yLimits, gridColor, backgroundColor, numTickX, numTickY, width, curves, area } = props;
   const height = width * 0.75;
@@ -56,7 +46,6 @@ const HazardCurvesUncertianty: React.FC<HazardCurvesUncertaintyProps> = (props: 
 
   return (
     <>
-      <p>Uncertainty</p>
       <div>
         <svg width={width} height={height}>
           <rect x={0} y={0} width={width} height={height} fill={backgroundColor} rx={14} />
