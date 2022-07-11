@@ -2,18 +2,25 @@ import React from 'react';
 import { Group } from '@visx/group';
 import { AxisBottom, AxisLeft } from '@visx/axis';
 import { GridRows, GridColumns } from '@visx/grid';
-import { scaleLog } from '@visx/scale';
+import { scaleLog, scaleLinear } from '@visx/scale';
 import { LinePath } from '@visx/shape';
 import { Threshold } from '@visx/threshold';
 import { RectClipPath } from '@visx/clip-path';
 
 export interface HazardCurvesUncertaintyProps {
+  scaleType: 'log' | 'linear';
+  xLimits: number[];
+  yLimits: number[];
+  gridColor: string;
+  backgroundColor: string;
+  numTickX: number;
+  numTickY: number;
   width: number;
   curves: Record<string, number[][]>;
   area: number[][];
 }
 const HazardCurvesUncertianty: React.FC<HazardCurvesUncertaintyProps> = (props: HazardCurvesUncertaintyProps) => {
-  const { width, curves, area } = props;
+  const { scaleType, xLimits, yLimits, gridColor, backgroundColor, numTickX, numTickY, width, curves, area } = props;
   const height = width * 0.75;
   const marginLeft = 50;
   const marginRight = 50;
@@ -21,15 +28,21 @@ const HazardCurvesUncertianty: React.FC<HazardCurvesUncertaintyProps> = (props: 
   const marginBottom = 50;
   const xMax = width - marginLeft - marginRight;
   const yMax = height - marginBottom - marginTop;
-  const gridColor = '#e0e0e0';
 
-  const xScale = scaleLog<number>({
-    domain: [1e-2, 10],
+  const xScaleLog = scaleLog<number>({
+    domain: xLimits,
     range: [0, xMax],
   });
 
+  const xScaleLinear = scaleLinear<number>({
+    domain: xLimits,
+    range: [0, xMax],
+  });
+
+  const xScale = scaleType === 'linear' ? xScaleLinear : xScaleLog;
+
   const yScale = scaleLog<number>({
-    domain: [1e-6, 1],
+    domain: yLimits,
     range: [yMax, 0],
   });
 
@@ -46,10 +59,10 @@ const HazardCurvesUncertianty: React.FC<HazardCurvesUncertaintyProps> = (props: 
       <p>Uncertainty</p>
       <div>
         <svg width={width} height={height}>
-          <rect x={0} y={0} width={width} height={height} fill={'#f3f6f4'} rx={14} />
+          <rect x={0} y={0} width={width} height={height} fill={backgroundColor} rx={14} />
           <Group left={marginLeft} top={marginTop}>
-            <AxisBottom top={yMax} scale={xScale} numTicks={5} stroke={gridColor} tickLength={3} tickStroke={gridColor} />
-            <AxisLeft scale={yScale} numTicks={5} stroke={gridColor} tickLength={3} tickStroke={gridColor} />
+            <AxisBottom top={yMax} scale={xScale} numTicks={numTickX} stroke={gridColor} tickLength={3} tickStroke={gridColor} />
+            <AxisLeft scale={yScale} numTicks={numTickY} stroke={gridColor} tickLength={3} tickStroke={gridColor} />
             <GridColumns scale={xScale} width={xMax} height={yMax} stroke={gridColor} />
             <GridRows scale={yScale} width={xMax} height={yMax} stroke={gridColor} />
             <RectClipPath id="uncertainty-clip" height={yMax} width={xMax} />

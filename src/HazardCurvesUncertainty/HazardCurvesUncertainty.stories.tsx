@@ -14,6 +14,13 @@ const Template: ComponentStory<typeof HazardCurvesUncertianty> = (args) => <Haza
 export const Primary = Template.bind({});
 
 Primary.args = {
+  scaleType: 'log',
+  xLimits: [1e-2, 10],
+  yLimits: [1e-6, 1],
+  gridColor: '#e0e0e0',
+  backgroundColor: '#f3f6f4',
+  numTickX: 5,
+  numTickY: 5,
   width: 600,
   curves: curves,
   area: area,
