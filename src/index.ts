@@ -8,6 +8,7 @@ import { default as SpectralAccelerationChartResponsive } from './SpectralAccele
 import { default as LeafletMap } from './LeafletMap';
 import { default as LeafletDrawer } from './LeafletDrawer';
 import { default as LeafletRuptureSetControls } from './LeafletRuptureSetControls';
+import { default as HazardCurvesUncertainty } from './HazardCurvesUncertainty';
 
 export {
   ControlsBar,
@@ -20,4 +21,5 @@ export {
   LeafletMap,
   LeafletDrawer,
   LeafletRuptureSetControls,
+  HazardCurvesUncertainty,
 };
