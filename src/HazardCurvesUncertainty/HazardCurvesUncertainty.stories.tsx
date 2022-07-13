@@ -2,7 +2,7 @@ import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import HazardCurvesUncertianty from './HazardCurvesUncertainty';
-import { area, curves } from './uncertaintyTestData';
+import { curveGroup2, curveGroup1 } from './uncertaintyTestData';
 
 export default {
   title: 'Charts/HazardCurvesUncertainty',
@@ -22,6 +22,5 @@ Primary.args = {
   numTickX: 5,
   numTickY: 5,
   width: 600,
-  curves: curves,
-  area: area,
+  curves: [curveGroup1, curveGroup2],
 };

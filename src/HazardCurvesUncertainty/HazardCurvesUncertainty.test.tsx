@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 
 import HazardCurvesUncertianty from './HazardCurvesUncertainty';
 import { HazardCurvesUncertaintyProps } from './hazardCurvesUncertainty.types';
-import { area, curves } from './uncertaintyTestData';
+import { area, curveGroup1 } from './uncertaintyTestData';
 
 const props: HazardCurvesUncertaintyProps = {
   scaleType: 'log',
@@ -14,8 +14,7 @@ const props: HazardCurvesUncertaintyProps = {
   numTickX: 5,
   numTickY: 5,
   width: 600,
-  curves: curves,
-  area: area,
+  curves: [curveGroup1, curveGroup2],
 };
 
 const Wrapper = () => {

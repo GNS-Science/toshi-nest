@@ -7,6 +7,17 @@ export interface HazardCurvesUncertaintyProps {
   numTickX: number;
   numTickY: number;
   width: number;
-  curves: Record<string, number[][]>;
-  area: number[][];
+  curves: HazardCurvesUncertaintyData;
 }
+
+export interface HazardCurveUncertaintyCurve {
+  strokeSize?: number;
+  strokeOpacity?: number;
+  strokeColor?: string;
+  strokeStyle?: string;
+  data: number[][];
+}
+
+export type HazardCurveUncertaintyGroup = Record<string, HazardCurveUncertaintyCurve>;
+
+export type HazardCurvesUncertaintyData = HazardCurveUncertaintyGroup[];
