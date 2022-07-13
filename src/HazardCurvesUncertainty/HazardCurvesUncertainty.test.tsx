@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 
 import HazardCurvesUncertianty from './HazardCurvesUncertainty';
 import { HazardCurvesUncertaintyProps } from './hazardCurvesUncertainty.types';
-import { area, curveGroup1 } from './uncertaintyTestData';
+import { curveGroup1, curveGroup2 } from './uncertaintyTestData';
 
 const props: HazardCurvesUncertaintyProps = {
   scaleType: 'log',
