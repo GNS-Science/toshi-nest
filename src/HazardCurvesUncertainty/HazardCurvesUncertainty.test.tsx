@@ -24,5 +24,5 @@ const Wrapper = () => {
 test('graph is displayed', () => {
   render(<Wrapper />);
 
-  expect(screen.getAllByRole('curve')).toHaveLength(5);
+  expect(screen.getAllByRole('curve')).toHaveLength(10);
 });
