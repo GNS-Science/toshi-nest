@@ -4204,7 +4204,7 @@
     lodash "^4.17.21"
     prop-types "^15.5.10"
 
-"@visx/shape@2.11.1":
+"@visx/shape@2.11.1", "@visx/shape@^2.11.1":
   version "2.11.1"
   resolved "https://registry.yarnpkg.com/@visx/shape/-/shape-2.11.1.tgz#ff41d839ad689fea53504597bd4bfbc8b7c20bbb"
   integrity sha512-0ak3wTkXjExH7kzU62yXPu+RtuG35G1sNL58Ax4NBr4yKh2nTHcLRsMZ7k6yUG+wSjb8DgG/ywZ0bBGWXJYGbg==
