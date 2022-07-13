@@ -102,6 +102,7 @@
     "@visx/responsive": "^2.8.0",
     "@visx/scale": "^2.2.2",
     "@visx/threshold": "^2.11.1",
+    "@visx/tooltip": "^2.10.0",
     "@visx/xychart": "^2.9.0",
     "geojson": "^0.5.0",
     "leaflet": "^1.8.0",
