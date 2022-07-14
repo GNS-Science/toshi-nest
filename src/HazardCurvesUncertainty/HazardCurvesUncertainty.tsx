@@ -83,15 +83,15 @@ const HazardCurvesUncertianty: React.FC<HazardCurvesUncertaintyProps> = (props: 
         return a[0] - b[0];
       });
 
-      const index = bisectData(meanCurvesSorted, x, 1);
+      const index = bisectData(meanCurvesSorted, x);
       const d0 = meanCurvesSorted[index - 1];
       const d1 = meanCurvesSorted[index];
 
       const range0 = yScale(d0[1]);
       const range1 = yScale(d1[1]);
-      const rangeMouse = yScale(point.y - 50);
+      const rangeMouse = point.y - 50;
 
-      const closest = Math.abs(range0 - rangeMouse) > Math.abs(range1 - rangeMouse) ? d0 : d1;
+      const closest = Math.abs(range0 - rangeMouse) > Math.abs(range1 - rangeMouse) ? d1 : d0;
 
       showTooltip({
         tooltipLeft: xScale(closest[0]),
