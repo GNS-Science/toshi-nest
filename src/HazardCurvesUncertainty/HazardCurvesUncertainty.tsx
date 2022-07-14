@@ -9,7 +9,7 @@ import { RectClipPath } from '@visx/clip-path';
 import { useTooltip, TooltipWithBounds } from '@visx/tooltip';
 import { Line } from '@visx/shape';
 import { localPoint } from '@visx/event';
-import { bisector } from 'd3-array';
+import { bisect, bisector } from 'd3-array';
 
 import { HazardCurvesUncertaintyProps, HazardCurveUncertaintyGroup } from './hazardCurvesUncertainty.types';
 import { getAreaData } from './hazardCurvesUncertainty.service';
@@ -79,14 +79,34 @@ const HazardCurvesUncertianty: React.FC<HazardCurvesUncertaintyProps> = (props: 
         return d[0];
       }).left;
 
-      const index = bisectData(meanCurves, x, y);
+      const index = bisectData(meanCurves, x);
+
+      const xInChart = meanCurves[index][0];
+
+      const yValueArray: number[] = [];
+
+      meanCurves.forEach((point) => {
+        if (point[0] === xInChart) {
+          yValueArray.push(yScale(point[1]));
+        }
+      });
+      let yInChart = 0;
+
+      if (yValueArray[0] - point.y - 50 <= yValueArray[1] - point.y - 50) {
+        console.log('true', yValueArray[0] - point.y - 50, yValueArray[1] - point.y - 50);
+        yInChart = yValueArray[1];
+      } else {
+        console.log('false');
+        yInChart = yValueArray[0];
+      }
+      console.log(xInChart, point.y - 50, yValueArray);
 
       const xValue = xScale(meanCurves[index][0]);
-      const yValue = yScale(meanCurves[index][1]);
+      const yValue = yScale(yInChart);
 
       showTooltip({
         tooltipLeft: xValue,
-        tooltipTop: yValue,
+        tooltipTop: yInChart,
         tooltipData: `moving mouse weewoo wee`,
       });
     },
