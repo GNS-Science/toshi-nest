@@ -9,7 +9,7 @@ import { RectClipPath } from '@visx/clip-path';
 import { useTooltip, TooltipWithBounds } from '@visx/tooltip';
 import { Line } from '@visx/shape';
 import { localPoint } from '@visx/event';
-import { bisect, bisector } from 'd3-array';
+import { bisector } from 'd3-array';
 
 import { HazardCurvesUncertaintyProps, HazardCurveUncertaintyGroup } from './hazardCurvesUncertainty.types';
 import { getAreaData } from './hazardCurvesUncertainty.service';
@@ -77,40 +77,29 @@ const HazardCurvesUncertianty: React.FC<HazardCurvesUncertaintyProps> = (props: 
 
       const bisectData = bisector(function (d: any) {
         return d[0];
-      }).left;
+      }).right;
 
-      const index = bisectData(meanCurves, x);
-
-      const xInChart = meanCurves[index][0];
-
-      const yValueArray: number[] = [];
-
-      meanCurves.forEach((point) => {
-        if (point[0] === xInChart) {
-          yValueArray.push(yScale(point[1]));
-        }
+      const meanCurvesSorted = meanCurves.sort((a, b) => {
+        return a[0] - b[0];
       });
-      let yInChart = 0;
 
-      if (yValueArray[0] - point.y - 50 <= yValueArray[1] - point.y - 50) {
-        console.log('true', yValueArray[0] - point.y - 50, yValueArray[1] - point.y - 50);
-        yInChart = yValueArray[1];
-      } else {
-        console.log('false');
-        yInChart = yValueArray[0];
-      }
-      console.log(xInChart, point.y - 50, yValueArray);
+      const index = bisectData(meanCurvesSorted, x, 1);
+      const d0 = meanCurvesSorted[index - 1];
+      const d1 = meanCurvesSorted[index];
 
-      const xValue = xScale(meanCurves[index][0]);
-      const yValue = yScale(yInChart);
+      const range0 = yScale(d0[1]);
+      const range1 = yScale(d1[1]);
+      const rangeMouse = yScale(point.y - 50);
+
+      const closest = Math.abs(range0 - rangeMouse) > Math.abs(range1 - rangeMouse) ? d0 : d1;
 
       showTooltip({
-        tooltipLeft: xValue,
-        tooltipTop: yInChart,
+        tooltipLeft: xScale(closest[0]),
+        tooltipTop: yScale(closest[1]),
         tooltipData: `moving mouse weewoo wee`,
       });
     },
-    [showTooltip],
+    [showTooltip, meanCurves, xScale, yScale],
   );
 
   return (
