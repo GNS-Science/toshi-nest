@@ -9,7 +9,7 @@ export default {
   transform: {
     '^.+\\.(ts|js)x?$': 'ts-jest',
   },
-  transformIgnorePatterns: ['<rootDir>/node_modules/'],
+  transformIgnorePatterns: ['<rootDir>/node_modules/(?!d3-array|internmap)'],
   moduleDirectories: ['<rootDir>/node_modules', '<rootDir>/src'],
   setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
   // All imported modules in your tests should be mocked automatically

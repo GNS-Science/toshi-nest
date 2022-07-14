@@ -15,6 +15,8 @@ const props: HazardCurvesUncertaintyProps = {
   numTickY: 5,
   width: 600,
   curves: [curveGroup1, curveGroup2],
+  tooltip: false,
+  crosshair: false,
 };
 
 const Wrapper = () => {
