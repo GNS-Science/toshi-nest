@@ -16,7 +16,7 @@ import { getAreaData } from './hazardCurvesUncertainty.service';
 
 const HazardCurvesUncertianty: React.FC<HazardCurvesUncertaintyProps> = (props: HazardCurvesUncertaintyProps) => {
   const svgRef = useRef<SVGSVGElement>(null);
-  const { scaleType, xLimits, yLimits, gridColor, backgroundColor, numTickX, numTickY, width, curves } = props;
+  const { scaleType, xLimits, yLimits, gridColor, backgroundColor, numTickX, numTickY, width, curves, tooltip, crosshair } = props;
   const height = width * 0.75;
   const marginLeft = 50;
   const marginRight = 50;
@@ -73,21 +73,21 @@ const HazardCurvesUncertianty: React.FC<HazardCurvesUncertaintyProps> = (props: 
       const point = localPoint(event) || { x: 0, y: 0 };
       if (!point) return;
 
-      const x = xScale.invert(point.x);
-      const y = yScale.invert(point.y);
+      // const x = xScale.invert(point.x);
+      // const y = yScale.invert(point.y);
 
-      const bisectData = bisector(function (d: any) {
-        return d[0];
-      }).left;
+      // const bisectData = bisector(function (d: any) {
+      //   return d[0];
+      // }).left;
 
-      const index = bisectData(meanCurves, x, y);
+      // const index = bisectData(meanCurves, x, y);
 
-      const xValue = xScale(meanCurves[index][0]);
-      const yValue = yScale(meanCurves[index][1]);
+      // const xValue = xScale(meanCurves[index][0]);
+      // const yValue = yScale(meanCurves[index][1]);
 
       showTooltip({
-        tooltipLeft: xValue,
-        tooltipTop: yValue,
+        tooltipLeft: point.x,
+        tooltipTop: point.y,
         tooltipData: `moving mouse weewoo wee`,
       });
     },
@@ -127,14 +127,14 @@ const HazardCurvesUncertianty: React.FC<HazardCurvesUncertaintyProps> = (props: 
                 </Group>
               ))}
             </Group>
-            {tooltipOpen && (
+            {crosshair && tooltipOpen && (
               <g>
                 <Line from={{ x: tooltipLeft, y: 0 }} to={{ x: tooltipLeft, y: yMax }} stroke="#e6550d" strokeWidth={2} pointerEvents="none" strokeDasharray="5,2" />
                 <Line from={{ x: 0, y: tooltipTop }} to={{ x: xMax, y: tooltipTop }} stroke="#e6550d" strokeWidth={2} pointerEvents="none" strokeDasharray="5,2" />
                 <circle cx={tooltipLeft} cy={tooltipTop + 1} r={4} fill="#e6550d" fillOpacity={0.7} stroke="black" strokeOpacity={0.1} strokeWidth={2} pointerEvents="none" />
               </g>
             )}
-            {/* {tooltipOpen && (
+            {tooltip && tooltipOpen && (
               <div>
                 <div
                   className="position-indicator"
@@ -150,7 +150,7 @@ const HazardCurvesUncertianty: React.FC<HazardCurvesUncertaintyProps> = (props: 
                   <p>{tooltipData}</p>
                 </TooltipInPortal>
               </div>
-            )} */}
+            )}
           </Group>
         </svg>
       </div>

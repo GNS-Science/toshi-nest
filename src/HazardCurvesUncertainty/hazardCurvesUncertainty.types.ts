@@ -8,6 +8,8 @@ export interface HazardCurvesUncertaintyProps {
   numTickY: number;
   width: number;
   curves: HazardCurvesUncertaintyData;
+  tooltip: boolean;
+  crosshair: boolean;
 }
 
 export interface HazardCurveUncertaintyCurve {
