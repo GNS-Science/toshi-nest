@@ -6,7 +6,7 @@ import { scaleLog, scaleLinear } from '@visx/scale';
 import { LinePath } from '@visx/shape';
 import { Threshold } from '@visx/threshold';
 import { RectClipPath } from '@visx/clip-path';
-import { useTooltip, useTooltipInPortal } from '@visx/tooltip';
+import { useTooltip, TooltipWithBounds } from '@visx/tooltip';
 import { Line } from '@visx/shape';
 import { localPoint } from '@visx/event';
 import { bisector } from 'd3-array';
@@ -47,7 +47,6 @@ const HazardCurvesUncertianty: React.FC<HazardCurvesUncertaintyProps> = (props: 
   );
 
   type ToolTipData = string;
-  const { containerBounds, TooltipInPortal } = useTooltipInPortal({ scroll: true, detectBounds: true });
   const {
     showTooltip,
     tooltipOpen,
@@ -73,25 +72,25 @@ const HazardCurvesUncertianty: React.FC<HazardCurvesUncertaintyProps> = (props: 
       const point = localPoint(event) || { x: 0, y: 0 };
       if (!point) return;
 
-      // const x = xScale.invert(point.x);
-      // const y = yScale.invert(point.y);
+      const x = xScale.invert(point.x - 50);
+      const y = yScale.invert(point.y - 50);
 
-      // const bisectData = bisector(function (d: any) {
-      //   return d[0];
-      // }).left;
+      const bisectData = bisector(function (d: any) {
+        return d[0];
+      }).left;
 
-      // const index = bisectData(meanCurves, x, y);
+      const index = bisectData(meanCurves, x, y);
 
-      // const xValue = xScale(meanCurves[index][0]);
-      // const yValue = yScale(meanCurves[index][1]);
+      const xValue = xScale(meanCurves[index][0]);
+      const yValue = yScale(meanCurves[index][1]);
 
       showTooltip({
-        tooltipLeft: point.x,
-        tooltipTop: point.y,
+        tooltipLeft: xValue,
+        tooltipTop: yValue,
         tooltipData: `moving mouse weewoo wee`,
       });
     },
-    [showTooltip, containerBounds],
+    [showTooltip],
   );
 
   return (
@@ -131,7 +130,7 @@ const HazardCurvesUncertianty: React.FC<HazardCurvesUncertaintyProps> = (props: 
               <g>
                 <Line from={{ x: tooltipLeft, y: 0 }} to={{ x: tooltipLeft, y: yMax }} stroke="#e6550d" strokeWidth={2} pointerEvents="none" strokeDasharray="5,2" />
                 <Line from={{ x: 0, y: tooltipTop }} to={{ x: xMax, y: tooltipTop }} stroke="#e6550d" strokeWidth={2} pointerEvents="none" strokeDasharray="5,2" />
-                <circle cx={tooltipLeft} cy={tooltipTop + 1} r={4} fill="#e6550d" fillOpacity={0.7} stroke="black" strokeOpacity={0.1} strokeWidth={2} pointerEvents="none" />
+                <circle cx={tooltipLeft} cy={tooltipTop} r={4} fill="#e6550d" fillOpacity={0.7} stroke="black" strokeOpacity={0.1} strokeWidth={2} pointerEvents="none" />
               </g>
             )}
             {tooltip && tooltipOpen && (
@@ -145,10 +144,10 @@ const HazardCurvesUncertianty: React.FC<HazardCurvesUncertaintyProps> = (props: 
                     position: 'absolute',
                   }}
                 />
-                <TooltipInPortal key={Math.random()} left={tooltipLeft} top={tooltipTop}>
+                <TooltipWithBounds key={Math.random()} left={tooltipLeft} top={tooltipTop}>
                   <p>tooltip</p>
                   <p>{tooltipData}</p>
-                </TooltipInPortal>
+                </TooltipWithBounds>
               </div>
             )}
           </Group>
