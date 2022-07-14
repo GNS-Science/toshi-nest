@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useRef, useMemo } from 'react';
 import { Group } from '@visx/group';
 import { AxisBottom, AxisLeft } from '@visx/axis';
 import { GridRows, GridColumns } from '@visx/grid';
@@ -8,11 +8,14 @@ import { Threshold } from '@visx/threshold';
 import { RectClipPath } from '@visx/clip-path';
 import { useTooltip, useTooltipInPortal } from '@visx/tooltip';
 import { Line } from '@visx/shape';
+import { localPoint } from '@visx/event';
+import { bisector } from 'd3-array';
 
 import { HazardCurvesUncertaintyProps, HazardCurveUncertaintyGroup } from './hazardCurvesUncertainty.types';
 import { getAreaData } from './hazardCurvesUncertainty.service';
 
 const HazardCurvesUncertianty: React.FC<HazardCurvesUncertaintyProps> = (props: HazardCurvesUncertaintyProps) => {
+  const svgRef = useRef<SVGSVGElement>(null);
   const { scaleType, xLimits, yLimits, gridColor, backgroundColor, numTickX, numTickY, width, curves } = props;
   const height = width * 0.75;
   const marginLeft = 50;
@@ -22,22 +25,26 @@ const HazardCurvesUncertianty: React.FC<HazardCurvesUncertaintyProps> = (props: 
   const xMax = width - marginLeft - marginRight;
   const yMax = height - marginBottom - marginTop;
 
-  const xScaleLog = scaleLog<number>({
-    domain: xLimits,
-    range: [0, xMax],
-  });
+  const xScale = useMemo(() => {
+    return scaleType === 'linear'
+      ? scaleLinear<number>({
+          domain: xLimits,
+          range: [0, xMax],
+        })
+      : scaleLog<number>({
+          domain: xLimits,
+          range: [0, xMax],
+        });
+  }, [scaleType, xLimits, xMax]);
 
-  const xScaleLinear = scaleLinear<number>({
-    domain: xLimits,
-    range: [0, xMax],
-  });
-
-  const xScale = scaleType === 'linear' ? xScaleLinear : xScaleLog;
-
-  const yScale = scaleLog<number>({
-    domain: yLimits,
-    range: [yMax, 0],
-  });
+  const yScale = useMemo(
+    () =>
+      scaleLog<number>({
+        domain: yLimits,
+        range: [yMax, 0],
+      }),
+    [yLimits, yMax],
+  );
 
   type ToolTipData = string;
   const { containerBounds, TooltipInPortal } = useTooltipInPortal({ scroll: true, detectBounds: true });
@@ -45,6 +52,7 @@ const HazardCurvesUncertianty: React.FC<HazardCurvesUncertaintyProps> = (props: 
     showTooltip,
     tooltipOpen,
     tooltipData,
+    hideTooltip,
     tooltipLeft = 0,
     tooltipTop = 0,
   } = useTooltip<ToolTipData>({
@@ -52,14 +60,34 @@ const HazardCurvesUncertianty: React.FC<HazardCurvesUncertaintyProps> = (props: 
     tooltipData: 'this is a tooltip',
   });
 
+  const meanCurves: number[][] = [];
+
+  curves.map((curveGroup) => {
+    curveGroup['mean'].data.forEach((point) => {
+      meanCurves.push(point);
+    });
+  });
+
   const handlePointerMove = useCallback(
-    (event: React.PointerEvent<HTMLDivElement>) => {
-      const containerX = ('clientX' in event ? event.clientX : 0) - containerBounds.left;
-      const containerY = ('clientY' in event ? event.clientY : 0) - containerBounds.top;
+    (event: React.MouseEvent<HTMLDivElement>) => {
+      const point = localPoint(event) || { x: 0, y: 0 };
+      if (!point) return;
+
+      const x = xScale.invert(point.x);
+      const y = yScale.invert(point.y);
+
+      const bisectData = bisector(function (d: any) {
+        return d[0];
+      }).left;
+
+      const index = bisectData(meanCurves, x, y);
+
+      const xValue = xScale(meanCurves[index][0]);
+      const yValue = yScale(meanCurves[index][1]);
 
       showTooltip({
-        tooltipLeft: containerX,
-        tooltipTop: containerY,
+        tooltipLeft: xValue,
+        tooltipTop: yValue,
         tooltipData: `moving mouse weewoo wee`,
       });
     },
@@ -68,8 +96,8 @@ const HazardCurvesUncertianty: React.FC<HazardCurvesUncertaintyProps> = (props: 
 
   return (
     <>
-      <div onPointerMove={handlePointerMove}>
-        <svg width={width} height={height}>
+      <div onMouseMove={handlePointerMove}>
+        <svg width={width} height={height} ref={svgRef}>
           <rect x={0} y={0} width={width} height={height} fill={backgroundColor} rx={14} />
           <Group left={marginLeft} top={marginTop}>
             <AxisBottom top={yMax} scale={xScale} numTicks={numTickX} stroke={gridColor} tickLength={3} tickStroke={gridColor} />
