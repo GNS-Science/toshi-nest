@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { Group } from '@visx/group';
 import { AxisBottom, AxisLeft } from '@visx/axis';
 import { GridRows, GridColumns } from '@visx/grid';
@@ -11,11 +11,10 @@ import { Line } from '@visx/shape';
 import { localPoint } from '@visx/event';
 import { bisector } from 'd3-array';
 
-import { HazardCurvesUncertaintyProps, HazardCurveUncertaintyGroup } from './hazardCurvesUncertainty.types';
-import { getAreaData } from './hazardCurvesUncertainty.service';
+import { HazardCurvesUncertaintyProps, HazardCurveUncertaintyGroup, UncertaintyDatum } from './hazardCurvesUncertainty.types';
+import { getAreaData, getSortedMeanCurves } from './hazardCurvesUncertainty.service';
 
 const HazardCurvesUncertianty: React.FC<HazardCurvesUncertaintyProps> = (props: HazardCurvesUncertaintyProps) => {
-  const svgRef = useRef<SVGSVGElement>(null);
   const { scaleType, xLimits, yLimits, gridColor, backgroundColor, numTickX, numTickY, width, curves, tooltip, crosshair } = props;
   const height = width * 0.75;
   const marginLeft = 50;
@@ -46,7 +45,6 @@ const HazardCurvesUncertianty: React.FC<HazardCurvesUncertaintyProps> = (props: 
     [yLimits, yMax],
   );
 
-  type ToolTipData = string;
   const {
     showTooltip,
     tooltipOpen,
@@ -54,38 +52,25 @@ const HazardCurvesUncertianty: React.FC<HazardCurvesUncertaintyProps> = (props: 
     hideTooltip,
     tooltipLeft = 0,
     tooltipTop = 0,
-  } = useTooltip<ToolTipData>({
+  } = useTooltip<UncertaintyDatum>({
     tooltipOpen: true,
-    tooltipData: 'this is a tooltip',
   });
 
-  const meanCurves: number[][] = [];
-
-  curves.map((curveGroup) => {
-    curveGroup['mean'].data.forEach((point) => {
-      meanCurves.push(point);
-    });
-  });
+  const meanCurves = useMemo(() => getSortedMeanCurves(curves), [curves]);
 
   const handlePointerMove = useCallback(
     (event: React.MouseEvent<HTMLDivElement>) => {
       const point = localPoint(event) || { x: 0, y: 0 };
-      if (!point) return;
 
       const x = xScale.invert(point.x - 50);
-      const y = yScale.invert(point.y - 50);
 
-      const bisectData = bisector(function (d: any) {
+      const bisectData = bisector(function (d: UncertaintyDatum) {
         return d[0];
       }).right;
 
-      const meanCurvesSorted = meanCurves.sort((a, b) => {
-        return a[0] - b[0];
-      });
-
-      const index = bisectData(meanCurvesSorted, x);
-      const d0 = meanCurvesSorted[index - 1];
-      const d1 = meanCurvesSorted[index];
+      const index = bisectData(meanCurves, x);
+      const d0 = meanCurves[index + 1];
+      const d1 = meanCurves[index];
 
       const range0 = yScale(d0[1]);
       const range1 = yScale(d1[1]);
@@ -96,7 +81,7 @@ const HazardCurvesUncertianty: React.FC<HazardCurvesUncertaintyProps> = (props: 
       showTooltip({
         tooltipLeft: xScale(closest[0]),
         tooltipTop: yScale(closest[1]),
-        tooltipData: `moving mouse weewoo wee`,
+        tooltipData: closest,
       });
     },
     [showTooltip, meanCurves, xScale, yScale],
@@ -105,7 +90,7 @@ const HazardCurvesUncertianty: React.FC<HazardCurvesUncertaintyProps> = (props: 
   return (
     <>
       <div onMouseMove={handlePointerMove}>
-        <svg width={width} height={height} ref={svgRef}>
+        <svg width={width} height={height}>
           <rect x={0} y={0} width={width} height={height} fill={backgroundColor} rx={14} />
           <Group left={marginLeft} top={marginTop}>
             <AxisBottom top={yMax} scale={xScale} numTicks={numTickX} stroke={gridColor} tickLength={3} tickStroke={gridColor} />

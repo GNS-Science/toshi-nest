@@ -17,9 +17,11 @@ export interface HazardCurveUncertaintyCurve {
   strokeOpacity?: number;
   strokeColor?: string;
   strokeStyle?: string;
-  data: number[][];
+  data: UncertaintyDatum[];
 }
 
 export type HazardCurveUncertaintyGroup = Record<string, HazardCurveUncertaintyCurve>;
 
 export type HazardCurvesUncertaintyData = HazardCurveUncertaintyGroup[];
+
+export type UncertaintyDatum = number[];
