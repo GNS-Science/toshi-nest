@@ -6,7 +6,7 @@ import { scaleLog, scaleLinear } from '@visx/scale';
 import { LinePath } from '@visx/shape';
 import { Threshold } from '@visx/threshold';
 import { RectClipPath } from '@visx/clip-path';
-import { useTooltip, TooltipWithBounds } from '@visx/tooltip';
+import { useTooltip, TooltipWithBounds, useTooltipInPortal } from '@visx/tooltip';
 import { Line } from '@visx/shape';
 import { localPoint } from '@visx/event';
 import { bisector } from 'd3-array';
@@ -45,6 +45,11 @@ const HazardCurvesUncertianty: React.FC<HazardCurvesUncertaintyProps> = (props: 
     [yLimits, yMax],
   );
 
+  const { containerRef, containerBounds, TooltipInPortal } = useTooltipInPortal({
+    scroll: true,
+    detectBounds: true,
+  });
+
   const {
     showTooltip,
     tooltipOpen,
@@ -81,7 +86,7 @@ const HazardCurvesUncertianty: React.FC<HazardCurvesUncertaintyProps> = (props: 
       showTooltip({
         tooltipLeft: xScale(closest[0]),
         tooltipTop: yScale(closest[1]),
-        tooltipData: closest,
+        tooltipData: closest ?? [0, 0],
       });
     },
     [showTooltip, meanCurves, xScale, yScale],
@@ -138,10 +143,10 @@ const HazardCurvesUncertianty: React.FC<HazardCurvesUncertaintyProps> = (props: 
                     position: 'absolute',
                   }}
                 />
-                <TooltipWithBounds key={Math.random()} left={tooltipLeft} top={tooltipTop}>
-                  <p>tooltip</p>
-                  <p>{tooltipData}</p>
-                </TooltipWithBounds>
+                <TooltipInPortal key={Math.random()} left={tooltipLeft + marginLeft + 10} top={tooltipTop + marginTop + 10}>
+                  <p>x: {tooltipData && tooltipData[0].toExponential()}</p>
+                  <p>y: {tooltipData && tooltipData[1].toExponential()}</p>
+                </TooltipInPortal>
               </div>
             )}
           </Group>

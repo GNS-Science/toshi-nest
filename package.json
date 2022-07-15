@@ -112,7 +112,8 @@
     "leaflet": "^1.8.0",
     "react-leaflet": ">=3.1.0 <3.2.0 || ^3.2.1",
     "react-leaflet-fullscreen-plugin": "^1.0.1",
-    "react-spring": "^9.4.4"
+    "react-spring": "^9.4.4",
+    "resize-observer-polyfill": "^1.5.1"
   },
   "peerDependencies": {
     "@emotion/react": "^11.8.2",
