@@ -45,7 +45,7 @@ const HazardCurvesUncertianty: React.FC<HazardCurvesUncertaintyProps> = (props: 
     [yLimits, yMax],
   );
 
-  const { containerRef, containerBounds, TooltipInPortal } = useTooltipInPortal({
+  const { containerRef, TooltipInPortal } = useTooltipInPortal({
     scroll: true,
     detectBounds: true,
   });
@@ -94,7 +94,7 @@ const HazardCurvesUncertianty: React.FC<HazardCurvesUncertaintyProps> = (props: 
 
   return (
     <>
-      <div onMouseMove={handlePointerMove}>
+      <div ref={containerRef} onMouseMove={handlePointerMove} onMouseLeave={() => hideTooltip()}>
         <svg width={width} height={height}>
           <rect x={0} y={0} width={width} height={height} fill={backgroundColor} rx={14} />
           <Group left={marginLeft} top={marginTop}>
@@ -127,9 +127,9 @@ const HazardCurvesUncertianty: React.FC<HazardCurvesUncertaintyProps> = (props: 
             </Group>
             {crosshair && tooltipOpen && (
               <g>
-                <Line from={{ x: tooltipLeft, y: 0 }} to={{ x: tooltipLeft, y: yMax }} stroke="#e6550d" strokeWidth={2} pointerEvents="none" strokeDasharray="5,2" />
-                <Line from={{ x: 0, y: tooltipTop }} to={{ x: xMax, y: tooltipTop }} stroke="#e6550d" strokeWidth={2} pointerEvents="none" strokeDasharray="5,2" />
-                <circle cx={tooltipLeft} cy={tooltipTop} r={4} fill="#e6550d" fillOpacity={0.7} stroke="black" strokeOpacity={0.1} strokeWidth={2} pointerEvents="none" />
+                <Line from={{ x: tooltipLeft, y: 0 }} to={{ x: tooltipLeft, y: yMax }} stroke="#bdbdbd" strokeWidth={2} pointerEvents="none" strokeDasharray="5,2" />
+                <Line from={{ x: 0, y: tooltipTop }} to={{ x: xMax, y: tooltipTop }} stroke="#bdbdbd" strokeWidth={2} pointerEvents="none" strokeDasharray="5,2" />
+                <circle cx={tooltipLeft} cy={tooltipTop} r={4} fill="#bdbdbd" fillOpacity={0.7} stroke="black" strokeOpacity={0.1} strokeWidth={2} pointerEvents="none" />
               </g>
             )}
             {tooltip && tooltipOpen && (
