@@ -1,12 +1,12 @@
 import React from 'react';
-import HazardCurves from './HazardCurves';
+import HazardChart from './HazardChart';
 import { screen } from '@testing-library/react';
-import { HazardCurveColors, XYChartScaleConfig } from '../types/hazardCurves.types';
+import { HazardChartColors, XYChartScaleConfig } from '../types/hazardCurves.types';
 import { render } from '@testing-library/react';
 import { testData } from '../__tests__/testData/hazardCurveTestData';
 import userEvent from '@testing-library/user-event';
 
-const colors: HazardCurveColors = {
+const colors: HazardChartColors = {
   PGA: '#000000',
   0.1: '#FE1100',
 };
@@ -18,7 +18,7 @@ const scalesConfig: XYChartScaleConfig = {
 
 describe('Hazard Curves works as expected', () => {
   const Wrapper = () => {
-    return <HazardCurves curves={testData} width={500} scalesConfig={scalesConfig} colors={colors} heading={'Test Heading'} subHeading={'Test Subheading'} gridNumTicks={5} poe={undefined} />;
+    return <HazardChart curves={testData} width={500} scalesConfig={scalesConfig} colors={colors} heading={'Test Heading'} subHeading={'Test Subheading'} gridNumTicks={5} poe={undefined} />;
   };
   const user = userEvent.setup();
 
@@ -41,7 +41,7 @@ describe('Hazard Curves works as expected', () => {
 
 test('displays POE line when given a value', () => {
   const Wrapper = () => {
-    return <HazardCurves curves={testData} width={500} scalesConfig={scalesConfig} colors={colors} heading={'Test Heading'} subHeading={'Test Subheading'} gridNumTicks={5} poe={0.02} />;
+    return <HazardChart curves={testData} width={500} scalesConfig={scalesConfig} colors={colors} heading={'Test Heading'} subHeading={'Test Subheading'} gridNumTicks={5} poe={0.02} />;
   };
   render(<Wrapper />);
   const POEline = screen.getByRole('POE');

@@ -1,7 +1,7 @@
 import ControlsBar from './common/ControlsBar';
 import { default as SelectControl } from './SelectControl';
 import { default as MultiSelect } from './MultiSelect';
-import { default as HazardCurves } from './HazardCurves';
+import { default as HazardChart } from './HazardChart';
 import { default as HazardCurvesResponsive } from './HazardCurvesResponsive';
 import { default as SpectralAccelerationChart } from './SpectralAccelerationChart';
 import { default as SpectralAccelerationChartResponsive } from './SpectralAccelerationChartResponsive';
@@ -14,7 +14,7 @@ export {
   ControlsBar,
   SelectControl,
   MultiSelect,
-  HazardCurves,
+  HazardChart,
   HazardCurvesResponsive,
   SpectralAccelerationChart,
   SpectralAccelerationChartResponsive,

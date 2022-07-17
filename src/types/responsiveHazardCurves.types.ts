@@ -1,4 +1,4 @@
-import { HazardTableFilteredData, XYChartScaleConfig, HazardCurveColors } from '../HazardCurves/hazardCurves.types';
+import { HazardTableFilteredData, XYChartScaleConfig, HazardCurveColors } from '../HazardChart/hazardCurves.types';
 
 export interface ResponsiveHazardCurvesProps {
   curves: HazardTableFilteredData;

@@ -1,16 +1,16 @@
 import { XYChartScaleConfig } from '../types/hazardCurves.types';
 
-export const hazardCurvesScalesConfig: XYChartScaleConfig = {
+export const hazardChartScalesConfig: XYChartScaleConfig = {
   x: { type: 'log', domain: [1e-3, 10] },
   y: { type: 'log', domain: [1e-5, 1] },
 };
 
-export const hazardCurvesColors = {
+export const hazardChartColors = {
   PGA: '#000000',
   0.1: '#FE1100',
 };
 
-export const hazardCurves = {
+export const hazardChartCurves = {
   PGA: [
     {
       x: 0.00010000000000000009,
