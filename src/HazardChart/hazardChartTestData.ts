@@ -1,4 +1,4 @@
-import { XYChartScaleConfig } from '../types/hazardCurves.types';
+import { XYChartScaleConfig } from '../types/hazardCharts.types';
 
 export const hazardChartScalesConfig: XYChartScaleConfig = {
   x: { type: 'log', domain: [1e-3, 10] },

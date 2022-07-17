@@ -7,7 +7,7 @@ import { LegendOrdinal } from '@visx/legend';
 
 import { XY } from '../types/common.types';
 import { Typography } from '@mui/material';
-import { HazardChartPropsd, HazardColorScale } from '../types/hazardCurves.types';
+import { HazardChartPropsd, HazardColorScale } from '../types/hazardCharts.types';
 import PlotHeadings from '../common/PlotHeadings';
 
 const HazardChart: React.FC<HazardChartPropsd> = (props: HazardChartPropsd) => {

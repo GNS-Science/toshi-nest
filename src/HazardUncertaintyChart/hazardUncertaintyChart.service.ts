@@ -1,6 +1,6 @@
-import { HazardCurveUncertaintyGroup, UncertaintyDatum } from './hazardCurvesUncertainty.types';
+import { HazardUncertaintyChartCurveGroup, UncertaintyDatum } from './hazardUncertaintyChart.types';
 
-export const getAreaData = (curveGroup: HazardCurveUncertaintyGroup) => {
+export const getAreaData = (curveGroup: HazardUncertaintyChartCurveGroup) => {
   const area: number[][] = [];
 
   curveGroup['lower1'].data.map((point, index) => {
@@ -14,7 +14,7 @@ export const getAreaData = (curveGroup: HazardCurveUncertaintyGroup) => {
   return area;
 };
 
-export const getSortedMeanCurves = (curveGroups: HazardCurveUncertaintyGroup[]): UncertaintyDatum[] => {
+export const getSortedMeanCurves = (curveGroups: HazardUncertaintyChartCurveGroup[]): UncertaintyDatum[] => {
   const meanCurves: number[][] = [];
 
   curveGroups.forEach((curveGroup) => {

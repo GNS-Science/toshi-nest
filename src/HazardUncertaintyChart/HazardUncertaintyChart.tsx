@@ -6,15 +6,15 @@ import { scaleLog, scaleLinear } from '@visx/scale';
 import { LinePath } from '@visx/shape';
 import { Threshold } from '@visx/threshold';
 import { RectClipPath } from '@visx/clip-path';
-import { useTooltip, TooltipWithBounds, useTooltipInPortal } from '@visx/tooltip';
+import { useTooltip, useTooltipInPortal } from '@visx/tooltip';
 import { Line } from '@visx/shape';
 import { localPoint } from '@visx/event';
 import { bisector } from 'd3-array';
 
-import { HazardCurvesUncertaintyProps, HazardCurveUncertaintyGroup, UncertaintyDatum } from './hazardCurvesUncertainty.types';
-import { getAreaData, getSortedMeanCurves } from './hazardCurvesUncertainty.service';
+import { HazardUncertaintyChartProps, HazardUncertaintyChartCurveGroup, UncertaintyDatum } from './hazardUncertaintyChart.types';
+import { getAreaData, getSortedMeanCurves } from './hazardUncertaintyChart.service';
 
-const HazardCurvesUncertianty: React.FC<HazardCurvesUncertaintyProps> = (props: HazardCurvesUncertaintyProps) => {
+const HazardUncertaintyChart: React.FC<HazardUncertaintyChartProps> = (props: HazardUncertaintyChartProps) => {
   const { scaleType, xLimits, yLimits, gridColor, backgroundColor, numTickX, numTickY, width, curves, tooltip, crosshair } = props;
   const height = width * 0.75;
   const marginLeft = 50;
@@ -104,7 +104,7 @@ const HazardCurvesUncertianty: React.FC<HazardCurvesUncertaintyProps> = (props: 
             <GridRows scale={yScale} width={xMax} height={yMax} stroke={gridColor} />
             <RectClipPath id="uncertainty-clip" height={yMax} width={xMax} />
             <Group clipPath={'url(#uncertainty-clip'}>
-              {curves.map((curveGroup: HazardCurveUncertaintyGroup, index) => (
+              {curves.map((curveGroup: HazardUncertaintyChartCurveGroup, index) => (
                 <Group key={index}>
                   {Object.keys(curveGroup).map((key, index) => (
                     <LinePath key={`${index}-${key}`} role="curve" data={curveGroup[key].data} x={(d) => xScale(d[0])} y={(d) => yScale(d[1])} stroke={curveGroup[key].strokeColor ?? ''} />
@@ -156,4 +156,4 @@ const HazardCurvesUncertianty: React.FC<HazardCurvesUncertaintyProps> = (props: 
   );
 };
 
-export default HazardCurvesUncertianty;
+export default HazardUncertaintyChart;

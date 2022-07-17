@@ -1,6 +1,6 @@
-import { HazardCurveUncertaintyGroup } from './hazardCurvesUncertainty.types';
+import { HazardUncertaintyChartCurveGroup } from './hazardUncertaintyChart.types';
 
-export const curveGroup1: HazardCurveUncertaintyGroup = {
+export const curveGroup1: HazardUncertaintyChartCurveGroup = {
   mean: {
     strokeColor: '#2b8cbe',
     data: [
@@ -173,7 +173,7 @@ export const curveGroup1: HazardCurveUncertaintyGroup = {
   },
 };
 
-export const curveGroup2: HazardCurveUncertaintyGroup = {
+export const curveGroup2: HazardUncertaintyChartCurveGroup = {
   mean: {
     strokeColor: '#006d2c',
     data: [

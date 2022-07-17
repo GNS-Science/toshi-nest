@@ -1,9 +1,9 @@
 import React from 'react';
 import HazardChart from './HazardChart';
 import { screen } from '@testing-library/react';
-import { HazardChartColors, XYChartScaleConfig } from '../types/hazardCurves.types';
+import { HazardChartColors, XYChartScaleConfig } from '../types/hazardCharts.types';
 import { render } from '@testing-library/react';
-import { testData } from '../__tests__/testData/hazardCurveTestData';
+import { testData } from '../__tests__/testData/hazardChartTestData';
 import userEvent from '@testing-library/user-event';
 
 const colors: HazardChartColors = {

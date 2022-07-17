@@ -1,15 +1,15 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import HazardCurvesUncertianty from './HazardCurvesUncertainty';
-import { curveGroup2, curveGroup1 } from './uncertaintyTestData';
+import HazardUncertaintyChart from './HazardUncertaintyChart';
+import { curveGroup2, curveGroup1 } from '../__tests__/testData/uncertaintyTestData';
 
 export default {
-  title: 'Charts/HazardCurvesUncertainty',
-  component: HazardCurvesUncertianty,
-} as ComponentMeta<typeof HazardCurvesUncertianty>;
+  title: 'Charts/HazardUncertaintyChart',
+  component: HazardUncertaintyChart,
+} as ComponentMeta<typeof HazardUncertaintyChart>;
 
-const Template: ComponentStory<typeof HazardCurvesUncertianty> = (args) => <HazardCurvesUncertianty {...args} />;
+const Template: ComponentStory<typeof HazardUncertaintyChart> = (args) => <HazardUncertaintyChart {...args} />;
 
 export const Primary = Template.bind({});
 export const Tooltip = Template.bind({});

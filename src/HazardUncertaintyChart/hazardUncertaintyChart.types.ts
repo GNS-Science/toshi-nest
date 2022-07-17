@@ -1,4 +1,4 @@
-export interface HazardCurvesUncertaintyProps {
+export interface HazardUncertaintyChartProps {
   scaleType: 'log' | 'linear';
   xLimits: number[];
   yLimits: number[];
@@ -7,12 +7,12 @@ export interface HazardCurvesUncertaintyProps {
   numTickX: number;
   numTickY: number;
   width: number;
-  curves: HazardCurvesUncertaintyData;
+  curves: HazardUncertaintyChartData;
   tooltip: boolean;
   crosshair: boolean;
 }
 
-export interface HazardCurveUncertaintyCurve {
+export interface HazardUncertaintyChart {
   strokeSize?: number;
   strokeOpacity?: number;
   strokeColor?: string;
@@ -20,8 +20,8 @@ export interface HazardCurveUncertaintyCurve {
   data: UncertaintyDatum[];
 }
 
-export type HazardCurveUncertaintyGroup = Record<string, HazardCurveUncertaintyCurve>;
+export type HazardUncertaintyChartCurveGroup = Record<string, HazardUncertaintyChart>;
 
-export type HazardCurvesUncertaintyData = HazardCurveUncertaintyGroup[];
+export type HazardUncertaintyChartData = HazardUncertaintyChartCurveGroup[];
 
 export type UncertaintyDatum = number[];
