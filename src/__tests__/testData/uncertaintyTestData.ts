@@ -1,4 +1,4 @@
-import { HazardUncertaintyChartCurveGroup } from './hazardUncertaintyChart.types';
+import { HazardUncertaintyChartCurveGroup } from '../../HazardUncertaintyChart/hazardUncertaintyChart.types';
 
 export const curveGroup1: HazardUncertaintyChartCurveGroup = {
   mean: {
