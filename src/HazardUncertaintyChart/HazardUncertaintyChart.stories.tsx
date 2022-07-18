@@ -28,6 +28,8 @@ Primary.args = {
   curves: [curveGroup1, curveGroup2],
   tooltip: false,
   crosshair: false,
+  heading: 'Hazard Chart with Uncertainty',
+  subHeading: 'WLG 250',
 };
 
 Tooltip.args = {
@@ -42,6 +44,8 @@ Tooltip.args = {
   curves: [curveGroup1, curveGroup2],
   tooltip: true,
   crosshair: false,
+  heading: 'Hazard Chart with Uncertainty',
+  subHeading: 'WLG 250',
 };
 
 Crosshair.args = {
@@ -56,6 +60,8 @@ Crosshair.args = {
   curves: [curveGroup1, curveGroup2],
   tooltip: false,
   crosshair: true,
+  heading: 'Hazard Chart with Uncertainty',
+  subHeading: 'WLG 250',
 };
 
 TooltipWithCrosshair.args = {
@@ -63,11 +69,13 @@ TooltipWithCrosshair.args = {
   xLimits: [1e-2, 10],
   yLimits: [1e-6, 1],
   gridColor: '#e0e0e0',
-  backgroundColor: '#f3f6f4',
+  backgroundColor: '#ffffff',
   numTickX: 5,
   numTickY: 5,
   width: 600,
   curves: [curveGroup1, curveGroup2],
   tooltip: true,
   crosshair: true,
+  heading: 'Hazard Chart with Uncertainty',
+  subHeading: 'WLG 250',
 };

@@ -13,9 +13,10 @@ import { bisector } from 'd3-array';
 
 import { HazardUncertaintyChartProps, HazardUncertaintyChartCurveGroup, UncertaintyDatum } from './hazardUncertaintyChart.types';
 import { getAreaData, getSortedMeanCurves } from './hazardUncertaintyChart.service';
+import PlotHeadings from '../common/PlotHeadings';
 
 const HazardUncertaintyChart: React.FC<HazardUncertaintyChartProps> = (props: HazardUncertaintyChartProps) => {
-  const { scaleType, xLimits, yLimits, gridColor, backgroundColor, numTickX, numTickY, width, curves, tooltip, crosshair } = props;
+  const { scaleType, xLimits, yLimits, gridColor, backgroundColor, numTickX, numTickY, width, curves, tooltip, crosshair, heading, subHeading } = props;
   const height = width * 0.75;
   const marginLeft = 50;
   const marginRight = 50;
@@ -97,6 +98,13 @@ const HazardUncertaintyChart: React.FC<HazardUncertaintyChartProps> = (props: Ha
       <div ref={containerRef} onMouseMove={handlePointerMove} onMouseLeave={() => hideTooltip()}>
         <svg width={width} height={height}>
           <rect x={0} y={0} width={width} height={height} fill={backgroundColor} rx={14} />
+          <PlotHeadings heading={heading} subHeading={subHeading} width={xMax} />
+          <text y={height - 15} x={xMax / 2} fontSize={10}>
+            Acceleration (g)
+          </text>
+          <text y={15} x={-width / 2} transform="rotate(-90)" fontSize={10}>
+            Annual Probability of Exceedance
+          </text>
           <Group left={marginLeft} top={marginTop}>
             <AxisBottom top={yMax} scale={xScale} numTicks={numTickX} stroke={gridColor} tickLength={3} tickStroke={gridColor} />
             <AxisLeft scale={yScale} numTicks={numTickY} stroke={gridColor} tickLength={3} tickStroke={gridColor} />

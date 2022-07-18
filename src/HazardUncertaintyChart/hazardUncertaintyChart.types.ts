@@ -10,6 +10,8 @@ export interface HazardUncertaintyChartProps {
   curves: HazardUncertaintyChartData;
   tooltip: boolean;
   crosshair: boolean;
+  heading: string;
+  subHeading: string;
 }
 
 export interface HazardUncertaintyChart {
