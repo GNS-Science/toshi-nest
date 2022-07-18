@@ -7,10 +7,10 @@ import { LegendOrdinal } from '@visx/legend';
 
 import { XY } from '../types/common.types';
 import { Typography } from '@mui/material';
-import { HazardCurvesProps, HazardColorScale } from '../types/hazardCurves.types';
+import { HazardChartPropsd, HazardColorScale } from '../types/hazardCharts.types';
 import PlotHeadings from '../common/PlotHeadings';
 
-const HazardCurves: React.FC<HazardCurvesProps> = (props: HazardCurvesProps) => {
+const HazardChart: React.FC<HazardChartPropsd> = (props: HazardChartPropsd) => {
   const { curves, scalesConfig, colors, width, heading, subHeading, parentRef, gridNumTicks, poe } = props;
 
   const curvesDomain = useMemo(() => {
@@ -101,4 +101,4 @@ const HazardCurves: React.FC<HazardCurvesProps> = (props: HazardCurvesProps) => 
   );
 };
 
-export default HazardCurves;
+export default HazardChart;

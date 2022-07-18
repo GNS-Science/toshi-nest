@@ -1,25 +1,25 @@
 import ControlsBar from './common/ControlsBar';
 import { default as SelectControl } from './SelectControl';
 import { default as MultiSelect } from './MultiSelect';
-import { default as HazardCurves } from './HazardCurves';
-import { default as HazardCurvesResponsive } from './HazardCurvesResponsive';
-import { default as SpectralAccelerationChart } from './SpectralAccelerationChart';
-import { default as SpectralAccelerationChartResponsive } from './SpectralAccelerationChartResponsive';
+import { default as HazardChart } from './HazardChart';
+import { default as HazardChartResponsive } from './HazardChartResponsive';
+import { default as SpectralAccelChart } from './SpectralAccelChart';
+import { default as SpectralAccelChartResponsive } from './SpectralAccelChartResponsive';
 import { default as LeafletMap } from './LeafletMap';
 import { default as LeafletDrawer } from './LeafletDrawer';
 import { default as LeafletRuptureSetControls } from './LeafletRuptureSetControls';
-import { default as HazardCurvesUncertainty } from './HazardCurvesUncertainty';
+import { default as HazardUncertaintyChart } from './HazardUncertaintyChart';
 
 export {
   ControlsBar,
   SelectControl,
   MultiSelect,
-  HazardCurves,
-  HazardCurvesResponsive,
-  SpectralAccelerationChart,
-  SpectralAccelerationChartResponsive,
+  HazardChart,
+  HazardChartResponsive,
+  SpectralAccelChart,
+  SpectralAccelChartResponsive,
   LeafletMap,
   LeafletDrawer,
   LeafletRuptureSetControls,
-  HazardCurvesUncertainty,
+  HazardUncertaintyChart,
 };
