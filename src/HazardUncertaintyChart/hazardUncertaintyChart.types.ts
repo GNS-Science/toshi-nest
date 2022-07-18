@@ -2,16 +2,19 @@ export interface HazardUncertaintyChartProps {
   scaleType: 'log' | 'linear';
   xLimits: number[];
   yLimits: number[];
-  gridColor: string;
-  backgroundColor: string;
-  numTickX: number;
-  numTickY: number;
+  gridColor?: string;
+  backgroundColor?: string;
+  numTickX?: number;
+  numTickY?: number;
   width: number;
   curves: HazardUncertaintyChartData;
-  tooltip: boolean;
-  crosshair: boolean;
-  heading: string;
-  subHeading: string;
+  tooltip?: boolean;
+  crosshair?: boolean;
+  heading?: string;
+  subHeading?: string;
+  parentRef?: HTMLDivElement | null;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  resizeParent?: (state: any) => void;
 }
 
 export interface HazardUncertaintyChart {

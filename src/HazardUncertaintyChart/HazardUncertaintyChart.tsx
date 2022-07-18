@@ -97,8 +97,8 @@ const HazardUncertaintyChart: React.FC<HazardUncertaintyChartProps> = (props: Ha
     <>
       <div ref={containerRef} onMouseMove={handlePointerMove} onMouseLeave={() => hideTooltip()}>
         <svg width={width} height={height}>
-          <rect x={0} y={0} width={width} height={height} fill={backgroundColor} rx={14} />
-          <PlotHeadings heading={heading} subHeading={subHeading} width={xMax} />
+          <rect x={0} y={0} width={width} height={height} fill={backgroundColor ?? '#ffffff'} rx={14} />
+          <PlotHeadings heading={heading} subHeading={subHeading} width={width} />
           <text y={height - 15} x={xMax / 2} fontSize={10}>
             Acceleration (g)
           </text>
@@ -106,10 +106,10 @@ const HazardUncertaintyChart: React.FC<HazardUncertaintyChartProps> = (props: Ha
             Annual Probability of Exceedance
           </text>
           <Group left={marginLeft} top={marginTop}>
-            <AxisBottom top={yMax} scale={xScale} numTicks={numTickX} stroke={gridColor} tickLength={3} tickStroke={gridColor} />
-            <AxisLeft scale={yScale} numTicks={numTickY} stroke={gridColor} tickLength={3} tickStroke={gridColor} />
-            <GridColumns scale={xScale} width={xMax} height={yMax} stroke={gridColor} />
-            <GridRows scale={yScale} width={xMax} height={yMax} stroke={gridColor} />
+            <AxisBottom top={yMax} scale={xScale} numTicks={numTickX ?? 5} stroke={gridColor} tickLength={3} tickStroke={gridColor} />
+            <AxisLeft scale={yScale} numTicks={numTickY ?? 5} stroke={gridColor} tickLength={3} tickStroke={gridColor} />
+            <GridColumns scale={xScale} width={xMax} height={yMax} stroke={gridColor ?? '#efefef'} />
+            <GridRows scale={yScale} width={xMax} height={yMax} stroke={gridColor ?? '#efefef'} />
             <RectClipPath id="uncertainty-clip" height={yMax} width={xMax} />
             <Group clipPath={'url(#uncertainty-clip'}>
               {curves.map((curveGroup: HazardUncertaintyChartCurveGroup, index) => (

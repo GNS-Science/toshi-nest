@@ -17,6 +17,8 @@ const props: HazardUncertaintyChartProps = {
   curves: [curveGroup1, curveGroup2],
   tooltip: false,
   crosshair: false,
+  heading: 'heading',
+  subHeading: 'subHeading',
 };
 
 const Wrapper = () => {
