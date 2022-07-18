@@ -9,6 +9,7 @@ import { default as LeafletMap } from './LeafletMap';
 import { default as LeafletDrawer } from './LeafletDrawer';
 import { default as LeafletRuptureSetControls } from './LeafletRuptureSetControls';
 import { default as HazardUncertaintyChart } from './HazardUncertaintyChart';
+import { default as HazardUncertaintyChartResponsive } from './HazardUncertaintyChartResponsive';
 
 export {
   ControlsBar,
@@ -22,4 +23,5 @@ export {
   LeafletDrawer,
   LeafletRuptureSetControls,
   HazardUncertaintyChart,
+  HazardUncertaintyChartResponsive,
 };
