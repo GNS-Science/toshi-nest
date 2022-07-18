@@ -18,7 +18,7 @@ Primary.args = {
   xLimits: [1e-2, 10],
   yLimits: [1e-6, 1],
   gridColor: '#efefef',
-  backgroundColor: '#f3f6f4',
+  backgroundColor: '#ffffff',
   numTickX: 5,
   numTickY: 5,
   curves: [curveGroup1, curveGroup2],
