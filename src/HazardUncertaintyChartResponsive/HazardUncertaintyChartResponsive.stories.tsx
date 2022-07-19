@@ -21,7 +21,7 @@ Primary.args = {
   backgroundColor: '#ffffff',
   numTickX: 5,
   numTickY: 5,
-  curves: [curveGroup1, curveGroup2],
+  curves: { curveGroup1: curveGroup1, curveGroup2: curveGroup2 },
   tooltip: true,
   crosshair: true,
   heading: 'Hazard Chart with Uncertainty',

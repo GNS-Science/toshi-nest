@@ -27,6 +27,6 @@ export interface HazardUncertaintyChart {
 
 export type HazardUncertaintyChartCurveGroup = Record<string, HazardUncertaintyChart>;
 
-export type HazardUncertaintyChartData = HazardUncertaintyChartCurveGroup[];
+export type HazardUncertaintyChartData = Record<string, HazardUncertaintyChartCurveGroup>;
 
 export type UncertaintyDatum = number[];

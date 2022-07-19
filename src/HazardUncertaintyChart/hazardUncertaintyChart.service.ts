@@ -14,11 +14,11 @@ export const getAreaData = (curveGroup: HazardUncertaintyChartCurveGroup) => {
   return area;
 };
 
-export const getSortedMeanCurves = (curveGroups: HazardUncertaintyChartCurveGroup[]): UncertaintyDatum[] => {
+export const getSortedMeanCurves = (curveGroups: Record<string, HazardUncertaintyChartCurveGroup>): UncertaintyDatum[] => {
   const meanCurves: number[][] = [];
 
-  curveGroups.forEach((curveGroup) => {
-    curveGroup['mean'].data.forEach((point) => {
+  Object.keys(curveGroups).forEach((key) => {
+    curveGroups[key]['mean'].data.forEach((point) => {
       meanCurves.push(point);
     });
   });
