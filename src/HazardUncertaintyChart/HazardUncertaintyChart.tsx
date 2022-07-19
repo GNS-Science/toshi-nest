@@ -2,7 +2,7 @@ import React, { useCallback, useMemo } from 'react';
 import { Group } from '@visx/group';
 import { AxisBottom, AxisLeft } from '@visx/axis';
 import { GridRows, GridColumns } from '@visx/grid';
-import { scaleLog, scaleLinear } from '@visx/scale';
+import { scaleLog, scaleLinear, scaleOrdinal } from '@visx/scale';
 import { LinePath } from '@visx/shape';
 import { Threshold } from '@visx/threshold';
 import { RectClipPath } from '@visx/clip-path';
@@ -10,10 +10,12 @@ import { useTooltip, useTooltipInPortal } from '@visx/tooltip';
 import { Line } from '@visx/shape';
 import { localPoint } from '@visx/event';
 import { bisector } from 'd3-array';
+import { LegendOrdinal } from '@visx/legend';
 
-import { HazardUncertaintyChartProps, HazardUncertaintyChartCurveGroup, UncertaintyDatum } from './hazardUncertaintyChart.types';
+import { HazardUncertaintyChartProps, UncertaintyDatum } from './hazardUncertaintyChart.types';
 import { getAreaData, getSortedMeanCurves } from './hazardUncertaintyChart.service';
 import PlotHeadings from '../common/PlotHeadings';
+import { HazardColorScale } from '../types/hazardCharts.types';
 
 const HazardUncertaintyChart: React.FC<HazardUncertaintyChartProps> = (props: HazardUncertaintyChartProps) => {
   const { scaleType, xLimits, yLimits, gridColor, backgroundColor, numTickX, numTickY, width, curves, tooltip, crosshair, heading, subHeading } = props;
@@ -44,6 +46,28 @@ const HazardUncertaintyChart: React.FC<HazardUncertaintyChartProps> = (props: Ha
         range: [yMax, 0],
       }),
     [yLimits, yMax],
+  );
+
+  const curvesDomain = useMemo(() => {
+    const colorScale: HazardColorScale = {
+      domain: [],
+      range: [],
+    };
+
+    Object.keys(curves).forEach((key) => {
+      colorScale.domain.push(key);
+      colorScale.range.push(curves[key]['upper1'].strokeColor ?? '#000000');
+    });
+    return colorScale;
+  }, [curves]);
+
+  const ordinalColorScale = useMemo(
+    () =>
+      scaleOrdinal({
+        domain: [...curvesDomain.domain],
+        range: [...curvesDomain.range],
+      }),
+    [curvesDomain],
   );
 
   const { containerRef, TooltipInPortal } = useTooltipInPortal({
@@ -166,6 +190,9 @@ const HazardUncertaintyChart: React.FC<HazardUncertaintyChartProps> = (props: Ha
             )}
           </Group>
         </svg>
+        <div style={{ width: 200, height: 100, position: 'absolute', top: marginTop + 30, left: width * 0.7, display: 'flex' }}>
+          <LegendOrdinal direction="column" scale={ordinalColorScale} shape="line" style={{ fontSize: width * 0.02 }} shapeHeight={width * 0.02} />
+        </div>
       </div>
     </>
   );
