@@ -30,6 +30,7 @@ Primary.args = {
   crosshair: false,
   heading: 'Hazard Chart with Uncertainty',
   subHeading: 'WLG 250',
+  poe: 0.02,
 };
 
 Tooltip.args = {
@@ -41,11 +42,12 @@ Tooltip.args = {
   numTickX: 5,
   numTickY: 5,
   width: 600,
-  curves: [curveGroup1, curveGroup2],
+  curves: { curveGroup1: curveGroup1, curveGroup2: curveGroup2 },
   tooltip: true,
   crosshair: false,
   heading: 'Hazard Chart with Uncertainty',
   subHeading: 'WLG 250',
+  poe: 0.02,
 };
 
 Crosshair.args = {
@@ -62,6 +64,7 @@ Crosshair.args = {
   crosshair: true,
   heading: 'Hazard Chart with Uncertainty',
   subHeading: 'WLG 250',
+  poe: 0.02,
 };
 
 TooltipWithCrosshair.args = {
@@ -78,4 +81,5 @@ TooltipWithCrosshair.args = {
   crosshair: true,
   heading: 'Hazard Chart with Uncertainty',
   subHeading: 'WLG 250',
+  poe: 0.02,
 };

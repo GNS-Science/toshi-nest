@@ -18,7 +18,7 @@ import PlotHeadings from '../common/PlotHeadings';
 import { HazardColorScale } from '../types/hazardCharts.types';
 
 const HazardUncertaintyChart: React.FC<HazardUncertaintyChartProps> = (props: HazardUncertaintyChartProps) => {
-  const { scaleType, xLimits, yLimits, gridColor, backgroundColor, numTickX, numTickY, width, curves, tooltip, crosshair, heading, subHeading } = props;
+  const { scaleType, xLimits, yLimits, gridColor, backgroundColor, numTickX, numTickY, width, curves, tooltip, crosshair, heading, subHeading, poe } = props;
   const height = width * 0.75;
   const marginLeft = 50;
   const marginRight = 50;
@@ -64,11 +64,22 @@ const HazardUncertaintyChart: React.FC<HazardUncertaintyChartProps> = (props: Ha
   const ordinalColorScale = useMemo(
     () =>
       scaleOrdinal({
-        domain: [...curvesDomain.domain],
-        range: [...curvesDomain.range],
+        domain: !poe ? [...curvesDomain.domain] : [...curvesDomain.domain, `POE ${poe * 100}% (50 Yrs)`],
+        range: !poe ? [...curvesDomain.range] : [...curvesDomain.range, '#989C9C'],
       }),
-    [curvesDomain],
+    [curvesDomain, poe],
   );
+
+  const poeLine = useMemo(() => {
+    const getPoE = (poeValue: number) => {
+      const yValue = -Math.log(1 - poeValue) / 50;
+      return [
+        { x: 1e-3, y: yValue },
+        { x: 10, y: yValue },
+      ];
+    };
+    return poe ? getPoE(poe) : [];
+  }, [poe]);
 
   const { containerRef, TooltipInPortal } = useTooltipInPortal({
     scroll: true,
@@ -163,6 +174,7 @@ const HazardUncertaintyChart: React.FC<HazardUncertaintyChartProps> = (props: Ha
                   />
                 </Group>
               ))}
+              {poe && <LinePath role="POE" data={poeLine} x={(d) => xScale(d.x)} y={(d) => yScale(d.y)} stroke="#989C9C" />}
             </Group>
             {crosshair && tooltipOpen && (
               <g>

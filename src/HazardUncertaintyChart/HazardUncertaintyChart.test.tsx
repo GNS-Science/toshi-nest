@@ -19,6 +19,7 @@ const props: HazardUncertaintyChartProps = {
   crosshair: false,
   heading: 'heading',
   subHeading: 'subHeading',
+  poe: 0.02,
 };
 
 const Wrapper = () => {
