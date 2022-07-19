@@ -14,7 +14,7 @@ const props: HazardUncertaintyChartProps = {
   numTickX: 5,
   numTickY: 5,
   width: 600,
-  curves: [curveGroup1, curveGroup2],
+  curves: { curveGroup1: curveGroup1, curveGroup2: curveGroup2 },
   tooltip: false,
   crosshair: false,
   heading: 'heading',
