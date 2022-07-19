@@ -26,4 +26,5 @@ Primary.args = {
   crosshair: true,
   heading: 'Hazard Chart with Uncertainty',
   subHeading: 'WLG 250',
+  poe: 0.02,
 };
