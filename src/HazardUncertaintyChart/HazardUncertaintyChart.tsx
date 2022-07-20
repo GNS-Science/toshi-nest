@@ -130,7 +130,7 @@ const HazardUncertaintyChart: React.FC<HazardUncertaintyChartProps> = (props: Ha
 
   return (
     <>
-      <div ref={containerRef} onMouseMove={handlePointerMove} onMouseLeave={() => hideTooltip()}>
+      <div style={{ position: 'relative' }} ref={containerRef} onMouseMove={handlePointerMove} onMouseLeave={() => hideTooltip()}>
         <svg width={width} height={height}>
           <rect x={0} y={0} width={width} height={height} fill={backgroundColor ?? '#ffffff'} rx={14} />
           <PlotHeadings heading={heading} subHeading={subHeading} width={width} />
@@ -202,7 +202,7 @@ const HazardUncertaintyChart: React.FC<HazardUncertaintyChartProps> = (props: Ha
             )}
           </Group>
         </svg>
-        <div style={{ width: 200, height: 100, position: 'absolute', top: marginTop + 30, left: width * 0.7, display: 'flex' }}>
+        <div style={{ width: 200, height: 100, position: 'absolute', top: marginTop, left: width * 0.7, display: 'flex' }}>
           <LegendOrdinal direction="column" scale={ordinalColorScale} shape="line" style={{ fontSize: width * 0.02 }} shapeHeight={width * 0.02} />
         </div>
       </div>
