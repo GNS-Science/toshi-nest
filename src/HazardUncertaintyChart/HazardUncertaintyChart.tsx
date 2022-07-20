@@ -2,7 +2,7 @@ import React, { useCallback, useMemo } from 'react';
 import { Group } from '@visx/group';
 import { AxisBottom, AxisLeft } from '@visx/axis';
 import { GridRows, GridColumns } from '@visx/grid';
-import { scaleLog, scaleLinear } from '@visx/scale';
+import { scaleLog, scaleLinear, scaleOrdinal } from '@visx/scale';
 import { LinePath } from '@visx/shape';
 import { Threshold } from '@visx/threshold';
 import { RectClipPath } from '@visx/clip-path';
@@ -10,13 +10,15 @@ import { useTooltip, useTooltipInPortal } from '@visx/tooltip';
 import { Line } from '@visx/shape';
 import { localPoint } from '@visx/event';
 import { bisector } from 'd3-array';
+import { LegendOrdinal } from '@visx/legend';
 
-import { HazardUncertaintyChartProps, HazardUncertaintyChartCurveGroup, UncertaintyDatum } from './hazardUncertaintyChart.types';
+import { HazardUncertaintyChartProps, UncertaintyDatum } from './hazardUncertaintyChart.types';
 import { getAreaData, getSortedMeanCurves } from './hazardUncertaintyChart.service';
 import PlotHeadings from '../common/PlotHeadings';
+import { HazardColorScale } from '../types/hazardCharts.types';
 
 const HazardUncertaintyChart: React.FC<HazardUncertaintyChartProps> = (props: HazardUncertaintyChartProps) => {
-  const { scaleType, xLimits, yLimits, gridColor, backgroundColor, numTickX, numTickY, width, curves, tooltip, crosshair, heading, subHeading } = props;
+  const { scaleType, xLimits, yLimits, gridColor, backgroundColor, numTickX, numTickY, width, curves, tooltip, crosshair, heading, subHeading, poe } = props;
   const height = width * 0.75;
   const marginLeft = 50;
   const marginRight = 50;
@@ -45,6 +47,39 @@ const HazardUncertaintyChart: React.FC<HazardUncertaintyChartProps> = (props: Ha
       }),
     [yLimits, yMax],
   );
+
+  const curvesDomain = useMemo(() => {
+    const colorScale: HazardColorScale = {
+      domain: [],
+      range: [],
+    };
+
+    Object.keys(curves).forEach((key) => {
+      colorScale.domain.push(key);
+      colorScale.range.push(curves[key]['upper1'].strokeColor ?? '#000000');
+    });
+    return colorScale;
+  }, [curves]);
+
+  const ordinalColorScale = useMemo(
+    () =>
+      scaleOrdinal({
+        domain: !poe ? [...curvesDomain.domain] : [...curvesDomain.domain, `POE ${poe * 100}% (50 Yrs)`],
+        range: !poe ? [...curvesDomain.range] : [...curvesDomain.range, '#989C9C'],
+      }),
+    [curvesDomain, poe],
+  );
+
+  const poeLine = useMemo(() => {
+    const getPoE = (poeValue: number) => {
+      const yValue = -Math.log(1 - poeValue) / 50;
+      return [
+        { x: 1e-3, y: yValue },
+        { x: 10, y: yValue },
+      ];
+    };
+    return poe ? getPoE(poe) : [];
+  }, [poe]);
 
   const { containerRef, TooltipInPortal } = useTooltipInPortal({
     scroll: true,
@@ -112,26 +147,34 @@ const HazardUncertaintyChart: React.FC<HazardUncertaintyChartProps> = (props: Ha
             <GridRows scale={yScale} width={xMax} height={yMax} stroke={gridColor ?? '#efefef'} />
             <RectClipPath id="uncertainty-clip" height={yMax} width={xMax} />
             <Group clipPath={'url(#uncertainty-clip'}>
-              {curves.map((curveGroup: HazardUncertaintyChartCurveGroup, index) => (
-                <Group key={index}>
-                  {Object.keys(curveGroup).map((key, index) => (
-                    <LinePath key={`${index}-${key}`} role="curve" data={curveGroup[key].data} x={(d) => xScale(d[0])} y={(d) => yScale(d[1])} stroke={curveGroup[key].strokeColor ?? ''} />
+              {Object.keys(curves).map((key, index) => (
+                <Group key={key}>
+                  {Object.keys(curves[key]).map((curveType, index) => (
+                    <LinePath
+                      key={`${index}-${key}`}
+                      role="curve"
+                      data={curves[key][curveType].data}
+                      x={(d) => xScale(d[0])}
+                      y={(d) => yScale(d[1])}
+                      stroke={curves[key][curveType].strokeColor ?? ''}
+                    />
                   ))}
                   <Threshold<number[]>
                     id={`uncertianty-area-${index}`}
-                    data={getAreaData(curveGroup)}
+                    data={getAreaData(curves[key])}
                     x={(d) => xScale(d[0])}
                     y0={(d) => yScale(d[2])}
                     y1={(d) => yScale(d[1])}
                     clipAboveTo={0}
                     clipBelowTo={yMax}
                     aboveAreaProps={{
-                      fill: curveGroup['upper1'].strokeColor,
+                      fill: curves[key]['upper1'].strokeColor,
                       fillOpacity: 0.4,
                     }}
                   />
                 </Group>
               ))}
+              {poe && <LinePath role="POE" data={poeLine} x={(d) => xScale(d.x)} y={(d) => yScale(d.y)} stroke="#989C9C" />}
             </Group>
             {crosshair && tooltipOpen && (
               <g>
@@ -159,6 +202,9 @@ const HazardUncertaintyChart: React.FC<HazardUncertaintyChartProps> = (props: Ha
             )}
           </Group>
         </svg>
+        <div style={{ width: 200, height: 100, position: 'absolute', top: marginTop + 30, left: width * 0.7, display: 'flex' }}>
+          <LegendOrdinal direction="column" scale={ordinalColorScale} shape="line" style={{ fontSize: width * 0.02 }} shapeHeight={width * 0.02} />
+        </div>
       </div>
     </>
   );

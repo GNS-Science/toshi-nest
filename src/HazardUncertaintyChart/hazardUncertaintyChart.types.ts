@@ -15,6 +15,7 @@ export interface HazardUncertaintyChartProps {
   parentRef?: HTMLDivElement | null;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   resizeParent?: (state: any) => void;
+  poe: number | undefined;
 }
 
 export interface HazardUncertaintyChart {
@@ -27,6 +28,6 @@ export interface HazardUncertaintyChart {
 
 export type HazardUncertaintyChartCurveGroup = Record<string, HazardUncertaintyChart>;
 
-export type HazardUncertaintyChartData = HazardUncertaintyChartCurveGroup[];
+export type HazardUncertaintyChartData = Record<string, HazardUncertaintyChartCurveGroup>;
 
 export type UncertaintyDatum = number[];

@@ -16,6 +16,7 @@ export interface HazardUncertaintyChartResponsiveProps {
   crosshair?: boolean;
   heading?: string;
   subHeading?: string;
+  poe: number | undefined;
 }
 
 const HazardUncertaintyChartResponsive: React.FC<HazardUncertaintyChartResponsiveProps> = ({
@@ -31,6 +32,7 @@ const HazardUncertaintyChartResponsive: React.FC<HazardUncertaintyChartResponsiv
   crosshair,
   heading,
   subHeading,
+  poe,
 }: HazardUncertaintyChartResponsiveProps) => {
   return (
     <>
@@ -52,6 +54,7 @@ const HazardUncertaintyChartResponsive: React.FC<HazardUncertaintyChartResponsiv
             width={parent.width}
             parentRef={parent.ref}
             resizeParent={parent.resize}
+            poe={poe}
           />
         )}
       </ParentSize>
