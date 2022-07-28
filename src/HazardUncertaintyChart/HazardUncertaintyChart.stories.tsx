@@ -15,6 +15,7 @@ export const Primary = Template.bind({});
 export const Tooltip = Template.bind({});
 export const Crosshair = Template.bind({});
 export const TooltipWithCrosshair = Template.bind({});
+export const UncertaintyFalse = Template.bind({});
 
 Primary.args = {
   scaleType: 'log',
@@ -31,6 +32,7 @@ Primary.args = {
   heading: 'Hazard Chart with Uncertainty',
   subHeading: 'WLG 250',
   poe: 0.02,
+  uncertainty: true,
 };
 
 Tooltip.args = {
@@ -48,6 +50,7 @@ Tooltip.args = {
   heading: 'Hazard Chart with Uncertainty',
   subHeading: 'WLG 250',
   poe: 0.02,
+  uncertainty: true,
 };
 
 Crosshair.args = {
@@ -65,6 +68,7 @@ Crosshair.args = {
   heading: 'Hazard Chart with Uncertainty',
   subHeading: 'WLG 250',
   poe: 0.02,
+  uncertainty: true,
 };
 
 TooltipWithCrosshair.args = {
@@ -82,4 +86,23 @@ TooltipWithCrosshair.args = {
   heading: 'Hazard Chart with Uncertainty',
   subHeading: 'WLG 250',
   poe: 0.02,
+  uncertainty: true,
+};
+
+UncertaintyFalse.args = {
+  scaleType: 'log',
+  xLimits: [1e-2, 10],
+  yLimits: [1e-6, 1],
+  gridColor: '#efefef',
+  backgroundColor: '#ffffff',
+  numTickX: 5,
+  numTickY: 5,
+  width: 600,
+  curves: { curveGroup1: curveGroup1, curveGroup2: curveGroup2 },
+  tooltip: true,
+  crosshair: true,
+  heading: 'Hazard Chart with Uncertainty',
+  subHeading: 'WLG 250',
+  poe: 0.02,
+  uncertainty: false,
 };
