@@ -180,7 +180,15 @@ const HazardUncertaintyChart: React.FC<HazardUncertaintyChartProps> = (props: Ha
               ) : (
                 <>
                   {Object.keys(curves).map((key, index) => (
-                    <LinePath key={`${index}-${key}`} role="curve" data={curves[key]['mean'].data} x={(d) => xScale(d[0])} y={(d) => yScale(d[1])} stroke={curves[key]['mean'].strokeColor ?? ''} />
+                    <LinePath
+                      key={`${index}-${key}`}
+                      role="curve"
+                      data={curves[key]['mean'].data}
+                      x={(d) => xScale(d[0])}
+                      y={(d) => yScale(d[1])}
+                      stroke={curves[key]['mean'].strokeColor ?? ''}
+                      strokeWidth={2.0}
+                    />
                   ))}
                 </>
               )}
