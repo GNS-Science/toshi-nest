@@ -16,6 +16,7 @@ export interface HazardUncertaintyChartProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   resizeParent?: (state: any) => void;
   poe: number | undefined;
+  uncertainty: boolean;
 }
 
 export interface HazardUncertaintyChart {

@@ -18,7 +18,7 @@ import PlotHeadings from '../common/PlotHeadings';
 import { HazardColorScale } from '../types/hazardCharts.types';
 
 const HazardUncertaintyChart: React.FC<HazardUncertaintyChartProps> = (props: HazardUncertaintyChartProps) => {
-  const { scaleType, xLimits, yLimits, gridColor, backgroundColor, numTickX, numTickY, width, curves, tooltip, crosshair, heading, subHeading, poe } = props;
+  const { scaleType, xLimits, yLimits, gridColor, backgroundColor, numTickX, numTickY, width, curves, tooltip, crosshair, heading, subHeading, poe, uncertainty } = props;
   const height = width * 0.75;
   const marginLeft = 50;
   const marginRight = 50;
@@ -147,33 +147,43 @@ const HazardUncertaintyChart: React.FC<HazardUncertaintyChartProps> = (props: Ha
             <GridRows scale={yScale} width={xMax} height={yMax} stroke={gridColor ?? '#efefef'} />
             <RectClipPath id="uncertainty-clip" height={yMax} width={xMax} />
             <Group clipPath={'url(#uncertainty-clip'}>
-              {Object.keys(curves).map((key, index) => (
-                <Group key={key}>
-                  {Object.keys(curves[key]).map((curveType, index) => (
-                    <LinePath
-                      key={`${index}-${key}`}
-                      role="curve"
-                      data={curves[key][curveType].data}
-                      x={(d) => xScale(d[0])}
-                      y={(d) => yScale(d[1])}
-                      stroke={curves[key][curveType].strokeColor ?? ''}
-                    />
+              {uncertainty ? (
+                <>
+                  {Object.keys(curves).map((key, index) => (
+                    <Group key={key}>
+                      {Object.keys(curves[key]).map((curveType, index) => (
+                        <LinePath
+                          key={`${index}-${key}`}
+                          role="curve"
+                          data={curves[key][curveType].data}
+                          x={(d) => xScale(d[0])}
+                          y={(d) => yScale(d[1])}
+                          stroke={curves[key][curveType].strokeColor ?? ''}
+                        />
+                      ))}
+                      <Threshold<number[]>
+                        id={`uncertianty-area-${index}`}
+                        data={getAreaData(curves[key])}
+                        x={(d) => xScale(d[0])}
+                        y0={(d) => yScale(d[2])}
+                        y1={(d) => yScale(d[1])}
+                        clipAboveTo={0}
+                        clipBelowTo={yMax}
+                        aboveAreaProps={{
+                          fill: curves[key]['upper1'].strokeColor,
+                          fillOpacity: 0.4,
+                        }}
+                      />
+                    </Group>
                   ))}
-                  <Threshold<number[]>
-                    id={`uncertianty-area-${index}`}
-                    data={getAreaData(curves[key])}
-                    x={(d) => xScale(d[0])}
-                    y0={(d) => yScale(d[2])}
-                    y1={(d) => yScale(d[1])}
-                    clipAboveTo={0}
-                    clipBelowTo={yMax}
-                    aboveAreaProps={{
-                      fill: curves[key]['upper1'].strokeColor,
-                      fillOpacity: 0.4,
-                    }}
-                  />
-                </Group>
-              ))}
+                </>
+              ) : (
+                <>
+                  {Object.keys(curves).map((key, index) => (
+                    <LinePath key={`${index}-${key}`} role="curve" data={curves[key]['mean'].data} x={(d) => xScale(d[0])} y={(d) => yScale(d[1])} stroke={curves[key]['mean'].strokeColor ?? ''} />
+                  ))}
+                </>
+              )}
               {poe && <LinePath role="POE" data={poeLine} x={(d) => xScale(d.x)} y={(d) => yScale(d.y)} stroke="#989C9C" />}
             </Group>
             {crosshair && tooltipOpen && (
