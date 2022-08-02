@@ -1,5 +1,6 @@
 export interface HazardUncertaintyChartProps {
   scaleType: 'log' | 'linear';
+  yScaleType?: 'log' | 'linear';
   xLimits: number[];
   yLimits: number[];
   gridColor?: string;

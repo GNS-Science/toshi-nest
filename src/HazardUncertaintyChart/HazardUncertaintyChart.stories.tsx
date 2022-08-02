@@ -3,6 +3,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import HazardUncertaintyChart from './HazardUncertaintyChart';
 import { curveGroup2, curveGroup1 } from '../__tests__/testData/uncertaintyTestData';
+import spectralAccelUncertaintyTestData from '../__tests__/testData/spectralAccelUncertaintyTestData';
 
 export default {
   title: 'Charts/HazardUncertaintyChart',
@@ -16,6 +17,8 @@ export const Tooltip = Template.bind({});
 export const Crosshair = Template.bind({});
 export const TooltipWithCrosshair = Template.bind({});
 export const UncertaintyFalse = Template.bind({});
+export const SpectralAccelUncertaintyTrue = Template.bind({});
+export const SpectralAccelUncertaintyFalse = Template.bind({});
 
 Primary.args = {
   scaleType: 'log',
@@ -104,5 +107,43 @@ UncertaintyFalse.args = {
   heading: 'Hazard Chart with Uncertainty',
   subHeading: 'WLG 250',
   poe: 0.02,
+  uncertainty: false,
+};
+
+SpectralAccelUncertaintyTrue.args = {
+  scaleType: 'linear',
+  yScaleType: 'linear',
+  xLimits: [-1, 6],
+  yLimits: [0, 4],
+  gridColor: '#efefef',
+  backgroundColor: '#ffffff',
+  numTickX: 5,
+  numTickY: 5,
+  width: 600,
+  curves: spectralAccelUncertaintyTestData,
+  tooltip: true,
+  crosshair: true,
+  heading: 'Hazard Chart with Uncertainty',
+  subHeading: 'WLG 400m/s',
+  poe: undefined,
+  uncertainty: true,
+};
+
+SpectralAccelUncertaintyFalse.args = {
+  scaleType: 'linear',
+  yScaleType: 'linear',
+  xLimits: [-1, 6],
+  yLimits: [0, 4],
+  gridColor: '#efefef',
+  backgroundColor: '#ffffff',
+  numTickX: 5,
+  numTickY: 5,
+  width: 600,
+  curves: spectralAccelUncertaintyTestData,
+  tooltip: true,
+  crosshair: true,
+  heading: 'Hazard Chart with Uncertainty',
+  subHeading: 'WLG 400m/s',
+  poe: undefined,
   uncertainty: false,
 };

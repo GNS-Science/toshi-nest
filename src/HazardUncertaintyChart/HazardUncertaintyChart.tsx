@@ -18,7 +18,7 @@ import PlotHeadings from '../common/PlotHeadings';
 import { HazardColorScale } from '../types/hazardCharts.types';
 
 const HazardUncertaintyChart: React.FC<HazardUncertaintyChartProps> = (props: HazardUncertaintyChartProps) => {
-  const { scaleType, xLimits, yLimits, gridColor, backgroundColor, numTickX, numTickY, width, curves, tooltip, crosshair, heading, subHeading, poe, uncertainty } = props;
+  const { scaleType, yScaleType, xLimits, yLimits, gridColor, backgroundColor, numTickX, numTickY, width, curves, tooltip, crosshair, heading, subHeading, poe, uncertainty } = props;
   const height = width * 0.75;
   const marginLeft = 50;
   const marginRight = 50;
@@ -39,14 +39,17 @@ const HazardUncertaintyChart: React.FC<HazardUncertaintyChartProps> = (props: Ha
         });
   }, [scaleType, xLimits, xMax]);
 
-  const yScale = useMemo(
-    () =>
-      scaleLog<number>({
-        domain: yLimits,
-        range: [yMax, 0],
-      }),
-    [yLimits, yMax],
-  );
+  const yScale = useMemo(() => {
+    return yScaleType === 'linear'
+      ? scaleLinear<number>({
+          domain: yLimits,
+          range: [yMax, 0],
+        })
+      : scaleLog<number>({
+          domain: yLimits,
+          range: [yMax, 0],
+        });
+  }, [yScaleType, yLimits, yMax]);
 
   const curvesDomain = useMemo(() => {
     const colorScale: HazardColorScale = {
