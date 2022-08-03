@@ -5,6 +5,7 @@ import { GroupCurveChartData } from '../GroupCurveChart/groupCurveChart.types';
 
 export interface GroupCurveChartResponsiveProps {
   scaleType: 'log' | 'linear';
+  yScaleType?: 'log' | 'linear';
   xLimits: number[];
   yLimits: number[];
   gridColor?: string;
@@ -20,47 +21,10 @@ export interface GroupCurveChartResponsiveProps {
   uncertainty: boolean;
 }
 
-const GroupCurveChartResponsive: React.FC<GroupCurveChartResponsiveProps> = ({
-  scaleType,
-  xLimits,
-  yLimits,
-  gridColor,
-  backgroundColor,
-  numTickX,
-  numTickY,
-  curves,
-  tooltip,
-  crosshair,
-  heading,
-  subHeading,
-  poe,
-  uncertainty,
-}: GroupCurveChartResponsiveProps) => {
+const GroupCurveChartResponsive: React.FC<GroupCurveChartResponsiveProps> = (props: GroupCurveChartResponsiveProps) => {
   return (
     <>
-      <ParentSize>
-        {(parent) => (
-          <GroupCurveChart
-            scaleType={scaleType}
-            xLimits={xLimits}
-            yLimits={yLimits}
-            gridColor={gridColor}
-            backgroundColor={backgroundColor}
-            numTickX={numTickX}
-            numTickY={numTickY}
-            curves={curves}
-            tooltip={tooltip}
-            crosshair={crosshair}
-            heading={heading}
-            subHeading={subHeading}
-            width={parent.width}
-            parentRef={parent.ref}
-            resizeParent={parent.resize}
-            poe={poe}
-            uncertainty={uncertainty}
-          />
-        )}
-      </ParentSize>
+      <ParentSize>{(parent) => <GroupCurveChart {...props} width={parent.width} parentRef={parent.ref} resizeParent={parent.resize} />}</ParentSize>
     </>
   );
 };
