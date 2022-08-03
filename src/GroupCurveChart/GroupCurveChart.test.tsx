@@ -1,11 +1,11 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 
-import HazardUncertaintyChart from './HazardUncertaintyChart';
-import { HazardUncertaintyChartProps } from './hazardUncertaintyChart.types';
+import GroupCurveChart from './GroupCurveChart';
+import { GroupCurveChartProps } from './groupCurveChart.types';
 import { curveGroup1, curveGroup2 } from '../__tests__/testData/uncertaintyTestData';
 
-const props: HazardUncertaintyChartProps = {
+const props: GroupCurveChartProps = {
   scaleType: 'log',
   xLimits: [1e-2, 10],
   yLimits: [1e-6, 1],
@@ -24,7 +24,7 @@ const props: HazardUncertaintyChartProps = {
 };
 
 const Wrapper = () => {
-  return <HazardUncertaintyChart {...props} />;
+  return <GroupCurveChart {...props} />;
 };
 
 test('graph is displayed', () => {

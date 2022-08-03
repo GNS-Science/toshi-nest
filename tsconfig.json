@@ -26,6 +26,6 @@
     "src/**/*",
     "*.config.js",
     "decs.d.ts"
-  ],
+, "src/GroupCurveChartResponsive/.tsx"  ],
   "exclude": ["node_modules", "dist"]
 }
