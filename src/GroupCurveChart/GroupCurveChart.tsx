@@ -12,12 +12,12 @@ import { localPoint } from '@visx/event';
 import { bisector } from 'd3-array';
 import { LegendOrdinal } from '@visx/legend';
 
-import { HazardUncertaintyChartProps, UncertaintyDatum } from './hazardUncertaintyChart.types';
-import { getAreaData, getSortedMeanCurves } from './hazardUncertaintyChart.service';
+import { GroupCurveChartProps, Datum } from './groupCurveChart.types';
+import { getAreaData, getSortedMeanCurves } from './groupCurveChart.service';
 import PlotHeadings from '../common/PlotHeadings';
 import { HazardColorScale } from '../types/hazardCharts.types';
 
-const HazardUncertaintyChart: React.FC<HazardUncertaintyChartProps> = (props: HazardUncertaintyChartProps) => {
+const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartProps) => {
   const { scaleType, yScaleType, xLimits, yLimits, gridColor, backgroundColor, numTickX, numTickY, width, curves, tooltip, crosshair, heading, subHeading, poe, uncertainty } = props;
   const height = width * 0.75;
   const marginLeft = 50;
@@ -96,7 +96,7 @@ const HazardUncertaintyChart: React.FC<HazardUncertaintyChartProps> = (props: Ha
     hideTooltip,
     tooltipLeft = 0,
     tooltipTop = 0,
-  } = useTooltip<UncertaintyDatum>({
+  } = useTooltip<Datum>({
     tooltipOpen: true,
   });
 
@@ -108,7 +108,7 @@ const HazardUncertaintyChart: React.FC<HazardUncertaintyChartProps> = (props: Ha
 
       const x = xScale.invert(point.x - 50);
 
-      const bisectData = bisector(function (d: UncertaintyDatum) {
+      const bisectData = bisector(function (d: Datum) {
         return d[0];
       }).right;
 
@@ -231,4 +231,4 @@ const HazardUncertaintyChart: React.FC<HazardUncertaintyChartProps> = (props: Ha
   );
 };
 
-export default HazardUncertaintyChart;
+export default GroupCurveChart;

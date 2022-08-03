@@ -1,9 +1,9 @@
 import { ParentSize } from '@visx/responsive';
 import React from 'react';
-import HazardUncertaintyChart from '../HazardUncertaintyChart/HazardUncertaintyChart';
-import { HazardUncertaintyChartData } from '../HazardUncertaintyChart/hazardUncertaintyChart.types';
+import GroupCurveChart from '../GroupCurveChart/GroupCurveChart';
+import { GroupCurveChartData } from '../GroupCurveChart/groupCurveChart.types';
 
-export interface HazardUncertaintyChartResponsiveProps {
+export interface GroupCurveChartResponsiveProps {
   scaleType: 'log' | 'linear';
   xLimits: number[];
   yLimits: number[];
@@ -11,7 +11,7 @@ export interface HazardUncertaintyChartResponsiveProps {
   backgroundColor?: string;
   numTickX?: number;
   numTickY?: number;
-  curves: HazardUncertaintyChartData;
+  curves: GroupCurveChartData;
   tooltip?: boolean;
   crosshair?: boolean;
   heading?: string;
@@ -20,7 +20,7 @@ export interface HazardUncertaintyChartResponsiveProps {
   uncertainty: boolean;
 }
 
-const HazardUncertaintyChartResponsive: React.FC<HazardUncertaintyChartResponsiveProps> = ({
+const GroupCurveChartResponsive: React.FC<GroupCurveChartResponsiveProps> = ({
   scaleType,
   xLimits,
   yLimits,
@@ -35,12 +35,12 @@ const HazardUncertaintyChartResponsive: React.FC<HazardUncertaintyChartResponsiv
   subHeading,
   poe,
   uncertainty,
-}: HazardUncertaintyChartResponsiveProps) => {
+}: GroupCurveChartResponsiveProps) => {
   return (
     <>
       <ParentSize>
         {(parent) => (
-          <HazardUncertaintyChart
+          <GroupCurveChart
             scaleType={scaleType}
             xLimits={xLimits}
             yLimits={yLimits}
@@ -65,4 +65,4 @@ const HazardUncertaintyChartResponsive: React.FC<HazardUncertaintyChartResponsiv
   );
 };
 
-export default HazardUncertaintyChartResponsive;
+export default GroupCurveChartResponsive;

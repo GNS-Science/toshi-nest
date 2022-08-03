@@ -8,8 +8,8 @@ import { default as SpectralAccelChartResponsive } from './SpectralAccelChartRes
 import { default as LeafletMap } from './LeafletMap';
 import { default as LeafletDrawer } from './LeafletDrawer';
 import { default as LeafletRuptureSetControls } from './LeafletRuptureSetControls';
-import { default as HazardUncertaintyChart } from './HazardUncertaintyChart';
-import { default as HazardUncertaintyChartResponsive } from './HazardUncertaintyChartResponsive';
+import { default as GroupCurveChart } from './GroupCurveChart';
+import { default as GroupCurveChartResponsive } from './GroupCurveChartResponsive';
 
 export {
   ControlsBar,
@@ -22,6 +22,6 @@ export {
   LeafletMap,
   LeafletDrawer,
   LeafletRuptureSetControls,
-  HazardUncertaintyChart,
-  HazardUncertaintyChartResponsive,
+  GroupCurveChart,
+  GroupCurveChartResponsive,
 };
