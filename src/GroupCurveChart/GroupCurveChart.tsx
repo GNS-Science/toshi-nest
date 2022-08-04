@@ -18,7 +18,7 @@ import PlotHeadings from '../common/PlotHeadings';
 import { HazardColorScale } from '../types/hazardCharts.types';
 
 const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartProps) => {
-  const { scaleType, yScaleType, xLimits, yLimits, gridColor, backgroundColor, numTickX, numTickY, width, curves, tooltip, crosshair, heading, subHeading, poe, uncertainty } = props;
+  const { spectral, scaleType, yScaleType, xLimits, yLimits, gridColor, backgroundColor, numTickX, numTickY, width, curves, tooltip, crosshair, heading, subHeading, poe, uncertainty } = props;
   const height = width * 0.75;
   const marginLeft = 50;
   const marginRight = 50;
@@ -165,7 +165,7 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
                         />
                       ))}
                       <Threshold<number[]>
-                        id={`uncertianty-area-${index}`}
+                        id={spectral ? `uncertainty-area-spectral-${index}` : `uncertianty-area-${index}`}
                         data={getAreaData(curves[key])}
                         x={(d) => xScale(d[0])}
                         y0={(d) => yScale(d[2])}
@@ -195,7 +195,7 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
                   ))}
                 </>
               )}
-              {poe && <LinePath role="POE" data={poeLine} x={(d) => xScale(d.x)} y={(d) => yScale(d.y)} stroke="#989C9C" />}
+              {poe && !spectral && <LinePath role="POE" data={poeLine} x={(d) => xScale(d.x)} y={(d) => yScale(d.y)} stroke="#989C9C" />}
             </Group>
             {crosshair && tooltipOpen && (
               <g>
