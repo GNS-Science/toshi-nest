@@ -1,13 +1,11 @@
 import React from 'react';
 import Plot from 'react-plotly.js';
-import { data } from './DisaggregationPlotData';
+import { DisaggregationPlotProps } from '../types/DisaggregationPlot.types';
 
-const parsedData = JSON.parse(data);
-
-const DisaggregationPlot: React.FC = () => {
+const DisaggregationPlot: React.FC<DisaggregationPlotProps> = (props: DisaggregationPlotProps) => {
   return (
     <div id="chartholder">
-      <Plot data={parsedData.data} layout={parsedData.layout} />
+      <Plot data={props.data} layout={props.layout} />
     </div>
   );
 };
