@@ -1,4 +1,5 @@
 export interface GroupCurveChartProps {
+  spectral?: boolean;
   scaleType: 'log' | 'linear';
   yScaleType?: 'log' | 'linear';
   xLimits: number[];
