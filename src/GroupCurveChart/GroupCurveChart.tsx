@@ -18,7 +18,27 @@ import PlotHeadings from '../common/PlotHeadings';
 import { HazardColorScale } from '../types/hazardCharts.types';
 
 const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartProps) => {
-  const { spectral, scaleType, yScaleType, xLimits, yLimits, gridColor, backgroundColor, numTickX, numTickY, width, curves, tooltip, crosshair, heading, subHeading, poe, uncertainty } = props;
+  const {
+    spectral,
+    scaleType,
+    yScaleType,
+    xLabel,
+    yLabel,
+    xLimits,
+    yLimits,
+    gridColor,
+    backgroundColor,
+    numTickX,
+    numTickY,
+    width,
+    curves,
+    tooltip,
+    crosshair,
+    heading,
+    subHeading,
+    poe,
+    uncertainty,
+  } = props;
   const height = width * 0.75;
   const marginLeft = 50;
   const marginRight = 50;
@@ -138,10 +158,10 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
           <rect x={0} y={0} width={width} height={height} fill={backgroundColor ?? '#ffffff'} rx={14} />
           <PlotHeadings heading={heading} subHeading={subHeading} width={width} />
           <text y={height - 15} x={xMax / 2} fontSize={10}>
-            Acceleration (g)
+            {xLabel}
           </text>
           <text y={15} x={-width / 2} transform="rotate(-90)" fontSize={10}>
-            Annual Probability of Exceedance
+            {yLabel}
           </text>
           <Group left={marginLeft} top={marginTop}>
             <AxisBottom top={yMax} scale={xScale} numTicks={numTickX ?? 5} stroke={gridColor} tickLength={3} tickStroke={gridColor} />
