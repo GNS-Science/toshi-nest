@@ -2,6 +2,8 @@ export interface GroupCurveChartProps {
   spectral?: boolean;
   scaleType: 'log' | 'linear';
   yScaleType?: 'log' | 'linear';
+  xLabel?: string;
+  yLabel?: string;
   xLimits: number[];
   yLimits: number[];
   gridColor?: string;

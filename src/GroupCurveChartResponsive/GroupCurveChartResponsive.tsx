@@ -8,6 +8,8 @@ export interface GroupCurveChartResponsiveProps {
   yScaleType?: 'log' | 'linear';
   xLimits: number[];
   yLimits: number[];
+  xLabel?: string;
+  yLabel?: string;
   gridColor?: string;
   backgroundColor?: string;
   numTickX?: number;
