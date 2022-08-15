@@ -240,8 +240,8 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
             )}
           </Group>
         </svg>
-        <div style={{ width: 200, height: 100, position: 'absolute', top: marginTop, left: width * 0.7, display: 'flex' }}>
-          <LegendOrdinal direction="column" scale={ordinalColorScale} shape="line" style={{ fontSize: width * 0.02 }} shapeHeight={width * 0.02} />
+        <div style={{ width: width * 0.24, height: 100, position: 'absolute', top: marginTop, left: width * 0.7, display: 'flex' }}>
+          <LegendOrdinal direction="column" scale={ordinalColorScale} shape="line" style={{ fontSize: width * 0.016 <= 13 ? 13 : width * 0.015 }} shapeHeight={width * 0.02} />
         </div>
       </div>
     </>
