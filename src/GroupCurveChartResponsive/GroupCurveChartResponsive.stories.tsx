@@ -20,6 +20,8 @@ Primary.args = {
   scaleType: 'log',
   xLimits: [1e-2, 10],
   yLimits: [1e-6, 1],
+  xLabel: 'Acceleration(g)',
+  yLabel: 'Annual Probability of Exceedance',
   gridColor: '#efefef',
   backgroundColor: '#ffffff',
   numTickX: 5,
