@@ -1,7 +1,7 @@
 import React from 'react';
 import { screen, render } from '@testing-library/react';
 
-import SpectralAccelerationChart from './SpectralAccelerationChart';
+import SpectralAccelChart from './SpectralAccelChart';
 
 const testData = {
   'test curve': [
@@ -22,7 +22,7 @@ const testData = {
 
 describe('Spectral Acceleration Chart as expected', () => {
   const Wrapper = () => {
-    return <SpectralAccelerationChart data={testData} colors={{ 'test curve': '#000000' }} width={500} heading={'test heading'} subHeading={'test subHeading'} />;
+    return <SpectralAccelChart data={testData} colors={{ 'test curve': '#000000' }} width={500} heading={'test heading'} subHeading={'test subHeading'} />;
   };
 
   test('graph is displayed with headings', () => {

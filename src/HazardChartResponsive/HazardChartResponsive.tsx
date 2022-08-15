@@ -1,15 +1,15 @@
 import React from 'react';
 import { ParentSize } from '@visx/responsive';
 
-import HazardCurves from '../HazardCurves/HazardCurves';
-import { HazardCurvesResponsiveProps } from '../types/hazardCurves.types';
+import HazardChart from '../HazardChart/HazardChart';
+import { HazardChartResponsiveProps } from '../types/hazardCharts.types';
 
-const HazardCurvesResponsive: React.FC<HazardCurvesResponsiveProps> = ({ curves, scalesConfig, colors, heading, subHeading, gridNumTicks, poe }: HazardCurvesResponsiveProps) => {
+const HazardChartResponsive: React.FC<HazardChartResponsiveProps> = ({ curves, scalesConfig, colors, heading, subHeading, gridNumTicks, poe }: HazardChartResponsiveProps) => {
   return (
     <>
       <ParentSize>
         {(parent) => (
-          <HazardCurves
+          <HazardChart
             curves={curves}
             scalesConfig={scalesConfig}
             colors={colors}
@@ -27,4 +27,4 @@ const HazardCurvesResponsive: React.FC<HazardCurvesResponsiveProps> = ({ curves,
   );
 };
 
-export default HazardCurvesResponsive;
+export default HazardChartResponsive;

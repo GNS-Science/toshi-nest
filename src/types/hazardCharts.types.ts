@@ -1,19 +1,19 @@
 import { XY } from './common.types';
 
-export interface HazardCurvesResponsiveProps {
+export interface HazardChartResponsiveProps {
   curves: HazardTableFilteredData;
   scalesConfig: XYChartScaleConfig;
-  colors: HazardCurveColors;
+  colors: HazardChartColors;
   heading?: string;
   subHeading?: string;
   gridNumTicks: number;
   poe: number | undefined;
 }
 
-export interface HazardCurvesProps {
+export interface HazardChartPropsd {
   curves: HazardTableFilteredData;
   scalesConfig: XYChartScaleConfig;
-  colors: HazardCurveColors;
+  colors: HazardChartColors;
   width: number;
   heading?: string;
   subHeading?: string;
@@ -42,7 +42,7 @@ export interface XYChartScaleConfig {
   y: ScaleConfig;
 }
 
-export type HazardCurveColors = Record<string, string>;
+export type HazardChartColors = Record<string, string>;
 
 export type HazardTableFilteredData = Record<string, XY[]>;
 
