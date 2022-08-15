@@ -16,6 +16,7 @@ import { GroupCurveChartProps, Datum } from './groupCurveChart.types';
 import { getAreaData, getSortedMeanCurves } from './groupCurveChart.service';
 import PlotHeadings from '../common/PlotHeadings';
 import { HazardColorScale } from '../types/hazardCharts.types';
+import AxisLabel from '../common/AxisLabel';
 
 const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartProps) => {
   const {
@@ -157,12 +158,8 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
         <svg width={width} height={height}>
           <rect x={0} y={0} width={width} height={height} fill={backgroundColor ?? '#ffffff'} rx={14} />
           <PlotHeadings heading={heading} subHeading={subHeading} width={width} />
-          <text y={height - 15} x={xMax / 2} fontSize={10}>
-            {xLabel}
-          </text>
-          <text y={15} x={-width / 2} transform="rotate(-90)" fontSize={10}>
-            {yLabel}
-          </text>
+          <AxisLabel label={xLabel as string} width={width} height={height} orientation="bottom" />
+          <AxisLabel label={yLabel as string} width={width} height={height} orientation="left" />
           <Group left={marginLeft} top={marginTop}>
             <AxisBottom top={yMax} scale={xScale} numTicks={numTickX ?? 5} stroke={gridColor} tickLength={3} tickStroke={gridColor} />
             <AxisLeft scale={yScale} numTicks={numTickY ?? 5} stroke={gridColor} tickLength={3} tickStroke={gridColor} />
