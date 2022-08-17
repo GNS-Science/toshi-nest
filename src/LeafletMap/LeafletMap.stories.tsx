@@ -16,7 +16,7 @@ export const Primary = () => {
 
   const rupturesData = solvisResponse.ruptures;
   const locationsData = solvisResponse.locations;
-  const showLocation = true;
+  const geoJsonData = [rupturesData, locationsData];
   const zoom = 5;
   const nzCentre = [-40.946, 174.167];
 
@@ -24,9 +24,9 @@ export const Primary = () => {
     <LeafletMap
       zoom={zoom}
       nzCentre={nzCentre as LatLngExpression}
-      rupturesData={rupturesData}
-      locationsData={locationsData}
-      showLocation={showLocation}
+      geoJsonData={geoJsonData}
+      // rupturesData={rupturesData}
+      // locationsData={locationsData}
       height={'700px'}
       width={'100%'}
       setFullscreen={setFullscreen}
