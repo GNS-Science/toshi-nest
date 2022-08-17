@@ -14,9 +14,12 @@ const mapStyle = {
 
 const { BaseLayer } = LayersControl;
 
-const LeafletMap: React.FC<LeafletMapProps> = ({ rupturesData, locationsData, nzCentre, zoom, showLocation, height, width, setFullscreen }: LeafletMapProps) => {
-  const ruptures = JSON.parse(rupturesData) as GeoJsonObject;
-  const locations = JSON.parse(locationsData) as GeoJsonObject;
+const LeafletMap: React.FC<LeafletMapProps> = (props: LeafletMapProps) => {
+  const { geoJsonData, nzCentre, zoom, height, width, setFullscreen } = props;
+
+  const parseGeoJson = (data: string): GeoJsonObject => {
+    return JSON.parse(data) as GeoJsonObject;
+  };
 
   return (
     <>
@@ -36,8 +39,10 @@ const LeafletMap: React.FC<LeafletMapProps> = ({ rupturesData, locationsData, nz
             <TileLayer url={'http://mt0.google.com/vt/lyrs=y&hl=en&x={x}&y={y}&z={z}&s=Ga'} attribution="&copy; Google Maps, image service by TerraMetrics" maxNativeZoom={20} />
           </BaseLayer>
         </LayersControl>
-        {ruptures && <GeoJSON key={Math.random()} data={ruptures} style={mapStyle} />}
-        {showLocation && locations && <GeoJSON key={Math.random()} data={locations} style={mapStyle} />}
+        {geoJsonData.length &&
+          geoJsonData.map((data, index) => {
+            return <GeoJSON key={`geojson layer ${index}`} data={parseGeoJson(data)} style={mapStyle} />;
+          })}
         <Fullscreen
           eventHandlers={{
             enterFullscreen: () => setFullscreen(true),
