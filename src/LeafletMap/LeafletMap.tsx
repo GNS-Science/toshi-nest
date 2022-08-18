@@ -6,16 +6,10 @@ import { LeafletMapProps } from './LeafletMap.types';
 import { MapContainer, TileLayer, GeoJSON, LayersControl } from 'react-leaflet';
 import Fullscreen from 'react-leaflet-fullscreen-plugin';
 
-const mapStyle = {
-  color: '#f21616',
-  weight: 1,
-  opacity: 0.65,
-};
-
 const { BaseLayer } = LayersControl;
 
 const LeafletMap: React.FC<LeafletMapProps> = (props: LeafletMapProps) => {
-  const { geoJsonData, nzCentre, zoom, height, width, setFullscreen } = props;
+  const { geoJsonData, nzCentre, zoom, height, width, setFullscreen, style } = props;
 
   const parseGeoJson = (data: string): GeoJsonObject => {
     return JSON.parse(data) as GeoJsonObject;
@@ -41,7 +35,23 @@ const LeafletMap: React.FC<LeafletMapProps> = (props: LeafletMapProps) => {
         </LayersControl>
         {geoJsonData.length &&
           geoJsonData.map((data, index) => {
-            return <GeoJSON key={`geojson layer ${index}`} data={parseGeoJson(data)} style={mapStyle} />;
+            return (
+              <GeoJSON
+                key={`geojson layer ${index}`}
+                data={parseGeoJson(data)}
+                style={(feature) => {
+                  return style
+                    ? style
+                    : {
+                        stroke: feature?.properties.stroke,
+                        color: feature?.properties.fill,
+                        weight: feature?.properties['stroke-width'],
+                        opacity: feature?.properties['stroke-opacity'],
+                        fillOpacity: feature?.properties['fill-opacity'],
+                      };
+                }}
+              />
+            );
           })}
         <Fullscreen
           eventHandlers={{
