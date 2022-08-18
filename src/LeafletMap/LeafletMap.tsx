@@ -9,7 +9,7 @@ import Fullscreen from 'react-leaflet-fullscreen-plugin';
 const { BaseLayer } = LayersControl;
 
 const LeafletMap: React.FC<LeafletMapProps> = (props: LeafletMapProps) => {
-  const { geoJsonData, nzCentre, zoom, height, width, setFullscreen } = props;
+  const { geoJsonData, nzCentre, zoom, height, width, setFullscreen, style } = props;
 
   const parseGeoJson = (data: string): GeoJsonObject => {
     return JSON.parse(data) as GeoJsonObject;
@@ -40,13 +40,15 @@ const LeafletMap: React.FC<LeafletMapProps> = (props: LeafletMapProps) => {
                 key={`geojson layer ${index}`}
                 data={parseGeoJson(data)}
                 style={(feature) => {
-                  return {
-                    stroke: feature?.properties.stroke,
-                    color: feature?.properties.fill,
-                    weight: feature?.properties['stroke-width'],
-                    opacity: feature?.properties['stroke-opacity'],
-                    fillOpacity: feature?.properties['fill-opacity'],
-                  };
+                  return style
+                    ? style
+                    : {
+                        stroke: feature?.properties.stroke,
+                        color: feature?.properties.fill,
+                        weight: feature?.properties['stroke-width'],
+                        opacity: feature?.properties['stroke-opacity'],
+                        fillOpacity: feature?.properties['fill-opacity'],
+                      };
                 }}
               />
             );

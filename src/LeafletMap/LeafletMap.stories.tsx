@@ -21,7 +21,23 @@ export const Primary = () => {
   const zoom = 5;
   const nzCentre = [-40.946, 174.167];
 
-  return <LeafletMap zoom={zoom} nzCentre={nzCentre as LatLngExpression} geoJsonData={geoJsonData} height={'700px'} width={'100%'} setFullscreen={setFullscreen} />;
+  return (
+    <LeafletMap
+      zoom={zoom}
+      nzCentre={nzCentre as LatLngExpression}
+      geoJsonData={geoJsonData}
+      height={'700px'}
+      width={'100%'}
+      setFullscreen={setFullscreen}
+      style={{
+        stroke: '#f21616',
+        color: '#f21616',
+        weight: 1,
+        opacity: 0.75,
+        fillOpacity: 0.6,
+      }}
+    />
+  );
 };
 
 export const HazardMaps = () => {
