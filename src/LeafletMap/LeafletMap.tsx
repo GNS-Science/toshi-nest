@@ -2,9 +2,10 @@
 import React from 'react';
 import { GeoJsonObject } from 'geojson';
 import 'leaflet/dist/leaflet.css';
-import { LeafletMapProps } from './LeafletMap.types';
 import { MapContainer, TileLayer, GeoJSON, LayersControl } from 'react-leaflet';
 import Fullscreen from 'react-leaflet-fullscreen-plugin';
+
+import { LeafletMapProps } from './LeafletMap.types';
 
 const { BaseLayer } = LayersControl;
 
@@ -37,7 +38,7 @@ const LeafletMap: React.FC<LeafletMapProps> = (props: LeafletMapProps) => {
           geoJsonData.map((data, index) => {
             return (
               <GeoJSON
-                key={`geojson layer ${index}`}
+                key={`geojson-layer-${index}-${Math.random()}`}
                 data={parseGeoJson(data)}
                 style={(feature) => {
                   return style
