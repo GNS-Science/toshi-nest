@@ -1,0 +1,61 @@
+import React from 'react';
+import { scaleLinear } from '@visx/scale';
+import { GridColumns, GridRows } from '@visx/grid';
+import { Axis, Orientation } from '@visx/axis';
+import { Polygon } from '@visx/shape';
+
+export interface ColorBarProps {
+  width: number;
+  height: number;
+  colors: string[];
+  values: number[];
+  top?: string;
+  left?: string;
+  bottom?: string;
+  right?: string;
+}
+
+const ColorBar: React.FC<ColorBarProps> = (props: ColorBarProps) => {
+  const { width, height, colors, values, top, left, bottom, right } = props;
+
+  const margin = 50;
+  const xMax = width + margin * 2;
+  const yMax = height + margin * 2;
+  const cubeSize = width / colors.length;
+
+  const xScale = scaleLinear({
+    domain: [Math.min(...values), Math.max(...values)],
+    range: [0, width],
+  });
+
+  const yScale = scaleLinear({
+    domain: [1, 0],
+    range: [height, 0],
+  });
+
+  const getPoints = (index: number): [number, number][] => {
+    return [
+      [cubeSize * index, 0],
+      [cubeSize * index, height],
+      [cubeSize * (index + 1), height],
+      [cubeSize * (index + 1), 0],
+    ];
+  };
+
+  return (
+    <div style={{ position: 'absolute', top: top ?? undefined, left: left ?? undefined, bottom: bottom ?? undefined, right: right ?? undefined, zIndex: 1000000000 }}>
+      <svg width={xMax} height={yMax}>
+        <g transform={`translate(${margin}, ${margin})`}>
+          <GridRows scale={yScale} width={width} height={height} numTicks={1} stroke={'black'} />
+          <GridColumns scale={xScale} width={width} height={height} numTicks={3} stroke={'black'} />
+          <Axis scale={xScale} top={height} orientation={Orientation.bottom} tickValues={values} />
+          {colors.map((color, index) => {
+            return <Polygon key={index} fill={color} points={getPoints(index)} rotate={45} />;
+          })}
+        </g>
+      </svg>
+    </div>
+  );
+};
+
+export default ColorBar;
