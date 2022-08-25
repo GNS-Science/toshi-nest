@@ -23,7 +23,7 @@ Primary.args = {
   width: 600,
   height: 100,
   colors: colors,
-  values: values,
+  tickValues: values,
 };
 
 export const HazardMaps = () => {
@@ -34,7 +34,7 @@ export const HazardMaps = () => {
 
   return (
     <div style={{ height: '700px' }}>
-      <ColorBar width={300} height={35} colors={colors} values={values} bottom="80px" right="20px" />
+      <ColorBar width={300} height={35} colors={colors} tickValues={values} bottom="80px" right="20px" />
       <LeafletMap zoom={zoom} nzCentre={nzCentre as LatLngExpression} geoJsonData={geojsonTesetDat05} height={'700px'} width={'100%'} setFullscreen={setFullscreen} />
     </div>
   );

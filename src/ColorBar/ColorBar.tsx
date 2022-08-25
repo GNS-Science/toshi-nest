@@ -8,7 +8,7 @@ export interface ColorBarProps {
   width: number;
   height: number;
   colors: string[];
-  values: number[];
+  tickValues: number[];
   top?: string;
   left?: string;
   bottom?: string;
@@ -16,7 +16,7 @@ export interface ColorBarProps {
 }
 
 const ColorBar: React.FC<ColorBarProps> = (props: ColorBarProps) => {
-  const { width, height, colors, values, top, left, bottom, right } = props;
+  const { width, height, colors, tickValues, top, left, bottom, right } = props;
 
   const margin = 50;
   const xMax = width + margin * 2;
@@ -24,7 +24,7 @@ const ColorBar: React.FC<ColorBarProps> = (props: ColorBarProps) => {
   const cubeSize = width / colors.length;
 
   const xScale = scaleLinear({
-    domain: [Math.min(...values), Math.max(...values)],
+    domain: [Math.min(...tickValues), Math.max(...tickValues)],
     range: [0, width],
   });
 
@@ -48,7 +48,7 @@ const ColorBar: React.FC<ColorBarProps> = (props: ColorBarProps) => {
         <g transform={`translate(${margin}, ${margin})`}>
           <GridRows scale={yScale} width={width} height={height} numTicks={1} stroke={'black'} />
           <GridColumns scale={xScale} width={width} height={height} numTicks={3} stroke={'black'} />
-          <Axis scale={xScale} top={height} orientation={Orientation.bottom} tickValues={values} />
+          <Axis scale={xScale} top={height} orientation={Orientation.bottom} tickValues={tickValues} />
           {colors.map((color, index) => {
             return <Polygon key={index} fill={color} points={getPoints(index)} rotate={45} />;
           })}
