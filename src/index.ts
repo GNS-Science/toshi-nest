@@ -10,6 +10,7 @@ import { default as LeafletDrawer } from './LeafletDrawer';
 import { default as LeafletRuptureSetControls } from './LeafletRuptureSetControls';
 import { default as GroupCurveChart } from './GroupCurveChart';
 import { default as GroupCurveChartResponsive } from './GroupCurveChartResponsive';
+import { default as ColorBar } from './ColorBar';
 
 export {
   ControlsBar,
@@ -24,4 +25,5 @@ export {
   LeafletRuptureSetControls,
   GroupCurveChart,
   GroupCurveChartResponsive,
+  ColorBar,
 };
