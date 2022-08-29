@@ -179,6 +179,7 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
                           x={(d) => xScale(d[0])}
                           y={(d) => yScale(d[1])}
                           stroke={curves[key][curveType].strokeColor ?? ''}
+                          strokeOpacity={curves[key][curveType].strokeOpacity ?? 1}
                         />
                       ))}
                       <Threshold<number[]>

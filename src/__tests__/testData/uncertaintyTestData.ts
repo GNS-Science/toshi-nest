@@ -36,7 +36,8 @@ export const curveGroup1: CurveGroup = {
     ],
   },
   lower2: {
-    strokeColor: '#4eb3d3',
+    strokeColor: '#2b8cbe',
+    strokeOpacity: 0.5,
     data: [
       [0.01, 3.22e-1],
       [0.02, 2.1e-1],
@@ -70,7 +71,8 @@ export const curveGroup1: CurveGroup = {
     ],
   },
   lower1: {
-    strokeColor: '#4eb3d3',
+    strokeColor: '#2b8cbe',
+    strokeOpacity: 0.5,
     data: [
       [0.01, 3.78e-1],
       [0.02, 2.64e-1],
@@ -104,7 +106,8 @@ export const curveGroup1: CurveGroup = {
     ],
   },
   upper1: {
-    strokeColor: '#4eb3d3',
+    strokeColor: '#2b8cbe',
+    strokeOpacity: 0.5,
     data: [
       [0.01, 0.474682],
       [0.02, 0.350574],
@@ -138,7 +141,8 @@ export const curveGroup1: CurveGroup = {
     ],
   },
   upper2: {
-    strokeColor: '#4eb3d3',
+    strokeColor: '#2b8cbe',
+    strokeOpacity: 0.5,
     data: [
       [0.01, 0.55907],
       [0.02, 0.417372],
