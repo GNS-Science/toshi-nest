@@ -9,14 +9,11 @@ export interface ColorBarProps {
   height: number;
   colors: string[];
   tickValues: number[];
-  top?: string;
-  left?: string;
-  bottom?: string;
-  right?: string;
+  style?: React.CSSProperties;
 }
 
 const ColorBar: React.FC<ColorBarProps> = (props: ColorBarProps) => {
-  const { width, height, colors, tickValues, top, left, bottom, right } = props;
+  const { width, height, colors, tickValues, style } = props;
 
   const margin = 50;
   const xMax = width + margin * 2;
@@ -43,7 +40,7 @@ const ColorBar: React.FC<ColorBarProps> = (props: ColorBarProps) => {
   };
 
   return (
-    <div style={{ position: 'absolute', top: top ?? undefined, left: left ?? undefined, bottom: bottom ?? undefined, right: right ?? undefined, zIndex: 1000000000 }}>
+    <div style={style}>
       <svg width={xMax} height={yMax}>
         <g transform={`translate(${margin}, ${margin})`}>
           <GridRows scale={yScale} width={width} height={height} numTicks={1} stroke={'black'} />
