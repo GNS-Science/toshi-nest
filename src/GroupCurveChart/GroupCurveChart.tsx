@@ -85,14 +85,19 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
     return colorScale;
   }, [curves]);
 
-  const ordinalColorScale = useMemo(
-    () =>
-      scaleOrdinal({
+  const ordinalColorScale = useMemo(() => {
+    if (!spectral) {
+      return scaleOrdinal({
         domain: !poe ? [...curvesDomain.domain] : [...curvesDomain.domain, !spectral && `POE ${poe * 100}% (50 Yrs)`],
         range: !poe ? [...curvesDomain.range] : [...curvesDomain.range, !spectral && '#989C9C'],
-      }),
-    [curvesDomain, poe, spectral],
-  );
+      });
+    } else {
+      return scaleOrdinal({
+        domain: [...curvesDomain.domain],
+        range: [...curvesDomain.range],
+      });
+    }
+  }, [curvesDomain, poe, spectral]);
 
   const poeLine = useMemo(() => {
     const getPoE = (poeValue: number) => {
