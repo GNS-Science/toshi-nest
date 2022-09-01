@@ -89,7 +89,7 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
     () =>
       scaleOrdinal({
         domain: !poe ? [...curvesDomain.domain] : [...curvesDomain.domain, !spectral && `POE ${poe * 100}% (50 Yrs)`],
-        range: !poe ? [...curvesDomain.range] : [...curvesDomain.range, '#989C9C'],
+        range: !poe ? [...curvesDomain.range] : [...curvesDomain.range, !spectral && '#989C9C'],
       }),
     [curvesDomain, poe, spectral],
   );
