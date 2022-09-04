@@ -240,8 +240,12 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
                   }}
                 />
                 <TooltipInPortal key={Math.random()} left={tooltipLeft + marginLeft + 10} top={tooltipTop + marginTop + 10}>
-                  <p>x: {tooltipData && tooltipData[0].toExponential()}</p>
-                  <p>y: {tooltipData && tooltipData[1].toExponential()}</p>
+                  <p>
+                    {xLabel}: {tooltipData && tooltipData[0].toExponential(1)}
+                  </p>
+                  <p>
+                    {yLabel}: {tooltipData && tooltipData[1].toExponential(1)}
+                  </p>
                 </TooltipInPortal>
               </div>
             )}
