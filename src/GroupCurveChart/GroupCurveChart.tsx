@@ -138,20 +138,22 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
         return d[0];
       }).right;
 
-      const index = bisectData(meanCurves, x);
-      const d0 = meanCurves[index + 1];
-      const d1 = meanCurves[index];
-
-      const range0 = yScale(d0[1]);
-      const range1 = yScale(d1[1]);
+      const lengthOfCurve = new Set(meanCurves.map((d) => d[0])).size;
+      const numOfCurves = meanCurves.length / lengthOfCurve;
+      const indexLeft = bisectData(meanCurves, x) - numOfCurves;
+      const indexRight = bisectData(meanCurves, x);
+      const index = Math.abs(meanCurves[indexLeft][0] - x) > Math.abs(meanCurves[indexRight][0] - x) ? indexRight : indexLeft;
       const rangeMouse = point.y - 50;
 
-      const closest = Math.abs(range0 - rangeMouse) > Math.abs(range1 - rangeMouse) ? d1 : d0;
+      const dArray = meanCurves.slice(index, index + numOfCurves);
+      const rangeArray = dArray.map((d) => Math.abs(yScale(d[1]) - rangeMouse));
+      const rangeIndex = rangeArray.indexOf(Math.min(...rangeArray));
+      const closest = dArray[rangeIndex];
 
       showTooltip({
         tooltipLeft: xScale(closest[0]),
         tooltipTop: yScale(closest[1]),
-        tooltipData: closest ?? [0, 0],
+        tooltipData: [...closest, rangeIndex] ?? [0, 0, ''],
       });
     },
     [showTooltip, meanCurves, xScale, yScale],
@@ -239,8 +241,15 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
                   }}
                 />
                 <TooltipInPortal key={Math.random()} left={tooltipLeft + marginLeft + 10} top={tooltipTop + marginTop + 10}>
-                  <p>x: {tooltipData && tooltipData[0].toExponential()}</p>
-                  <p>y: {tooltipData && tooltipData[1].toExponential()}</p>
+                  <p>
+                    <strong>{tooltipData && Object.keys(curves)[tooltipData[2]]}</strong>
+                  </p>
+                  <p>
+                    {xLabel}: {tooltipData && tooltipData[0].toExponential(1)}
+                  </p>
+                  <p>
+                    {yLabel}: {tooltipData && tooltipData[1].toExponential(1)}
+                  </p>
                 </TooltipInPortal>
               </div>
             )}

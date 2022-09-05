@@ -2,7 +2,7 @@ import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import GroupCurveChart from './GroupCurveChart';
-import { curveGroup2, curveGroup1 } from '../__tests__/testData/uncertaintyTestData';
+import { curveGroup4, curveGroup3, curveGroup2, curveGroup1 } from '../__tests__/testData/uncertaintyTestData';
 import spectralAccelUncertaintyTestData from '../__tests__/testData/spectralAccelUncertaintyTestData';
 
 export default {
@@ -31,7 +31,7 @@ Primary.args = {
   numTickX: 5,
   numTickY: 5,
   width: 600,
-  curves: { curveGroup1: curveGroup1, curveGroup2: curveGroup2 },
+  curves: { curveGroup1: curveGroup1, curveGroup2: curveGroup2, curveGroup3: curveGroup3, curveGroup4: curveGroup4 },
   tooltip: false,
   crosshair: false,
   heading: 'Group Curve Chart for Hazard',
@@ -51,7 +51,7 @@ Tooltip.args = {
   numTickX: 5,
   numTickY: 5,
   width: 600,
-  curves: { curveGroup1: curveGroup1, curveGroup2: curveGroup2 },
+  curves: { curveGroup1: curveGroup1, curveGroup2: curveGroup2, curveGroup3: curveGroup3, curveGroup4: curveGroup4 },
   tooltip: true,
   crosshair: false,
   heading: 'Hazard Group Curve Chart with Tooltip',
@@ -71,7 +71,7 @@ Crosshair.args = {
   numTickX: 5,
   numTickY: 5,
   width: 600,
-  curves: { curveGroup1: curveGroup1, curveGroup2: curveGroup2 },
+  curves: { curveGroup1: curveGroup1, curveGroup2: curveGroup2, curveGroup3: curveGroup3, curveGroup4: curveGroup4 },
   tooltip: false,
   crosshair: true,
   heading: 'Hazard Group Curve Chart with Crosshair',
@@ -91,7 +91,7 @@ TooltipWithCrosshair.args = {
   numTickX: 5,
   numTickY: 5,
   width: 600,
-  curves: { curveGroup1: curveGroup1, curveGroup2: curveGroup2 },
+  curves: { curveGroup1: curveGroup1, curveGroup2: curveGroup2, curveGroup3: curveGroup3, curveGroup4: curveGroup4 },
   tooltip: true,
   crosshair: true,
   heading: 'Hazard Group Curve Chart with Crosshair + Tooltip',
@@ -111,7 +111,7 @@ UncertaintyFalse.args = {
   numTickX: 5,
   numTickY: 5,
   width: 600,
-  curves: { curveGroup1: curveGroup1, curveGroup2: curveGroup2 },
+  curves: { curveGroup1: curveGroup1, curveGroup2: curveGroup2, curveGroup3: curveGroup3, curveGroup4: curveGroup4 },
   tooltip: true,
   crosshair: true,
   heading: 'Hazard Group Curve Chart without Uncertainty',
