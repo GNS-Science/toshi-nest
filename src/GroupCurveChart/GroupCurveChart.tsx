@@ -142,9 +142,8 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
       const numOfCurves = meanCurves.length / lengthOfCurve;
       const indexLeft = bisectData(meanCurves, x) - numOfCurves;
       const indexRight = bisectData(meanCurves, x);
-      const rangeMouse = point.y - 50;
-
       const index = Math.abs(meanCurves[indexLeft][0] - x) > Math.abs(meanCurves[indexRight][0] - x) ? indexRight : indexLeft;
+      const rangeMouse = point.y - 50;
 
       const dArray = meanCurves.slice(index, index + numOfCurves);
       const rangeArray = dArray.map((d) => Math.abs(yScale(d[1]) - rangeMouse));
@@ -154,7 +153,7 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
       showTooltip({
         tooltipLeft: xScale(closest[0]),
         tooltipTop: yScale(closest[1]),
-        tooltipData: closest ?? [0, 0],
+        tooltipData: [...closest, rangeIndex] ?? [0, 0, ''],
       });
     },
     [showTooltip, meanCurves, xScale, yScale],
@@ -242,6 +241,9 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
                   }}
                 />
                 <TooltipInPortal key={Math.random()} left={tooltipLeft + marginLeft + 10} top={tooltipTop + marginTop + 10}>
+                  <p>
+                    <strong>{tooltipData && Object.keys(curves)[tooltipData[2]]}</strong>
+                  </p>
                   <p>
                     {xLabel}: {tooltipData && tooltipData[0].toExponential(1)}
                   </p>
