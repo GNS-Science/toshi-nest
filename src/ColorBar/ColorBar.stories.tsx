@@ -36,15 +36,16 @@ export const HazardMaps = () => {
     <div style={{ height: '700px' }}>
       <LeafletMap zoom={zoom} nzCentre={nzCentre as LatLngExpression} geoJsonData={geojsonTesetDat05} height={'700px'} width={'100%'} setFullscreen={setFullscreen} />
       <ColorBar
-        width={300}
+        width={269}
         height={35}
         colors={colors}
         tickValues={values}
+        heading={'Vs30 = 400m/s, PGA 10% in 50 years'}
         style={{
           position: 'relative',
           zIndex: 10000000,
-          left: 'calc(100% - 360px)',
-          top: '-125px',
+          left: 'calc(100% - 312px)',
+          top: '-115px',
         }}
       />
     </div>
