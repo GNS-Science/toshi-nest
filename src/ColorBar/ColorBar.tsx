@@ -9,15 +9,18 @@ export interface ColorBarProps {
   height: number;
   colors: string[];
   tickValues: number[];
+  heading?: string;
   style?: React.CSSProperties;
 }
 
 const ColorBar: React.FC<ColorBarProps> = (props: ColorBarProps) => {
-  const { width, height, colors, tickValues, style } = props;
+  const { width, height, colors, tickValues, heading, style } = props;
 
-  const margin = 50;
-  const xMax = width + margin * 2;
-  const yMax = height + margin * 2;
+  const marginSide = 20;
+  const marginTop = 30;
+  const marginBottom = 30;
+  const xMax = width + marginSide * 2;
+  const yMax = height + marginBottom + marginTop;
   const cubeSize = width / colors.length;
 
   const xScale = scaleLinear({
@@ -39,13 +42,25 @@ const ColorBar: React.FC<ColorBarProps> = (props: ColorBarProps) => {
     ];
   };
 
+  const headingProps = {
+    alignmnetbaseline: 'middle',
+    dominantBaseline: 'middle',
+    textAnchor: 'middle',
+  };
+
   return (
     <div style={style}>
       <svg width={xMax} height={yMax}>
-        <g transform={`translate(${margin}, ${margin})`}>
+        <rect x={0} y={0} width={xMax} height={yMax} fill={'#ffffff'} fillOpacity={0.5} rx={2} />
+        {heading && (
+          <text y={18} x={'50%'} {...headingProps} fontSize={12} fontFamily={'Helvetica Neue, Arial, Helvetica, sans-serif'}>
+            {heading}
+          </text>
+        )}
+        <g transform={`translate(${marginSide}, ${marginTop})`}>
           <GridRows scale={yScale} width={width} height={height} numTicks={1} stroke={'black'} />
           <GridColumns scale={xScale} width={width} height={height} numTicks={3} stroke={'black'} />
-          <Axis scale={xScale} top={height} orientation={Orientation.bottom} tickValues={tickValues} />
+          <Axis scale={xScale} top={height} orientation={Orientation.bottom} tickValues={tickValues} tickLineProps={{ fontSize: 10 }} />
           {colors.map((color, index) => {
             return <Polygon key={index} fill={color} points={getPoints(index)} rotate={45} />;
           })}
