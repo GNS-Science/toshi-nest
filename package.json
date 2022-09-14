@@ -1,6 +1,6 @@
 {
   "name": "@gns-science/toshi-nest",
-  "version": "3.5.0",
+  "version": "3.5.1",
   "description": "The toshi-nest is for fledgling work e.g. reusable Node components to share across TUI and other projects",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
