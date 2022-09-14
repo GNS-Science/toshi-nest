@@ -149,11 +149,12 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
       const rangeArray = dArray.map((d) => Math.abs(yScale(d[1]) - rangeMouse));
       const rangeIndex = rangeArray.indexOf(Math.min(...rangeArray));
       const closest = dArray[rangeIndex];
+      const pga = index === 0 ? 1 : 0;
 
       showTooltip({
         tooltipLeft: xScale(closest[0]),
         tooltipTop: yScale(closest[1]),
-        tooltipData: [...closest, rangeIndex] ?? [0, 0, ''],
+        tooltipData: [...closest, rangeIndex, pga] ?? [0, 0, ''],
       });
     },
     [showTooltip, meanCurves, xScale, yScale],
@@ -245,7 +246,7 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
                     <strong>{tooltipData && Object.keys(curves)[tooltipData[2]]}</strong>
                   </p>
                   <p>
-                    {xLabel}: {tooltipData && spectral && tooltipData[0] === 0 ? 'PGA' : tooltipData && tooltipData[0].toExponential(1)}
+                    {xLabel}: {tooltipData && spectral && tooltipData[3] ? 'PGA' : tooltipData && tooltipData[0].toExponential(1)}
                   </p>
                   <p>
                     {yLabel}: {tooltipData && tooltipData[1].toExponential(1)}
