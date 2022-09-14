@@ -245,7 +245,7 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
                     <strong>{tooltipData && Object.keys(curves)[tooltipData[2]]}</strong>
                   </p>
                   <p>
-                    {xLabel}: {tooltipData && tooltipData[0].toExponential(1)}
+                    {xLabel}: {tooltipData && spectral && tooltipData[0] === 0 ? 'PGA' : tooltipData && tooltipData[0].toExponential(1)}
                   </p>
                   <p>
                     {yLabel}: {tooltipData && tooltipData[1].toExponential(1)}
