@@ -191,7 +191,7 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
                       ))}
                       <Threshold<number[]>
                         id={spectral ? `uncertainty-area-spectral-${index}` : `uncertainty-area-${index}`}
-                        data={getAreaData(curves[key])}
+                        data={getAreaData(curves[key], scaleType)}
                         x={(d) => xScale(d[0])}
                         y0={(d) => yScale(d[2])}
                         y1={(d) => yScale(d[1])}
