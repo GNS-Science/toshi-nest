@@ -3,4 +3,5 @@ export interface SelectControlProps {
   selection: string;
   setSelection: (selection: string) => void;
   name: string;
+  tooltip?: string;
 }
