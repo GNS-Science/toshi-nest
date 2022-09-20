@@ -14,5 +14,5 @@ export const Primary = () => {
 
   // Sets a click handler to change the label's value
 
-  return <SelectControl options={['1', '2', '3']} name="name" selection={selected} setSelection={setSelected} />;
+  return <SelectControl options={['1', '2', '3']} name="name" selection={selected} setSelection={setSelected} tooltip="lorem ipsum" />;
 };
