@@ -123,7 +123,7 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
     tooltipLeft = 0,
     tooltipTop = 0,
   } = useTooltip<Datum>({
-    tooltipOpen: true,
+    tooltipOpen: false,
   });
 
   const meanCurves = useMemo(() => getSortedMeanCurves(curves), [curves]);
