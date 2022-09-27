@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ComponentMeta } from '@storybook/react';
 
 import SelectControl from './SelectControl';
+import { flexbox } from '@mui/system';
 
 export default {
   title: 'Controls/SelectControl',
@@ -13,6 +14,9 @@ export const Primary = () => {
   const [selected, setSelected] = useState<string>('1');
 
   // Sets a click handler to change the label's value
-
-  return <SelectControl options={['1', '2', '3']} name="name" selection={selected} setSelection={setSelected} tooltip="lorem ipsum" />;
+  return (
+    <div style={{ padding: 30 }}>
+      <SelectControl options={['1', '2', '3']} name="name" selection={selected} setSelection={setSelected} tooltip="lorem ipsum" />
+    </div>
+  );
 };
