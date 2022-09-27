@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { ComponentMeta } from '@storybook/react';
 
 import SelectControl from './SelectControl';
-import { flexbox } from '@mui/system';
 
 export default {
   title: 'Controls/SelectControl',
