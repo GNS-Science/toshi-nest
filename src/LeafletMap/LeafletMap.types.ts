@@ -8,6 +8,8 @@ export interface LeafletMapProps {
   width: string;
   setFullscreen: (setFullscreen: boolean) => void;
   style?: GeoJsonStyle;
+  minZoom?: number;
+  maxZoom?: number;
 }
 
 export interface GeoJsonStyle {

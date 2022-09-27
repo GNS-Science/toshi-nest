@@ -18,7 +18,7 @@ const SelectControl: React.FC<SelectControlProps> = ({ options, selection, setSe
     <SelectControlContainer>
       <FormControl variant="standard" fullWidth>
         {tooltip ? (
-          <Tooltip title={tooltip} arrow>
+          <Tooltip title={tooltip} arrow placement="top">
             <InputLabel>{name}</InputLabel>
           </Tooltip>
         ) : (
