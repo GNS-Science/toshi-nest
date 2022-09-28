@@ -142,7 +142,16 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
       const numOfCurves = meanCurves.length / lengthOfCurve;
       const indexLeft = bisectData(meanCurves, x) - numOfCurves;
       const indexRight = bisectData(meanCurves, x);
-      const index = Math.abs(meanCurves[indexLeft][0] - x) > Math.abs(meanCurves[indexRight][0] - x) ? indexRight : indexLeft;
+      const leftDatum = meanCurves[indexLeft] ?? [0, 0];
+      const rightDatum = meanCurves[indexRight] ?? [0, 0];
+      const indexLeftRange = Math.abs(leftDatum[0] - x);
+      const indexRightRange = Math.abs(rightDatum[0] - x);
+      let index = 0;
+      if (indexLeftRange > indexRightRange) {
+        index = indexRight;
+      } else {
+        index = indexLeft;
+      }
       const rangeMouse = point.y - 50;
 
       const dArray = meanCurves.slice(index, index + numOfCurves);

@@ -10,6 +10,8 @@ export interface LeafletMapProps {
   style?: GeoJsonStyle;
   minZoom?: number;
   maxZoom?: number;
+  zoomSnap?: number;
+  zoomDelta?: number;
 }
 
 export interface GeoJsonStyle {
