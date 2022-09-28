@@ -10,7 +10,7 @@ import { LeafletMapProps } from './LeafletMap.types';
 const { BaseLayer } = LayersControl;
 
 const LeafletMap: React.FC<LeafletMapProps> = (props: LeafletMapProps) => {
-  const { geoJsonData, nzCentre, zoom, height, width, setFullscreen, style } = props;
+  const { geoJsonData, nzCentre, zoom, height, width, setFullscreen, style, minZoom, maxZoom, zoomSnap, zoomDelta } = props;
 
   const parseGeoJson = (data: string): GeoJsonObject => {
     return JSON.parse(data) as GeoJsonObject;
@@ -18,7 +18,17 @@ const LeafletMap: React.FC<LeafletMapProps> = (props: LeafletMapProps) => {
 
   return (
     <>
-      <MapContainer id={'leaflet-map-container'} center={nzCentre} zoom={zoom} scrollWheelZoom={true} style={{ height: height, width: width }}>
+      <MapContainer
+        id={'leaflet-map-container'}
+        center={nzCentre}
+        zoom={zoom}
+        scrollWheelZoom={true}
+        style={{ height: height, width: width }}
+        minZoom={minZoom || 4}
+        maxZoom={maxZoom || 8}
+        zoomSnap={zoomSnap || 1}
+        zoomDelta={zoomDelta || 1}
+      >
         <LayersControl>
           <BaseLayer name="Ocean Basemap" checked={true}>
             <TileLayer url={'https://server.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}'} attribution="&copy; Ocean Basemap, image service by ArcGIS" />

@@ -34,6 +34,8 @@ export const Primary = () => {
       height={'700px'}
       width={'100%'}
       setFullscreen={setFullscreen}
+      zoomSnap={0.25}
+      zoomDelta={0.25}
       style={{
         stroke: '#f21616',
         color: '#f21616',
