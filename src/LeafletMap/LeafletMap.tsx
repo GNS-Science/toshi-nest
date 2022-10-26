@@ -1,19 +1,32 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
-import { GeoJsonObject } from 'geojson';
+import { GeoJsonObject, Geometry, Feature } from 'geojson';
 import 'leaflet/dist/leaflet.css';
 import { MapContainer, TileLayer, GeoJSON, LayersControl } from 'react-leaflet';
 import Fullscreen from 'react-leaflet-fullscreen-plugin';
 
 import { LeafletMapProps } from './LeafletMap.types';
+import { Layer } from 'leaflet';
 
 const { BaseLayer } = LayersControl;
 
 const LeafletMap: React.FC<LeafletMapProps> = (props: LeafletMapProps) => {
-  const { geoJsonData, nzCentre, zoom, height, width, setFullscreen, style, minZoom, maxZoom, zoomSnap, zoomDelta } = props;
+  const { geoJsonData, nzCentre, zoom, height, width, setFullscreen, style, minZoom, maxZoom, zoomSnap, zoomDelta, cov } = props;
 
   const parseGeoJson = (data: string): GeoJsonObject => {
     return JSON.parse(data) as GeoJsonObject;
+  };
+
+  const onEachFeature = (feature: Feature<Geometry, any>, layer: Layer) => {
+    const popupContent = `
+      <div>
+        <p>Location: ${feature.properties?.loc[1]}, ${feature.properties?.loc[0]}</p>
+        <p>${cov ? 'CoV' : 'Acceleration'}: ${Number(feature.properties.value).toFixed(2)} ${cov ? '' : '(g)'}</p>
+      </div>
+    `;
+    if (popupContent) {
+      layer.bindPopup(popupContent);
+    }
   };
 
   return (
@@ -50,6 +63,7 @@ const LeafletMap: React.FC<LeafletMapProps> = (props: LeafletMapProps) => {
               <GeoJSON
                 key={`geojson-layer-${index}-${Math.random()}`}
                 data={parseGeoJson(data)}
+                onEachFeature={onEachFeature}
                 style={(feature) => {
                   return style
                     ? style
