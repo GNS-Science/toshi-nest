@@ -10,6 +10,7 @@ import LeafletDrawer from '../LeafletDrawer';
 import { solvisResponse } from './LeafletMapTestData';
 import geojsonTesetDat05 from '../__tests__/testData/geoJson/geojsonTestData0.5';
 import geojsonTestDataPGA from '../__tests__/testData/geoJson/geojsonTestDataPGA';
+import geojsonTestDataCoV from '../__tests__/testData/geoJson/geojsonTestDataCoV';
 
 export default {
   title: 'Controls/LeafletMap',
@@ -54,6 +55,15 @@ export const HazardMaps = () => {
   const nzCentre = [-40.946, 174.167];
 
   return <LeafletMap zoom={zoom} nzCentre={nzCentre as LatLngExpression} geoJsonData={geojsonTesetDat05} height={'700px'} width={'100%'} setFullscreen={setFullscreen} />;
+};
+
+export const HazardMapsWithCoV = () => {
+  const [fullscreen, setFullscreen] = useState<boolean>(false);
+
+  const zoom = 5;
+  const nzCentre = [-40.946, 174.167];
+
+  return <LeafletMap zoom={zoom} nzCentre={nzCentre as LatLngExpression} geoJsonData={geojsonTestDataCoV} height={'700px'} width={'100%'} setFullscreen={setFullscreen} cov={true} />;
 };
 
 export const HazardMapsWithControls = () => {

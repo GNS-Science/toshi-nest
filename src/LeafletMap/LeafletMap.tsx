@@ -11,7 +11,7 @@ import { Layer } from 'leaflet';
 const { BaseLayer } = LayersControl;
 
 const LeafletMap: React.FC<LeafletMapProps> = (props: LeafletMapProps) => {
-  const { geoJsonData, nzCentre, zoom, height, width, setFullscreen, style, minZoom, maxZoom, zoomSnap, zoomDelta } = props;
+  const { geoJsonData, nzCentre, zoom, height, width, setFullscreen, style, minZoom, maxZoom, zoomSnap, zoomDelta, cov } = props;
 
   const parseGeoJson = (data: string): GeoJsonObject => {
     return JSON.parse(data) as GeoJsonObject;
@@ -21,7 +21,7 @@ const LeafletMap: React.FC<LeafletMapProps> = (props: LeafletMapProps) => {
     const popupContent = `
       <div>
         <p>Location: ${feature.properties?.loc[1]}, ${feature.properties?.loc[0]}</p>
-        <p>Acceleration: ${Number(feature.properties.value).toFixed(2)} (g)</p>
+        <p>${cov ? 'CoV' : 'Acceleration'}: ${Number(feature.properties.value).toFixed(2)} ${cov ? '' : '(g)'}</p>
       </div>
     `;
     if (popupContent) {
