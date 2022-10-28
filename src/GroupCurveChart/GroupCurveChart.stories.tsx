@@ -38,6 +38,7 @@ Primary.args = {
   subHeading: 'WLG 250',
   poe: 0.02,
   uncertainty: true,
+  spectral: false,
 };
 
 Tooltip.args = {
@@ -58,6 +59,7 @@ Tooltip.args = {
   subHeading: 'WLG 250',
   poe: 0.02,
   uncertainty: true,
+  spectral: false,
 };
 
 Crosshair.args = {
@@ -78,6 +80,7 @@ Crosshair.args = {
   subHeading: 'WLG 250',
   poe: 0.02,
   uncertainty: true,
+  spectral: false,
 };
 
 TooltipWithCrosshair.args = {
@@ -98,6 +101,7 @@ TooltipWithCrosshair.args = {
   subHeading: 'WLG 250',
   poe: 0.02,
   uncertainty: true,
+  spectral: false,
 };
 
 UncertaintyFalse.args = {
@@ -118,6 +122,7 @@ UncertaintyFalse.args = {
   subHeading: 'WLG 250',
   poe: 0.02,
   uncertainty: false,
+  spectral: false,
 };
 
 SpectralAccelUncertaintyTrue.args = {
@@ -139,6 +144,7 @@ SpectralAccelUncertaintyTrue.args = {
   subHeading: 'WLG 400m/s',
   poe: undefined,
   uncertainty: true,
+  spectral: true,
 };
 
 SpectralAccelUncertaintyFalse.args = {
@@ -160,4 +166,5 @@ SpectralAccelUncertaintyFalse.args = {
   subHeading: 'WLG 400m/s',
   poe: undefined,
   uncertainty: false,
+  spectral: true,
 };
