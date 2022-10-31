@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useMemo, useCallback } from 'react';
 import { Group } from '@visx/group';
 import { AxisBottom, AxisLeft } from '@visx/axis';
 import { GridRows, GridColumns } from '@visx/grid';
@@ -14,7 +14,7 @@ import { LegendOrdinal } from '@visx/legend';
 import { GlyphSquare } from '@visx/glyph';
 
 import { GroupCurveChartProps, Datum } from './groupCurveChart.types';
-import { getAreaData, getSortedMeanCurves } from './groupCurveChart.service';
+import { getAreaData, getSortedMeanCurves, removeFirstMeanPoint } from './groupCurveChart.service';
 import PlotHeadings from '../common/PlotHeadings';
 import { HazardColorScale } from '../types/hazardCharts.types';
 import AxisLabel from '../common/AxisLabel';
@@ -201,18 +201,23 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
                       )}
                       {Object.keys(curves[key]).map((curveType, index) =>
                         spectral ? (
-                          index > 0 &&
-                          curveType !== 'mean' && (
-                            <LinePath
-                              key={`${index}-${key}`}
-                              role="curve"
-                              data={curves[key][curveType].data}
-                              x={(d) => xScale(d[0])}
-                              y={(d) => yScale(d[1])}
-                              stroke={curves[key][curveType].strokeColor ?? ''}
-                              strokeOpacity={curves[key][curveType].strokeOpacity ?? 1}
-                            />
-                          )
+                          <LinePath
+                            key={`${index}-${key}`}
+                            role="curve"
+                            data={curves[key][curveType].data}
+                            x={(d) => xScale(d[0])}
+                            y={(d) => yScale(d[1])}
+                            stroke={curves[key][curveType].strokeColor ?? ''}
+                            strokeOpacity={curves[key][curveType].strokeOpacity ?? 1}
+                            defined={(d, index) => {
+                              if (curveType === 'mean') {
+                                if (index === 0) {
+                                  return false;
+                                }
+                              }
+                              return true;
+                            }}
+                          />
                         ) : (
                           <LinePath
                             key={`${index}-${key}`}
@@ -262,16 +267,12 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
                         y={(d) => yScale(d[1])}
                         stroke={curves[key]['mean'].strokeColor ?? ''}
                         strokeOpacity={curves[key]['mean'].strokeOpacity ?? 1}
-                      />
-                      :
-                      <LinePath
-                        key={`${index}-${key}`}
-                        role="curve"
-                        data={curves[key]['mean'].data}
-                        x={(d) => xScale(d[0])}
-                        y={(d) => yScale(d[1])}
-                        stroke={curves[key]['mean'].strokeColor ?? ''}
-                        strokeOpacity={curves[key]['mean'].strokeOpacity ?? 1}
+                        defined={(d, index) => {
+                          if (index === 0) {
+                            return false;
+                          }
+                          return true;
+                        }}
                       />
                     </Group>
                   ))}

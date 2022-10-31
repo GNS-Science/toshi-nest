@@ -27,3 +27,11 @@ export const getSortedMeanCurves = (curveGroups: Record<string, CurveGroup>): Da
     return a[0] - b[0];
   });
 };
+
+export const removeFirstMeanPoint = (curveGroups: Record<string, CurveGroup>): Record<string, CurveGroup> => {
+  Object.keys(curveGroups).forEach((key) => {
+    curveGroups[key]['mean'].data.shift();
+  });
+
+  return curveGroups;
+};
