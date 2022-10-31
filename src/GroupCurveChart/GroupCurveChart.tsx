@@ -14,7 +14,7 @@ import { LegendOrdinal } from '@visx/legend';
 import { GlyphSquare } from '@visx/glyph';
 
 import { GroupCurveChartProps, Datum } from './groupCurveChart.types';
-import { getAreaData, getSortedMeanCurves, removeFirstMeanPoint } from './groupCurveChart.service';
+import { getAreaData, getSortedMeanCurves } from './groupCurveChart.service';
 import PlotHeadings from '../common/PlotHeadings';
 import { HazardColorScale } from '../types/hazardCharts.types';
 import AxisLabel from '../common/AxisLabel';
