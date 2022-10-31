@@ -186,7 +186,7 @@ SpectralAccelLog.args = {
   curves: spectralAccelUncertaintyLog,
   tooltip: true,
   crosshair: true,
-  heading: 'Sepectra without Uncertainty',
+  heading: 'Spectra with Log Xscale',
   subHeading: 'WLG 400m/s',
   poe: 0.1,
   uncertainty: true,
