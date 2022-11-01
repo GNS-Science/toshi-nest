@@ -5,6 +5,7 @@ import { GridRows, GridColumns } from '@visx/grid';
 import { scaleLog, scaleLinear, scaleOrdinal } from '@visx/scale';
 import { LinePath } from '@visx/shape';
 import { Threshold } from '@visx/threshold';
+import { BoxPlot } from '@visx/stats';
 import { RectClipPath } from '@visx/clip-path';
 import { useTooltip, useTooltipInPortal } from '@visx/tooltip';
 import { Line } from '@visx/shape';
@@ -169,8 +170,7 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
     },
     [showTooltip, meanCurves, xScale, yScale],
   );
-  console.log(curves);
-  console.log(spectral);
+
   return (
     <>
       <div style={{ position: 'relative' }} ref={containerRef} onMouseMove={handlePointerMove} onMouseLeave={() => hideTooltip()}>
@@ -191,12 +191,18 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
                   {Object.keys(curves).map((key, index) => (
                     <Group key={key}>
                       {spectral && (
-                        <GlyphSquare
-                          key={key}
-                          size={20}
-                          fill={curves[key]['mean'].strokeColor ?? '#000000'}
+                        <BoxPlot
+                          min={curves[key]['lower2'].data[0][1]}
+                          max={curves[key]['upper2'].data[0][1]}
                           left={xScale(curves[key]['mean'].data[0][0])}
-                          top={yScale(curves[key]['mean'].data[0][1])}
+                          firstQuartile={curves[key]['lower1'].data[0][1]}
+                          thirdQuartile={curves[key]['upper1'].data[0][1]}
+                          median={curves[key]['mean'].data[0][1]}
+                          boxWidth={10}
+                          fill={curves[key]['upper1'].strokeColor}
+                          fillOpacity={0.5}
+                          stroke={curves[key]['upper1'].strokeColor}
+                          valueScale={yScale}
                         />
                       )}
                       {Object.keys(curves[key]).map((curveType, index) =>
@@ -210,11 +216,10 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
                             stroke={curves[key][curveType].strokeColor ?? ''}
                             strokeOpacity={curves[key][curveType].strokeOpacity ?? 1}
                             defined={(d, index) => {
-                              if (curveType === 'mean') {
-                                if (index === 0) {
-                                  return false;
-                                }
+                              if (index === 0) {
+                                return false;
                               }
+
                               return true;
                             }}
                           />
@@ -242,6 +247,13 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
                           fill: curves[key]['upper1'].strokeColor,
                           fillOpacity: 0.4,
                         }}
+                        defined={(d, index) => {
+                          if (index === 0) {
+                            return false;
+                          }
+
+                          return true;
+                        }}
                       />
                     </Group>
                   ))}
@@ -253,7 +265,7 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
                       {spectral && (
                         <GlyphSquare
                           key={key}
-                          size={20}
+                          size={50}
                           fill={curves[key]['mean'].strokeColor ?? '#000000'}
                           left={xScale(curves[key]['mean'].data[0][0])}
                           top={yScale(curves[key]['mean'].data[0][1])}
