@@ -314,7 +314,7 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
                   <p>
                     {yLabel}: {tooltipData && tooltipData[1].toExponential(1)}
                   </p>
-                  {boxPlotToolTipActive && tooltipData && (
+                  {boxPlotToolTipActive && tooltipData && uncertainty && (
                     <>
                       <p>Minimum: {tooltipData[2].toExponential(1)}</p>
                       <p>1st Quartile: {tooltipData[3].toExponential(1)}</p>
