@@ -1,16 +1,18 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useMemo, useCallback, useState } from 'react';
 import { Group } from '@visx/group';
 import { AxisBottom, AxisLeft } from '@visx/axis';
 import { GridRows, GridColumns } from '@visx/grid';
 import { scaleLog, scaleLinear, scaleOrdinal } from '@visx/scale';
 import { LinePath } from '@visx/shape';
 import { Threshold } from '@visx/threshold';
+import { BoxPlot } from '@visx/stats';
 import { RectClipPath } from '@visx/clip-path';
 import { useTooltip, useTooltipInPortal } from '@visx/tooltip';
 import { Line } from '@visx/shape';
 import { localPoint } from '@visx/event';
 import { bisector } from 'd3-array';
 import { LegendOrdinal } from '@visx/legend';
+import { GlyphSquare } from '@visx/glyph';
 
 import { GroupCurveChartProps, Datum } from './groupCurveChart.types';
 import { getAreaData, getSortedMeanCurves } from './groupCurveChart.service';
@@ -47,6 +49,8 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
   const marginBottom = 50;
   const xMax = width - marginLeft - marginRight;
   const yMax = height - marginBottom - marginTop;
+
+  const [boxPlotToolTipActive, setBoxPlotToolTipActive] = useState(false);
 
   const xScale = useMemo(() => {
     return scaleType === 'linear'
@@ -160,13 +164,19 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
       const closest = dArray[rangeIndex];
       const pga = index === 0 ? 1 : 0;
 
+      if (scaleType === 'log' && index <= 0) {
+        setBoxPlotToolTipActive(true);
+      } else {
+        setBoxPlotToolTipActive(false);
+      }
+
       showTooltip({
         tooltipLeft: xScale(closest[0]),
         tooltipTop: yScale(closest[1]),
         tooltipData: [...closest, rangeIndex, pga] ?? [0, 0, ''],
       });
     },
-    [showTooltip, meanCurves, xScale, yScale],
+    [showTooltip, meanCurves, xScale, yScale, scaleType],
   );
 
   return (
@@ -188,6 +198,21 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
                 <>
                   {Object.keys(curves).map((key, index) => (
                     <Group key={key}>
+                      {scaleType === 'log' && spectral && (
+                        <BoxPlot
+                          min={curves[key]['lower2'].data[0][1]}
+                          max={curves[key]['upper2'].data[0][1]}
+                          left={xScale(curves[key]['mean'].data[0][0])}
+                          firstQuartile={curves[key]['lower1'].data[0][1]}
+                          thirdQuartile={curves[key]['upper1'].data[0][1]}
+                          median={curves[key]['mean'].data[0][1]}
+                          boxWidth={10}
+                          fill={curves[key]['upper1'].strokeColor}
+                          fillOpacity={0.5}
+                          stroke={curves[key]['upper1'].strokeColor}
+                          valueScale={yScale}
+                        />
+                      )}
                       {Object.keys(curves[key]).map((curveType, index) => (
                         <LinePath
                           key={`${index}-${key}`}
@@ -197,6 +222,12 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
                           y={(d) => yScale(d[1])}
                           stroke={curves[key][curveType].strokeColor ?? ''}
                           strokeOpacity={curves[key][curveType].strokeOpacity ?? 1}
+                          defined={(d, index) => {
+                            if (scaleType === 'log' && index === 0) {
+                              return false;
+                            }
+                            return true;
+                          }}
                         />
                       ))}
                       <Threshold<number[]>
@@ -211,6 +242,12 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
                           fill: curves[key]['upper1'].strokeColor,
                           fillOpacity: 0.4,
                         }}
+                        defined={(d, index) => {
+                          if (index === 0) {
+                            return false;
+                          }
+                          return true;
+                        }}
                       />
                     </Group>
                   ))}
@@ -218,21 +255,38 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
               ) : (
                 <>
                   {Object.keys(curves).map((key, index) => (
-                    <LinePath
-                      key={`${index}-${key}`}
-                      role="curve"
-                      data={curves[key]['mean'].data}
-                      x={(d) => xScale(d[0])}
-                      y={(d) => yScale(d[1])}
-                      stroke={curves[key]['mean'].strokeColor ?? ''}
-                      strokeWidth={2.0}
-                    />
+                    <Group key={key}>
+                      {scaleType === 'log' && spectral && (
+                        <GlyphSquare
+                          key={key}
+                          size={50}
+                          fill={curves[key]['mean'].strokeColor ?? '#000000'}
+                          left={xScale(curves[key]['mean'].data[0][0])}
+                          top={yScale(curves[key]['mean'].data[0][1])}
+                        />
+                      )}
+                      <LinePath
+                        key={`${index}-${key}`}
+                        role="curve"
+                        data={curves[key]['mean'].data}
+                        x={(d) => xScale(d[0])}
+                        y={(d) => yScale(d[1])}
+                        stroke={curves[key]['mean'].strokeColor ?? ''}
+                        strokeOpacity={curves[key]['mean'].strokeOpacity ?? 1}
+                        defined={(d, index) => {
+                          if (scaleType === 'log' && index === 0) {
+                            return false;
+                          }
+                          return true;
+                        }}
+                      />
+                    </Group>
                   ))}
                 </>
               )}
               {poe && !spectral && <LinePath role="POE" data={poeLine} x={(d) => xScale(d.x)} y={(d) => yScale(d.y)} stroke="#989C9C" />}
             </Group>
-            {crosshair && tooltipOpen && (
+            {crosshair && tooltipOpen && !boxPlotToolTipActive && (
               <g>
                 <Line from={{ x: tooltipLeft, y: 0 }} to={{ x: tooltipLeft, y: yMax }} stroke="#bdbdbd" strokeWidth={2} pointerEvents="none" strokeDasharray="5,2" />
                 <Line from={{ x: 0, y: tooltipTop }} to={{ x: xMax, y: tooltipTop }} stroke="#bdbdbd" strokeWidth={2} pointerEvents="none" strokeDasharray="5,2" />
@@ -252,10 +306,10 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
                 />
                 <TooltipInPortal key={Math.random()} left={tooltipLeft + marginLeft + 10} top={tooltipTop + marginTop + 10}>
                   <p>
-                    <strong>{tooltipData && Object.keys(curves)[tooltipData[2]]}</strong>
+                    <strong>{tooltipData && Object.keys(curves)[tooltipData[6]]}</strong>
                   </p>
                   <p>
-                    {xLabel}: {tooltipData && spectral && tooltipData[3] ? 'PGA' : tooltipData && tooltipData[0].toExponential(1)}
+                    {xLabel}: {tooltipData && spectral && tooltipData[7] ? 'PGA' : tooltipData && tooltipData[0].toExponential(1)}
                   </p>
                   <p>
                     {yLabel}: {tooltipData && tooltipData[1].toExponential(1)}

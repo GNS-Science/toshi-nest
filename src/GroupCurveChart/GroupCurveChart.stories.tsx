@@ -4,6 +4,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import GroupCurveChart from './GroupCurveChart';
 import { curveGroup4, curveGroup3, curveGroup2, curveGroup1 } from '../__tests__/testData/uncertaintyTestData';
 import spectralAccelUncertaintyTestData from '../__tests__/testData/spectralAccelUncertaintyTestData';
+import spectralAccelUncertaintyLog from '../__tests__/testData/spectralAccelUncertaintyLog';
 
 export default {
   title: 'Charts/GroupCurveChart',
@@ -19,6 +20,7 @@ export const TooltipWithCrosshair = Template.bind({});
 export const UncertaintyFalse = Template.bind({});
 export const SpectralAccelUncertaintyTrue = Template.bind({});
 export const SpectralAccelUncertaintyFalse = Template.bind({});
+export const SpectralAccelLog = Template.bind({});
 
 Primary.args = {
   scaleType: 'log',
@@ -38,6 +40,7 @@ Primary.args = {
   subHeading: 'WLG 250',
   poe: 0.02,
   uncertainty: true,
+  spectral: false,
 };
 
 Tooltip.args = {
@@ -58,6 +61,7 @@ Tooltip.args = {
   subHeading: 'WLG 250',
   poe: 0.02,
   uncertainty: true,
+  spectral: false,
 };
 
 Crosshair.args = {
@@ -78,6 +82,7 @@ Crosshair.args = {
   subHeading: 'WLG 250',
   poe: 0.02,
   uncertainty: true,
+  spectral: false,
 };
 
 TooltipWithCrosshair.args = {
@@ -98,6 +103,7 @@ TooltipWithCrosshair.args = {
   subHeading: 'WLG 250',
   poe: 0.02,
   uncertainty: true,
+  spectral: false,
 };
 
 UncertaintyFalse.args = {
@@ -118,6 +124,7 @@ UncertaintyFalse.args = {
   subHeading: 'WLG 250',
   poe: 0.02,
   uncertainty: false,
+  spectral: false,
 };
 
 SpectralAccelUncertaintyTrue.args = {
@@ -137,8 +144,9 @@ SpectralAccelUncertaintyTrue.args = {
   crosshair: true,
   heading: 'Spectra with Uncertainty',
   subHeading: 'WLG 400m/s',
-  poe: undefined,
+  poe: 0.1,
   uncertainty: true,
+  spectral: true,
 };
 
 SpectralAccelUncertaintyFalse.args = {
@@ -158,6 +166,29 @@ SpectralAccelUncertaintyFalse.args = {
   crosshair: true,
   heading: 'Sepectra without Uncertainty',
   subHeading: 'WLG 400m/s',
-  poe: undefined,
+  poe: 0.1,
   uncertainty: false,
+  spectral: true,
+};
+
+SpectralAccelLog.args = {
+  scaleType: 'log',
+  yScaleType: 'linear',
+  xLabel: 'Period [s]',
+  yLabel: 'Shaking Intensity [g]',
+  xLimits: [0.0001, 10],
+  yLimits: [0, 3.690382289232626],
+  gridColor: '#efefef',
+  backgroundColor: '#ffffff',
+  numTickX: 5,
+  numTickY: 5,
+  width: 600,
+  curves: spectralAccelUncertaintyLog,
+  tooltip: true,
+  crosshair: true,
+  heading: 'Spectra with Log Xscale',
+  subHeading: 'WLG 400m/s',
+  poe: 0.1,
+  uncertainty: true,
+  spectral: true,
 };
