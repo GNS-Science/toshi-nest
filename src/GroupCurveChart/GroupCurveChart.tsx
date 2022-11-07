@@ -316,11 +316,10 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
                   </p>
                   {boxPlotToolTipActive && tooltipData && (
                     <>
-                      <p>median: {tooltipData[1]}</p>
-                      <p>minimum: {tooltipData[2]}</p>
-                      <p>1st Quartile: {tooltipData[3]}</p>
-                      <p>3rd Quartile: {tooltipData[4]}</p>
-                      <p>maximum: {tooltipData[5]}</p>
+                      <p>Minimum: {tooltipData[2].toExponential(1)}</p>
+                      <p>1st Quartile: {tooltipData[3].toExponential(1)}</p>
+                      <p>3rd Quartile: {tooltipData[4].toExponential(1)}</p>
+                      <p>Maximum: {tooltipData[5].toExponential(1)}</p>
                     </>
                   )}
                 </TooltipInPortal>
