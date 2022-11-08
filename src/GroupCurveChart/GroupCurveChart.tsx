@@ -243,7 +243,7 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
                           fillOpacity: 0.4,
                         }}
                         defined={(d, index) => {
-                          if (index === 0) {
+                          if (scaleType === 'log' && index === 0) {
                             return false;
                           }
                           return true;
