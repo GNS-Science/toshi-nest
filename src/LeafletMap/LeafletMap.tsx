@@ -2,7 +2,7 @@
 import React from 'react';
 import { GeoJsonObject, Geometry, Feature } from 'geojson';
 import 'leaflet/dist/leaflet.css';
-import { MapContainer, TileLayer, GeoJSON, LayersControl } from 'react-leaflet';
+import { MapContainer, TileLayer, GeoJSON, LayersControl, Pane } from 'react-leaflet';
 import Fullscreen from 'react-leaflet-fullscreen-plugin';
 
 import { LeafletMapProps } from './LeafletMap.types';
@@ -56,6 +56,14 @@ const LeafletMap: React.FC<LeafletMapProps> = (props: LeafletMapProps) => {
           <BaseLayer name="Google Maps Hybrid">
             <TileLayer url={'http://mt0.google.com/vt/lyrs=y&hl=en&x={x}&y={y}&z={z}&s=Ga'} attribution="&copy; Google Maps, image service by TerraMetrics" maxNativeZoom={20} />
           </BaseLayer>
+          <Pane name="Overlay" style={{ zIndex: 499 }}>
+            <LayersControl.Overlay name="Cartographic Text">
+              <TileLayer url={'https://maps.scinfo.org.nz/mapcache/pwms/tms/1.0.0/text@g/{z}/{x}/{y}.png'} tms={true} attribution="&copy; Urban, image service by ArcGIS" />
+            </LayersControl.Overlay>
+            <LayersControl.Overlay name="Transport Group">
+              <TileLayer url={'https://maps.scinfo.org.nz/mapcache/pwms/tms/1.0.0/transport@g/{z}/{x}/{y}.png'} tms={true} attribution="&copy; Transport Group, image service by ArcGIS" />
+            </LayersControl.Overlay>
+          </Pane>
         </LayersControl>
         {geoJsonData.length &&
           geoJsonData.map((data, index) => {
