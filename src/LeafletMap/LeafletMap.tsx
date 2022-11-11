@@ -58,10 +58,11 @@ const LeafletMap: React.FC<LeafletMapProps> = (props: LeafletMapProps) => {
           </BaseLayer>
           <Pane name="Overlay" style={{ zIndex: 499 }}>
             <LayersControl.Overlay name="Cartographic Text">
-              <TileLayer url={'https://maps.scinfo.org.nz/mapcache/pwms/tms/1.0.0/text@g/{z}/{x}/{y}.png'} tms={true} attribution="&copy; Urban, image service by ArcGIS" />
-            </LayersControl.Overlay>
-            <LayersControl.Overlay name="Transport Group">
-              <TileLayer url={'https://maps.scinfo.org.nz/mapcache/pwms/tms/1.0.0/transport@g/{z}/{x}/{y}.png'} tms={true} attribution="&copy; Transport Group, image service by ArcGIS" />
+              <TileLayer
+                url={'https://maps.scinfo.org.nz/mapcache/pwms/tms/1.0.0/text@GoogleMapsCompatible/{z}/{x}/{y}.png'}
+                tms={true}
+                attribution="&copy; Landcare Research NZ Limited 2009-2022. Contains data sourced from LINZ. Crown Copyright Reserved."
+              />
             </LayersControl.Overlay>
           </Pane>
         </LayersControl>
