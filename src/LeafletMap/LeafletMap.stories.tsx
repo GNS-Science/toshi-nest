@@ -88,7 +88,7 @@ export const HazardMapsWithControls = () => {
 
   return (
     <>
-      <LeafletMap zoom={zoom} geoJsonData={geoJson} nzCentre={nzCentre as LatLngExpression} height={'700px'} width={'100%'} setFullscreen={setFullscreen} />;
+      <LeafletMap zoom={zoom} geoJsonData={geoJson} nzCentre={nzCentre as LatLngExpression} height={'700px'} width={'100%'} setFullscreen={setFullscreen} />
       <LeafletDrawer drawerHeight={'700px'} headerHeight={'0px'} width={'400px'} fullscreen={fullscreen}>
         <Box sx={{ width: '100%', margin: '10px', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
           <SelectControl options={['option1(PGA)', 'option2(SA0.5)', 'option3(null)']} selection={selection} setSelection={setSelection} name="Options" />
