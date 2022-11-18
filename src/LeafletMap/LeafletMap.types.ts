@@ -13,6 +13,7 @@ export interface LeafletMapProps {
   zoomSnap?: number;
   zoomDelta?: number;
   cov?: boolean;
+  overlay?: boolean;
 }
 
 export interface GeoJsonStyle {

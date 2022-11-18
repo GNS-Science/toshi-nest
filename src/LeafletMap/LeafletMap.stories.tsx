@@ -43,6 +43,7 @@ export const Primary = () => {
         opacity: 0.75,
         fillOpacity: 0.6,
       }}
+      overlay={false}
     />
   );
 };
