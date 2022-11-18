@@ -1,6 +1,5 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import { ComponentMeta } from '@storybook/react';
-import { GeoJsonObject } from 'geojson';
 import { Box } from '@mui/material';
 import { LatLngExpression } from 'leaflet';
 

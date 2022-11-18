@@ -18,14 +18,16 @@ const LeafletMap: React.FC<LeafletMapProps> = (props: LeafletMapProps) => {
   };
 
   const onEachFeature = (feature: Feature<Geometry, any>, layer: Layer) => {
-    const popupContent = `
-      <div>
-        <p>Location: ${feature.properties?.loc[1]}, ${feature.properties?.loc[0]}</p>
-        <p>${cov ? 'CoV' : 'Acceleration'}: ${Number(feature.properties.value).toFixed(2)} ${cov ? '' : '(g)'}</p>
-      </div>
-    `;
-    if (popupContent) {
-      layer.bindPopup(popupContent);
+    if (feature.properties?.loc) {
+      const popupContent = `
+        <div>
+          <p>Location: ${feature.properties?.loc[1]}, ${feature.properties?.loc[0]}</p>
+          <p>${cov ? 'CoV' : 'Acceleration'}: ${Number(feature.properties.value).toFixed(2)} ${cov ? '' : '(g)'}</p>
+        </div>
+      `;
+      if (popupContent) {
+        layer.bindPopup(popupContent);
+      }
     }
   };
 
