@@ -11,6 +11,7 @@ import { default as LeafletRuptureSetControls } from './LeafletRuptureSetControl
 import { default as GroupCurveChart } from './GroupCurveChart';
 import { default as GroupCurveChartResponsive } from './GroupCurveChartResponsive';
 import { default as ColorBar } from './ColorBar';
+import { default as RangeSliderWithInputs } from './RangeSliderWithInputs';
 
 export {
   ControlsBar,
@@ -26,4 +27,5 @@ export {
   GroupCurveChart,
   GroupCurveChartResponsive,
   ColorBar,
+  RangeSliderWithInputs,
 };
