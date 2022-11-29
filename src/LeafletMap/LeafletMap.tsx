@@ -18,16 +18,32 @@ const LeafletMap: React.FC<LeafletMapProps> = (props: LeafletMapProps) => {
   };
 
   const onEachFeature = (feature: Feature<Geometry, any>, layer: Layer) => {
+    let popupContent = '';
     if (feature.properties?.loc) {
-      const popupContent = `
+      popupContent = `
         <div>
           <p>Location: ${feature.properties?.loc[1]}, ${feature.properties?.loc[0]}</p>
           <p>${cov ? 'CoV' : 'Acceleration'}: ${Number(feature.properties.value).toFixed(2)} ${cov ? '' : '(g)'}</p>
         </div>
       `;
-      if (popupContent) {
-        layer.bindPopup(popupContent);
-      }
+    } else if (feature.properties['magnitude.min']) {
+      const minMag = feature.properties?.['magnitude.min'];
+      const maxMag = feature.properties?.['magnitude.max'];
+      const minRuptureRate = feature.properties?.['annual_rate.min'];
+      const maxRuptureRate = feature.properties?.['annual_rate.max'];
+      const totalRate = feature.properties?.['annual_rate.sum'];
+      popupContent = `
+      <div>
+        <p>Min Magnitude: ${minMag.toFixed(2)}</p>
+        <p>Max Magnitude: ${maxMag.toFixed(2)}</p>
+        <p>Min Rupture Rate (1/yr): ${minRuptureRate.toExponential(2)}</p>
+        <p>Max Rupture Rate (1/yr): ${maxRuptureRate.toExponential(2)}</p>
+        <p>Total Rate (1/yr): ${totalRate.toExponential(2)}</p>
+      </div>
+     `;
+    }
+    if (popupContent) {
+      layer.bindPopup(popupContent);
     }
   };
 
