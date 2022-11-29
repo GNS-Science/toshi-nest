@@ -6,7 +6,7 @@ import { LatLngExpression } from 'leaflet';
 import SelectControl from '../SelectControl';
 import LeafletMap from './LeafletMap';
 import LeafletDrawer from '../LeafletDrawer';
-import { solvisResponse } from './LeafletMapTestData';
+import solvisResponse from '../__tests__/testData/leafletMapTestData';
 import geojsonTesetDat05 from '../__tests__/testData/geoJson/geojsonTestData0.5';
 import geojsonTestDataPGA from '../__tests__/testData/geoJson/geojsonTestDataPGA';
 import geojsonTestDataCoV from '../__tests__/testData/geoJson/geojsonTestDataCoV';
@@ -22,7 +22,7 @@ export const Primary = () => {
 
   const rupturesData = solvisResponse.ruptures;
   const locationsData = solvisResponse.locations;
-  const geoJsonData = [rupturesData, locationsData];
+  const geoJsonData = [locationsData, rupturesData];
   const zoom = 5;
   const nzCentre = [-40.946, 174.167];
 
@@ -39,7 +39,7 @@ export const Primary = () => {
       style={{
         stroke: '#f21616',
         color: '#f21616',
-        weight: 1,
+        weight: 2,
         opacity: 0.75,
         fillOpacity: 0.6,
       }}
