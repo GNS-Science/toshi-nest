@@ -12,6 +12,7 @@ import { default as GroupCurveChart } from './GroupCurveChart';
 import { default as GroupCurveChartResponsive } from './GroupCurveChartResponsive';
 import { default as ColorBar } from './ColorBar';
 import { default as RangeSliderWithInputs } from './RangeSliderWithInputs';
+import { default as FaultModelTable } from './FaultModelTable';
 
 export {
   ControlsBar,
@@ -28,4 +29,5 @@ export {
   GroupCurveChartResponsive,
   ColorBar,
   RangeSliderWithInputs,
+  FaultModelTable,
 };

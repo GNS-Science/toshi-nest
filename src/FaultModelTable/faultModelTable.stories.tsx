@@ -1,4 +1,4 @@
-import FaultModelTable from './faultModelTable';
+import FaultModelTable from './FaultModelTable';
 import { ComponentMeta } from '@storybook/react';
 import solvisResponse from '../__tests__/testData/leafletMapTestData';
 
