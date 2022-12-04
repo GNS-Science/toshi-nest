@@ -119,8 +119,8 @@ const LeafletLayers: React.FC<LeafletLayersProps> = (props: LeafletLayersProps) 
               data={parseGeoJson(data)}
               onEachFeature={onEachFeature}
               style={(feature) => {
-                const featureStyle = style
-                  ? style
+                return style
+                  ? { ...style, weight: zoomLevel / 3 }
                   : {
                       stroke: feature?.properties.stroke,
                       color: feature?.properties.fill,
@@ -128,8 +128,6 @@ const LeafletLayers: React.FC<LeafletLayersProps> = (props: LeafletLayersProps) 
                       opacity: feature?.properties['stroke-opacity'],
                       fillOpacity: feature?.properties['fill-opacity'],
                     };
-                featureStyle.weight = zoomLevel / 4;
-                return featureStyle;
               }}
             />
           );
