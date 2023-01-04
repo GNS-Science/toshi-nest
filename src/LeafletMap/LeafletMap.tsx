@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from 'react';
-import { GeoJsonObject, Geometry, Feature } from 'geojson';
+import { GeoJsonObject, Geometry, Feature, FeatureCollection } from 'geojson';
 import 'leaflet/dist/leaflet.css';
 import { MapContainer, TileLayer, GeoJSON, LayersControl, Pane } from 'react-leaflet';
 import Fullscreen from 'react-leaflet-fullscreen-plugin';
@@ -8,11 +8,13 @@ import Fullscreen from 'react-leaflet-fullscreen-plugin';
 import { LeafletMapProps, LeafletLayersProps } from './LeafletMap.types';
 import { Layer } from 'leaflet';
 import { useMapEvents } from 'react-leaflet';
+import EditControlComponent from '../EditControl/EditControlComponent';
 
 const { BaseLayer } = LayersControl;
 
 const LeafletMap: React.FC<LeafletMapProps> = (props: LeafletMapProps) => {
   const { geoJsonData, nzCentre, zoom, height, width, setFullscreen, style, minZoom, maxZoom, zoomSnap, zoomDelta, cov, zoomLevel, setZoomLevel, overlay = true } = props;
+  const [geojson, setGeojson] = useState<FeatureCollection>(JSON.parse(geoJsonData[0]));
 
   return (
     <>
@@ -28,6 +30,7 @@ const LeafletMap: React.FC<LeafletMapProps> = (props: LeafletMapProps) => {
         zoomDelta={zoomDelta || 1}
       >
         <LeafletLayers style={style} geoJsonData={geoJsonData} setFullscreen={setFullscreen} cov={cov} overlay={overlay} zoomLevel={zoomLevel} setZoomLevel={setZoomLevel} />
+        <EditControlComponent geojson={geojson} setGeojson={setGeojson} />
       </MapContainer>
     </>
   );
