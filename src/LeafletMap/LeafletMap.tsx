@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { GeoJsonObject, Geometry, Feature } from 'geojson';
 import 'leaflet/dist/leaflet.css';
-import { MapContainer, TileLayer, GeoJSON, LayersControl, Pane } from 'react-leaflet';
+import { MapContainer, TileLayer, GeoJSON, LayersControl, Pane, LayerGroup } from 'react-leaflet';
 import Fullscreen from 'react-leaflet-fullscreen-plugin';
 
 import { LeafletMapProps, LeafletLayersProps } from './LeafletMap.types';
@@ -82,7 +82,10 @@ const LeafletLayers: React.FC<LeafletLayersProps> = (props: LeafletLayersProps) 
     <>
       <LayersControl>
         <BaseLayer name="Ocean Basemap" checked={true}>
-          <TileLayer url={'https://server.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}'} attribution="&copy; Ocean Basemap, image service by ArcGIS" />
+          <LayerGroup>
+            <TileLayer url={'https://services.arcgisonline.com/arcgis/rest/services/Ocean/World_Ocean_Base/MapServer/tile/{z}/{y}/{x}'} attribution="&copy; Ocean Basemap, image service by ArcGIS" />
+            <TileLayer url={'https://services.arcgisonline.com/arcgis/rest/services/Ocean/World_Ocean_Reference/MapServer/tile/{z}/{y}/{x}'} />
+          </LayerGroup>
         </BaseLayer>
         <BaseLayer name="Nasa Blue Marble">
           <TileLayer
