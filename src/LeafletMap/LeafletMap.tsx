@@ -64,7 +64,7 @@ const LeafletLayers: React.FC<LeafletLayersProps> = (props: LeafletLayersProps) 
       const totalRate = feature.properties?.['annual_rate.sum'];
       popupContent = `
       <div>
-        <p>${location}</p>
+        <b>${location}</b>
         <p>Min Magnitude: ${minMag.toFixed(2)}</p>
         <p>Max Magnitude: ${maxMag.toFixed(2)}</p>
         <p>Min Rupture Rate (1/yr): ${minRuptureRate.toExponential(2)}</p>
