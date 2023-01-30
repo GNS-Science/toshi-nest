@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from 'react';
+import React from 'react';
 import { GeoJsonObject, Geometry, Feature } from 'geojson';
 import 'leaflet/dist/leaflet.css';
 import { MapContainer, TileLayer, GeoJSON, LayersControl, Pane, LayerGroup } from 'react-leaflet';
@@ -124,15 +124,15 @@ const LeafletLayers: React.FC<LeafletLayersProps> = (props: LeafletLayersProps) 
               data={parseGeoJson(data)}
               onEachFeature={onEachFeature}
               style={(feature) => {
-                return style
-                  ? { ...style, weight: zoomLevel / 3 }
-                  : {
-                      stroke: feature?.properties.stroke,
-                      color: feature?.properties.fill,
-                      weight: feature?.properties['stroke-width'],
-                      opacity: feature?.properties['stroke-opacity'],
-                      fillOpacity: feature?.properties['fill-opacity'],
-                    };
+                return (
+                  style || {
+                    stroke: feature?.properties['stroke'] || feature?.properties['stroke-color'],
+                    color: feature?.properties['fill'] || feature?.properties['fill-color'] || feature?.properties['stroke-color'],
+                    weight: zoomLevel / 3,
+                    opacity: feature?.properties['stroke-opacity'],
+                    fillOpacity: feature?.properties['fill-opacity'],
+                  }
+                );
               }}
             />
           );
