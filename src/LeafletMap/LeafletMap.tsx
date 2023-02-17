@@ -1,18 +1,40 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react';
+import React, { useState } from 'react';
 import { GeoJsonObject, Geometry, Feature } from 'geojson';
 import 'leaflet/dist/leaflet.css';
-import { MapContainer, TileLayer, GeoJSON, LayersControl, Pane, LayerGroup } from 'react-leaflet';
+import 'leaflet-timedimension';
+import { MapContainer, TileLayer, GeoJSON, LayersControl, Pane, LayerGroup, useMap } from 'react-leaflet';
 import Fullscreen from 'react-leaflet-fullscreen-plugin';
 
-import { LeafletMapProps, LeafletLayersProps } from './LeafletMap.types';
+import { LeafletMapProps, LeafletLayersProps, TimeDimensionLayerProps } from './LeafletMap.types';
 import { Layer } from 'leaflet';
 import { useMapEvents } from 'react-leaflet';
+import '../../node_modules/leaflet/dist/leaflet.css';
+import '../../node_modules/leaflet-timedimension/src/leaflet.timedimension.control.css';
 
 const { BaseLayer } = LayersControl;
 
 const LeafletMap: React.FC<LeafletMapProps> = (props: LeafletMapProps) => {
-  const { geoJsonData, nzCentre, zoom, height, width, setFullscreen, style, minZoom, maxZoom, zoomSnap, zoomDelta, cov, zoomLevel, setZoomLevel, overlay = true } = props;
+  const {
+    geoJsonData,
+    nzCentre,
+    zoom,
+    height,
+    width,
+    setFullscreen,
+    style,
+    minZoom,
+    maxZoom,
+    zoomSnap,
+    zoomDelta,
+    cov,
+    zoomLevel,
+    setZoomLevel,
+    timeDimension,
+    timeDimensionOptions,
+    timeDimensionGeoJsonData,
+    overlay = true,
+  } = props;
 
   return (
     <>
@@ -26,15 +48,28 @@ const LeafletMap: React.FC<LeafletMapProps> = (props: LeafletMapProps) => {
         maxZoom={maxZoom || 12}
         zoomSnap={zoomSnap || 1}
         zoomDelta={zoomDelta || 1}
+        timeDimension={timeDimension}
+        timeDimensionOptions={timeDimensionOptions}
+        timeDimensionControl={timeDimension}
       >
-        <LeafletLayers style={style} geoJsonData={geoJsonData} setFullscreen={setFullscreen} cov={cov} overlay={overlay} zoomLevel={zoomLevel} setZoomLevel={setZoomLevel} />
+        <LeafletLayers
+          style={style}
+          geoJsonData={geoJsonData}
+          setFullscreen={setFullscreen}
+          cov={cov}
+          overlay={overlay}
+          zoomLevel={zoomLevel}
+          setZoomLevel={setZoomLevel}
+          timeDimension={timeDimension}
+          timeDimensionGeoJsonData={timeDimensionGeoJsonData}
+        />
       </MapContainer>
     </>
   );
 };
 
 const LeafletLayers: React.FC<LeafletLayersProps> = (props: LeafletLayersProps) => {
-  const { style, geoJsonData, overlay, setFullscreen, cov, zoomLevel, setZoomLevel } = props;
+  const { style, geoJsonData, overlay, setFullscreen, cov, zoomLevel, setZoomLevel, timeDimension, timeDimensionGeoJsonData } = props;
 
   const mapEvents = useMapEvents({
     zoomend: () => {
@@ -137,6 +172,7 @@ const LeafletLayers: React.FC<LeafletLayersProps> = (props: LeafletLayersProps) 
             />
           );
         })}
+      {timeDimension && timeDimensionGeoJsonData && <TimeDimensionLayer geoJsonData={timeDimensionGeoJsonData} />}
       <Fullscreen
         eventHandlers={{
           enterFullscreen: () => setFullscreen(true),
@@ -146,6 +182,18 @@ const LeafletLayers: React.FC<LeafletLayersProps> = (props: LeafletLayersProps) 
       />
     </>
   );
+};
+
+const TimeDimensionLayer: React.FC<TimeDimensionLayerProps> = (props: TimeDimensionLayerProps) => {
+  const { geoJsonData } = props;
+  const map = useMap();
+  const [currentSurface, setCurrentSurface] = useState(geoJsonData[0]);
+  // console.log('currentSurface', currentSurface);
+  (map as any).timeDimension.on('timeloading', (data: any) => {
+    setCurrentSurface(geoJsonData[data.target._currentTimeIndex]);
+  });
+
+  return <GeoJSON key={`geojson-timeline-layer-${Math.random()}`} data={currentSurface} style={{ color: 'red' }} />;
 };
 
 export default LeafletMap;
