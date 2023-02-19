@@ -12,6 +12,7 @@ import geojsonTestDataPGA from '../__tests__/testData/geoJson/geojsonTestDataPGA
 import geojsonTestDataCoV from '../__tests__/testData/geoJson/geojsonTestDataCoV';
 import geojsonTestDataStyled from '../__tests__/testData/geoJson/geojsonTestDataStyled';
 import surfaceArray from '../__tests__/testData/geoJson/puysegur_rupture_surfaces_above_2e-4.json';
+import surfaceBaseLayer from '../__tests__/testData/geoJson/surfaces_puysegur.json';
 import { GeoJsonObject } from 'geojson';
 
 export default {
@@ -188,6 +189,7 @@ export const FaultModelWithTimeDimension = () => {
       timeDimensionOptions={timeDimensionOptions}
       timeDimension={true}
       timeDimensionGeoJsonData={surfaceArray as GeoJsonObject[]}
+      timeDimensionUnderlay={surfaceBaseLayer as GeoJsonObject}
     />
   );
 };

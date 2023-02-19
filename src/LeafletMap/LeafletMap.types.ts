@@ -19,6 +19,7 @@ export interface LeafletMapProps {
   timeDimension?: boolean;
   timeDimensionOptions?: TimeDimensionOptions;
   timeDimensionGeoJsonData?: GeoJsonObject[];
+  timeDimensionUnderlay?: GeoJsonObject;
   setZoomLevel: (setZoomLevel: number) => void;
 }
 
@@ -47,6 +48,7 @@ export interface LeafletLayersProps {
   setZoomLevel: (setZoomLevel: number) => void;
   timeDimension?: boolean;
   timeDimensionGeoJsonData?: GeoJsonObject[];
+  timeDimensionUnderlay?: GeoJsonObject;
 }
 
 export interface TimeDimensionLayerProps {
