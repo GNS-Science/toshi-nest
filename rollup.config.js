@@ -33,6 +33,6 @@ export default [
         },
       }),
     ],
-    external: Object.keys(pkg.peerDependencies || {}),
+    external: [Object.keys(pkg.peerDependencies || {}), 'node_modules/leaflet/dist/leaflet.css', 'node_modules/leaflet-timedimension/src/leaflet.timedimension.control.css'],
   },
 ];
