@@ -2623,6 +2623,15 @@
     utility-types "^3.10.0"
     zustand "^3.5.1"
 
+"@rollup/pluginutils@5":
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@rollup/pluginutils/-/pluginutils-5.0.2.tgz#012b8f53c71e4f6f9cb317e311df1404f56e7a33"
+  integrity sha512-pTd9rIsP92h+B6wWwFbW8RkZv4hiR/xKsqre4SIuAOaOEQRxi0lqLke9k2/7WegC85GgUs9pjmOjCUi3In4vwA==
+  dependencies:
+    "@types/estree" "^1.0.0"
+    estree-walker "^2.0.2"
+    picomatch "^2.3.1"
+
 "@rollup/pluginutils@^4.1.2":
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/@rollup/pluginutils/-/pluginutils-4.2.1.tgz#e6c6c3aba0744edce3fb2074922d3776c0af2a6d"
@@ -4127,6 +4136,11 @@
   version "0.0.51"
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.51.tgz#cfd70924a25a3fd32b218e5e420e6897e1ac4f40"
   integrity sha512-CuPgU6f3eT/XgKKPqKd/gLZV1Xmvf1a2R5POBOGQa6uv82xpls89HU5zKeVoyR8XzHd1RGNOlQlvUe3CFkjWNQ==
+
+"@types/estree@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@types/estree/-/estree-1.0.0.tgz#5fb2e536c1ae9bf35366eed879e827fa59ca41c2"
+  integrity sha512-WulqXMDUTYAXCjZnk6JtIHPigp55cVtDgDrO2gHRwhyJto21+1zbVCtOYB2L1F9w4qCQ0rOGWBnBe0FNTiEJIQ==
 
 "@types/geojson@*":
   version "7946.0.8"
@@ -8225,7 +8239,7 @@ estree-to-babel@^3.1.0:
     "@babel/types" "^7.2.0"
     c8 "^7.6.0"
 
-estree-walker@^2.0.1:
+estree-walker@^2.0.1, estree-walker@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/estree-walker/-/estree-walker-2.0.2.tgz#52f010178c2a4c117a7757cfe942adb7d2da4cac"
   integrity sha512-Rfkk/Mp/DL7JVje3u18FxFujQlTNR2q6QfMSMB7AvCBx91NGj/ba3kCfza0f6dVDbw7YlRf/nDrn7pQrCCyQ/w==
@@ -10230,6 +10244,11 @@ isexe@^2.0.0:
   resolved "https://registry.yarnpkg.com/isexe/-/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
   integrity sha1-6PvzdNxVb/iUehDcsFctYz8s+hA=
 
+iso8601-js-period@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/iso8601-js-period/-/iso8601-js-period-0.2.1.tgz#f17ea1e45ae14781b02f1d708b5ab457fd7174a0"
+  integrity sha512-iDyz2TQFBd5WhCZjruOwHj01JkQGu7YbVLCVdpA7lCGEcBzE3ffCPAhLh/M8TAp//kCixPpYN4XU54WHCxvD2Q==
+
 isobject@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/isobject/-/isobject-2.1.0.tgz#f065561096a3f1da2ef46272f815c840d87e0c89"
@@ -10947,15 +10966,23 @@ lazy-universal-dotenv@^3.0.1:
     dotenv "^8.0.0"
     dotenv-expand "^5.1.0"
 
+leaflet-timedimension@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/leaflet-timedimension/-/leaflet-timedimension-1.1.1.tgz#35d3ecd980114d9a6f1463415a71a999e25530b1"
+  integrity sha512-ejXldN94veRsWka1vpC+4rbH+2+3d3ztn2xYx4jcXtjYDrKC/sNnoqCmyH2UEYIy51PI2851aI2k8uGdOEbhlw==
+  dependencies:
+    iso8601-js-period "^0.2.1"
+    leaflet "~0.7.4 || ~1"
+
 leaflet.fullscreen@^2.0.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/leaflet.fullscreen/-/leaflet.fullscreen-2.3.0.tgz#4070995c6f6ac9864e163e11aab3c15fc633bf47"
   integrity sha512-d/1w8GTHdS9v8+/Pkenb23D68Ra2RVP3Sw65XDCdc5VspveEa+YytOdFcWAEEktVQB6QMrEC+m6K4VpuQDzosQ==
 
-leaflet@^1.8.0:
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-1.8.0.tgz#4615db4a22a304e8e692cae9270b983b38a2055e"
-  integrity sha512-gwhMjFCQiYs3x/Sf+d49f10ERXaEFCPr+nVTryhAW8DWbMGqJqt9G4XuIaHmFW08zYvhgdzqXGr8AlW8v8dQkA==
+leaflet@1.7.1, "leaflet@~0.7.4 || ~1":
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-1.7.1.tgz#10d684916edfe1bf41d688a3b97127c0322a2a19"
+  integrity sha512-/xwPEBidtg69Q3HlqPdU3DnrXQOvQU/CCHA1tcDQVzOwm91YMYaILjNp7L4Eaw5Z4sOYdbBz6koWyibppd8Zqw==
 
 leven@^3.1.0:
   version "3.1.0"
@@ -13755,6 +13782,13 @@ ripemd160@^2.0.0, ripemd160@^2.0.1:
   dependencies:
     hash-base "^3.0.0"
     inherits "^2.0.1"
+
+rollup-plugin-css-only@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-css-only/-/rollup-plugin-css-only-4.3.0.tgz#d3d9374457a065aff623d7c7696f1a072c96ae7b"
+  integrity sha512-BsiCqJJQzZh2lQiHY5irejRoJ3I1EUFHEi5PjVqsr+EmOh54YrWVwd3YZEXnQJ2+fzlhif0YM/Kf0GuH90GAdQ==
+  dependencies:
+    "@rollup/pluginutils" "5"
 
 rollup-plugin-delete@^2.0.0:
   version "2.0.0"

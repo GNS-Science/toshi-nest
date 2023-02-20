@@ -1,3 +1,4 @@
+import { GeoJsonObject } from 'geojson';
 import { LatLngExpression } from 'leaflet';
 
 export interface LeafletMapProps {
@@ -15,6 +16,10 @@ export interface LeafletMapProps {
   cov?: boolean;
   overlay?: boolean;
   zoomLevel: number;
+  timeDimension?: boolean;
+  timeDimensionOptions?: TimeDimensionOptions;
+  timeDimensionGeoJsonData?: GeoJsonObject[];
+  timeDimensionUnderlay?: GeoJsonObject;
   setZoomLevel: (setZoomLevel: number) => void;
 }
 
@@ -26,6 +31,13 @@ export interface GeoJsonStyle {
   fillOpacity: number;
 }
 
+export interface TimeDimensionOptions {
+  timeInterval: string;
+  period: string;
+  currentTime: number;
+  times: number[];
+}
+
 export interface LeafletLayersProps {
   style?: GeoJsonStyle;
   geoJsonData: string[];
@@ -34,4 +46,11 @@ export interface LeafletLayersProps {
   cov?: boolean;
   zoomLevel: number;
   setZoomLevel: (setZoomLevel: number) => void;
+  timeDimension?: boolean;
+  timeDimensionGeoJsonData?: GeoJsonObject[];
+  timeDimensionUnderlay?: GeoJsonObject;
+}
+
+export interface TimeDimensionLayerProps {
+  geoJsonData: GeoJsonObject[];
 }
