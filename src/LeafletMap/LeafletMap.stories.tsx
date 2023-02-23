@@ -175,6 +175,11 @@ export const FaultModelWithTimeDimension = () => {
       15470, 15528, 15548, 15556, 15615, 15622, 15668, 15685, 15711, 15719, 15735, 15746, 15758, 15766, 15767, 15779, 15785, 15790,
     ],
   };
+  const timeDimensionControlOptions = {
+    loopButton: true,
+    displayDate: false,
+  };
+
   return (
     <LeafletMap
       zoom={zoom}
@@ -187,6 +192,7 @@ export const FaultModelWithTimeDimension = () => {
       zoomLevel={zoomLevel}
       setZoomLevel={setZoomLevel}
       timeDimensionOptions={timeDimensionOptions}
+      timeDimensionControlOptions={timeDimensionControlOptions}
       timeDimension={true}
       timeDimensionGeoJsonData={surfaceArray as GeoJsonObject[]}
       timeDimensionUnderlay={surfaceBaseLayer as GeoJsonObject}
