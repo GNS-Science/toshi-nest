@@ -18,6 +18,7 @@ export interface LeafletMapProps {
   zoomLevel: number;
   timeDimension?: boolean;
   timeDimensionOptions?: TimeDimensionOptions;
+  timeDimensionControlOptions?: TimeDimensionControlOptions;
   timeDimensionGeoJsonData?: GeoJsonObject[];
   timeDimensionUnderlay?: GeoJsonObject;
   setZoomLevel: (setZoomLevel: number) => void;
@@ -36,6 +37,11 @@ export interface TimeDimensionOptions {
   period: string;
   currentTime: number;
   times: number[];
+}
+
+export interface TimeDimensionControlOptions {
+  loopButton?: boolean;
+  displayDate?: boolean;
 }
 
 export interface LeafletLayersProps {

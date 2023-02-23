@@ -1,16 +1,32 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from 'react';
+import { Box, styled, Typography } from '@mui/material';
 import { GeoJsonObject, Geometry, Feature } from 'geojson';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-timedimension';
-import { MapContainer, TileLayer, GeoJSON, LayersControl, Pane, LayerGroup, useMap } from 'react-leaflet';
+import { MapContainer, TileLayer, GeoJSON, LayersControl, Pane, LayerGroup, useMap, useMapEvents } from 'react-leaflet';
 import Fullscreen from 'react-leaflet-fullscreen-plugin';
 
 import { LeafletMapProps, LeafletLayersProps, TimeDimensionLayerProps } from './LeafletMap.types';
 import { Layer } from 'leaflet';
-import { useMapEvents } from 'react-leaflet';
 import '../../node_modules/leaflet/dist/leaflet.css';
 import '../../node_modules/leaflet-timedimension/src/leaflet.timedimension.control.css';
+
+const TimeDimensionInfoBox = styled(Box)({
+  position: 'absolute',
+  bottom: '40px',
+  padding: '10px',
+  margin: '10px',
+  zIndex: 100000,
+  backgroundColor: '#fff',
+  float: 'left',
+  lineHeight: '26px',
+  borderRadius: '4px',
+  borderWidth: '1px',
+  border: '2px solid rgba(0,0,0,0.2)',
+  backgroundClip: 'padding-box',
+  display: 'block',
+});
 
 const { BaseLayer } = LayersControl;
 
@@ -32,6 +48,7 @@ const LeafletMap: React.FC<LeafletMapProps> = (props: LeafletMapProps) => {
     setZoomLevel,
     timeDimension,
     timeDimensionOptions,
+    timeDimensionControlOptions,
     timeDimensionGeoJsonData,
     timeDimensionUnderlay,
     overlay = true,
@@ -52,6 +69,7 @@ const LeafletMap: React.FC<LeafletMapProps> = (props: LeafletMapProps) => {
         timeDimension={timeDimension}
         timeDimensionOptions={timeDimensionOptions}
         timeDimensionControl={timeDimension}
+        timeDimensionControlOptions={timeDimensionControlOptions}
       >
         <LeafletLayers
           style={style}
@@ -194,8 +212,19 @@ const TimeDimensionLayer: React.FC<TimeDimensionLayerProps> = (props: TimeDimens
   (map as any).timeDimension.on('timeloading', (data: any) => {
     setCurrentSurface(geoJsonData[data.target._currentTimeIndex]);
   });
-
-  return <GeoJSON key={`geojson-timeline-layer-${Math.random()}`} data={currentSurface} style={{ color: 'red' }} />;
+  const surfaceProperties = (currentSurface as any).features[0].properties;
+  return (
+    <>
+      <GeoJSON key={`geojson-timeline-layer-${Math.random()}`} data={currentSurface} style={{ color: 'red' }} />
+      <TimeDimensionInfoBox>
+        <Typography variant={'body2'}>Rupture ID: {surfaceProperties['rupture']}</Typography>
+        <Typography variant={'body2'}>Return Period: {Math.round(1 / surfaceProperties['Annual Rate'])} years</Typography>
+        <Typography variant={'body2'}>Magnitude: {surfaceProperties['Magnitude'].toFixed(1)}</Typography>
+        <Typography variant={'body2'}>Area: {Math.round(surfaceProperties['Area (m^2)'] / 1000000)} km²</Typography>
+        <Typography variant={'body2'}>Length: {Math.round(surfaceProperties['Length (m)'] / 1000)} km</Typography>
+      </TimeDimensionInfoBox>
+    </>
+  );
 };
 
 export default LeafletMap;
