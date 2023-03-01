@@ -4087,6 +4087,11 @@
   resolved "https://registry.yarnpkg.com/@types/d3-path/-/d3-path-1.0.9.tgz#73526b150d14cd96e701597cbf346cfd1fd4a58c"
   integrity sha512-NaIeSIBiFgSC6IGUBjZWcscUJEq7vpVu7KthHN8eieTV9d9MqkSOZLH4chq1PmcKy06PNe3axLeKmRIyxJ+PZQ==
 
+"@types/d3-random@^2.2.0":
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/@types/d3-random/-/d3-random-2.2.1.tgz#551edbb71cb317dea2cf9c76ebe059d311eefacb"
+  integrity sha512-5vvxn6//poNeOxt1ZwC7QU//dG9QqABjy1T7fP/xmFHY95GnaOw3yABf29hiu5SR1Oo34XcpyHFbzod+vemQjA==
+
 "@types/d3-scale@^3.3.0":
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/@types/d3-scale/-/d3-scale-3.3.2.tgz#18c94e90f4f1c6b1ee14a70f14bfca2bd1c61d06"
@@ -4730,6 +4735,25 @@
     classnames "^2.3.1"
     prop-types "^15.6.2"
 
+"@visx/group@3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@visx/group/-/group-3.0.0.tgz#e7f9752599bcc7e141ff5317a2a9a502577ab8df"
+  integrity sha512-SFjXhTMcsaVAb1/TVL1KM5vn8gQTIVgSx0ATdDl4BJSFp2ym1lO8LY4jpV4SFweaHnWxVwrrfGLTn5QsYnvmjQ==
+  dependencies:
+    "@types/react" "*"
+    classnames "^2.3.1"
+    prop-types "^15.6.2"
+
+"@visx/heatmap@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@visx/heatmap/-/heatmap-3.0.0.tgz#27cbc258a726000021c236c74f62a168e6dc0475"
+  integrity sha512-q6XQvIdaSbYRO2jyOpvHR0cdinqhgjZ3/7h42vFdqyglByfGJNAnGJ9wOEikGml9DDoLarcaPE0r4Qsq2QMwBw==
+  dependencies:
+    "@types/react" "*"
+    "@visx/group" "3.0.0"
+    classnames "^2.3.1"
+    prop-types "^15.6.1"
+
 "@visx/legend@^2.2.2":
   version "2.10.0"
   resolved "https://registry.yarnpkg.com/@visx/legend/-/legend-2.10.0.tgz#d561f86e4bc536f9d50e21d607e65f05640f73d5"
@@ -4740,6 +4764,14 @@
     "@visx/scale" "2.2.2"
     classnames "^2.3.1"
     prop-types "^15.5.10"
+
+"@visx/mock-data@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@visx/mock-data/-/mock-data-3.0.0.tgz#d8ac030e8dc58b338cba87e6b65276e7f9ac63ad"
+  integrity sha512-qi+G413zX1zIsyKDMvfKDTa8R9n+AOZygKq8qLGB9Uddx0ogXqjypDYN+gxvqSjzjxleuQ9Ml6PNTOdj9V9a1A==
+  dependencies:
+    "@types/d3-random" "^2.2.0"
+    d3-random "^2.2.2"
 
 "@visx/point@2.6.0":
   version "2.6.0"
@@ -7307,6 +7339,11 @@ d3-quadtree@1:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/d3-quadtree/-/d3-quadtree-1.0.7.tgz#ca8b84df7bb53763fe3c2f24bd435137f4e53135"
   integrity sha512-RKPAeXnkC59IDGD0Wu5mANy0Q2V28L+fNe65pOCXVdVuTJS3WPKaJlFHer32Rbh9gIo9qMuJXio8ra4+YmIymA==
+
+d3-random@^2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/d3-random/-/d3-random-2.2.2.tgz#5eebd209ef4e45a2b362b019c1fb21c2c98cbb6e"
+  integrity sha512-0D9P8TRj6qDAtHhRQn6EfdOtHMfsUWanl3yb/84C4DqpZ+VsgfI5iTVRNRbELCfNvRfpMr8OrqqUTQ6ANGCijw==
 
 d3-scale@^3.3.0:
   version "3.3.0"

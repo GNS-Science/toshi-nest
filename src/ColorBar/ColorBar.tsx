@@ -11,10 +11,11 @@ export interface ColorBarProps {
   tickValues: number[];
   heading?: string;
   style?: React.CSSProperties;
+  vertical?: boolean;
 }
 
 const ColorBar: React.FC<ColorBarProps> = (props: ColorBarProps) => {
-  const { width, height, colors, tickValues, heading, style } = props;
+  const { width, height, colors, tickValues, heading, style, vertical } = props;
 
   const marginSide = 20;
   const marginTop = 30;
@@ -50,7 +51,7 @@ const ColorBar: React.FC<ColorBarProps> = (props: ColorBarProps) => {
 
   return (
     <div style={style}>
-      <svg width={xMax} height={yMax}>
+      <svg transform={vertical ? 'rotate(-90 50 100)' : ''} width={xMax} height={yMax}>
         <rect x={0} y={0} width={xMax} height={yMax} fill={'#ffffff'} fillOpacity={0.5} rx={2} />
         {heading && (
           <text y={18} x={'50%'} {...headingProps} fontSize={12} fontFamily={'Helvetica Neue, Arial, Helvetica, sans-serif'}>
