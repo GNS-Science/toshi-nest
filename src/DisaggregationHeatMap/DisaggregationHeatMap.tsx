@@ -121,7 +121,7 @@ const Example = ({ width, height, events = false, margin = defaultMargin, backgr
         colors={['#122549', '#b4fbde']}
         tickValues={[1, 2]}
         heading={'Vs30 = 400m/s, PGA 10% in 50 years'}
-        style={{ left: width, top: height / 8, position: 'absolute' }}
+        style={{ left: width * 0.9, top: height / 8, position: 'absolute' }}
         vertical={true}
       />
     </div>
