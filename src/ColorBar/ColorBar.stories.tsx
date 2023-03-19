@@ -31,6 +31,7 @@ Primary.args = {
 };
 
 export const HazardMaps = () => {
+  const [zoomLevel, setZoomLevel] = useState<number>(5);
   const [fullscreen, setFullscreen] = useState<boolean>(false);
   const [selection, setSelection] = useState<string>('option1(PGA)');
 
@@ -52,7 +53,16 @@ export const HazardMaps = () => {
 
   return (
     <div style={{ height: '700px' }}>
-      <LeafletMap zoom={zoom} nzCentre={nzCentre as LatLngExpression} geoJsonData={geoJson} height={'700px'} width={'100%'} setFullscreen={setFullscreen} />
+      <LeafletMap
+        zoom={zoom}
+        nzCentre={nzCentre as LatLngExpression}
+        geoJsonData={geoJson}
+        height={'700px'}
+        width={'100%'}
+        setFullscreen={setFullscreen}
+        zoomLevel={zoomLevel}
+        setZoomLevel={setZoomLevel}
+      />
       <ColorBar
         width={269}
         height={35}
