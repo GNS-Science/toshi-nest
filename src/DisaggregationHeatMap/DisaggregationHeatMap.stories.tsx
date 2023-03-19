@@ -1,4 +1,3 @@
-import React from 'react';
 import { ComponentMeta } from '@storybook/react';
 import DisaggregationHeatMap from './DisaggregationHeatMap';
 import { ParentSize } from '@visx/responsive';

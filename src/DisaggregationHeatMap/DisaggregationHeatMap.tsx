@@ -1,9 +1,8 @@
 import React from 'react';
 import { Group } from '@visx/group';
-import genBins, { Bin, Bins } from '@visx/mock-data/lib/generators/genBins';
+import { Bin, Bins } from '@visx/mock-data/lib/generators/genBins';
 import { scaleLinear } from '@visx/scale';
 import { HeatmapRect } from '@visx/heatmap';
-import { getSeededRandom } from '@visx/mock-data';
 import { AxisBottom, AxisLeft } from '@visx/axis';
 import ColorBar from '../ColorBar/ColorBar';
 import { HeatmapProps } from './disaggregationHeatMap.types';

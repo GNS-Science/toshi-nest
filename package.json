@@ -105,6 +105,7 @@
     "@visx/axis": "^2.11.1",
     "@visx/clip-path": "^2.1.0",
     "@visx/event": "^2.6.0",
+    "@visx/gradient": "^3.0.0",
     "@visx/grid": "^2.11.1",
     "@visx/group": "^2.1.0",
     "@visx/heatmap": "^3.0.0",
