@@ -26,7 +26,7 @@ export const DisaggregationBarChartLegend = ({ colourArray, legendGlyphSize, dom
           <div>
             {legendTitle}:
             {labels.map((label, i) => (
-              <LegendItem key={`legend-quantile-${i}`} margin="0 5px">
+              <LegendItem key={`legend-quantile-${i}`} margin="5px">
                 <svg width={legendGlyphSize} height={legendGlyphSize}>
                   <rect fill={colourArray[i]} width={legendGlyphSize} height={legendGlyphSize} />
                 </svg>
