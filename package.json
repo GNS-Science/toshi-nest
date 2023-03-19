@@ -17,11 +17,7 @@
   "scripts": {
     "build": "rollup -c",
     "build-watch": "rollup -c -w",
-    "start-playground": "cd playground && yarn run start",
-    "start-playground-ts": "cd playground-ts && yarn run start",
-    "i-all": "yarn && cd playground && yarn && cd .. && cd playground-ts && yarn",
-    "dev": "npm-run-all --parallel build-watch start-playground",
-    "dev-ts": "npm-run-all --parallel build-watch start-playground-ts",
+    "i-all": "yarn",
     "test": "jest",
     "test:watch": "jest --watch",
     "lint": "eslint ./src/**/*.{js,ts,tsx} --quiet --fix",
