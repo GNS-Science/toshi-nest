@@ -13,6 +13,8 @@ import { default as GroupCurveChartResponsive } from './GroupCurveChartResponsiv
 import { default as ColorBar } from './ColorBar';
 import { default as RangeSliderWithInputs } from './RangeSliderWithInputs';
 import { default as FaultModelTable } from './FaultModelTable';
+import { default as DisaggregationBarChart } from './DisaggregationBarChart';
+import { default as DisaggregationBarChartLegend } from './DisaggregationBarChartLegend';
 
 export {
   ControlsBar,
@@ -30,4 +32,6 @@ export {
   ColorBar,
   RangeSliderWithInputs,
   FaultModelTable,
+  DisaggregationBarChart,
+  DisaggregationBarChartLegend,
 };
