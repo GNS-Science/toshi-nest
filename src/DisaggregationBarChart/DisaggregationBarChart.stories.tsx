@@ -13,7 +13,19 @@ export const Primary = () => {
   return (
     <div style={{ height: '100vh', padding: '20px' }}>
       <ParentSize>
-        {({ width, height }) => <DisaggregationBarChart colourArray={colourArray} barData={sampleData} width={width} height={height} verticalMargin={120} xLabel={'x'} yLabel={'y'} xNumTicks={20} />}
+        {({ width, height }) => (
+          <DisaggregationBarChart
+            colourArray={colourArray}
+            barData={sampleData}
+            width={width}
+            height={height}
+            verticalMargin={120}
+            xLabel={'x'}
+            yLabel={'Label for Y Axis'}
+            xNumTicks={20}
+            leftMargin={80}
+          />
+        )}
       </ParentSize>
     </div>
   );

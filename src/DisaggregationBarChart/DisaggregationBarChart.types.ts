@@ -15,4 +15,5 @@ export type DisaggregationBarChartProps = {
   yLabel: string;
   xNumTicks?: number;
   yNumTicks?: number;
+  leftMargin: number;
 };
