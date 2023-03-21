@@ -12,7 +12,9 @@ export const Primary = () => {
   const colourArray = ['grey', 'blue'];
   return (
     <div style={{ height: '100vh', padding: '20px' }}>
-      <ParentSize>{({ width, height }) => <DisaggregationBarChart colourArray={colourArray} barData={sampleData} width={width} height={height} verticalMargin={120} />}</ParentSize>
+      <ParentSize>
+        {({ width, height }) => <DisaggregationBarChart colourArray={colourArray} barData={sampleData} width={width} height={height} verticalMargin={120} xLabel={'x'} yLabel={'y'} xNumTicks={20} />}
+      </ParentSize>
     </div>
   );
 };

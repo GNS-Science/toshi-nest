@@ -3,20 +3,11 @@ import { Bar } from '@visx/shape';
 import { Group } from '@visx/group';
 import { AxisBottom, AxisLeft } from '@visx/axis';
 import { scaleBand, scaleLinear } from '@visx/scale';
-import { BarData } from './DisaggregationBarChart.types';
+import { DisaggregationBarChartProps } from './DisaggregationBarChart.types';
 
-export type DisaggregationBarChartProps = {
-  barData: BarData;
-  colourArray: string[];
-  width: number;
-  height: number;
-  events?: boolean;
-  verticalMargin: number;
-};
-
-export const DisaggregationBarChart = ({ barData, colourArray, width, height, verticalMargin }: DisaggregationBarChartProps) => {
+export const DisaggregationBarChart = ({ barData, colourArray, width, height, verticalMargin, xLabel, yLabel, xNumTicks, yNumTicks }: DisaggregationBarChartProps) => {
   // bounds
-  const xMax = width;
+  const xMax = width * 0.95;
   const yMax = height - verticalMargin;
 
   // scales, memoize for performance
@@ -45,9 +36,9 @@ export const DisaggregationBarChart = ({ barData, colourArray, width, height, ve
     <div style={{ display: 'flex', flexDirection: 'row' }}>
       <svg width={width} height={height}>
         <rect width={width} height={height} fill="url(#teal)" rx={14} />
-        <Group top={verticalMargin / 2} left={30}>
-          <AxisLeft scale={yScale} top={0} stroke="#1b1a1e" tickStroke="#1b1a1e" />
-          <AxisBottom top={yMax} scale={xScale} tickFormat={(x) => x.toFixed(2)} stroke="#1b1a1e" tickStroke="#1b1a1e" />
+        <Group top={verticalMargin / 2} left={50}>
+          <AxisLeft label={yLabel} scale={yScale} top={0} stroke="#1b1a1e" tickStroke="#1b1a1e" numTicks={yNumTicks || 10} />
+          <AxisBottom label={xLabel} top={yMax} scale={xScale} tickFormat={(x) => x.toFixed(2)} stroke="#1b1a1e" tickStroke="#1b1a1e" numTicks={xNumTicks || 10} />
           {barData.y1.map((data, i) => {
             const barWidth = xScale.bandwidth();
             const barHeight = yMax - (yScale(data) ?? 0);
