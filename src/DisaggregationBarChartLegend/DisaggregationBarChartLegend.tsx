@@ -6,7 +6,7 @@ export interface DisaggregationBarChartLegendProps {
   colourArray: string[];
   legendGlyphSize: number;
   domain: string[];
-  legendTitle: string;
+  legendTitle?: string;
 }
 
 export const DisaggregationBarChartLegend = ({ colourArray, legendGlyphSize, domain, legendTitle }: DisaggregationBarChartLegendProps) => {
@@ -24,7 +24,7 @@ export const DisaggregationBarChartLegend = ({ colourArray, legendGlyphSize, dom
       <LegendOrdinal scale={ordinalColorScale}>
         {(labels) => (
           <div>
-            {legendTitle}:
+            {legendTitle && legendTitle + ':'}
             {labels.map((label, i) => (
               <LegendItem key={`legend-quantile-${i}`} margin="5px">
                 <svg width={legendGlyphSize} height={legendGlyphSize}>
