@@ -218,7 +218,7 @@ const TimeDimensionLayer: React.FC<TimeDimensionLayerProps> = (props: TimeDimens
       <GeoJSON key={`geojson-timeline-layer-${Math.random()}`} data={currentSurface} style={{ color: 'red' }} />
       <TimeDimensionInfoBox>
         <Typography variant={'body2'}>Rupture ID: {surfaceProperties['rupture']}</Typography>
-        <Typography variant={'body2'}>Mean Rate: {surfaceProperties['rate_mean'].toExponential(2)} per year</Typography>
+        <Typography variant={'body2'}>Mean Rate: {surfaceProperties['rate_mean' || 'rate_weighted_mean'].toExponential(2)} per year</Typography>
         <Typography variant={'body2'}>Magnitude: {surfaceProperties['Magnitude'].toFixed(1)}</Typography>
         <Typography variant={'body2'}>Area: {Math.round(surfaceProperties['Area (m^2)'] / 1000000)} km²</Typography>
         <Typography variant={'body2'}>Length: {Math.round(surfaceProperties['Length (m)'] / 1000)} km</Typography>
