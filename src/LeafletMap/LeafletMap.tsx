@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, styled, Typography } from '@mui/material';
 import { GeoJsonObject, Geometry, Feature } from 'geojson';
 import 'leaflet/dist/leaflet.css';
@@ -49,7 +49,7 @@ const LeafletMap: React.FC<LeafletMapProps> = (props: LeafletMapProps) => {
     timeDimension,
     timeDimensionOptions,
     timeDimensionControlOptions,
-    timeDimensionGeoJsonData,
+    timeDimensionGeoJsonDataGenerator,
     timeDimensionUnderlay,
     overlay = true,
   } = props;
@@ -80,7 +80,7 @@ const LeafletMap: React.FC<LeafletMapProps> = (props: LeafletMapProps) => {
           zoomLevel={zoomLevel}
           setZoomLevel={setZoomLevel}
           timeDimension={timeDimension}
-          timeDimensionGeoJsonData={timeDimensionGeoJsonData}
+          timeDimensionGeoJsonDataGenerator={timeDimensionGeoJsonDataGenerator}
           timeDimensionUnderlay={timeDimensionUnderlay}
         />
       </MapContainer>
@@ -89,7 +89,7 @@ const LeafletMap: React.FC<LeafletMapProps> = (props: LeafletMapProps) => {
 };
 
 const LeafletLayers: React.FC<LeafletLayersProps> = (props: LeafletLayersProps) => {
-  const { style, geoJsonData, overlay, setFullscreen, cov, zoomLevel, setZoomLevel, timeDimension, timeDimensionGeoJsonData, timeDimensionUnderlay } = props;
+  const { style, geoJsonData, overlay, setFullscreen, cov, zoomLevel, setZoomLevel, timeDimension, timeDimensionGeoJsonDataGenerator, timeDimensionUnderlay } = props;
 
   const mapEvents = useMapEvents({
     zoomend: () => {
@@ -192,7 +192,7 @@ const LeafletLayers: React.FC<LeafletLayersProps> = (props: LeafletLayersProps) 
             />
           );
         })}
-      {timeDimension && timeDimensionGeoJsonData && <TimeDimensionLayer geoJsonData={timeDimensionGeoJsonData} />}
+      {timeDimension && timeDimensionGeoJsonDataGenerator && <TimeDimensionLayer geoJsonDataGenerator={timeDimensionGeoJsonDataGenerator} />}
       {timeDimension && timeDimensionUnderlay && <GeoJSON data={timeDimensionUnderlay} style={{ color: 'grey', opacity: 0.2, fillOpacity: 0.2 }} />}
       <Fullscreen
         eventHandlers={{
@@ -206,12 +206,24 @@ const LeafletLayers: React.FC<LeafletLayersProps> = (props: LeafletLayersProps) 
 };
 
 const TimeDimensionLayer: React.FC<TimeDimensionLayerProps> = (props: TimeDimensionLayerProps) => {
-  const { geoJsonData } = props;
+  const lazyFirstGeoJson = () => {
+    return geoJsonDataGenerator.next().value;
+  };
+
+  const { geoJsonDataGenerator } = props;
   const map = useMap();
-  const [currentSurface, setCurrentSurface] = useState(geoJsonData[0]);
+  const [timeIndex, setTimeIndex] = useState(0);
+  const [currentSurface, setCurrentSurface] = useState(lazyFirstGeoJson);
   (map as any).timeDimension.on('timeloading', (data: any) => {
-    setCurrentSurface(geoJsonData[data.target._currentTimeIndex]);
+    if (data.target._currentTimeIndex !== timeIndex) {
+      setTimeIndex(data.target._currentTimeIndex);
+    }
   });
+
+  useEffect(() => {
+    setCurrentSurface(geoJsonDataGenerator.next().value);
+  }, [timeIndex, geoJsonDataGenerator]);
+
   const surfaceProperties = (currentSurface as any).features[0].properties;
   return (
     <>

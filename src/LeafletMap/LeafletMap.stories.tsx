@@ -182,6 +182,15 @@ export const FaultModelWithTimeDimension = () => {
     displayDate: false,
   };
 
+  function* surfaceGenerator<GeoJsonObject>(arr: GeoJsonObject[]): Generator<GeoJsonObject, void, number> {
+    let index = 0;
+    for (const surface of arr) {
+      console.log('gen', index);
+      yield surface;
+      index++;
+    }
+  }
+
   return (
     <LeafletMap
       zoom={zoom}
@@ -196,7 +205,7 @@ export const FaultModelWithTimeDimension = () => {
       timeDimensionOptions={timeDimensionOptions}
       timeDimensionControlOptions={timeDimensionControlOptions}
       timeDimension={true}
-      timeDimensionGeoJsonData={surfaceArray as GeoJsonObject[]}
+      timeDimensionGeoJsonDataGenerator={surfaceGenerator(surfaceArray as GeoJsonObject[])}
       timeDimensionUnderlay={surfaceBaseLayer as GeoJsonObject}
     />
   );
@@ -224,6 +233,15 @@ export const FaultModelWithTimeDimension2 = () => {
     displayDate: false,
   };
 
+  function* surfaceGenerator<GeoJsonObject>(arr: GeoJsonObject[]): Generator<GeoJsonObject, void, number> {
+    let index = 0;
+    for (const surface of arr) {
+      console.log('gen', index);
+      yield surface;
+      index++;
+    }
+  }
+
   return (
     <LeafletMap
       zoom={zoom}
@@ -238,7 +256,7 @@ export const FaultModelWithTimeDimension2 = () => {
       timeDimensionOptions={timeDimensionOptions}
       timeDimensionControlOptions={timeDimensionControlOptions}
       timeDimension={true}
-      timeDimensionGeoJsonData={surfaceArray2 as GeoJsonObject[]}
+      timeDimensionGeoJsonDataGenerator={surfaceGenerator(surfaceArray2 as GeoJsonObject[])}
       timeDimensionUnderlay={surfaceBaseLayer2 as GeoJsonObject}
     />
   );
