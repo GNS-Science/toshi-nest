@@ -19,7 +19,7 @@ export interface LeafletMapProps {
   timeDimension?: boolean;
   timeDimensionOptions?: TimeDimensionOptions;
   timeDimensionControlOptions?: TimeDimensionControlOptions;
-  timeDimensionGeoJsonData?: GeoJsonObject[];
+  timeDimensionGeoJsonDataGenerator?: GeoJsonGenerator<GeoJsonObject>;
   timeDimensionUnderlay?: GeoJsonObject;
   setZoomLevel: (setZoomLevel: number) => void;
 }
@@ -53,10 +53,19 @@ export interface LeafletLayersProps {
   zoomLevel: number;
   setZoomLevel: (setZoomLevel: number) => void;
   timeDimension?: boolean;
-  timeDimensionGeoJsonData?: GeoJsonObject[];
+  timeDimensionGeoJsonDataGenerator?: GeoJsonGenerator<GeoJsonObject>;
   timeDimensionUnderlay?: GeoJsonObject;
 }
 
 export interface TimeDimensionLayerProps {
-  geoJsonData: GeoJsonObject[];
+  geoJsonDataGenerator: GeoJsonGenerator<GeoJsonObject>;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export interface GeoJsonGenerator<T = GeoJsonObject, TReturn = any, TNext = number> extends Iterator<T, TReturn, TNext> {
+  next(...args: [] | [TNext]): IteratorResult<T, TReturn>;
+  return?(value?: TReturn): IteratorResult<T, TReturn>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  throw?(e?: any): IteratorResult<T, TReturn>;
+  [Symbol.iterator](): Generator<T, TReturn, TNext>;
 }
