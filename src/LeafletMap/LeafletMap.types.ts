@@ -3,7 +3,7 @@ import { LatLngExpression } from 'leaflet';
 
 export interface LeafletMapProps {
   geoJsonData: string[];
-  nzCentre: LatLngExpression;
+  nzCentre: typeof LatLngExpression;
   zoom: number;
   height: string;
   width: string;
@@ -19,9 +19,13 @@ export interface LeafletMapProps {
   timeDimension?: boolean;
   timeDimensionOptions?: TimeDimensionOptions;
   timeDimensionControlOptions?: TimeDimensionControlOptions;
-  timeDimensionGeoJsonDataGenerator?: GeoJsonGenerator<GeoJsonObject>;
+  timeDimensionGeoJsonData?: GeoJsonObject[];
   timeDimensionUnderlay?: GeoJsonObject;
   setZoomLevel: (setZoomLevel: number) => void;
+  setTimeDimensionNeedsMore?: (setTimeDimensionNeedsMore: boolean) => void;
+  setTimeDimensionHasNoMore?: (setTimeDimensionHasNoMore: boolean) => void;
+  surfaceProperties?: SurfaceProperties[];
+  timeDimensionTotalLength?: number;
 }
 
 export interface GeoJsonStyle {
@@ -53,19 +57,28 @@ export interface LeafletLayersProps {
   zoomLevel: number;
   setZoomLevel: (setZoomLevel: number) => void;
   timeDimension?: boolean;
-  timeDimensionGeoJsonDataGenerator?: GeoJsonGenerator<GeoJsonObject>;
+  timeDimensionGeoJsonData?: GeoJsonObject[];
   timeDimensionUnderlay?: GeoJsonObject;
+  setTimeDimensionHasNoMore?: (setTimeDimensionHasNoMore: boolean) => void;
+  setTimeDimensionNeedsMore?: (setTimeDimensionNeedsMore: boolean) => void;
+  surfaceProperties?: SurfaceProperties[];
+  timeDimensionTotalLength?: number;
 }
 
 export interface TimeDimensionLayerProps {
-  geoJsonDataGenerator: GeoJsonGenerator<GeoJsonObject>;
+  geoJsonData: GeoJsonObject[];
+  setTimeDimensionHasNoMore: (setTimeDimensionHasNoMore: boolean) => void;
+  setTimeDimensionNeedsMore: (setTimeDimensionNeedsMore: boolean) => void;
+  surfaceProperties: SurfaceProperties[];
+  timeDimensionTotalLength: number;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export interface GeoJsonGenerator<T = GeoJsonObject, TReturn = any, TNext = number> extends Iterator<T, TReturn, TNext> {
-  next(...args: [] | [TNext]): IteratorResult<T, TReturn>;
-  return?(value?: TReturn): IteratorResult<T, TReturn>;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  throw?(e?: any): IteratorResult<T, TReturn>;
-  [Symbol.iterator](): Generator<T, TReturn, TNext>;
-}
+export type SurfaceProperties =
+  | {
+      rate_weighted_mean: number | null;
+      area: number | null;
+      length: number | null;
+      magnitude: number | null;
+    }
+  | null
+  | undefined;

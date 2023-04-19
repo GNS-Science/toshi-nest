@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Box, styled, Typography } from '@mui/material';
 import { GeoJsonObject, Geometry, Feature } from 'geojson';
 import 'leaflet/dist/leaflet.css';
@@ -49,8 +49,12 @@ const LeafletMap: React.FC<LeafletMapProps> = (props: LeafletMapProps) => {
     timeDimension,
     timeDimensionOptions,
     timeDimensionControlOptions,
-    timeDimensionGeoJsonDataGenerator,
+    timeDimensionGeoJsonData,
     timeDimensionUnderlay,
+    setTimeDimensionNeedsMore,
+    setTimeDimensionHasNoMore,
+    timeDimensionTotalLength,
+    surfaceProperties,
     overlay = true,
   } = props;
 
@@ -80,8 +84,12 @@ const LeafletMap: React.FC<LeafletMapProps> = (props: LeafletMapProps) => {
           zoomLevel={zoomLevel}
           setZoomLevel={setZoomLevel}
           timeDimension={timeDimension}
-          timeDimensionGeoJsonDataGenerator={timeDimensionGeoJsonDataGenerator}
+          timeDimensionGeoJsonData={timeDimensionGeoJsonData}
           timeDimensionUnderlay={timeDimensionUnderlay}
+          setTimeDimensionNeedsMore={setTimeDimensionNeedsMore}
+          setTimeDimensionHasNoMore={setTimeDimensionHasNoMore}
+          surfaceProperties={surfaceProperties}
+          timeDimensionTotalLength={timeDimensionTotalLength}
         />
       </MapContainer>
     </>
@@ -89,7 +97,22 @@ const LeafletMap: React.FC<LeafletMapProps> = (props: LeafletMapProps) => {
 };
 
 const LeafletLayers: React.FC<LeafletLayersProps> = (props: LeafletLayersProps) => {
-  const { style, geoJsonData, overlay, setFullscreen, cov, zoomLevel, setZoomLevel, timeDimension, timeDimensionGeoJsonDataGenerator, timeDimensionUnderlay } = props;
+  const {
+    style,
+    geoJsonData,
+    overlay,
+    setFullscreen,
+    cov,
+    zoomLevel,
+    setZoomLevel,
+    timeDimension,
+    timeDimensionGeoJsonData,
+    timeDimensionUnderlay,
+    setTimeDimensionNeedsMore,
+    setTimeDimensionHasNoMore,
+    surfaceProperties,
+    timeDimensionTotalLength,
+  } = props;
 
   const mapEvents = useMapEvents({
     zoomend: () => {
@@ -101,7 +124,7 @@ const LeafletLayers: React.FC<LeafletLayersProps> = (props: LeafletLayersProps) 
     return JSON.parse(data) as GeoJsonObject;
   };
 
-  const onEachFeature = (feature: Feature<Geometry, any>, layer: Layer) => {
+  const onEachFeature = (feature: Feature<Geometry, any>, layer: typeof Layer) => {
     let popupContent = '';
     if (feature.properties?.loc) {
       popupContent = `
@@ -192,7 +215,15 @@ const LeafletLayers: React.FC<LeafletLayersProps> = (props: LeafletLayersProps) 
             />
           );
         })}
-      {timeDimension && timeDimensionGeoJsonDataGenerator && <TimeDimensionLayer geoJsonDataGenerator={timeDimensionGeoJsonDataGenerator} />}
+      {timeDimension && timeDimensionGeoJsonData && setTimeDimensionHasNoMore && setTimeDimensionNeedsMore && timeDimensionTotalLength && (
+        <TimeDimensionLayer
+          geoJsonData={timeDimensionGeoJsonData}
+          setTimeDimensionNeedsMore={setTimeDimensionNeedsMore}
+          setTimeDimensionHasNoMore={setTimeDimensionHasNoMore}
+          surfaceProperties={surfaceProperties || []}
+          timeDimensionTotalLength={timeDimensionTotalLength}
+        />
+      )}
       {timeDimension && timeDimensionUnderlay && <GeoJSON data={timeDimensionUnderlay} style={{ color: 'grey', opacity: 0.2, fillOpacity: 0.2 }} />}
       <Fullscreen
         eventHandlers={{
@@ -206,35 +237,79 @@ const LeafletLayers: React.FC<LeafletLayersProps> = (props: LeafletLayersProps) 
 };
 
 const TimeDimensionLayer: React.FC<TimeDimensionLayerProps> = (props: TimeDimensionLayerProps) => {
-  const lazyFirstGeoJson = () => {
-    return geoJsonDataGenerator.next().value;
-  };
-
-  const { geoJsonDataGenerator } = props;
+  const { geoJsonData, setTimeDimensionNeedsMore, setTimeDimensionHasNoMore, surfaceProperties, timeDimensionTotalLength } = props;
   const map = useMap();
   const [timeIndex, setTimeIndex] = useState(0);
-  const [currentSurface, setCurrentSurface] = useState(lazyFirstGeoJson);
+  const [currentSurface, setCurrentSurface] = useState(geoJsonData[0]);
   (map as any).timeDimension.on('timeloading', (data: any) => {
     if (data.target._currentTimeIndex !== timeIndex) {
       setTimeIndex(data.target._currentTimeIndex);
+      console.log('data.target._currentTimeIndex', data.target._currentTimeIndex);
     }
   });
 
   useEffect(() => {
-    setCurrentSurface(geoJsonDataGenerator.next().value);
-  }, [timeIndex, geoJsonDataGenerator]);
+    setCurrentSurface(geoJsonData[timeIndex]);
+  }, [timeIndex, geoJsonData]);
 
-  const surfaceProperties = (currentSurface as any).features[0].properties;
+  useEffect(() => {
+    if (geoJsonData.length - timeIndex < 5) {
+      setTimeDimensionNeedsMore(true);
+    }
+  }, [timeIndex, geoJsonData, setTimeDimensionNeedsMore]);
+
+  useEffect(() => {
+    if (timeIndex === geoJsonData.length) {
+      (map as any).timeDimensionControl._player._paused = true;
+      setTimeDimensionHasNoMore(true);
+    } else if (timeIndex > geoJsonData.length) {
+      setCurrentSurface(geoJsonData[geoJsonData.length - 1] !== undefined ? geoJsonData[geoJsonData.length - 1] : geoJsonData[timeIndex]);
+      if (geoJsonData.length <= timeIndex) {
+        setTimeDimensionHasNoMore(true);
+        setTimeDimensionNeedsMore(true);
+      }
+    } else if (timeIndex === timeDimensionTotalLength - 1) {
+      setTimeDimensionHasNoMore(false);
+      setTimeDimensionNeedsMore(true);
+    } else {
+      (map as any).timeDimensionControl._player._paused = false;
+      setTimeDimensionHasNoMore(false);
+    }
+  }, [timeIndex, geoJsonData, setTimeDimensionHasNoMore, map, setTimeDimensionNeedsMore, timeDimensionTotalLength]);
+
+  const surfaceId = (currentSurface as any)?.features[0]?.id;
+
+  const timeArray = useMemo(() => {
+    return (
+      timeDimensionTotalLength &&
+      Array(timeDimensionTotalLength)
+        .fill(0)
+        .map((_, i) => i + 1)
+    );
+  }, [timeDimensionTotalLength]);
+
+  useEffect(() => {
+    if (timeArray && timeArray.length > 0) {
+      (map as any).timeDimension.setAvailableTimes(timeArray, 'replace');
+    }
+  }, [map, timeArray]);
+  console.log('timeDimensionTotalLength', timeDimensionTotalLength);
+  console.log('timeIndex', timeIndex);
   return (
     <>
       <GeoJSON key={`geojson-timeline-layer-${Math.random()}`} data={currentSurface} style={{ color: 'red' }} />
-      <TimeDimensionInfoBox>
-        <Typography variant={'body2'}>Rupture ID: {surfaceProperties['id']}</Typography>
-        <Typography variant={'body2'}>Mean Rate: {surfaceProperties['rate_weighted_mean'].toExponential(2)} per year</Typography>
-        <Typography variant={'body2'}>Magnitude: {surfaceProperties['Magnitude'].toFixed(1)}</Typography>
-        <Typography variant={'body2'}>Area: {Math.round(surfaceProperties['Area (m^2)'] / 1000000)} km²</Typography>
-        <Typography variant={'body2'}>Length: {Math.round(surfaceProperties['Length (m)'] / 1000)} km</Typography>
-      </TimeDimensionInfoBox>
+      {surfaceProperties[timeIndex] !== null && surfaceProperties[timeIndex] !== undefined && (
+        <TimeDimensionInfoBox>
+          <Typography variant={'body2'}>Rupture ID: {surfaceId}</Typography>
+          <Typography variant={'body2'}>
+            Rupture {timeIndex + 1} of {timeDimensionTotalLength}
+          </Typography>
+          <Typography variant={'body2'}>Mean Rate: {surfaceProperties[timeIndex]?.rate_weighted_mean?.toExponential(2)} per year</Typography>
+          <Typography variant={'body2'}>Magnitude: {surfaceProperties[timeIndex]?.magnitude?.toFixed(1)}</Typography>
+          <Typography variant={'body2'}>Area: {surfaceProperties[timeIndex]?.area} km²</Typography>
+          <Typography variant={'body2'}>Length: {surfaceProperties[timeIndex]?.length} km</Typography>
+        </TimeDimensionInfoBox>
+      )}
     </>
   );
 };
