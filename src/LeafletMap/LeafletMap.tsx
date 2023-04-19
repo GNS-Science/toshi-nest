@@ -124,7 +124,7 @@ const LeafletLayers: React.FC<LeafletLayersProps> = (props: LeafletLayersProps) 
     return JSON.parse(data) as GeoJsonObject;
   };
 
-  const onEachFeature = (feature: Feature<Geometry, any>, layer: typeof Layer) => {
+  const onEachFeature = (feature: Feature<Geometry, any>, layer: Layer) => {
     let popupContent = '';
     if (feature.properties?.loc) {
       popupContent = `
@@ -244,7 +244,6 @@ const TimeDimensionLayer: React.FC<TimeDimensionLayerProps> = (props: TimeDimens
   (map as any).timeDimension.on('timeloading', (data: any) => {
     if (data.target._currentTimeIndex !== timeIndex) {
       setTimeIndex(data.target._currentTimeIndex);
-      console.log('data.target._currentTimeIndex', data.target._currentTimeIndex);
     }
   });
 
@@ -293,8 +292,7 @@ const TimeDimensionLayer: React.FC<TimeDimensionLayerProps> = (props: TimeDimens
       (map as any).timeDimension.setAvailableTimes(timeArray, 'replace');
     }
   }, [map, timeArray]);
-  console.log('timeDimensionTotalLength', timeDimensionTotalLength);
-  console.log('timeIndex', timeIndex);
+
   return (
     <>
       <GeoJSON key={`geojson-timeline-layer-${Math.random()}`} data={currentSurface} style={{ color: 'red' }} />

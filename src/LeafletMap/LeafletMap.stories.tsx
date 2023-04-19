@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { ComponentMeta } from '@storybook/react';
 import { Box } from '@mui/material';
 import { LatLngExpression } from 'leaflet';
+import { GeoJsonObject } from 'geojson';
 
 import SelectControl from '../SelectControl';
 import LeafletMap from './LeafletMap';
@@ -11,11 +12,7 @@ import geojsonTesetDat05 from '../__tests__/testData/geoJson/geojsonTestData0.5'
 import geojsonTestDataPGA from '../__tests__/testData/geoJson/geojsonTestDataPGA';
 import geojsonTestDataCoV from '../__tests__/testData/geoJson/geojsonTestDataCoV';
 import geojsonTestDataStyled from '../__tests__/testData/geoJson/geojsonTestDataStyled';
-import surfaceArray from '../__tests__/testData/geoJson/puysegur_rupture_surfaces_above_2e-4.json';
 import surfaceBaseLayer from '../__tests__/testData/geoJson/surfaces_puysegur.json';
-import surfaceArray2 from '../__tests__/testData/geoJson/kaikoura_rupture_surfaces_above_2e-4.json';
-import surfaceBaseLayer2 from '../__tests__/testData/geoJson/CRU_fault_surfaces.json';
-import { GeoJsonObject } from 'geojson';
 import ruptureArray from '../__tests__/testData/geoJson/wlg_hik_10k.json';
 import ruptureProperties from '../__tests__/testData/wlg_hik_10k_surface_properties.json';
 
@@ -166,10 +163,9 @@ export const FaultModelWithTimeDimension = () => {
   const [fullscreen, setFullscreen] = useState<boolean>(false);
   const [needsMore, setNeedsMore] = useState<boolean>(false);
   const [hasNoMore, setHasNoMore] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(false);
   const [zoomLevel, setZoomLevel] = useState<number>(5);
 
-  const totalRuptures = ruptureArray.length;
+  const totalRuptures = 88;
 
   const timeArray = useMemo(() => {
     return (
