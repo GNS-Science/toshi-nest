@@ -246,6 +246,11 @@ const TimeDimensionLayer: React.FC<TimeDimensionLayerProps> = (props: TimeDimens
       setTimeIndex(data.target._currentTimeIndex);
     }
   });
+  (map as any).timeDimension.on('availabletimeschanged', (data: any) => {
+    (map as any).timeDimension.setCurrentTime(0);
+    setTimeIndex(0);
+    (map as any).timeDimensionControl._player.stop();
+  });
 
   useEffect(() => {
     setCurrentSurface(geoJsonData[timeIndex]);
@@ -259,7 +264,7 @@ const TimeDimensionLayer: React.FC<TimeDimensionLayerProps> = (props: TimeDimens
 
   useEffect(() => {
     if (timeIndex === geoJsonData.length) {
-      (map as any).timeDimensionControl._player._paused = true;
+      (map as any).timeDimensionControl._player.pause();
       setTimeDimensionHasNoMore(true);
     } else if (timeIndex > geoJsonData.length) {
       setCurrentSurface(geoJsonData[geoJsonData.length - 1] !== undefined ? geoJsonData[geoJsonData.length - 1] : geoJsonData[timeIndex]);
@@ -271,12 +276,12 @@ const TimeDimensionLayer: React.FC<TimeDimensionLayerProps> = (props: TimeDimens
       setTimeDimensionHasNoMore(false);
       setTimeDimensionNeedsMore(true);
     } else {
-      (map as any).timeDimensionControl._player._paused = false;
+      (map as any).timeDimensionControl._player.release();
       setTimeDimensionHasNoMore(false);
     }
   }, [timeIndex, geoJsonData, setTimeDimensionHasNoMore, map, setTimeDimensionNeedsMore, timeDimensionTotalLength]);
 
-  const surfaceId = (currentSurface as any)?.features[0]?.id;
+  const surfaceId = useMemo(() => (currentSurface as any)?.features[0]?.id, [currentSurface]);
 
   const timeArray = useMemo(() => {
     return (

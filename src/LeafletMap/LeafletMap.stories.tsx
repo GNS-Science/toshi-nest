@@ -219,3 +219,66 @@ export const FaultModelWithTimeDimension = () => {
     />
   );
 };
+
+export const FaultModelWithTimeDimensionTest = () => {
+  const [fullscreen, setFullscreen] = useState<boolean>(false);
+  const [needsMore, setNeedsMore] = useState<boolean>(false);
+  const [hasNoMore, setHasNoMore] = useState<boolean>(false);
+  const [zoomLevel, setZoomLevel] = useState<number>(5);
+  const [totalRuptures, setTotalRuptures] = useState<number>(88);
+
+  const timeArray = useMemo(() => {
+    return (
+      totalRuptures &&
+      Array(totalRuptures)
+        .fill(0)
+        .map((_, i) => i + 1)
+    );
+  }, [totalRuptures]);
+
+  const zoom = 5;
+  const nzCentre = [-40.946, 174.167];
+  const currentTime = new Date();
+  currentTime.setUTCDate(1);
+  const timeDimensionOptions = {
+    currentTime: 1,
+    times: timeArray || [],
+    timeInterval: 'P1M/2021-01-01T00:00:00Z/P1M',
+    period: 'P1D',
+  };
+
+  const timeDimensionControlOptions = {
+    displayDate: false,
+    maxSpeed: 5,
+    minSpeed: 1,
+    playerOptions: {
+      loop: true,
+    },
+  };
+
+  return (
+    <>
+      <LeafletMap
+        zoom={zoom}
+        nzCentre={nzCentre as LatLngExpression}
+        geoJsonData={[]}
+        height={'700px'}
+        width={'100%'}
+        setFullscreen={setFullscreen}
+        cov={true}
+        zoomLevel={zoomLevel}
+        setZoomLevel={setZoomLevel}
+        timeDimensionOptions={timeDimensionOptions}
+        timeDimensionControlOptions={timeDimensionControlOptions}
+        timeDimension={true}
+        timeDimensionGeoJsonData={ruptureArray as GeoJsonObject[]}
+        timeDimensionUnderlay={surfaceBaseLayer as GeoJsonObject}
+        setTimeDimensionNeedsMore={setNeedsMore}
+        setTimeDimensionHasNoMore={setHasNoMore}
+        surfaceProperties={ruptureProperties || []}
+        timeDimensionTotalLength={totalRuptures || 0}
+      />
+      <button onClick={() => setTotalRuptures(totalRuptures + 1)}>Add</button>
+    </>
+  );
+};
