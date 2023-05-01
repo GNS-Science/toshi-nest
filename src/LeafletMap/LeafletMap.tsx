@@ -246,7 +246,7 @@ const TimeDimensionLayer: React.FC<TimeDimensionLayerProps> = (props: TimeDimens
       setTimeIndex(data.target._currentTimeIndex);
     }
   });
-  (map as any).timeDimension.on('availabletimeschanged', (data: any) => {
+  (map as any).timeDimension.on('availabletimeschanged', () => {
     (map as any).timeDimension.setCurrentTime(0);
     setTimeIndex(0);
     (map as any).timeDimensionControl._player.stop();
@@ -282,15 +282,17 @@ const TimeDimensionLayer: React.FC<TimeDimensionLayerProps> = (props: TimeDimens
   }, [timeIndex, geoJsonData, setTimeDimensionHasNoMore, map, setTimeDimensionNeedsMore, timeDimensionTotalLength]);
 
   const surfaceId = useMemo(() => (currentSurface as any)?.features[0]?.id, [currentSurface]);
+  const firstId = useMemo(() => (geoJsonData[0] as any)?.features[0]?.id, [geoJsonData]);
 
   const timeArray = useMemo(() => {
     return (
       timeDimensionTotalLength &&
+      firstId &&
       Array(timeDimensionTotalLength)
         .fill(0)
-        .map((_, i) => i + 1)
+        .map((_, i) => i + 1 + Math.random() / 10)
     );
-  }, [timeDimensionTotalLength]);
+  }, [timeDimensionTotalLength, firstId]);
 
   useEffect(() => {
     if (timeArray && timeArray.length > 0) {
