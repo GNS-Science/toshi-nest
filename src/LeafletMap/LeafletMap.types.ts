@@ -1,5 +1,7 @@
 import { GeoJsonObject } from 'geojson';
 import { LatLngExpression } from 'leaflet';
+import { Feature, Geometry } from 'geojson';
+import { Layer } from 'leaflet';
 
 export interface LeafletMapProps {
   geoJsonData: string[];
@@ -8,12 +10,13 @@ export interface LeafletMapProps {
   height: string;
   width: string;
   setFullscreen: (setFullscreen: boolean) => void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onEachFeature?: (feature: Feature<Geometry, any>, layer: Layer) => void;
   style?: GeoJsonStyle;
   minZoom?: number;
   maxZoom?: number;
   zoomSnap?: number;
   zoomDelta?: number;
-  cov?: boolean;
   overlay?: boolean;
   zoomLevel: number;
   timeDimension?: boolean;
@@ -50,10 +53,11 @@ export interface TimeDimensionControlOptions {
 
 export interface LeafletLayersProps {
   style?: GeoJsonStyle;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onEachFeature?: (feature: Feature<Geometry, any>, layer: Layer) => void;
   geoJsonData: string[];
   overlay?: boolean;
   setFullscreen: (setFullscreen: boolean) => void;
-  cov?: boolean;
   zoomLevel: number;
   setZoomLevel: (setZoomLevel: number) => void;
   timeDimension?: boolean;
