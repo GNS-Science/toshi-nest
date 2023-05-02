@@ -1,14 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect, useMemo } from 'react';
 import { Box, styled, Typography } from '@mui/material';
-import { GeoJsonObject, Geometry, Feature } from 'geojson';
+import { GeoJsonObject } from 'geojson';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-timedimension';
 import { MapContainer, TileLayer, GeoJSON, LayersControl, Pane, LayerGroup, useMap, useMapEvents } from 'react-leaflet';
 import Fullscreen from 'react-leaflet-fullscreen-plugin';
 
 import { LeafletMapProps, LeafletLayersProps, TimeDimensionLayerProps } from './LeafletMap.types';
-import { Layer } from 'leaflet';
 import '../../node_modules/leaflet/dist/leaflet.css';
 import '../../node_modules/leaflet-timedimension/src/leaflet.timedimension.control.css';
 
@@ -43,8 +42,8 @@ const LeafletMap: React.FC<LeafletMapProps> = (props: LeafletMapProps) => {
     maxZoom,
     zoomSnap,
     zoomDelta,
-    cov,
     zoomLevel,
+    onEachFeature,
     setZoomLevel,
     timeDimension,
     timeDimensionOptions,
@@ -78,8 +77,8 @@ const LeafletMap: React.FC<LeafletMapProps> = (props: LeafletMapProps) => {
         <LeafletLayers
           style={style}
           geoJsonData={geoJsonData}
+          onEachFeature={onEachFeature}
           setFullscreen={setFullscreen}
-          cov={cov}
           overlay={overlay}
           zoomLevel={zoomLevel}
           setZoomLevel={setZoomLevel}
@@ -102,7 +101,7 @@ const LeafletLayers: React.FC<LeafletLayersProps> = (props: LeafletLayersProps) 
     geoJsonData,
     overlay,
     setFullscreen,
-    cov,
+    onEachFeature,
     zoomLevel,
     setZoomLevel,
     timeDimension,
@@ -122,38 +121,6 @@ const LeafletLayers: React.FC<LeafletLayersProps> = (props: LeafletLayersProps) 
 
   const parseGeoJson = (data: string): GeoJsonObject => {
     return JSON.parse(data) as GeoJsonObject;
-  };
-
-  const onEachFeature = (feature: Feature<Geometry, any>, layer: Layer) => {
-    let popupContent = '';
-    if (feature.properties?.loc) {
-      popupContent = `
-        <div>
-          <p>Location: ${feature.properties?.loc[1]}, ${feature.properties?.loc[0]}</p>
-          <p>${cov ? 'CoV' : 'Acceleration'}: ${Number(feature.properties.value).toFixed(2)} ${cov ? '' : '(g)'}</p>
-        </div>
-      `;
-    } else if (feature.properties['magnitude.min']) {
-      const location = feature.properties?.['fault_name'];
-      const minMag = feature.properties?.['magnitude.min'];
-      const maxMag = feature.properties?.['magnitude.max'];
-      const minRuptureRate = feature.properties?.['annual_rate.min'];
-      const maxRuptureRate = feature.properties?.['annual_rate.max'];
-      const totalRate = feature.properties?.['annual_rate.sum'];
-      popupContent = `
-      <div>
-        <b>${location}</b>
-        <p>Min Magnitude: ${minMag.toFixed(2)}</p>
-        <p>Max Magnitude: ${maxMag.toFixed(2)}</p>
-        <p>Min Rupture Rate (1/yr): ${minRuptureRate.toExponential(2)}</p>
-        <p>Max Rupture Rate (1/yr): ${maxRuptureRate.toExponential(2)}</p>
-        <p>Total Rate (1/yr): ${totalRate.toExponential(2)}</p>
-      </div>
-     `;
-    }
-    if (popupContent) {
-      layer.bindPopup(popupContent);
-    }
   };
 
   return (

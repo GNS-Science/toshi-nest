@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useMemo } from 'react';
 import { ComponentMeta } from '@storybook/react';
 import { Box } from '@mui/material';
 import { LatLngExpression } from 'leaflet';
-import { GeoJsonObject } from 'geojson';
+import { Feature, Geometry, GeoJsonObject } from 'geojson';
+import { Layer } from 'leaflet';
 
 import SelectControl from '../SelectControl';
 import LeafletMap from './LeafletMap';
@@ -31,6 +33,28 @@ export const Primary = () => {
   const zoom = 5;
   const nzCentre = [-40.946, 174.167];
 
+  const onEachFeature = (feature: Feature<Geometry, any>, layer: Layer) => {
+    if (feature.properties?.['magnitude.min']) {
+      const location = feature.properties?.['fault_name'];
+      const minMag = feature.properties?.['magnitude.min'];
+      const maxMag = feature.properties?.['magnitude.max'];
+      const minRuptureRate = feature.properties?.['annual_rate.min'];
+      const maxRuptureRate = feature.properties?.['annual_rate.max'];
+      const totalRate = feature.properties?.['annual_rate.sum'];
+      const popupContent = `
+        <div>
+          <b>${location}</b>
+          <p>Min Magnitude: ${minMag.toFixed(2)}</p>
+          <p>Max Magnitude: ${maxMag.toFixed(2)}</p>
+          <p>Min Rupture Rate (1/yr): ${minRuptureRate.toExponential(2)}</p>
+          <p>Max Rupture Rate (1/yr): ${maxRuptureRate.toExponential(2)}</p>
+          <p>Total Rate (1/yr): ${totalRate.toExponential(2)}</p>
+        </div>
+       `;
+      layer.bindPopup(popupContent);
+    }
+  };
+
   return (
     <LeafletMap
       zoom={zoom}
@@ -43,6 +67,7 @@ export const Primary = () => {
       zoomDelta={0.25}
       zoomLevel={zoomLevel}
       setZoomLevel={setZoomLevel}
+      onEachFeature={onEachFeature}
       style={{
         stroke: '#f21616',
         color: '#f21616',
@@ -61,6 +86,16 @@ export const HazardMaps = () => {
   const zoom = 5;
   const nzCentre = [-40.946, 174.167];
 
+  const onEachFeature = (feature: Feature<Geometry, any>, layer: Layer) => {
+    const popupContent = `
+    <div>
+      <p>Location: ${feature.properties?.loc[1]}, ${feature.properties?.loc[0]}</p>
+      <p>Acceleration: ${Number(feature.properties.value).toFixed(2)} (g)</p>
+    </div>
+  `;
+    layer.bindPopup(popupContent);
+  };
+
   return (
     <LeafletMap
       zoom={zoom}
@@ -69,6 +104,7 @@ export const HazardMaps = () => {
       height={'700px'}
       width={'100%'}
       setFullscreen={setFullscreen}
+      onEachFeature={onEachFeature}
       zoomLevel={zoomLevel}
       setZoomLevel={setZoomLevel}
     />
@@ -81,6 +117,16 @@ export const HazardMapsWithCoV = () => {
   const zoom = 5;
   const nzCentre = [-40.946, 174.167];
 
+  const onEachFeature = (feature: Feature<Geometry, any>, layer: Layer) => {
+    const popupContent = `
+      <div>
+        <p>Location: ${feature.properties?.loc[1]}, ${feature.properties?.loc[0]}</p>
+        <p>CoV: ${Number(feature.properties.value).toFixed(2)}</p>
+      </div>
+    `;
+    layer.bindPopup(popupContent);
+  };
+
   return (
     <LeafletMap
       zoom={zoom}
@@ -89,7 +135,7 @@ export const HazardMapsWithCoV = () => {
       height={'700px'}
       width={'100%'}
       setFullscreen={setFullscreen}
-      cov={true}
+      onEachFeature={onEachFeature}
       zoomLevel={zoomLevel}
       setZoomLevel={setZoomLevel}
     />
@@ -100,6 +146,16 @@ export const HazardMapsWithControls = () => {
   const [fullscreen, setFullscreen] = useState<boolean>(false);
   const [selection, setSelection] = useState<string>('option1(PGA)');
   const [zoomLevel, setZoomLevel] = useState<number>(5);
+
+  const onEachFeature = (feature: Feature<Geometry, any>, layer: Layer) => {
+    const popupContent = `
+      <div>
+        <p>Location: ${feature.properties?.loc[1]}, ${feature.properties?.loc[0]}</p>
+        <p>Acceleration: ${Number(feature.properties.value).toFixed(2)} (g)</p>
+      </div>
+    `;
+    layer.bindPopup(popupContent);
+  };
 
   const geoJson = useMemo<string[]>(() => {
     switch (selection) {
@@ -123,6 +179,7 @@ export const HazardMapsWithControls = () => {
         zoom={zoom}
         geoJsonData={geoJson}
         nzCentre={nzCentre as LatLngExpression}
+        onEachFeature={onEachFeature}
         height={'700px'}
         width={'100%'}
         setFullscreen={setFullscreen}
@@ -144,6 +201,28 @@ export const FaultModelWithStyles = () => {
   const zoom = 5;
   const nzCentre = [-40.946, 174.167];
 
+  const onEachFeature = (feature: Feature<Geometry, any>, layer: Layer) => {
+    if (feature.properties?.['magnitude.min']) {
+      const location = feature.properties?.['fault_name'];
+      const minMag = feature.properties?.['magnitude.min'];
+      const maxMag = feature.properties?.['magnitude.max'];
+      const minRuptureRate = feature.properties?.['annual_rate.min'];
+      const maxRuptureRate = feature.properties?.['annual_rate.max'];
+      const totalRate = feature.properties?.['annual_rate.sum'];
+      const popupContent = `
+      <div>
+        <b>${location}</b>
+       <p>Min Magnitude: ${minMag.toFixed(2)}</p>
+        <p>Max Magnitude: ${maxMag.toFixed(2)}</p>
+        <p>Min Rupture Rate (1/yr): ${minRuptureRate.toExponential(2)}</p>
+        <p>Max Rupture Rate (1/yr): ${maxRuptureRate.toExponential(2)}</p>
+        <p>Total Rate (1/yr): ${totalRate.toExponential(2)}</p>
+      </div>
+     `;
+      layer.bindPopup(popupContent);
+    }
+  };
+
   return (
     <LeafletMap
       zoom={zoom}
@@ -151,8 +230,8 @@ export const FaultModelWithStyles = () => {
       geoJsonData={geojsonTestDataStyled}
       height={'700px'}
       width={'100%'}
+      onEachFeature={onEachFeature}
       setFullscreen={setFullscreen}
-      cov={true}
       zoomLevel={zoomLevel}
       setZoomLevel={setZoomLevel}
     />
@@ -204,7 +283,6 @@ export const FaultModelWithTimeDimension = () => {
       height={'700px'}
       width={'100%'}
       setFullscreen={setFullscreen}
-      cov={true}
       zoomLevel={zoomLevel}
       setZoomLevel={setZoomLevel}
       timeDimensionOptions={timeDimensionOptions}
@@ -265,7 +343,6 @@ export const FaultModelWithTimeDimensionTest = () => {
         height={'700px'}
         width={'100%'}
         setFullscreen={setFullscreen}
-        cov={true}
         zoomLevel={zoomLevel}
         setZoomLevel={setZoomLevel}
         timeDimensionOptions={timeDimensionOptions}
@@ -337,7 +414,6 @@ export const FaultModelWithTimeDimensionTest2 = () => {
         height={'700px'}
         width={'100%'}
         setFullscreen={setFullscreen}
-        cov={true}
         zoomLevel={zoomLevel}
         setZoomLevel={setZoomLevel}
         timeDimensionOptions={timeDimensionOptions}
