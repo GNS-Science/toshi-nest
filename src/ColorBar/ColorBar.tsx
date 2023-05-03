@@ -1,5 +1,5 @@
 import React from 'react';
-import { scaleLinear } from '@visx/scale';
+import { scaleLinear, scaleBand } from '@visx/scale';
 import { GridColumns, GridRows } from '@visx/grid';
 import { Axis, Orientation } from '@visx/axis';
 import { Polygon } from '@visx/shape';
@@ -8,14 +8,15 @@ export interface ColorBarProps {
   width: number;
   height: number;
   colors: string[];
-  tickValues: number[];
+  tickValues: number[] | string[];
   heading?: string;
   style?: React.CSSProperties;
   vertical?: boolean;
+  linear?: boolean;
 }
 
 const ColorBar: React.FC<ColorBarProps> = (props: ColorBarProps) => {
-  const { width, height, colors, tickValues, heading, style, vertical } = props;
+  const { width, height, colors, tickValues, heading, style, vertical, linear = true } = props;
 
   const marginSide = 20;
   const marginTop = 30;
@@ -23,11 +24,17 @@ const ColorBar: React.FC<ColorBarProps> = (props: ColorBarProps) => {
   const xMax = width + marginSide * 2;
   const yMax = height + marginBottom + marginTop;
   const cubeSize = width / colors.length;
+  const numberValues = tickValues.map((val) => Number(val));
 
-  const xScale = scaleLinear({
-    domain: [Math.min(...tickValues), Math.max(...tickValues)],
-    range: [0, width],
-  });
+  const xScale = linear
+    ? scaleLinear({
+        domain: [Math.min(...numberValues), Math.max(...numberValues)],
+        range: [0, width],
+      })
+    : scaleBand({
+        domain: [...tickValues],
+        range: [0, width],
+      });
 
   const yScale = scaleLinear({
     domain: [1, 0],
