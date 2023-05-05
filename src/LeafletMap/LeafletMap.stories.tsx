@@ -326,6 +326,7 @@ export const FaultModelWithTimeDimensionTest = () => {
   };
 
   const timeDimensionControlOptions = {
+    position: 'bottomright',
     displayDate: false,
     maxSpeed: 5,
     minSpeed: 1,
