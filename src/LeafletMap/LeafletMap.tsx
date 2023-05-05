@@ -26,7 +26,7 @@ const TimeDimensionInfoBox = styled(Box)({
   border: '2px solid rgba(0,0,0,0.2)',
   backgroundClip: 'padding-box',
   display: 'block',
-  width: '406px',
+  width: '430px',
 });
 
 const { BaseLayer } = LayersControl;
