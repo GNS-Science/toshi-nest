@@ -13,7 +13,8 @@ import '../../node_modules/leaflet-timedimension/src/leaflet.timedimension.contr
 
 const TimeDimensionInfoBox = styled(Box)({
   position: 'absolute',
-  bottom: '40px',
+  bottom: '55px',
+  right: '0px',
   padding: '10px',
   margin: '10px',
   zIndex: 100000,
@@ -25,6 +26,7 @@ const TimeDimensionInfoBox = styled(Box)({
   border: '2px solid rgba(0,0,0,0.2)',
   backgroundClip: 'padding-box',
   display: 'block',
+  width: '406px',
 });
 
 const { BaseLayer } = LayersControl;
@@ -144,14 +146,14 @@ const LeafletLayers: React.FC<LeafletLayersProps> = (props: LeafletLayersProps) 
         </BaseLayer>
         {overlay && (
           <Pane name="Overlay" style={{ zIndex: 499 }}>
-            <LayersControl.Overlay name="Cities">
+            <LayersControl.Overlay name="Places">
               <TileLayer
                 url={'https://maps.scinfo.org.nz/mapcache/pwms/tms/1.0.0/text@GoogleMapsCompatible/{z}/{x}/{y}.png'}
                 tms={true}
                 attribution="&copy; Landcare Research NZ Limited 2009-2022. Contains data sourced from LINZ. Crown Copyright Reserved."
               />
             </LayersControl.Overlay>
-            <LayersControl.Overlay name="Roads">
+            <LayersControl.Overlay name="Transport">
               <TileLayer
                 url={'https://maps.scinfo.org.nz/mapcache/pwms/tms/1.0.0/transport@g/{z}/{x}/{y}.png'}
                 tms={true}
