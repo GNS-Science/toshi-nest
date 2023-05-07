@@ -15,6 +15,7 @@ import { default as RangeSliderWithInputs } from './RangeSliderWithInputs';
 import { default as FaultModelTable } from './FaultModelTable';
 import { default as DisaggregationBarChart } from './DisaggregationBarChart';
 import { default as DisaggregationBarChartLegend } from './DisaggregationBarChartLegend';
+import { default as MfdPlot } from './MfdPlot';
 
 export {
   ControlsBar,
@@ -34,4 +35,5 @@ export {
   FaultModelTable,
   DisaggregationBarChart,
   DisaggregationBarChartLegend,
+  MfdPlot,
 };
