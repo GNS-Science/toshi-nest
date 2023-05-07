@@ -165,5 +165,5 @@ export const Primary = () => {
 
   const width = 430;
   const height = 300;
-  return <MfdPlot data={adjustedData} width={width} height={height} xLabel="mag" yLabel="rate" yLabelOffset={35} xLabelOffset={5} />;
+  return <MfdPlot data={adjustedData} width={width} height={height} xLabel="mag" yLabel="rate" yLabelOffset={35} xLabelOffset={5} header="das telefone" />;
 };

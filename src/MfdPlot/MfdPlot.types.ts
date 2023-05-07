@@ -18,4 +18,5 @@ export interface MfdPlotProps {
     fontWeight?: number;
     fill?: string;
   };
+  header?: string;
 }

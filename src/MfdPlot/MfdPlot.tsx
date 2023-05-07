@@ -7,13 +7,16 @@ import { RectClipPath } from '@visx/clip-path';
 import { Group } from '@visx/group';
 
 import { MfdPlotProps, Datum } from './MfdPlot.types';
-export const MfdPlot = ({ data, width, height, xLabel, yLabel, labelProps, xLabelOffset, yLabelOffset }: MfdPlotProps) => {
+export const MfdPlot = ({ data, width, height, xLabel, yLabel, labelProps, xLabelOffset, yLabelOffset, header }: MfdPlotProps) => {
   const minMagnitude = Math.min(...data.map((e) => e.bin_center));
   const maxMagnitude = Math.max(...data.map((e) => e.bin_center));
 
   return (
     <div style={{ position: 'relative', width: '100%' }}>
-      <XYChart height={height} width={width} xScale={{ type: 'linear', domain: [minMagnitude, maxMagnitude], zero: false }} yScale={{ type: 'log', domain: [1e-5, 1] }}>
+      <XYChart height={height} width={width} xScale={{ type: 'linear', domain: [minMagnitude, maxMagnitude], zero: false }} yScale={{ type: 'log', domain: [1e-6, 1] }}>
+        <text y={18} x={'50%'} alignmentBaseline="middle" dominantBaseline="middle" textAnchor="middle" fontSize={'large'} fontWeight="bold" fontFamily={'"Roboto","Helvetica","Arial",sans-serif'}>
+          {header}
+        </text>
         <Axis numTicks={5} orientation="bottom" label={xLabel} labelProps={labelProps} labelOffset={xLabelOffset} />
         <Axis orientation="left" label={yLabel} labelProps={labelProps} labelOffset={yLabelOffset} />
         <RectClipPath id={'clip'} x={50} y={-50} width={width} height={height} />
@@ -31,27 +34,29 @@ export const MfdPlot = ({ data, width, height, xLabel, yLabel, labelProps, xLabe
               <>
                 <Typography>Rate: {datum?.rate?.toExponential(2)}</Typography>
                 <Typography>Cumulative Rate: {datum?.cumulative_rate?.toExponential(2)}</Typography>
+                <Typography>Magnitude: {datum?.bin_center.toPrecision(2)}</Typography>
               </>
             );
           }}
         />
-        <LegendOrdinal
-          direction="column"
-          scale={scaleOrdinal({
-            domain: ['Rate', 'Cumulative Rate'],
-            range: ['blue', 'red'],
-          })}
-          shape="line"
-          shapeHeight={width * 0.02}
-          style={{
-            fontSize: width * 0.02,
-            position: 'absolute',
-            top: width * 0.1,
-            left: width * 0.5,
-            display: 'flex',
-          }}
-        />
       </XYChart>
+      <LegendOrdinal
+        direction="column"
+        scale={scaleOrdinal({
+          domain: ['Rate', 'Cumulative Rate'],
+          range: ['blue', 'red'],
+        })}
+        shape="line"
+        shapeHeight={width * 0.02}
+        style={{
+          fontSize: width * 0.03,
+          position: 'absolute',
+          top: width * 0.1,
+          left: width * 0.6,
+          display: 'flex',
+        }}
+        legendLabelProps={{ style: { fontFamily: '"Roboto","Helvetica","Arial",sans-serif' } }}
+      />
     </div>
   );
 };
