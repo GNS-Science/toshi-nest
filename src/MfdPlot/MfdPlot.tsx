@@ -87,7 +87,7 @@ export const MfdPlot = ({ data, width, height, xLabel, yLabel, labelProps, xLabe
               <>
                 <Typography>Rate: {datum?.rate?.toExponential(2)}</Typography>
                 <Typography>Cumulative Rate: {datum?.cumulative_rate?.toExponential(2)}</Typography>
-                <Typography>Magnitude: {datum?.bin_center.toPrecision(2)}</Typography>
+                <Typography>Magnitude: {datum?.bin_center.toPrecision(3)}</Typography>
               </>
             );
           }}
