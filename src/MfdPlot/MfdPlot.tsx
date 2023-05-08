@@ -53,13 +53,13 @@ export const MfdPlot = ({ data, width, height, xLabel, yLabel, labelProps, xLabe
       >
         <RadioGroup aria-labelledby="radio-buttons-group-label" defaultValue="Incremental" name="radio-buttons-group" onChange={handleRadioChange}>
           <MenuItem>
-            <FormControlLabel value="Incremental" control={<Radio />} label="Incremental" />
+            <FormControlLabel checked={linesToDisplay === 'Incremental'} value="Incremental" control={<Radio />} label="Incremental" />
           </MenuItem>
           <MenuItem>
-            <FormControlLabel value="Cumulative" control={<Radio />} label="Cumulative" />
+            <FormControlLabel checked={linesToDisplay === 'Cumulative'} value="Cumulative" control={<Radio />} label="Cumulative" />
           </MenuItem>
           <MenuItem>
-            <FormControlLabel value="Both" control={<Radio />} label="Both" />
+            <FormControlLabel checked={linesToDisplay === 'Both'} value="Both" control={<Radio />} label="Both" />
           </MenuItem>
         </RadioGroup>
       </Menu>
