@@ -11,6 +11,7 @@ export interface MfdPlotProps {
   xLabel: string;
   yLabel: string;
   yScaleDomain: number[];
+  xScaleDomain: number[];
   legendDomain: string[];
   lineColours: string[];
   xLabelOffset?: number;
