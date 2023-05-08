@@ -67,7 +67,7 @@ const ColorBar: React.FC<ColorBarProps> = (props: ColorBarProps) => {
         )}
         <g transform={`translate(${marginSide}, ${marginTop})`}>
           <GridRows scale={yScale} width={width} height={height} numTicks={1} stroke={'black'} />
-          <GridColumns scale={xScale} width={width} height={height} numTicks={3} stroke={'black'} />
+          <GridColumns scale={xScale} width={width} height={height} numTicks={colors.length} stroke={'black'} left={linear ? 0 : cubeSize / 2} />
           <Axis scale={xScale} top={height} orientation={Orientation.bottom} tickValues={tickValues} tickLineProps={{ fontSize: 10 }} />
           {colors.map((color, index) => {
             return <Polygon key={index} fill={color} points={getPoints(index)} rotate={45} />;
