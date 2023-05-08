@@ -165,5 +165,19 @@ export const Primary = () => {
 
   const width = 430;
   const height = 300;
-  return <MfdPlot data={adjustedData} width={width} height={height} xLabel="mag" yLabel="rate" yLabelOffset={35} xLabelOffset={5} header="das telefone" />;
+  return (
+    <MfdPlot
+      data={adjustedData}
+      width={width}
+      height={height}
+      xLabel="mag"
+      yLabel="rate"
+      yLabelOffset={35}
+      xLabelOffset={5}
+      header="das telefone"
+      yScaleDomain={[1e-6, 1e-1]}
+      lineColours={['blue', 'red']}
+      legendDomain={['rate', 'cumulative rate']}
+    />
+  );
 };
