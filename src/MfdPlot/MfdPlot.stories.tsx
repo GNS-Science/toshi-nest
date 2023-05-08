@@ -250,7 +250,7 @@ export const HazardMapsLog = () => {
           yLabel="rate"
           yLabelOffset={35}
           xLabelOffset={5}
-          header="das telefone"
+          header="Magnitude Frequency Distribution"
           xScaleDomain={[6.8, 9.6]}
           yScaleDomain={[1e-7, 1e-1]}
           lineColours={['blue', 'red']}
