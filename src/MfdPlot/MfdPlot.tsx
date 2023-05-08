@@ -64,7 +64,7 @@ export const MfdPlot = ({ data, width, height, xLabel, yLabel, labelProps, xLabe
         </RadioGroup>
       </Menu>
       <XYChart height={height} width={width} xScale={{ type: 'linear', domain: xScaleDomain, zero: false }} yScale={{ type: 'log', domain: yScaleDomain }}>
-        <text y={18} x={'50%'} alignmentBaseline="middle" dominantBaseline="middle" textAnchor="middle" fontSize={'large'} fontWeight="bold" fontFamily={'"Roboto","Helvetica","Arial",sans-serif'}>
+        <text y={18} x={'47%'} alignmentBaseline="middle" dominantBaseline="middle" textAnchor="middle" fontSize={12} fontFamily={'"Roboto","Helvetica","Arial",sans-serif'}>
           {header}
         </text>
         <Axis numTicks={5} orientation="bottom" label={xLabel} labelProps={labelProps} labelOffset={xLabelOffset} />
