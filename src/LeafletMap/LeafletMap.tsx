@@ -182,10 +182,9 @@ const LeafletLayers: React.FC<LeafletLayersProps> = (props: LeafletLayersProps) 
 
         <BaseLayer name="Stamen: TonerLite">
           <TileLayer
-            url={'https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.{ext}'}
+            url={'https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.png'}
             attribution='Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             maxNativeZoom={20}
-            ext={'png'}
           />
         </BaseLayer>
 
@@ -239,8 +238,7 @@ const LeafletLayers: React.FC<LeafletLayersProps> = (props: LeafletLayersProps) 
               style={(feature) => {
                 return (
                   style || {
-                    // stroke: feature?.properties['stroke'] || feature?.properties['stroke-color'],
-                    // color: feature?.properties['fill'] || feature?.properties['fill-color'] || feature?.properties['stroke-color'] || feature?.properties['stroke'] || 'black',
+                    stroke: feature?.properties['stroke'] || feature?.properties['stroke-color'],
                     color: feature?.properties['stroke'] || feature?.properties['stroke-color'] || feature?.properties['fill'] || feature?.properties['fill-color'],
                     weight: zoomLevel / 3,
                     opacity: feature?.properties['stroke-opacity'],
