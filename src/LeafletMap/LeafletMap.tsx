@@ -134,6 +134,7 @@ const LeafletLayers: React.FC<LeafletLayersProps> = (props: LeafletLayersProps) 
             <TileLayer url={'https://services.arcgisonline.com/arcgis/rest/services/Ocean/World_Ocean_Reference/MapServer/tile/{z}/{y}/{x}'} />
           </LayerGroup>
         </BaseLayer>
+
         <BaseLayer name="Nasa Blue Marble">
           <TileLayer
             url={'https://gibs-{s}.earthdata.nasa.gov/wmts/epsg3857/best/BlueMarble_ShadedRelief_Bathymetry/default//EPSG3857_500m/{z}/{y}/{x}.jpeg'}
@@ -141,12 +142,56 @@ const LeafletLayers: React.FC<LeafletLayersProps> = (props: LeafletLayersProps) 
             maxNativeZoom={8}
           />
         </BaseLayer>
+
+        <BaseLayer name="Esri: WorldGrayCanvas">
+          <TileLayer
+            url={'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}'}
+            attribution="Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ"
+            maxZoom={16}
+          />
+        </BaseLayer>
+
+        <BaseLayer name="Esri: WorldTerrain">
+          <TileLayer
+            url={'https://server.arcgisonline.com/ArcGIS/rest/services/World_Terrain_Base/MapServer/tile/{z}/{y}/{x}'}
+            attribution="Tiles &copy; Esri &mdash; Source: USGS, Esri, TANA, DeLorme, and NPS"
+            maxZoom={13}
+          />
+        </BaseLayer>
+
+        <BaseLayer name="Esri: WorldImagery">
+          <TileLayer
+            url={'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'}
+            attribution="Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"
+            // maxZoom={13}
+          />
+        </BaseLayer>
+
+        <BaseLayer name="CartoDB: DarkMatter">
+          <TileLayer
+            url={'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'}
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+            maxZoom={20}
+            subdomains={'abcd'}
+          />
+        </BaseLayer>
+
         <BaseLayer name="Google Maps Hybrid">
           <TileLayer url={'http://mt0.google.com/vt/lyrs=y&hl=en&x={x}&y={y}&z={z}&s=Ga'} attribution="&copy; Google Maps, image service by TerraMetrics" maxNativeZoom={20} />
         </BaseLayer>
+
+        <BaseLayer name="Stamen: TonerLite">
+          <TileLayer
+            url={'https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.{ext}'}
+            attribution='Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            maxNativeZoom={20}
+            ext={'png'}
+          />
+        </BaseLayer>
+
         {overlay && (
           <Pane name="Overlay" style={{ zIndex: 499 }}>
-            <LayersControl.Overlay name="Places">
+            <LayersControl.Overlay name="Place names">
               <TileLayer
                 url={'https://maps.scinfo.org.nz/mapcache/pwms/tms/1.0.0/text@GoogleMapsCompatible/{z}/{x}/{y}.png'}
                 tms={true}
@@ -156,6 +201,27 @@ const LeafletLayers: React.FC<LeafletLayersProps> = (props: LeafletLayersProps) 
             <LayersControl.Overlay name="Transport">
               <TileLayer
                 url={'https://maps.scinfo.org.nz/mapcache/pwms/tms/1.0.0/transport@g/{z}/{x}/{y}.png'}
+                tms={true}
+                attribution="&copy; Landcare Research NZ Limited 2009-2022. Contains data sourced from LINZ. Crown Copyright Reserved."
+              />
+            </LayersControl.Overlay>
+            <LayersControl.Overlay name="Water">
+              <TileLayer
+                url={'https://maps.scinfo.org.nz/mapcache/pwms/tms/1.0.0/water@g/{z}/{x}/{y}.png'}
+                tms={true}
+                attribution="&copy; Landcare Research NZ Limited 2009-2022. Contains data sourced from LINZ. Crown Copyright Reserved."
+              />
+            </LayersControl.Overlay>
+            <LayersControl.Overlay name="Contours">
+              <TileLayer
+                url={'https://maps.scinfo.org.nz/mapcache/pwms/tms/1.0.0/contours@g/{z}/{x}/{y}.png'}
+                tms={true}
+                attribution="&copy; Landcare Research NZ Limited 2009-2022. Contains data sourced from LINZ. Crown Copyright Reserved."
+              />
+            </LayersControl.Overlay>
+            <LayersControl.Overlay name="Urban">
+              <TileLayer
+                url={'https://maps.scinfo.org.nz/mapcache/pwms/tms/1.0.0/urban@g/{z}/{x}/{y}.png'}
                 tms={true}
                 attribution="&copy; Landcare Research NZ Limited 2009-2022. Contains data sourced from LINZ. Crown Copyright Reserved."
               />
@@ -173,8 +239,9 @@ const LeafletLayers: React.FC<LeafletLayersProps> = (props: LeafletLayersProps) 
               style={(feature) => {
                 return (
                   style || {
-                    stroke: feature?.properties['stroke'] || feature?.properties['stroke-color'],
-                    color: feature?.properties['fill'] || feature?.properties['fill-color'] || feature?.properties['stroke-color'],
+                    // stroke: feature?.properties['stroke'] || feature?.properties['stroke-color'],
+                    // color: feature?.properties['fill'] || feature?.properties['fill-color'] || feature?.properties['stroke-color'] || feature?.properties['stroke'] || 'black',
+                    color: feature?.properties['stroke'] || feature?.properties['stroke-color'] || feature?.properties['fill'] || feature?.properties['fill-color'],
                     weight: zoomLevel / 3,
                     opacity: feature?.properties['stroke-opacity'],
                     fillOpacity: feature?.properties['fill-opacity'],
