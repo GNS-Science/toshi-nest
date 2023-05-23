@@ -69,14 +69,6 @@ export interface LeafletLayersProps {
   timeDimensionTotalLength?: number;
 }
 
-export interface TimeDimensionLayerProps {
-  geoJsonData: GeoJsonObject[];
-  setTimeDimensionHasNoMore: (setTimeDimensionHasNoMore: boolean) => void;
-  setTimeDimensionNeedsMore: (setTimeDimensionNeedsMore: boolean) => void;
-  surfaceProperties: SurfaceProperties[];
-  timeDimensionTotalLength: number;
-}
-
 export type SurfaceProperties =
   | {
       rate_weighted_mean: number | null;

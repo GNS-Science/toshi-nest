@@ -10,24 +10,7 @@ import Fullscreen from 'react-leaflet-fullscreen-plugin';
 import { LeafletMapProps, LeafletLayersProps, TimeDimensionLayerProps } from './LeafletMap.types';
 import '../../node_modules/leaflet/dist/leaflet.css';
 import '../../node_modules/leaflet-timedimension/src/leaflet.timedimension.control.css';
-
-const TimeDimensionInfoBox = styled(Box)({
-  position: 'absolute',
-  bottom: '55px',
-  right: '0px',
-  padding: '10px',
-  margin: '10px',
-  zIndex: 100000,
-  backgroundColor: '#fff',
-  float: 'left',
-  lineHeight: '26px',
-  borderRadius: '4px',
-  borderWidth: '1px',
-  border: '2px solid rgba(0,0,0,0.2)',
-  backgroundClip: 'padding-box',
-  display: 'block',
-  width: '430px',
-});
+import TimeDimensionLayer from './TimeDimensionLayer';
 
 const { BaseLayer } = LayersControl;
 
@@ -128,19 +111,14 @@ const LeafletLayers: React.FC<LeafletLayersProps> = (props: LeafletLayersProps) 
   return (
     <>
       <LayersControl>
-        <BaseLayer name="Ocean Basemap" checked={true}>
+        <BaseLayer name="CartoDB: VoyagerLabelsUnder" checked={true}>
           <LayerGroup>
-            <TileLayer url={'https://services.arcgisonline.com/arcgis/rest/services/Ocean/World_Ocean_Base/MapServer/tile/{z}/{y}/{x}'} attribution="&copy; Ocean Basemap, image service by ArcGIS" />
-            <TileLayer url={'https://services.arcgisonline.com/arcgis/rest/services/Ocean/World_Ocean_Reference/MapServer/tile/{z}/{y}/{x}'} />
+            <TileLayer
+              url={'https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png'}
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+              maxZoom={20}
+            />
           </LayerGroup>
-        </BaseLayer>
-
-        <BaseLayer name="Nasa Blue Marble">
-          <TileLayer
-            url={'https://gibs-{s}.earthdata.nasa.gov/wmts/epsg3857/best/BlueMarble_ShadedRelief_Bathymetry/default//EPSG3857_500m/{z}/{y}/{x}.jpeg'}
-            attribution="&copy; NASA Blue Marble, image service by OpenGeo"
-            maxNativeZoom={8}
-          />
         </BaseLayer>
 
         <BaseLayer name="Esri: WorldGrayCanvas">
@@ -151,12 +129,11 @@ const LeafletLayers: React.FC<LeafletLayersProps> = (props: LeafletLayersProps) 
           />
         </BaseLayer>
 
-        <BaseLayer name="Esri: WorldTerrain">
-          <TileLayer
-            url={'https://server.arcgisonline.com/ArcGIS/rest/services/World_Terrain_Base/MapServer/tile/{z}/{y}/{x}'}
-            attribution="Tiles &copy; Esri &mdash; Source: USGS, Esri, TANA, DeLorme, and NPS"
-            maxZoom={13}
-          />
+        <BaseLayer name="Ocean Basemap">
+          <LayerGroup>
+            <TileLayer url={'https://services.arcgisonline.com/arcgis/rest/services/Ocean/World_Ocean_Base/MapServer/tile/{z}/{y}/{x}'} attribution="&copy; Ocean Basemap, image service by ArcGIS" />
+            <TileLayer url={'https://services.arcgisonline.com/arcgis/rest/services/Ocean/World_Ocean_Reference/MapServer/tile/{z}/{y}/{x}'} />
+          </LayerGroup>
         </BaseLayer>
 
         <BaseLayer name="Esri: WorldImagery">
@@ -164,27 +141,6 @@ const LeafletLayers: React.FC<LeafletLayersProps> = (props: LeafletLayersProps) 
             url={'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'}
             attribution="Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"
             // maxZoom={13}
-          />
-        </BaseLayer>
-
-        <BaseLayer name="CartoDB: DarkMatter">
-          <TileLayer
-            url={'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'}
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-            maxZoom={20}
-            subdomains={'abcd'}
-          />
-        </BaseLayer>
-
-        <BaseLayer name="Google Maps Hybrid">
-          <TileLayer url={'http://mt0.google.com/vt/lyrs=y&hl=en&x={x}&y={y}&z={z}&s=Ga'} attribution="&copy; Google Maps, image service by TerraMetrics" maxNativeZoom={20} />
-        </BaseLayer>
-
-        <BaseLayer name="Stamen: TonerLite">
-          <TileLayer
-            url={'https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.png'}
-            attribution='Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            maxNativeZoom={20}
           />
         </BaseLayer>
 
@@ -266,89 +222,6 @@ const LeafletLayers: React.FC<LeafletLayersProps> = (props: LeafletLayersProps) 
         }}
         forcePseudoFullscreen={true}
       />
-    </>
-  );
-};
-
-const TimeDimensionLayer: React.FC<TimeDimensionLayerProps> = (props: TimeDimensionLayerProps) => {
-  const { geoJsonData, setTimeDimensionNeedsMore, setTimeDimensionHasNoMore, surfaceProperties, timeDimensionTotalLength } = props;
-  const map = useMap();
-  const [timeIndex, setTimeIndex] = useState(0);
-  const [currentSurface, setCurrentSurface] = useState(geoJsonData[0]);
-  (map as any).timeDimension.on('timeloading', (data: any) => {
-    if (data.target._currentTimeIndex !== timeIndex) {
-      setTimeIndex(data.target._currentTimeIndex);
-    }
-  });
-  (map as any).timeDimension.on('availabletimeschanged', () => {
-    (map as any).timeDimension.setCurrentTime(0);
-    setTimeIndex(0);
-    (map as any).timeDimensionControl._player.stop();
-  });
-
-  useEffect(() => {
-    setCurrentSurface(geoJsonData[timeIndex]);
-  }, [timeIndex, geoJsonData]);
-
-  useEffect(() => {
-    if (geoJsonData.length - timeIndex < 5) {
-      setTimeDimensionNeedsMore(true);
-    }
-  }, [timeIndex, geoJsonData, setTimeDimensionNeedsMore]);
-
-  useEffect(() => {
-    if (timeIndex === geoJsonData.length) {
-      (map as any).timeDimensionControl._player.pause();
-      setTimeDimensionHasNoMore(true);
-    } else if (timeIndex > geoJsonData.length) {
-      setCurrentSurface(geoJsonData[geoJsonData.length - 1] !== undefined ? geoJsonData[geoJsonData.length - 1] : geoJsonData[timeIndex]);
-      if (geoJsonData.length <= timeIndex) {
-        setTimeDimensionHasNoMore(true);
-        setTimeDimensionNeedsMore(true);
-      }
-    } else if (timeIndex === timeDimensionTotalLength - 1) {
-      setTimeDimensionHasNoMore(false);
-      setTimeDimensionNeedsMore(true);
-    } else {
-      (map as any).timeDimensionControl._player.release();
-      setTimeDimensionHasNoMore(false);
-    }
-  }, [timeIndex, geoJsonData, setTimeDimensionHasNoMore, map, setTimeDimensionNeedsMore, timeDimensionTotalLength]);
-
-  const surfaceId = useMemo(() => (currentSurface as any)?.features[0]?.id, [currentSurface]);
-  const firstId = useMemo(() => (geoJsonData[0] as any)?.features[0]?.id, [geoJsonData]);
-
-  const timeArray = useMemo(() => {
-    return (
-      timeDimensionTotalLength &&
-      firstId &&
-      Array(timeDimensionTotalLength)
-        .fill(0)
-        .map((_, i) => i + 1 + Math.random() / 10)
-    );
-  }, [timeDimensionTotalLength, firstId]);
-
-  useEffect(() => {
-    if (timeArray && timeArray.length > 0) {
-      (map as any).timeDimension.setAvailableTimes(timeArray, 'replace');
-    }
-  }, [map, timeArray]);
-
-  return (
-    <>
-      <GeoJSON key={`geojson-timeline-layer-${Math.random()}`} data={currentSurface} style={{ color: 'red' }} />
-      {surfaceProperties[timeIndex] !== null && surfaceProperties[timeIndex] !== undefined && (
-        <TimeDimensionInfoBox>
-          <Typography variant={'body2'}>Rupture ID: {surfaceId}</Typography>
-          <Typography variant={'body2'}>
-            Rupture {timeIndex + 1} of {timeDimensionTotalLength}
-          </Typography>
-          <Typography variant={'body2'}>Mean Rate: {surfaceProperties[timeIndex]?.rate_weighted_mean?.toExponential(2)} per year</Typography>
-          <Typography variant={'body2'}>Magnitude: {surfaceProperties[timeIndex]?.magnitude?.toFixed(1)}</Typography>
-          <Typography variant={'body2'}>Area: {surfaceProperties[timeIndex]?.area} km²</Typography>
-          <Typography variant={'body2'}>Length: {surfaceProperties[timeIndex]?.length} km</Typography>
-        </TimeDimensionInfoBox>
-      )}
     </>
   );
 };
