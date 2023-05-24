@@ -2,6 +2,7 @@ import { GeoJsonObject } from 'geojson';
 import { LatLngExpression } from 'leaflet';
 import { Feature, Geometry } from 'geojson';
 import { Layer } from 'leaflet';
+import TimeDimensionLayerProps from './TimeDimensionLayer';
 
 export interface LeafletMapProps {
   geoJsonData: string[];
@@ -22,13 +23,26 @@ export interface LeafletMapProps {
   timeDimension?: boolean;
   timeDimensionOptions?: TimeDimensionOptions;
   timeDimensionControlOptions?: TimeDimensionControlOptions;
-  timeDimensionGeoJsonData?: GeoJsonObject[];
-  timeDimensionUnderlay?: GeoJsonObject;
   setZoomLevel: (setZoomLevel: number) => void;
-  setTimeDimensionNeedsMore?: (setTimeDimensionNeedsMore: boolean) => void;
-  setTimeDimensionHasNoMore?: (setTimeDimensionHasNoMore: boolean) => void;
-  surfaceProperties?: SurfaceProperties[];
-  timeDimensionTotalLength?: number;
+  // timeDimensionGeoJsonData?: GeoJsonObject[];
+  // timeDimensionUnderlay?: GeoJsonObject;
+  // setTimeDimensionNeedsMore?: (setTimeDimensionNeedsMore: boolean) => void;
+  // setTimeDimensionHasNoMore?: (setTimeDimensionHasNoMore: boolean) => void;
+  // surfaceProperties?: SurfaceProperties[];
+  // timeDimensionTotalLength?: number;
+  timeDimensionLayerProps?: TimeDimensionLayerProps;
+}
+
+export interface LeafletLayersProps {
+  style?: GeoJsonStyle;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onEachFeature?: (feature: Feature<Geometry, any>, layer: Layer) => void;
+  geoJsonData: string[];
+  overlay?: boolean;
+  setFullscreen: (setFullscreen: boolean) => void;
+  zoomLevel: number;
+  setZoomLevel: (setZoomLevel: number) => void;
+  timeDimensionLayerProps: TimeDimensionLayerProps;
 }
 
 export interface GeoJsonStyle {

@@ -7,34 +7,32 @@ import 'leaflet-timedimension';
 import { MapContainer, TileLayer, GeoJSON, LayersControl, Pane, LayerGroup, useMap, useMapEvents } from 'react-leaflet';
 import Fullscreen from 'react-leaflet-fullscreen-plugin';
 
-import { LeafletMapProps } from './LeafletMap.types';
+import { LeafletMapProps, GeoJsonStyle, LeafletLayersProps } from './LeafletMap.types';
 import '../../node_modules/leaflet/dist/leaflet.css';
 import '../../node_modules/leaflet-timedimension/src/leaflet.timedimension.control.css';
 import TimeDimensionLayer, { TimeDimensionLayerProps } from './TimeDimensionLayer';
 
-const LeafletMap: React.FC<LeafletMapProps> = (props: LeafletMapProps) => {
-  const {
-    geoJsonData,
-    nzCentre,
-    zoom,
-    height,
-    width,
-    setFullscreen,
-    style,
-    minZoom,
-    maxZoom,
-    zoomSnap,
-    zoomDelta,
-    zoomLevel,
-    onEachFeature,
-    setZoomLevel,
-    timeDimension,
-    timeDimensionOptions,
-    timeDimensionControlOptions,
-    timeDimensionLayerProps = null,
-    overlay = true,
-  } = props;
-
+const LeafletMap = ({
+  geoJsonData,
+  nzCentre,
+  zoom,
+  height,
+  width,
+  setFullscreen,
+  style,
+  minZoom,
+  maxZoom,
+  zoomSnap,
+  zoomDelta,
+  zoomLevel,
+  onEachFeature,
+  setZoomLevel,
+  timeDimension,
+  timeDimensionOptions,
+  timeDimensionControlOptions,
+  timeDimensionLayerProps = null,
+  overlay = true,
+}: LeafletMapProps) => {
   return (
     <>
       <MapContainer
@@ -150,18 +148,6 @@ const BaseLayerOverlayOptions: React.FC = () => {
   );
 };
 
-interface LeafletLayersProps {
-  style?: GeoJsonStyle;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onEachFeature?: (feature: Feature<Geometry, any>, layer: Layer) => void;
-  geoJsonData: string[];
-  overlay?: boolean;
-  setFullscreen: (setFullscreen: boolean) => void;
-  zoomLevel: number;
-  setZoomLevel: (setZoomLevel: number) => void;
-  timeDimensionLayerProps: TimeDimensionLayerProps;
-}
-
 function LeafletLayers({ style, geoJsonData, overlay, setFullscreen, onEachFeature, zoomLevel, setZoomLevel, timeDimensionLayerProps }: LeafletLayersProps) {
   const mapEvents = useMapEvents({
     zoomend: () => {
@@ -175,13 +161,15 @@ function LeafletLayers({ style, geoJsonData, overlay, setFullscreen, onEachFeatu
 
   return (
     <>
-      <Fullscreen
-        eventHandlers={{
-          enterFullscreen: () => setFullscreen(true),
-          exitFullscreen: () => setFullscreen(false),
-        }}
-        forcePseudoFullscreen={true}
-      />
+      {false && (
+        <Fullscreen
+          eventHandlers={{
+            enterFullscreen: () => setFullscreen(true),
+            exitFullscreen: () => setFullscreen(false),
+          }}
+          forcePseudoFullscreen={true}
+        />
+      )}
 
       <LayersControl>
         <BaseLayerOptions />

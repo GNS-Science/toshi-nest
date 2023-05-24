@@ -2,10 +2,8 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Box, styled, Typography } from '@mui/material';
 import { GeoJsonObject } from 'geojson';
-import 'leaflet/dist/leaflet.css';
-import { MapContainer, TileLayer, GeoJSON, LayersControl, Pane, LayerGroup, useMap, useMapEvents } from 'react-leaflet';
-import '../../node_modules/leaflet/dist/leaflet.css';
-import '../../node_modules/leaflet-timedimension/src/leaflet.timedimension.control.css';
+import { GeoJSON, LayersControl, useMap } from 'react-leaflet';
+import { SurfaceProperties } from './LeafletMap.types';
 
 export interface TimeDimensionLayerProps {
   geoJsonData: GeoJsonObject[];
