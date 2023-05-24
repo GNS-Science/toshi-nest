@@ -19,7 +19,16 @@ export interface LeafletMapProps {
   zoomDelta?: number;
   overlay?: boolean;
   zoomLevel: number;
+  timeDimension?: boolean;
+  timeDimensionOptions?: TimeDimensionOptions;
+  timeDimensionControlOptions?: TimeDimensionControlOptions;
+  timeDimensionGeoJsonData?: GeoJsonObject[];
+  timeDimensionUnderlay?: GeoJsonObject;
   setZoomLevel: (setZoomLevel: number) => void;
+  setTimeDimensionNeedsMore?: (setTimeDimensionNeedsMore: boolean) => void;
+  setTimeDimensionHasNoMore?: (setTimeDimensionHasNoMore: boolean) => void;
+  surfaceProperties?: SurfaceProperties[];
+  timeDimensionTotalLength?: number;
 }
 
 export interface GeoJsonStyle {

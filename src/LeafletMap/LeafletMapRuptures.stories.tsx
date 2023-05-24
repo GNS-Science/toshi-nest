@@ -179,6 +179,7 @@ export const FaultSurfacesTracesAndAnimation = () => {
   const nzCentre = [-40.946, 174.167];
   const currentTime = new Date();
   currentTime.setUTCDate(1);
+
   const timeDimensionOptions = {
     currentTime: 1,
     times: timeArray || [],
@@ -196,6 +197,14 @@ export const FaultSurfacesTracesAndAnimation = () => {
     },
   };
 
+  const timeDimensionLayerProps = {
+    geoJsonData: crustalFaultSurfacesList as GeoJsonObject[],
+    setTimeDimensionNeedsMore: setNeedsMore,
+    setTimeDimensionHasNoMore: setHasNoMore,
+    surfaceProperties: ruptureProperties || [],
+    timeDimensionTotalLength: totalRuptures || 0,
+  };
+
   return (
     <>
       <LeafletMap
@@ -210,14 +219,8 @@ export const FaultSurfacesTracesAndAnimation = () => {
         timeDimensionOptions={timeDimensionOptions}
         timeDimensionControlOptions={timeDimensionControlOptions}
         timeDimension={true}
-        timeDimensionGeoJsonData={crustalFaultSurfacesList as GeoJsonObject[]}
-        // timeDimensionUnderlay={surfaceBaseLayer as GeoJsonObject}
-        setTimeDimensionNeedsMore={setNeedsMore}
-        setTimeDimensionHasNoMore={setHasNoMore}
-        surfaceProperties={ruptureProperties || []}
-        timeDimensionTotalLength={totalRuptures || 0}
+        timeDimensionLayerProps={timeDimensionLayerProps}
       />
-      <button onClick={() => setTotalRuptures(totalRuptures + 1)}>Add</button>
     </>
   );
 };

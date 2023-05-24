@@ -233,6 +233,14 @@ export const FaultModelWithTimeDimension = () => {
     },
   };
 
+  const timeDimensionLayerProps = {
+    geoJsonData: ruptureArray as GeoJsonObject[],
+    setTimeDimensionNeedsMore: setNeedsMore,
+    setTimeDimensionHasNoMore: setHasNoMore,
+    surfaceProperties: ruptureProperties || [],
+    timeDimensionTotalLength: totalRuptures || 0,
+  };
+
   return (
     <LeafletMap
       zoom={zoom}
@@ -246,12 +254,7 @@ export const FaultModelWithTimeDimension = () => {
       timeDimensionOptions={timeDimensionOptions}
       timeDimensionControlOptions={timeDimensionControlOptions}
       timeDimension={true}
-      timeDimensionGeoJsonData={ruptureArray as GeoJsonObject[]}
-      timeDimensionUnderlay={surfaceBaseLayer as GeoJsonObject}
-      setTimeDimensionNeedsMore={setNeedsMore}
-      setTimeDimensionHasNoMore={setHasNoMore}
-      surfaceProperties={ruptureProperties || []}
-      timeDimensionTotalLength={totalRuptures || 0}
+      timeDimensionLayerProps={timeDimensionLayerProps}
     />
   );
 };
@@ -293,6 +296,14 @@ export const FaultModelWithTimeDimensionTest = () => {
     },
   };
 
+  const timeDimensionLayerProps = {
+    geoJsonData: ruptureArray as GeoJsonObject[],
+    setTimeDimensionNeedsMore: setNeedsMore,
+    setTimeDimensionHasNoMore: setHasNoMore,
+    surfaceProperties: ruptureProperties || [],
+    timeDimensionTotalLength: totalRuptures || 0,
+  };
+
   return (
     <>
       <LeafletMap
@@ -307,12 +318,7 @@ export const FaultModelWithTimeDimensionTest = () => {
         timeDimensionOptions={timeDimensionOptions}
         timeDimensionControlOptions={timeDimensionControlOptions}
         timeDimension={true}
-        timeDimensionGeoJsonData={ruptureArray as GeoJsonObject[]}
-        timeDimensionUnderlay={surfaceBaseLayer as GeoJsonObject}
-        setTimeDimensionNeedsMore={setNeedsMore}
-        setTimeDimensionHasNoMore={setHasNoMore}
-        surfaceProperties={ruptureProperties || []}
-        timeDimensionTotalLength={totalRuptures || 0}
+        timeDimensionLayerProps={timeDimensionLayerProps}
       />
       <button onClick={() => setTotalRuptures(totalRuptures + 1)}>Add</button>
     </>
@@ -364,6 +370,14 @@ export const FaultModelWithTimeDimensionTest2 = () => {
     setRuptureDataArray(reversedArray);
   };
 
+  const timeDimensionLayerProps = {
+    geoJsonData: ruptureDataArray,
+    setTimeDimensionNeedsMore: setNeedsMore,
+    setTimeDimensionHasNoMore: setHasNoMore,
+    surfaceProperties: ruptureProperties || [],
+    timeDimensionTotalLength: totalRuptures || 0,
+  };
+
   return (
     <>
       <LeafletMap
@@ -378,12 +392,7 @@ export const FaultModelWithTimeDimensionTest2 = () => {
         timeDimensionOptions={timeDimensionOptions}
         timeDimensionControlOptions={timeDimensionControlOptions}
         timeDimension={true}
-        timeDimensionGeoJsonData={ruptureDataArray}
-        timeDimensionUnderlay={surfaceBaseLayer as GeoJsonObject}
-        setTimeDimensionNeedsMore={setNeedsMore}
-        setTimeDimensionHasNoMore={setHasNoMore}
-        surfaceProperties={ruptureProperties || []}
-        timeDimensionTotalLength={totalRuptures || 0}
+        timeDimensionLayerProps={timeDimensionLayerProps}
       />
       <button onClick={() => reverseRuptureDataArray()}>reverse order</button>
     </>

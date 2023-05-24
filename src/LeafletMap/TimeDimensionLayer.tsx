@@ -35,8 +35,13 @@ const TimeDimensionInfoBox = styled(Box)({
 
 const { BaseLayer } = LayersControl;
 
-const TimeDimensionLayer: React.FC<TimeDimensionLayerProps> = (props: TimeDimensionLayerProps) => {
-  const { geoJsonData, setTimeDimensionNeedsMore, setTimeDimensionHasNoMore, surfaceProperties, timeDimensionTotalLength } = props;
+const TimeDimensionLayer: React.FC<TimeDimensionLayerProps> = ({
+  geoJsonData,
+  setTimeDimensionNeedsMore,
+  setTimeDimensionHasNoMore,
+  surfaceProperties,
+  timeDimensionTotalLength,
+}: TimeDimensionLayerProps) => {
   const map = useMap();
   const [timeIndex, setTimeIndex] = useState(0);
   const [currentSurface, setCurrentSurface] = useState(geoJsonData[0]);

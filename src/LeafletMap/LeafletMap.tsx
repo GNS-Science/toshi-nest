@@ -7,10 +7,10 @@ import 'leaflet-timedimension';
 import { MapContainer, TileLayer, GeoJSON, LayersControl, Pane, LayerGroup, useMap, useMapEvents } from 'react-leaflet';
 import Fullscreen from 'react-leaflet-fullscreen-plugin';
 
-import { LeafletMapProps, TimeDimensionLayerProps } from './LeafletMap.types';
+import { LeafletMapProps } from './LeafletMap.types';
 import '../../node_modules/leaflet/dist/leaflet.css';
 import '../../node_modules/leaflet-timedimension/src/leaflet.timedimension.control.css';
-import TimeDimensionLayer from './TimeDimensionLayer';
+import TimeDimensionLayer, { TimeDimensionLayerProps } from './TimeDimensionLayer';
 
 const LeafletMap: React.FC<LeafletMapProps> = (props: LeafletMapProps) => {
   const {
@@ -31,25 +31,9 @@ const LeafletMap: React.FC<LeafletMapProps> = (props: LeafletMapProps) => {
     timeDimension,
     timeDimensionOptions,
     timeDimensionControlOptions,
-    timeDimensionGeoJsonData,
-    timeDimensionUnderlay,
-    setTimeDimensionNeedsMore,
-    setTimeDimensionHasNoMore,
-    timeDimensionTotalLength,
-    surfaceProperties,
+    timeDimensionLayerProps = null,
     overlay = true,
   } = props;
-
-  const timeDimensionLayerProps = {
-    timeDimensionGeoJsonData: timeDimensionGeoJsonData,
-    timeDimensionUnderlay: timeDimensionUnderlay,
-    setTimeDimensionNeedsMore: setTimeDimensionNeedsMore,
-    setTimeDimensionHasNoMore: setTimeDimensionHasNoMore,
-    surfaceProperties: surfaceProperties || [],
-    timeDimensionTotalLength: timeDimensionTotalLength,
-  };
-
-  console.log('LeafletMap', timeDimensionLayerProps);
 
   return (
     <>
@@ -131,74 +115,38 @@ const BaseLayerOverlayOptions: React.FC = () => {
         <TileLayer
           url={'https://maps.scinfo.org.nz/mapcache/pwms/tms/1.0.0/text@GoogleMapsCompatible/{z}/{x}/{y}.png'}
           tms={true}
-          attribution="&copy; Landcare Research NZ Limited 2009-2022. Contains data sourced from LINZ. Crown Copyright Reserved."
+          // attribution="&copy; Landcare Research NZ Limited 2009-2022. Contains data sourced from LINZ. Crown Copyright Reserved."
         />
       </LayersControl.Overlay>
       <LayersControl.Overlay name="Transport">
         <TileLayer
           url={'https://maps.scinfo.org.nz/mapcache/pwms/tms/1.0.0/transport@g/{z}/{x}/{y}.png'}
           tms={true}
-          attribution="&copy; Landcare Research NZ Limited 2009-2022. Contains data sourced from LINZ. Crown Copyright Reserved."
+          // attribution="&copy; Landcare Research NZ Limited 2009-2022. Contains data sourced from LINZ. Crown Copyright Reserved."
         />
       </LayersControl.Overlay>
       <LayersControl.Overlay name="Water">
         <TileLayer
           url={'https://maps.scinfo.org.nz/mapcache/pwms/tms/1.0.0/water@g/{z}/{x}/{y}.png'}
           tms={true}
-          attribution="&copy; Landcare Research NZ Limited 2009-2022. Contains data sourced from LINZ. Crown Copyright Reserved."
+          // attribution="&copy; Landcare Research NZ Limited 2009-2022. Contains data sourced from LINZ. Crown Copyright Reserved."
         />
       </LayersControl.Overlay>
       <LayersControl.Overlay name="Contours">
         <TileLayer
           url={'https://maps.scinfo.org.nz/mapcache/pwms/tms/1.0.0/contours@g/{z}/{x}/{y}.png'}
           tms={true}
-          attribution="&copy; Landcare Research NZ Limited 2009-2022. Contains data sourced from LINZ. Crown Copyright Reserved."
+          // attribution="&copy; Landcare Research NZ Limited 2009-2022. Contains data sourced from LINZ. Crown Copyright Reserved."
         />
       </LayersControl.Overlay>
       <LayersControl.Overlay name="Urban">
         <TileLayer
           url={'https://maps.scinfo.org.nz/mapcache/pwms/tms/1.0.0/urban@g/{z}/{x}/{y}.png'}
           tms={true}
-          attribution="&copy; Landcare Research NZ Limited 2009-2022. Contains data sourced from LINZ. Crown Copyright Reserved."
+          // attribution="&copy; Landcare Research NZ Limited 2009-2022. Contains data sourced from LINZ. Crown Copyright Reserved."
         />
       </LayersControl.Overlay>
     </Pane>
-  );
-};
-
-export interface LeafletTimeDimensionLayerProps {
-  timeDimensionGeoJsonData: GeoJsonObject[];
-  timeDimensionUnderlay: GeoJsonObject;
-  setTimeDimensionNeedsMore: boolean;
-  setTimeDimensionHasNoMore: boolean;
-  surfaceProperties: SurfaceProperties[];
-  timeDimensionTotalLength: number;
-}
-
-const LeafletTimeDimensionLayer = ({
-  timeDimensionGeoJsonData,
-  timeDimensionUnderlay,
-  setTimeDimensionNeedsMore,
-  setTimeDimensionHasNoMore,
-  surfaceProperties,
-  timeDimensionTotalLength,
-}: LeafletTimeDimensionLayerProps) => {
-  const timeDimension = true;
-
-  return (
-    <>
-      {timeDimension && timeDimensionGeoJsonData && setTimeDimensionHasNoMore && setTimeDimensionNeedsMore && timeDimensionTotalLength && (
-        <TimeDimensionLayer
-          geoJsonData={timeDimensionGeoJsonData}
-          setTimeDimensionNeedsMore={setTimeDimensionNeedsMore}
-          setTimeDimensionHasNoMore={setTimeDimensionHasNoMore}
-          surfaceProperties={surfaceProperties || []}
-          timeDimensionTotalLength={timeDimensionTotalLength}
-        />
-      )}
-
-      {timeDimension && timeDimensionUnderlay && <GeoJSON data={timeDimensionUnderlay} style={{ color: 'grey', opacity: 0.2, fillOpacity: 0.2 }} />}
-    </>
   );
 };
 
@@ -211,7 +159,7 @@ interface LeafletLayersProps {
   setFullscreen: (setFullscreen: boolean) => void;
   zoomLevel: number;
   setZoomLevel: (setZoomLevel: number) => void;
-  timeDimensionLayerProps: LeafletTimeDimensionLayerProps;
+  timeDimensionLayerProps: TimeDimensionLayerProps;
 }
 
 function LeafletLayers({ style, geoJsonData, overlay, setFullscreen, onEachFeature, zoomLevel, setZoomLevel, timeDimensionLayerProps }: LeafletLayersProps) {
@@ -262,7 +210,7 @@ function LeafletLayers({ style, geoJsonData, overlay, setFullscreen, onEachFeatu
           );
         })}
 
-      <LeafletTimeDimensionLayer {...timeDimensionLayerProps} />
+      {timeDimensionLayerProps && <TimeDimensionLayer {...timeDimensionLayerProps} />}
     </>
   );
 }
