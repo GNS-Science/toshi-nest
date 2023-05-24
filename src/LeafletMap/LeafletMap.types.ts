@@ -19,16 +19,7 @@ export interface LeafletMapProps {
   zoomDelta?: number;
   overlay?: boolean;
   zoomLevel: number;
-  timeDimension?: boolean;
-  timeDimensionOptions?: TimeDimensionOptions;
-  timeDimensionControlOptions?: TimeDimensionControlOptions;
-  timeDimensionGeoJsonData?: GeoJsonObject[];
-  timeDimensionUnderlay?: GeoJsonObject;
   setZoomLevel: (setZoomLevel: number) => void;
-  setTimeDimensionNeedsMore?: (setTimeDimensionNeedsMore: boolean) => void;
-  setTimeDimensionHasNoMore?: (setTimeDimensionHasNoMore: boolean) => void;
-  surfaceProperties?: SurfaceProperties[];
-  timeDimensionTotalLength?: number;
 }
 
 export interface GeoJsonStyle {
@@ -49,24 +40,6 @@ export interface TimeDimensionOptions {
 export interface TimeDimensionControlOptions {
   loopButton?: boolean;
   displayDate?: boolean;
-}
-
-export interface LeafletLayersProps {
-  style?: GeoJsonStyle;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onEachFeature?: (feature: Feature<Geometry, any>, layer: Layer) => void;
-  geoJsonData: string[];
-  overlay?: boolean;
-  setFullscreen: (setFullscreen: boolean) => void;
-  zoomLevel: number;
-  setZoomLevel: (setZoomLevel: number) => void;
-  timeDimension?: boolean;
-  timeDimensionGeoJsonData?: GeoJsonObject[];
-  timeDimensionUnderlay?: GeoJsonObject;
-  setTimeDimensionHasNoMore?: (setTimeDimensionHasNoMore: boolean) => void;
-  setTimeDimensionNeedsMore?: (setTimeDimensionNeedsMore: boolean) => void;
-  surfaceProperties?: SurfaceProperties[];
-  timeDimensionTotalLength?: number;
 }
 
 export type SurfaceProperties =
