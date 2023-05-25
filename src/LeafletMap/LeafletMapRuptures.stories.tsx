@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useMemo } from 'react';
 import { ComponentMeta } from '@storybook/react';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { LatLngExpression } from 'leaflet';
 import { Feature, Geometry, GeoJsonObject } from 'geojson';
 import { Layer } from 'leaflet';

@@ -52,25 +52,3 @@ export interface GeoJsonStyle {
   opacity: number;
   fillOpacity: number;
 }
-
-export interface TimeDimensionOptions {
-  timeInterval: string;
-  period: string;
-  currentTime: number;
-  times: number[];
-}
-
-export interface TimeDimensionControlOptions {
-  loopButton?: boolean;
-  displayDate?: boolean;
-}
-
-export type SurfaceProperties =
-  | {
-      rate_weighted_mean: number | null;
-      area: number | null;
-      length: number | null;
-      magnitude: number | null;
-    }
-  | null
-  | undefined;

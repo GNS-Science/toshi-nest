@@ -1,17 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect, useMemo } from 'react';
 import { Box, styled, Typography } from '@mui/material';
+
 import { GeoJsonObject } from 'geojson';
 import { GeoJSON, LayersControl, useMap } from 'react-leaflet';
-import { SurfaceProperties } from './LeafletMap.types';
+import { TimeDimensionLayerProps, SurfaceProperties } from './TimeDimensionLayer.types';
 
-export interface TimeDimensionLayerProps {
-  geoJsonData: GeoJsonObject[];
-  setTimeDimensionHasNoMore: (setTimeDimensionHasNoMore: boolean) => void;
-  setTimeDimensionNeedsMore: (setTimeDimensionNeedsMore: boolean) => void;
-  surfaceProperties: SurfaceProperties[];
-  timeDimensionTotalLength: number;
-}
+// import { TimeDimensionInfoBox } from './TimeDimensionInfoBox';
+// <TimeDimensionInfoBox surfaceId={surfaceId} timeIndex={timeIndex} surfaceProperties={surfaceProperties} timeDimensionTotalLength={timeDimensionTotalLength} />
 
 const TimeDimensionInfoBox = styled(Box)({
   position: 'absolute',
@@ -26,7 +22,7 @@ const TimeDimensionInfoBox = styled(Box)({
   borderRadius: '4px',
   borderWidth: '1px',
   border: '2px solid rgba(0,0,0,0.2)',
-  backgroundClip: 'padding-box',
+  backgroundClip: 'paddingbox',
   display: 'block',
   width: '430px',
 });
@@ -39,6 +35,7 @@ const TimeDimensionLayer: React.FC<TimeDimensionLayerProps> = ({
   setTimeDimensionHasNoMore,
   surfaceProperties,
   timeDimensionTotalLength,
+  onNewTimeIndexHandler,
 }: TimeDimensionLayerProps) => {
   const map = useMap();
   const [timeIndex, setTimeIndex] = useState(0);
@@ -63,6 +60,13 @@ const TimeDimensionLayer: React.FC<TimeDimensionLayerProps> = ({
       setTimeDimensionNeedsMore(true);
     }
   }, [timeIndex, geoJsonData, setTimeDimensionNeedsMore]);
+
+  useEffect(() => {
+    if (onNewTimeIndexHandler !== undefined) {
+      // console.log('TimeDimensionLayer -> onNewTimeIndexHandler', timeIndex)
+      onNewTimeIndexHandler(timeIndex);
+    }
+  }, [timeIndex]);
 
   useEffect(() => {
     if (timeIndex === geoJsonData.length) {
@@ -105,18 +109,20 @@ const TimeDimensionLayer: React.FC<TimeDimensionLayerProps> = ({
   return (
     <>
       <GeoJSON key={`geojson-timeline-layer-${Math.random()}`} data={currentSurface} style={{ color: 'red' }} />
-      {surfaceProperties[timeIndex] !== null && surfaceProperties[timeIndex] !== undefined && (
-        <TimeDimensionInfoBox>
-          <Typography variant={'body2'}>Rupture ID: {surfaceId}</Typography>
-          <Typography variant={'body2'}>
-            Rupture {timeIndex + 1} of {timeDimensionTotalLength}
-          </Typography>
-          <Typography variant={'body2'}>Mean Rate: {surfaceProperties[timeIndex]?.rate_weighted_mean?.toExponential(2)} per year</Typography>
-          <Typography variant={'body2'}>Magnitude: {surfaceProperties[timeIndex]?.magnitude?.toFixed(1)}</Typography>
-          <Typography variant={'body2'}>Area: {surfaceProperties[timeIndex]?.area} km²</Typography>
-          <Typography variant={'body2'}>Length: {surfaceProperties[timeIndex]?.length} km</Typography>
-        </TimeDimensionInfoBox>
-      )}
+      {onNewTimeIndexHandler == null && // only render if we dont have a handler function....
+        surfaceProperties[timeIndex] !== null &&
+        surfaceProperties[timeIndex] !== undefined && (
+          <TimeDimensionInfoBox>
+            <Typography variant={'body2'}>Rupture ID: {surfaceId}</Typography>
+            <Typography variant={'body2'}>
+              Rupture {timeIndex + 1} of {timeDimensionTotalLength}
+            </Typography>
+            <Typography variant={'body2'}>Mean Rate: {surfaceProperties[timeIndex]?.rate_weighted_mean?.toExponential(2)} per year</Typography>
+            <Typography variant={'body2'}>Magnitude: {surfaceProperties[timeIndex]?.magnitude?.toFixed(1)}</Typography>
+            <Typography variant={'body2'}>Area: {surfaceProperties[timeIndex]?.area} km²</Typography>
+            <Typography variant={'body2'}>Length: {surfaceProperties[timeIndex]?.length} km</Typography>
+          </TimeDimensionInfoBox>
+        )}
     </>
   );
 };
