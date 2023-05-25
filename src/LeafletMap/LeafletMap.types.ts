@@ -2,6 +2,7 @@ import { GeoJsonObject } from 'geojson';
 import { LatLngExpression } from 'leaflet';
 import { Feature, Geometry } from 'geojson';
 import { Layer } from 'leaflet';
+import TimeDimensionLayerProps from './TimeDimensionLayer';
 
 export interface LeafletMapProps {
   geoJsonData: string[];
@@ -22,33 +23,14 @@ export interface LeafletMapProps {
   timeDimension?: boolean;
   timeDimensionOptions?: TimeDimensionOptions;
   timeDimensionControlOptions?: TimeDimensionControlOptions;
-  timeDimensionGeoJsonData?: GeoJsonObject[];
-  timeDimensionUnderlay?: GeoJsonObject;
   setZoomLevel: (setZoomLevel: number) => void;
-  setTimeDimensionNeedsMore?: (setTimeDimensionNeedsMore: boolean) => void;
-  setTimeDimensionHasNoMore?: (setTimeDimensionHasNoMore: boolean) => void;
-  surfaceProperties?: SurfaceProperties[];
-  timeDimensionTotalLength?: number;
-}
-
-export interface GeoJsonStyle {
-  stroke: string;
-  color: string;
-  weight: number;
-  opacity: number;
-  fillOpacity: number;
-}
-
-export interface TimeDimensionOptions {
-  timeInterval: string;
-  period: string;
-  currentTime: number;
-  times: number[];
-}
-
-export interface TimeDimensionControlOptions {
-  loopButton?: boolean;
-  displayDate?: boolean;
+  // timeDimensionGeoJsonData?: GeoJsonObject[];
+  // timeDimensionUnderlay?: GeoJsonObject;
+  // setTimeDimensionNeedsMore?: (setTimeDimensionNeedsMore: boolean) => void;
+  // setTimeDimensionHasNoMore?: (setTimeDimensionHasNoMore: boolean) => void;
+  // surfaceProperties?: SurfaceProperties[];
+  // timeDimensionTotalLength?: number;
+  timeDimensionLayerProps?: TimeDimensionLayerProps;
 }
 
 export interface LeafletLayersProps {
@@ -60,29 +42,13 @@ export interface LeafletLayersProps {
   setFullscreen: (setFullscreen: boolean) => void;
   zoomLevel: number;
   setZoomLevel: (setZoomLevel: number) => void;
-  timeDimension?: boolean;
-  timeDimensionGeoJsonData?: GeoJsonObject[];
-  timeDimensionUnderlay?: GeoJsonObject;
-  setTimeDimensionHasNoMore?: (setTimeDimensionHasNoMore: boolean) => void;
-  setTimeDimensionNeedsMore?: (setTimeDimensionNeedsMore: boolean) => void;
-  surfaceProperties?: SurfaceProperties[];
-  timeDimensionTotalLength?: number;
+  timeDimensionLayerProps: TimeDimensionLayerProps;
 }
 
-export interface TimeDimensionLayerProps {
-  geoJsonData: GeoJsonObject[];
-  setTimeDimensionHasNoMore: (setTimeDimensionHasNoMore: boolean) => void;
-  setTimeDimensionNeedsMore: (setTimeDimensionNeedsMore: boolean) => void;
-  surfaceProperties: SurfaceProperties[];
-  timeDimensionTotalLength: number;
+export interface GeoJsonStyle {
+  stroke: string;
+  color: string;
+  weight: number;
+  opacity: number;
+  fillOpacity: number;
 }
-
-export type SurfaceProperties =
-  | {
-      rate_weighted_mean: number | null;
-      area: number | null;
-      length: number | null;
-      magnitude: number | null;
-    }
-  | null
-  | undefined;
