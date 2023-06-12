@@ -1,3 +1,5 @@
+import { GeoJsonObject } from 'geojson';
+
 export interface TimeDimensionOptions {
   timeInterval: string;
   period: string;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React from 'react';
 import { Box, styled, Typography } from '@mui/material';
 import { SurfaceProperties } from './TimeDimensionLayer.types';
 // import 'leaflet/dist/leaflet.css';
@@ -10,26 +10,8 @@ export interface TimeDimensionInfoBoxProps {
   surfaceProperties: SurfaceProperties[];
 }
 
-const style = {
-  position: 'absolute',
-  bottom: '55px',
-  right: '0px',
-  padding: '10px',
-  margin: '10px',
-  zIndex: 100000,
-  backgroundColor: '#fff',
-  float: 'left',
-  lineHeight: '26px',
-  borderRadius: '4px',
-  borderWidth: '1px',
-  border: '2px solid rgba(0,0,0,0.2)',
-  backgroundClip: 'padding-box',
-  display: 'block',
-  width: '430px',
-};
-
 const InfoBox = ({ surfaceId, timeIndex, timeDimensionTotalLength, surfaceProperties }: TimeDimensionInfoBoxProps) => {
-  console.log('InfoBox');
+  console.log('InfoBox', timeIndex);
   return (
     <Box>
       <Typography variant={'body2'}>Rupture ID: {surfaceId}</Typography>
@@ -44,13 +26,15 @@ const InfoBox = ({ surfaceId, timeIndex, timeDimensionTotalLength, surfaceProper
   );
 };
 
-export const TimeDimensionInfoBox = styled(InfoBox)({
+const TimeDimensionInfoBox = styled(InfoBox)({
   position: 'absolute',
+  zIndex: 100000,
+  top: '-605px',
+  left: 'calc(100% - 435px)',
+  width: '429px',
   bottom: '55px',
-  right: '0px',
   padding: '10px',
   margin: '10px',
-  zIndex: 100000,
   backgroundColor: '#fff',
   float: 'left',
   lineHeight: '26px',
@@ -58,8 +42,6 @@ export const TimeDimensionInfoBox = styled(InfoBox)({
   borderWidth: '1px',
   border: '2px solid rgba(0,0,0,0.2)',
   backgroundClip: 'padding-box',
-  display: 'block',
-  width: '430px',
 });
 
 export default TimeDimensionInfoBox;

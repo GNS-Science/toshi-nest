@@ -1,8 +1,7 @@
-import { GeoJsonObject } from 'geojson';
 import { LatLngExpression } from 'leaflet';
 import { Feature, Geometry } from 'geojson';
 import { Layer } from 'leaflet';
-import TimeDimensionLayerProps from './TimeDimensionLayer';
+import { TimeDimensionLayerProps, TimeDimensionOptions, TimeDimensionControlOptions } from './TimeDimensionLayer';
 
 export interface LeafletMapProps {
   geoJsonData: string[];
@@ -24,12 +23,6 @@ export interface LeafletMapProps {
   timeDimensionOptions?: TimeDimensionOptions;
   timeDimensionControlOptions?: TimeDimensionControlOptions;
   setZoomLevel: (setZoomLevel: number) => void;
-  // timeDimensionGeoJsonData?: GeoJsonObject[];
-  // timeDimensionUnderlay?: GeoJsonObject;
-  // setTimeDimensionNeedsMore?: (setTimeDimensionNeedsMore: boolean) => void;
-  // setTimeDimensionHasNoMore?: (setTimeDimensionHasNoMore: boolean) => void;
-  // surfaceProperties?: SurfaceProperties[];
-  // timeDimensionTotalLength?: number;
   timeDimensionLayerProps?: TimeDimensionLayerProps;
 }
 
@@ -42,7 +35,7 @@ export interface LeafletLayersProps {
   setFullscreen: (setFullscreen: boolean) => void;
   zoomLevel: number;
   setZoomLevel: (setZoomLevel: number) => void;
-  timeDimensionLayerProps: TimeDimensionLayerProps;
+  timeDimensionLayerProps?: TimeDimensionLayerProps;
 }
 
 export interface GeoJsonStyle {

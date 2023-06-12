@@ -1,33 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect, useMemo } from 'react';
-import { Box, styled, Typography } from '@mui/material';
+import { GeoJSON, useMap } from 'react-leaflet';
+import { TimeDimensionLayerProps } from './TimeDimensionLayer.types';
 
-import { GeoJsonObject } from 'geojson';
-import { GeoJSON, LayersControl, useMap } from 'react-leaflet';
-import { TimeDimensionLayerProps, SurfaceProperties } from './TimeDimensionLayer.types';
+import TimeDimensionInfoBox from './TimeDimensionInfoBox';
 
-// import { TimeDimensionInfoBox } from './TimeDimensionInfoBox';
-// <TimeDimensionInfoBox surfaceId={surfaceId} timeIndex={timeIndex} surfaceProperties={surfaceProperties} timeDimensionTotalLength={timeDimensionTotalLength} />
-
-const TimeDimensionInfoBox = styled(Box)({
-  position: 'absolute',
-  bottom: '55px',
-  right: '0px',
-  padding: '10px',
-  margin: '10px',
-  zIndex: 100000,
-  backgroundColor: '#fff',
-  float: 'left',
-  lineHeight: '26px',
-  borderRadius: '4px',
-  borderWidth: '1px',
-  border: '2px solid rgba(0,0,0,0.2)',
-  backgroundClip: 'paddingbox',
-  display: 'block',
-  width: '430px',
-});
-
-const { BaseLayer } = LayersControl;
+// const { BaseLayer } = LayersControl;
 
 const TimeDimensionLayer: React.FC<TimeDimensionLayerProps> = ({
   geoJsonData,
@@ -66,6 +44,7 @@ const TimeDimensionLayer: React.FC<TimeDimensionLayerProps> = ({
       // console.log('TimeDimensionLayer -> onNewTimeIndexHandler', timeIndex)
       onNewTimeIndexHandler(timeIndex);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [timeIndex]);
 
   useEffect(() => {
@@ -112,16 +91,7 @@ const TimeDimensionLayer: React.FC<TimeDimensionLayerProps> = ({
       {onNewTimeIndexHandler == null && // only render if we dont have a handler function....
         surfaceProperties[timeIndex] !== null &&
         surfaceProperties[timeIndex] !== undefined && (
-          <TimeDimensionInfoBox>
-            <Typography variant={'body2'}>Rupture ID: {surfaceId}</Typography>
-            <Typography variant={'body2'}>
-              Rupture {timeIndex + 1} of {timeDimensionTotalLength}
-            </Typography>
-            <Typography variant={'body2'}>Mean Rate: {surfaceProperties[timeIndex]?.rate_weighted_mean?.toExponential(2)} per year</Typography>
-            <Typography variant={'body2'}>Magnitude: {surfaceProperties[timeIndex]?.magnitude?.toFixed(1)}</Typography>
-            <Typography variant={'body2'}>Area: {surfaceProperties[timeIndex]?.area} km²</Typography>
-            <Typography variant={'body2'}>Length: {surfaceProperties[timeIndex]?.length} km</Typography>
-          </TimeDimensionInfoBox>
+          <TimeDimensionInfoBox surfaceId={surfaceId} timeIndex={timeIndex} timeDimensionTotalLength={timeDimensionTotalLength} surfaceProperties={surfaceProperties} />
         )}
     </>
   );
