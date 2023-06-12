@@ -1,16 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { ReactElement, useState, useEffect, useMemo } from 'react';
-import { Box, styled, Typography } from '@mui/material';
+import React from 'react';
 import { GeoJsonObject } from 'geojson';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-timedimension';
-import { MapContainer, TileLayer, GeoJSON, LayersControl, Pane, LayerGroup, useMap, useMapEvents } from 'react-leaflet';
+import { TileLayer, GeoJSON, LayersControl, Pane, LayerGroup, useMapEvents } from 'react-leaflet';
 import Fullscreen from 'react-leaflet-fullscreen-plugin';
 
-import { GeoJsonStyle, LeafletLayersProps } from './LeafletMap.types';
+import { LeafletLayersProps } from './LeafletMap.types';
 import '../../node_modules/leaflet/dist/leaflet.css';
 import '../../node_modules/leaflet-timedimension/src/leaflet.timedimension.control.css';
-import TimeDimensionLayer, { TimeDimensionLayerProps } from './TimeDimensionLayer';
+import TimeDimensionLayer from './TimeDimensionLayer';
 const { BaseLayer } = LayersControl;
 
 const BaseLayerOptions: React.FC = () => {
@@ -107,19 +106,17 @@ function LeafletLayers({ style, geoJsonData, overlay, setFullscreen, onEachFeatu
 
   return (
     <>
-      {false && (
-        <Fullscreen
-          eventHandlers={{
-            enterFullscreen: () => setFullscreen(true),
-            exitFullscreen: () => setFullscreen(false),
-          }}
-          forcePseudoFullscreen={true}
-        />
-      )}
+      <Fullscreen
+        eventHandlers={{
+          enterFullscreen: () => setFullscreen(true),
+          exitFullscreen: () => setFullscreen(false),
+        }}
+        forcePseudoFullscreen={true}
+      />
 
       <LayersControl>
         <BaseLayerOptions />
-        overlay && <BaseLayerOverlayOptions />
+        {overlay && <BaseLayerOverlayOptions />}
       </LayersControl>
 
       {geoJsonData.length &&

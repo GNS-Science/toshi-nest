@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useMemo, useContext } from 'react';
 import { ComponentMeta } from '@storybook/react';
 import { Box, Typography } from '@mui/material';
 import { LatLngExpression } from 'leaflet';
-import { Feature, Geometry, GeoJsonObject } from 'geojson';
-import { Layer } from 'leaflet';
 
 import SelectControl from '../../SelectControl';
 import LeafletMap from '../../LeafletMap';
@@ -12,7 +11,6 @@ import LeafletDrawer from '../../LeafletDrawer';
 
 import geojsonTestDataStyled from '../../__tests__/testData/geoJson/geojsonTestDataStyled';
 import geojsonTestDataStyledLine from '../../__tests__/testData/geoJson/geojsonTestDataStyledLine';
-import surfaceBaseLayer from '../../__tests__/testData/geoJson/surfaces_puysegur.json';
 import ruptureProperties from '../../__tests__/testData/wlg_hik_10k_surface_properties.json';
 import crustalFaultSurfacesList from '../../__tests__/testData/geoJson/crustal_fault_surfaces_list_sample.json';
 

@@ -1,13 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { ReactElement, useState, useEffect, useMemo } from 'react';
-import { Box, styled, Typography } from '@mui/material';
-import { GeoJsonObject } from 'geojson';
+import React from 'react';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-timedimension';
-import { MapContainer, TileLayer, GeoJSON, LayersControl, Pane, LayerGroup, useMap, useMapEvents } from 'react-leaflet';
-import Fullscreen from 'react-leaflet-fullscreen-plugin';
+import { MapContainer } from 'react-leaflet';
 
-import { LeafletMapProps, GeoJsonStyle, LeafletLayersProps } from './LeafletMap.types';
+import { LeafletMapProps } from './LeafletMap.types';
 import '../../node_modules/leaflet/dist/leaflet.css';
 
 import LeafletLayers from './LeafletLayers';
@@ -30,7 +27,7 @@ const LeafletMap = ({
   timeDimension,
   timeDimensionOptions,
   timeDimensionControlOptions,
-  timeDimensionLayerProps = null,
+  timeDimensionLayerProps = undefined,
   overlay = true,
 }: LeafletMapProps) => {
   return (
