@@ -6,4 +6,5 @@ export interface LeafletDrawerProps {
   headerHeight: string;
   width: string;
   fullscreen: boolean;
+  openAtRender?: boolean;
 }

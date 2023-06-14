@@ -13,9 +13,6 @@ import solvisResponse from '../__tests__/testData/leafletMapTestData';
 import geojsonTesetDat05 from '../__tests__/testData/geoJson/geojsonTestData0.5';
 import geojsonTestDataPGA from '../__tests__/testData/geoJson/geojsonTestDataPGA';
 import geojsonTestDataCoV from '../__tests__/testData/geoJson/geojsonTestDataCoV';
-import geojsonTestDataStyled from '../__tests__/testData/geoJson/geojsonTestDataStyled';
-import geojsonTestDataStyledLine from '../__tests__/testData/geoJson/geojsonTestDataStyledLine';
-import surfaceBaseLayer from '../__tests__/testData/geoJson/surfaces_puysegur.json';
 import ruptureArray from '../__tests__/testData/geoJson/wlg_hik_10k.json';
 import ruptureProperties from '../__tests__/testData/wlg_hik_10k_surface_properties.json';
 
@@ -187,7 +184,7 @@ export const HazardMapsWithControls = () => {
         zoomLevel={zoomLevel}
         setZoomLevel={setZoomLevel}
       />
-      <LeafletDrawer drawerHeight={'700px'} headerHeight={'0px'} width={'400px'} fullscreen={fullscreen}>
+      <LeafletDrawer drawerHeight={'700px'} headerHeight={'0px'} width={'400px'} fullscreen={fullscreen} openAtRender={true}>
         <Box sx={{ width: '100%', margin: '10px', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
           <SelectControl options={['option1(PGA)', 'option2(SA0.5)', 'option3(null)']} selection={selection} setSelection={setSelection} name="Options" />
         </Box>
