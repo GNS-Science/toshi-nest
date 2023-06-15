@@ -26,8 +26,8 @@ const StyledDrawer = styled(Drawer)({
   border: '2px solid #ccc',
 });
 
-const LeafletDrawer: React.FC<LeafletDrawerProps> = ({ children, drawerHeight, headerHeight, fullscreen, width }: LeafletDrawerProps) => {
-  const [open, setOpen] = React.useState(false);
+const LeafletDrawer: React.FC<LeafletDrawerProps> = ({ children, drawerHeight, headerHeight, fullscreen, width, openAtRender = false }: LeafletDrawerProps) => {
+  const [open, setOpen] = React.useState(openAtRender);
 
   const handleDrawerOpen = () => {
     setOpen(true);
