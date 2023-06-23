@@ -4,8 +4,12 @@ import { GeoJSON, useMap } from 'react-leaflet';
 import { TimeDimensionLayerProps } from './TimeDimensionLayer.types';
 
 import TimeDimensionInfoBox from './TimeDimensionInfoBox';
+import { GeoJsonObject } from 'geojson';
 
-// const { BaseLayer } = LayersControl;
+const dummyGeoJson = {
+  type: 'FeatureCollection',
+  features: [],
+};
 
 const TimeDimensionLayer: React.FC<TimeDimensionLayerProps> = ({
   geoJsonData,
@@ -52,7 +56,7 @@ const TimeDimensionLayer: React.FC<TimeDimensionLayerProps> = ({
       (map as any).timeDimensionControl._player.pause();
       setTimeDimensionHasNoMore(true);
     } else if (timeIndex > geoJsonData.length) {
-      setCurrentSurface(geoJsonData[geoJsonData.length - 1] !== undefined ? geoJsonData[geoJsonData.length - 1] : geoJsonData[timeIndex]);
+      setCurrentSurface(dummyGeoJson as GeoJsonObject);
       if (geoJsonData.length <= timeIndex) {
         setTimeDimensionHasNoMore(true);
         setTimeDimensionNeedsMore(true);
