@@ -15,6 +15,9 @@ export const MfdPlot = ({ data, width, height, xLabel, yLabel, labelProps, xLabe
     setLinesToDisplay(value);
   };
 
+  const displayedLegendDomain = linesToDisplay === 'Both' ? legendDomain : [linesToDisplay === 'Incremental' ? legendDomain[0] : legendDomain[1]];
+  const displayedLineColours = linesToDisplay === 'Both' ? lineColours : [linesToDisplay === 'Incremental' ? lineColours[0] : lineColours[1]];
+
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -96,8 +99,8 @@ export const MfdPlot = ({ data, width, height, xLabel, yLabel, labelProps, xLabe
       <LegendOrdinal
         direction="column"
         scale={scaleOrdinal({
-          domain: legendDomain,
-          range: lineColours,
+          domain: displayedLegendDomain,
+          range: displayedLineColours,
         })}
         shape="line"
         shapeHeight={width * 0.02}
