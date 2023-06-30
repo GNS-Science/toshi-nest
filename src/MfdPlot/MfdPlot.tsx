@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Axis, AnimatedLineSeries, Tooltip, XYChart } from '@visx/xychart';
+import { Axis, AnimatedLineSeries, AnimatedBarSeries, Tooltip, XYChart } from '@visx/xychart';
 import { FormControlLabel, Menu, Radio, RadioGroup, MenuItem, IconButton, Typography } from '@mui/material';
 import { LegendOrdinal } from '@visx/legend';
 import { scaleOrdinal } from '@visx/scale';
@@ -8,9 +8,24 @@ import { Group } from '@visx/group';
 import SettingsIcon from '@mui/icons-material/Settings';
 
 import { MfdPlotProps, Datum } from './MfdPlot.types';
-export const MfdPlot = ({ data, width, height, xLabel, yLabel, labelProps, xLabelOffset, yLabelOffset, header, lineColours, xScaleDomain, yScaleDomain, legendDomain }: MfdPlotProps) => {
+export const MfdPlot = ({
+  data,
+  width,
+  height,
+  xLabel,
+  yLabel,
+  labelProps,
+  xLabelOffset,
+  yLabelOffset,
+  header,
+  lineColours,
+  xScaleDomain,
+  yScaleDomain,
+  legendDomain,
+  defaultLinesVisible,
+}: MfdPlotProps) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [linesToDisplay, setLinesToDisplay] = useState<string>('Incremental');
+  const [linesToDisplay, setLinesToDisplay] = useState<string>(defaultLinesVisible || 'Both');
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>, value: string) => {
     setLinesToDisplay(value);
   };
@@ -74,7 +89,9 @@ export const MfdPlot = ({ data, width, height, xLabel, yLabel, labelProps, xLabe
         <Axis orientation="left" label={yLabel} labelProps={labelProps} labelOffset={yLabelOffset} />
         <RectClipPath id={'clip'} x={50} y={-50} width={width} height={height} />
         <Group clipPath={'url(#clip)'}>
-          {['Incremental', 'Both'].includes(linesToDisplay) && <AnimatedLineSeries dataKey="key" data={data} xAccessor={(d) => d?.bin_center} yAccessor={(d) => d?.rate} stroke={lineColours[0]} />}
+          {['Incremental', 'Both'].includes(linesToDisplay) && (
+            <AnimatedBarSeries dataKey="key" data={data} xAccessor={(d) => d?.bin_center} yAccessor={(d) => d?.rate} colorAccessor={() => lineColours[0]} />
+          )}
           {['Cumulative', 'Both'].includes(linesToDisplay) && (
             <AnimatedLineSeries dataKey="cumulativeKey" data={data} xAccessor={(d) => d?.bin_center} yAccessor={(d) => d?.cumulative_rate} stroke={lineColours[1]} />
           )}
