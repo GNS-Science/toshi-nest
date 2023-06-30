@@ -23,4 +23,5 @@ export interface MfdPlotProps {
     fill?: string;
   };
   header?: string;
+  defaultLinesVisible?: string;
 }
