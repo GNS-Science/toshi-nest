@@ -70,14 +70,29 @@ export const MfdPlot = ({
         style={{ zIndex: 120001 }}
       >
         <RadioGroup aria-labelledby="radio-buttons-group-label" defaultValue="Incremental" name="radio-buttons-group" onChange={handleRadioChange}>
-          <MenuItem>
-            <FormControlLabel checked={linesToDisplay === 'Incremental'} value="Incremental" control={<Radio />} label="Incremental" />
+          <MenuItem
+            onClick={() => {
+              setLinesToDisplay('Incremental');
+              handleClose();
+            }}
+          >
+            <FormControlLabel onClick={handleClose} checked={linesToDisplay === 'Incremental'} value="Incremental" control={<Radio />} label="Incremental" />
           </MenuItem>
-          <MenuItem>
-            <FormControlLabel checked={linesToDisplay === 'Cumulative'} value="Cumulative" control={<Radio />} label="Cumulative" />
+          <MenuItem
+            onClick={() => {
+              setLinesToDisplay('Cumulative');
+              handleClose();
+            }}
+          >
+            <FormControlLabel onClick={handleClose} checked={linesToDisplay === 'Cumulative'} value="Cumulative" control={<Radio />} label="Cumulative" />
           </MenuItem>
-          <MenuItem>
-            <FormControlLabel checked={linesToDisplay === 'Both'} value="Both" control={<Radio />} label="Both" />
+          <MenuItem
+            onClick={() => {
+              setLinesToDisplay('Both');
+              handleClose();
+            }}
+          >
+            <FormControlLabel onClick={handleClose} checked={linesToDisplay === 'Both'} value="Both" control={<Radio />} label="Both" />
           </MenuItem>
         </RadioGroup>
       </Menu>
