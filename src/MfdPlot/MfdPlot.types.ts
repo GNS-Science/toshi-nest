@@ -24,4 +24,6 @@ export interface MfdPlotProps {
   };
   header?: string;
   defaultLinesVisible?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  renderCustomTooltip: any;
 }

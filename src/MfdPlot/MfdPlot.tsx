@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { Axis, AnimatedLineSeries, AnimatedBarSeries, Tooltip, XYChart } from '@visx/xychart';
-import { FormControlLabel, Menu, Radio, RadioGroup, MenuItem, IconButton, Typography } from '@mui/material';
+import { FormControlLabel, Menu, Radio, RadioGroup, MenuItem, IconButton } from '@mui/material';
 import { LegendOrdinal } from '@visx/legend';
 import { scaleOrdinal } from '@visx/scale';
 import { RectClipPath } from '@visx/clip-path';
 import { Group } from '@visx/group';
 import SettingsIcon from '@mui/icons-material/Settings';
 
-import { MfdPlotProps, Datum } from './MfdPlot.types';
+import { MfdPlotProps } from './MfdPlot.types';
+
 export const MfdPlot = ({
   data,
   width,
@@ -23,6 +24,7 @@ export const MfdPlot = ({
   yScaleDomain,
   legendDomain,
   defaultLinesVisible,
+  renderCustomTooltip,
 }: MfdPlotProps) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [linesToDisplay, setLinesToDisplay] = useState<string>(defaultLinesVisible || 'Both');
@@ -116,16 +118,8 @@ export const MfdPlot = ({
           snapTooltipToDatumY
           showVerticalCrosshair
           style={{ zIndex: 120000, position: 'absolute', backgroundColor: 'white', borderRadius: '4px', borderWidth: '1px', border: '2px solid rgba(0,0,0,0.2)', padding: 2 }}
-          renderTooltip={({ tooltipData }) => {
-            const datum = tooltipData?.nearestDatum?.datum as Datum;
-            return (
-              <>
-                <Typography>Rate: {datum?.rate?.toExponential(2)}</Typography>
-                <Typography>Cumulative Rate: {datum?.cumulative_rate?.toExponential(2)}</Typography>
-                <Typography>Magnitude: {datum?.bin_center.toPrecision(3)}</Typography>
-              </>
-            );
-          }}
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          renderTooltip={({ tooltipData }: any) => renderCustomTooltip(tooltipData)}
         />
       </XYChart>
       <LegendOrdinal
