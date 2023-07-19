@@ -6,7 +6,7 @@ import ColorBar from '../ColorBar/ColorBar';
 import { LatLngExpression } from 'leaflet';
 import LeafletMap from '../LeafletMap';
 import geojsonTestDataPGA from '../__tests__/testData/geoJson/geojsonTestDataPGA';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
 export default {
   title: 'Charts/MFDPlot',
@@ -150,6 +150,18 @@ const data = [
     cumulative_rate: 0,
   },
 ];
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const renderCustomTooltip = (tooltipData: any) => {
+  const datum = tooltipData?.nearestDatum?.datum as Datum;
+  console.log(tooltipData);
+  return (
+    <>
+      <Typography>Rate: {datum?.rate?.toExponential(2)}</Typography>
+      <Typography>Cumulative Rate: {datum?.cumulative_rate?.toExponential(2)}/yr</Typography>
+      <Typography>Magnitude: {datum?.bin_center.toPrecision(3)}/yr</Typography>
+    </>
+  );
+};
 
 const adjustedData: Datum[] = data.map((d) => {
   if (d.rate === 0) {
@@ -185,6 +197,7 @@ export const Primary = () => {
       yScaleDomain={[1e-6, 1e-1]}
       lineColours={['blue', 'red']}
       legendDomain={['rate', 'cumulative rate']}
+      renderCustomTooltip={renderCustomTooltip}
     />
   );
 };
@@ -255,6 +268,7 @@ export const HazardMapsLog = () => {
           yScaleDomain={[1e-7, 1e-1]}
           lineColours={['blue', 'red']}
           legendDomain={['rate', 'cumulative rate']}
+          renderCustomTooltip={renderCustomTooltip}
         />
         <ColorBar width={360} height={35} colors={colorsLog} tickValues={valuesLog} heading={'Participation rate'} linear={false} />
       </Box>
