@@ -8,6 +8,7 @@ export interface HazardChartResponsiveProps {
   subHeading?: string;
   gridNumTicks: number;
   poe: number | undefined;
+  timePeriod: number;
 }
 
 export interface HazardChartProps {
