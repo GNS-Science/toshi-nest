@@ -20,4 +20,5 @@ Primary.args = {
   scalesConfig: hazardChartScalesConfig,
   heading: 'Hazard Chart',
   subHeading: 'PGA',
+  timePeriod: 100,
 };
