@@ -21,6 +21,7 @@ export interface GroupCurveChartResponsiveProps {
   subHeading?: string;
   poe: number | undefined;
   uncertainty: boolean;
+  timePeriod: number;
 }
 
 const GroupCurveChartResponsive: React.FC<GroupCurveChartResponsiveProps> = (props: GroupCurveChartResponsiveProps) => {

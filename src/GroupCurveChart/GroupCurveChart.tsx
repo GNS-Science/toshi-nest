@@ -41,6 +41,7 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
     subHeading,
     poe,
     uncertainty,
+    timePeriod,
   } = props;
   const height = width * 0.75;
   const marginLeft = 50;
@@ -92,7 +93,7 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
   const ordinalColorScale = useMemo(() => {
     if (!spectral) {
       return scaleOrdinal({
-        domain: !poe ? [...curvesDomain.domain] : [...curvesDomain.domain, !spectral && `POE ${poe * 100}% (50 Yrs)`],
+        domain: !poe ? [...curvesDomain.domain] : [...curvesDomain.domain, !spectral && `POE ${poe * 100}% (${timePeriod} Yrs)`],
         range: !poe ? [...curvesDomain.range] : [...curvesDomain.range, !spectral && '#989C9C'],
       });
     } else {
@@ -101,7 +102,7 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
         range: [...curvesDomain.range],
       });
     }
-  }, [curvesDomain, poe, spectral]);
+  }, [curvesDomain, poe, spectral, timePeriod]);
 
   const poeLine = useMemo(() => {
     const getPoE = (poeValue: number) => {

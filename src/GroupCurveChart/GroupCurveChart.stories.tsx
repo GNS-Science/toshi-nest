@@ -41,6 +41,7 @@ Primary.args = {
   poe: 0.02,
   uncertainty: true,
   spectral: false,
+  timePeriod: 100,
 };
 
 Tooltip.args = {
@@ -62,6 +63,7 @@ Tooltip.args = {
   poe: 0.02,
   uncertainty: true,
   spectral: false,
+  timePeriod: 100,
 };
 
 Crosshair.args = {
@@ -83,6 +85,7 @@ Crosshair.args = {
   poe: 0.02,
   uncertainty: true,
   spectral: false,
+  timePeriod: 100,
 };
 
 TooltipWithCrosshair.args = {
@@ -104,6 +107,7 @@ TooltipWithCrosshair.args = {
   poe: 0.02,
   uncertainty: true,
   spectral: false,
+  timePeriod: 100,
 };
 
 UncertaintyFalse.args = {
@@ -125,6 +129,7 @@ UncertaintyFalse.args = {
   poe: 0.02,
   uncertainty: false,
   spectral: false,
+  timePeriod: 100,
 };
 
 SpectralAccelUncertaintyTrue.args = {
@@ -147,6 +152,7 @@ SpectralAccelUncertaintyTrue.args = {
   poe: 0.1,
   uncertainty: true,
   spectral: true,
+  timePeriod: 100,
 };
 
 SpectralAccelUncertaintyFalse.args = {
@@ -169,6 +175,7 @@ SpectralAccelUncertaintyFalse.args = {
   poe: 0.1,
   uncertainty: false,
   spectral: true,
+  timePeriod: 100,
 };
 
 SpectralAccelLog.args = {
@@ -191,4 +198,5 @@ SpectralAccelLog.args = {
   poe: 0.1,
   uncertainty: true,
   spectral: true,
+  timePeriod: 100,
 };

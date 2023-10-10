@@ -18,7 +18,9 @@ const scalesConfig: XYChartScaleConfig = {
 
 describe('Hazard Curves works as expected', () => {
   const Wrapper = () => {
-    return <HazardChart curves={testData} width={500} scalesConfig={scalesConfig} colors={colors} heading={'Test Heading'} subHeading={'Test Subheading'} gridNumTicks={5} poe={undefined} />;
+    return (
+      <HazardChart curves={testData} width={500} scalesConfig={scalesConfig} colors={colors} heading={'Test Heading'} subHeading={'Test Subheading'} gridNumTicks={5} poe={undefined} timePeriod={50} />
+    );
   };
   const user = userEvent.setup();
 
@@ -41,7 +43,9 @@ describe('Hazard Curves works as expected', () => {
 
 test('displays POE line when given a value', () => {
   const Wrapper = () => {
-    return <HazardChart curves={testData} width={500} scalesConfig={scalesConfig} colors={colors} heading={'Test Heading'} subHeading={'Test Subheading'} gridNumTicks={5} poe={0.02} />;
+    return (
+      <HazardChart curves={testData} width={500} scalesConfig={scalesConfig} colors={colors} heading={'Test Heading'} subHeading={'Test Subheading'} gridNumTicks={5} poe={0.02} timePeriod={50} />
+    );
   };
   render(<Wrapper />);
   const POEline = screen.getByRole('POE');

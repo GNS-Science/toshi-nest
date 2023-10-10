@@ -21,6 +21,7 @@ export interface GroupCurveChartProps {
   resizeParent?: (state: any) => void;
   poe: number | undefined;
   uncertainty: boolean;
+  timePeriod: number;
 }
 
 export interface Curve {

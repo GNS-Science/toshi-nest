@@ -21,6 +21,7 @@ const props: GroupCurveChartProps = {
   subHeading: 'subHeading',
   poe: 0.02,
   uncertainty: true,
+  timePeriod: 100,
 };
 
 const Wrapper = () => {

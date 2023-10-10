@@ -32,6 +32,7 @@ Primary.args = {
   heading: 'Hazard Chart with Uncertainty',
   subHeading: 'WLG 250',
   poe: 0.02,
+  timePeriod: 100,
 };
 
 SpectralAccelUncertaintyTrue.args = {
@@ -50,6 +51,7 @@ SpectralAccelUncertaintyTrue.args = {
   subHeading: 'WLG 400m/s',
   poe: undefined,
   uncertainty: true,
+  timePeriod: 100,
 };
 
 SpectralAccelUncertaintyFalse.args = {
@@ -68,4 +70,5 @@ SpectralAccelUncertaintyFalse.args = {
   subHeading: 'WLG 400m/s',
   poe: undefined,
   uncertainty: false,
+  timePeriod: 100,
 };

@@ -4,7 +4,7 @@ import { ParentSize } from '@visx/responsive';
 import HazardChart from '../HazardChart/HazardChart';
 import { HazardChartResponsiveProps } from '../types/hazardCharts.types';
 
-const HazardChartResponsive: React.FC<HazardChartResponsiveProps> = ({ curves, scalesConfig, colors, heading, subHeading, gridNumTicks, poe }: HazardChartResponsiveProps) => {
+const HazardChartResponsive: React.FC<HazardChartResponsiveProps> = ({ curves, scalesConfig, colors, heading, subHeading, gridNumTicks, poe, timePeriod }: HazardChartResponsiveProps) => {
   return (
     <>
       <ParentSize>
@@ -20,6 +20,7 @@ const HazardChartResponsive: React.FC<HazardChartResponsiveProps> = ({ curves, s
             resizeParent={parent.resize}
             gridNumTicks={gridNumTicks}
             poe={poe}
+            timePeriod={timePeriod}
           />
         )}
       </ParentSize>
