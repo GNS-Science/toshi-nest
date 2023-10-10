@@ -7,11 +7,11 @@ import { LegendOrdinal } from '@visx/legend';
 
 import { XY } from '../types/common.types';
 import { Typography } from '@mui/material';
-import { HazardChartPropsd, HazardColorScale } from '../types/hazardCharts.types';
+import { HazardChartProps, HazardColorScale } from '../types/hazardCharts.types';
 import PlotHeadings from '../common/PlotHeadings';
 
-const HazardChart: React.FC<HazardChartPropsd> = (props: HazardChartPropsd) => {
-  const { curves, scalesConfig, colors, width, heading, subHeading, parentRef, gridNumTicks, poe } = props;
+const HazardChart: React.FC<HazardChartProps> = (props: HazardChartProps) => {
+  const { curves, scalesConfig, colors, width, heading, subHeading, parentRef, gridNumTicks, poe, timePeriod } = props;
 
   const curvesDomain = useMemo(() => {
     const colorScale: HazardColorScale = {
@@ -27,10 +27,10 @@ const HazardChart: React.FC<HazardChartPropsd> = (props: HazardChartPropsd) => {
 
   const ordinalColorScale = useMemo(() => {
     return scaleOrdinal({
-      domain: !poe ? [...curvesDomain.domain] : [...curvesDomain.domain, `PoE ${poe * 100}% (50 Yrs)`],
+      domain: !poe ? [...curvesDomain.domain] : [...curvesDomain.domain, `PoE ${poe * 100}% (${timePeriod} Yrs)`],
       range: !poe ? [...curvesDomain.range] : [...curvesDomain.range, '#989C9C'],
     });
-  }, [poe, curvesDomain]);
+  }, [poe, curvesDomain, timePeriod]);
 
   const POEline = useMemo(() => {
     const getPoE = (poeValue: number) => {

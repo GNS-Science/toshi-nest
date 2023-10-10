@@ -10,7 +10,7 @@ export interface HazardChartResponsiveProps {
   poe: number | undefined;
 }
 
-export interface HazardChartPropsd {
+export interface HazardChartProps {
   curves: HazardTableFilteredData;
   scalesConfig: XYChartScaleConfig;
   colors: HazardChartColors;
@@ -22,6 +22,7 @@ export interface HazardChartPropsd {
   resizeParent?: (state: any) => void;
   gridNumTicks: number;
   poe: number | undefined;
+  timePeriod: number;
 }
 
 export interface HazardViewOptions {
