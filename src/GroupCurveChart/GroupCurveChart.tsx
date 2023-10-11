@@ -106,14 +106,14 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
 
   const poeLine = useMemo(() => {
     const getPoE = (poeValue: number) => {
-      const yValue = -Math.log(1 - poeValue) / 50;
+      const yValue = -Math.log(1 - poeValue) / timePeriod;
       return [
         { x: 1e-3, y: yValue },
         { x: 10, y: yValue },
       ];
     };
     return poe ? getPoE(poe) : [];
-  }, [poe]);
+  }, [poe, timePeriod]);
 
   const { containerRef, TooltipInPortal } = useTooltipInPortal({
     scroll: true,
