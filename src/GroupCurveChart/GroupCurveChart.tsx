@@ -11,7 +11,7 @@ import { useTooltip, useTooltipInPortal } from '@visx/tooltip';
 import { Line } from '@visx/shape';
 import { localPoint } from '@visx/event';
 import { bisector } from 'd3-array';
-import { LegendOrdinal } from '@visx/legend';
+import { Legend, LegendItem, LegendLabel } from '@visx/legend';
 import { GlyphSquare } from '@visx/glyph';
 
 import { GroupCurveChartProps, Datum } from './groupCurveChart.types';
@@ -19,6 +19,7 @@ import { getAreaData, getSortedMeanCurves } from './groupCurveChart.service';
 import PlotHeadings from '../common/PlotHeadings';
 import { HazardColorScale } from '../types/hazardCharts.types';
 import AxisLabel from '../common/AxisLabel';
+import { Typography } from '@mui/material';
 
 const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartProps) => {
   const {
@@ -90,19 +91,7 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
     return colorScale;
   }, [curves]);
 
-  const ordinalColorScale = useMemo(() => {
-    if (!spectral) {
-      return scaleOrdinal({
-        domain: !poe ? [...curvesDomain.domain] : [...curvesDomain.domain, !spectral && `POE ${poe * 100}% (${timePeriod} Yrs)`],
-        range: !poe ? [...curvesDomain.range] : [...curvesDomain.range, !spectral && '#989C9C'],
-      });
-    } else {
-      return scaleOrdinal({
-        domain: [...curvesDomain.domain],
-        range: [...curvesDomain.range],
-      });
-    }
-  }, [curvesDomain, poe, spectral, timePeriod]);
+  const legendGlyphSize = 15;
 
   const poeLine = useMemo(() => {
     const getPoE = (poeValue: number) => {
@@ -118,6 +107,73 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
   const { containerRef, TooltipInPortal } = useTooltipInPortal({
     scroll: true,
     detectBounds: true,
+  });
+
+  const locations = [...new Set(Object.keys(curves).map((k) => k.split(' ')[2]))];
+  const vs30s = [...new Set(Object.keys(curves).map((k) => k.split(' ')[0]))];
+  const imts = [...new Set(Object.keys(curves).map((k) => k.split(' ')[1]))];
+
+  const locationsWithVs30 = locations.map((location) => {
+    return vs30s.map((vs30) => {
+      return curvesDomain.domain.filter((k) => ~k.indexOf(vs30) && ~k.indexOf(location));
+    });
+  });
+
+  const generateLegendRange = () => {
+    const domain = locationsWithVs30.flat(1);
+
+    return domain
+      .map((d, i) => {
+        switch (d.length) {
+          case 1:
+            return [<rect key={'a' + i} fill={curvesDomain.range[i]} width={legendGlyphSize} height={legendGlyphSize / 5} y={7} />];
+          case 2:
+            return [
+              <rect key={'a' + i} fill={curvesDomain.range[i]} width={legendGlyphSize} height={legendGlyphSize / 5} y={7} />,
+              <line key={'b' + i} stroke={curvesDomain.range[i]} x1="0" y1="10" x2="250" y2="10" strokeDasharray="4,5" y={7} strokeWidth={legendGlyphSize / 5} />,
+            ];
+          case 3:
+            return [
+              <rect key={'a' + i} fill={curvesDomain.range[i]} width={legendGlyphSize} height={legendGlyphSize / 5} y={7} />,
+              <line key={'b' + i} stroke={curvesDomain.range[i]} x1="0" y1="10" x2="250" y2="10" strokeDasharray="4,5" y={7} strokeWidth={legendGlyphSize / 5} />,
+              <line key={'c' + i} stroke={curvesDomain.range[i]} x1="0" y1="10" x2="250" y2="10" strokeDasharray="1,3" y={7} strokeWidth={legendGlyphSize / 5} />,
+            ];
+          default:
+            return [];
+        }
+      })
+      .flat();
+  };
+
+  const strokeDashArray = (index: number) => {
+    const values = ['0', '4,5', '1,3'];
+    const repeatCount = imts.length === 1 ? 1 : imts.length === 2 ? 2 : imts.length === 3 ? 3 : 1;
+    const valuesIndex = (index % repeatCount) % values.length;
+
+    return values[valuesIndex];
+  };
+
+  function generateColorArray(length: number, interval: number) {
+    const array: string[] = [];
+    let valuesIndex = 0;
+    for (let i = 0; i < length; i++) {
+      if (i % interval === 0) {
+        array.push(curvesDomain.range[valuesIndex]);
+        valuesIndex = (valuesIndex + 1) % curvesDomain.range.length;
+      } else {
+        array.push(array[i - 1]);
+      }
+    }
+    return array;
+  }
+
+  const strokeColorArray = generateColorArray(Object.keys(curves).length, imts.length);
+
+  const legendRange = generateLegendRange();
+
+  const shapeScale = scaleOrdinal<string, React.FC | React.ReactNode>({
+    domain: locationsWithVs30.flat(2),
+    range: legendRange,
   });
 
   const {
@@ -272,8 +328,10 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
                         data={curves[key]['mean'].data}
                         x={(d) => xScale(d[0])}
                         y={(d) => yScale(d[1])}
-                        stroke={curves[key]['mean'].strokeColor ?? ''}
+                        markerMid="url(#marker-x)"
+                        stroke={strokeColorArray[index] ?? ''}
                         strokeOpacity={curves[key]['mean'].strokeOpacity ?? 1}
+                        strokeDasharray={strokeDashArray(index)}
                         defined={(d, index) => {
                           if (scaleType === 'log' && index === 0) {
                             return false;
@@ -320,8 +378,28 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
             )}
           </Group>
         </svg>
-        <div style={{ width: width * 0.24, height: 100, position: 'absolute', top: marginTop, left: width * 0.7, display: 'flex' }}>
-          <LegendOrdinal direction="column" scale={ordinalColorScale} shape="line" style={{ fontSize: width * 0.016 <= 13 ? 13 : width * 0.015 }} shapeHeight={width * 0.02} />
+        <div style={{ width: width * 0.24, height: 100, position: 'absolute', top: marginTop, left: width * 0.8, display: 'flex' }}>
+          <Legend scale={shapeScale}>
+            {(labels) => (
+              <div style={{ display: 'flex', flexDirection: 'column' }}>
+                {labels.map((label, i) => {
+                  // const color = curvesDomain.range[i];
+                  const shape = shapeScale(label.datum);
+                  const isValidElement = React.isValidElement(shape);
+                  return (
+                    <LegendItem key={`legend-quantile-${i}`} margin="0 4px 0 0" flexDirection="row">
+                      <svg width={legendGlyphSize} height={legendGlyphSize} style={{ margin: '4px' }}>
+                        {isValidElement ? React.cloneElement(shape as React.ReactElement) : React.createElement(shape as React.ComponentType<{ fill: string }>)}
+                      </svg>
+                      <LegendLabel align="left" margin={0} size={4}>
+                        <Typography fontSize={'smaller'}>{label.text}</Typography>
+                      </LegendLabel>
+                    </LegendItem>
+                  );
+                })}
+              </div>
+            )}
+          </Legend>
         </div>
       </div>
     </>

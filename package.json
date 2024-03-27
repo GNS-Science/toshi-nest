@@ -106,6 +106,7 @@
     "@visx/group": "^2.1.0",
     "@visx/heatmap": "^3.0.0",
     "@visx/legend": "^2.2.2",
+    "@visx/marker": "^3.5.0",
     "@visx/responsive": "^2.8.0",
     "@visx/scale": "^2.2.2",
     "@visx/shape": "^2.11.1",

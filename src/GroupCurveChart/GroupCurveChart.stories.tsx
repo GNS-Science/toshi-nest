@@ -5,6 +5,7 @@ import GroupCurveChart from './GroupCurveChart';
 import { curveGroup4, curveGroup3, curveGroup2, curveGroup1 } from '../__tests__/testData/uncertaintyTestData';
 import spectralAccelUncertaintyTestData from '../__tests__/testData/spectralAccelUncertaintyTestData';
 import spectralAccelUncertaintyLog from '../__tests__/testData/spectralAccelUncertaintyLog';
+import { multipleImtData } from '../__tests__/testData/hazardChartMultipleSATestData';
 
 export default {
   title: 'Charts/GroupCurveChart',
@@ -21,6 +22,7 @@ export const UncertaintyFalse = Template.bind({});
 export const SpectralAccelUncertaintyTrue = Template.bind({});
 export const SpectralAccelUncertaintyFalse = Template.bind({});
 export const SpectralAccelLog = Template.bind({});
+export const MultipleSA = Template.bind({});
 
 Primary.args = {
   scaleType: 'log',
@@ -198,5 +200,27 @@ SpectralAccelLog.args = {
   poe: 0.1,
   uncertainty: true,
   spectral: true,
+  timePeriod: 100,
+};
+
+MultipleSA.args = {
+  scaleType: 'log',
+  xLimits: [1e-2, 10],
+  yLimits: [1e-6, 1],
+  xLabel: 'Acceleration(g)',
+  yLabel: 'Annual Probability of Exceedance',
+  gridColor: '#efefef',
+  backgroundColor: '#f3f6f4',
+  numTickX: 5,
+  numTickY: 5,
+  width: 600,
+  curves: multipleImtData,
+  tooltip: false,
+  crosshair: false,
+  heading: 'Group Curve Chart for Hazard',
+  subHeading: 'WLG 250',
+  poe: 0.02,
+  uncertainty: false,
+  spectral: false,
   timePeriod: 100,
 };
