@@ -1,6 +1,6 @@
 {
   "name": "@gns-science/toshi-nest",
-  "version": "3.9.9",
+  "version": "3.9.10",
   "description": "The toshi-nest is for fledgling work e.g. reusable Node components to share across TUI and other projects",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
@@ -106,6 +106,7 @@
     "@visx/group": "^2.1.0",
     "@visx/heatmap": "^3.0.0",
     "@visx/legend": "^2.2.2",
+    "@visx/marker": "^3.5.0",
     "@visx/responsive": "^2.8.0",
     "@visx/scale": "^2.2.2",
     "@visx/shape": "^2.11.1",
