@@ -277,8 +277,9 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
                           data={curves[key][curveType].data}
                           x={(d) => xScale(d[0])}
                           y={(d) => yScale(d[1])}
-                          stroke={curves[key][curveType].strokeColor ?? ''}
+                          stroke={strokeColorArray[index] ?? ''}
                           strokeOpacity={curves[key][curveType].strokeOpacity ?? 1}
+                          strokeDasharray={strokeDashArray(index)}
                           defined={(d, index) => {
                             if (scaleType === 'log' && index === 0) {
                               return false;
@@ -296,7 +297,7 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
                         clipAboveTo={0}
                         clipBelowTo={yMax}
                         aboveAreaProps={{
-                          fill: curves[key]['upper1'].strokeColor,
+                          fill: strokeColorArray[index],
                           fillOpacity: 0.4,
                         }}
                         defined={(d, index) => {
