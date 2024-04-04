@@ -5,7 +5,7 @@ import GroupCurveChart from './GroupCurveChart';
 import { curveGroup4, curveGroup3, curveGroup2, curveGroup1 } from '../__tests__/testData/uncertaintyTestData';
 import spectralAccelUncertaintyTestData from '../__tests__/testData/spectralAccelUncertaintyTestData';
 import spectralAccelUncertaintyLog from '../__tests__/testData/spectralAccelUncertaintyLog';
-import { multipleImtData } from '../__tests__/testData/hazardChartMultipleSATestData';
+import { multipleImtData, uhsData } from '../__tests__/testData/hazardChartMultipleSATestData';
 
 export default {
   title: 'Charts/GroupCurveChart',
@@ -23,6 +23,7 @@ export const SpectralAccelUncertaintyTrue = Template.bind({});
 export const SpectralAccelUncertaintyFalse = Template.bind({});
 export const SpectralAccelLog = Template.bind({});
 export const MultipleSA = Template.bind({});
+export const MultipleSAUHS = Template.bind({});
 
 Primary.args = {
   scaleType: 'log',
@@ -222,5 +223,28 @@ MultipleSA.args = {
   poe: 0.02,
   uncertainty: false,
   spectral: false,
+  timePeriod: 100,
+};
+
+MultipleSAUHS.args = {
+  scaleType: 'log',
+  yScaleType: 'linear',
+  xLabel: 'Period [s]',
+  yLabel: 'Shaking Intensity [g]',
+  xLimits: [0.0001, 10],
+  yLimits: [0, 3.690382289232626],
+  gridColor: '#efefef',
+  backgroundColor: '#ffffff',
+  numTickX: 5,
+  numTickY: 5,
+  width: 600,
+  curves: uhsData,
+  tooltip: true,
+  crosshair: true,
+  heading: 'Spectra with Log Xscale',
+  subHeading: 'WLG 400m/s',
+  poe: 0.1,
+  uncertainty: true,
+  spectral: true,
   timePeriod: 100,
 };
