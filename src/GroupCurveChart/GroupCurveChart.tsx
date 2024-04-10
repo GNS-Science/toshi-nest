@@ -316,7 +316,7 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
                         clipAboveTo={0}
                         clipBelowTo={yMax}
                         aboveAreaProps={{
-                          fill: strokeColorArray[index],
+                          fill: curves[key]['upper1'].strokeColor,
                           fillOpacity: 0.4,
                         }}
                         defined={(d, index) => {
