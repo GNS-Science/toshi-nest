@@ -11,7 +11,6 @@ export interface TimeDimensionInfoBoxProps {
 }
 
 const InfoBox = ({ surfaceId, timeIndex, timeDimensionTotalLength, surfaceProperties }: TimeDimensionInfoBoxProps) => {
-  console.log('InfoBox', timeIndex);
   return (
     <Box>
       <Typography variant={'body2'}>Rupture ID: {surfaceId}</Typography>

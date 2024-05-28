@@ -90,8 +90,6 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
     return colorScale;
   }, [curves]);
 
-  console.log(curvesDomain);
-
   const legendGlyphSize = 15;
 
   const ordinalColorScale = useMemo(() => {
