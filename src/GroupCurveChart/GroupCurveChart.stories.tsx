@@ -5,7 +5,7 @@ import GroupCurveChart from './GroupCurveChart';
 import { curveGroup4, curveGroup3, curveGroup2, curveGroup1 } from '../__tests__/testData/uncertaintyTestData';
 import spectralAccelUncertaintyTestData from '../__tests__/testData/spectralAccelUncertaintyTestData';
 import spectralAccelUncertaintyLog from '../__tests__/testData/spectralAccelUncertaintyLog';
-import { multipleImtData, uhsData } from '../__tests__/testData/hazardChartMultipleSATestData';
+import { multipleImtData, uhsData, uhsData2, saData2, newData, newSaData } from '../__tests__/testData/hazardChartMultipleSATestData';
 
 export default {
   title: 'Charts/GroupCurveChart',
@@ -24,6 +24,10 @@ export const SpectralAccelUncertaintyFalse = Template.bind({});
 export const SpectralAccelLog = Template.bind({});
 export const MultipleSA = Template.bind({});
 export const MultipleSAUHS = Template.bind({});
+export const WideSingleSA = Template.bind({});
+export const WideSingleUHS = Template.bind({});
+export const WideDoubleSA = Template.bind({});
+export const WideDoubleUHS = Template.bind({});
 
 Primary.args = {
   scaleType: 'log',
@@ -239,6 +243,96 @@ MultipleSAUHS.args = {
   numTickY: 5,
   width: 600,
   curves: uhsData,
+  tooltip: true,
+  crosshair: true,
+  heading: 'Spectra with Log Xscale',
+  subHeading: 'WLG 400m/s',
+  poe: 0.1,
+  uncertainty: true,
+  spectral: true,
+  timePeriod: 100,
+};
+
+WideSingleSA.args = {
+  scaleType: 'log',
+  xLimits: [1e-2, 10],
+  yLimits: [1e-6, 1],
+  xLabel: 'Acceleration(g)',
+  yLabel: 'Annual Probability of Exceedance',
+  gridColor: '#efefef',
+  backgroundColor: '#f3f6f4',
+  numTickX: 5,
+  numTickY: 5,
+  width: 600,
+  curves: uhsData2,
+  tooltip: false,
+  crosshair: false,
+  heading: 'Group Curve Chart for Hazard',
+  subHeading: 'WLG 250',
+  poe: 0.02,
+  uncertainty: true,
+  spectral: false,
+  timePeriod: 100,
+};
+
+WideSingleUHS.args = {
+  scaleType: 'log',
+  yScaleType: 'linear',
+  xLabel: 'Period [s]',
+  yLabel: 'Shaking Intensity [g]',
+  xLimits: [0.0001, 10],
+  yLimits: [0, 3.690382289232626],
+  gridColor: '#efefef',
+  backgroundColor: '#ffffff',
+  numTickX: 5,
+  numTickY: 5,
+  width: 600,
+  curves: saData2,
+  tooltip: true,
+  crosshair: true,
+  heading: 'Spectra with Log Xscale',
+  subHeading: 'WLG 400m/s',
+  poe: 0.1,
+  uncertainty: true,
+  spectral: true,
+  timePeriod: 100,
+};
+
+WideDoubleSA.args = {
+  scaleType: 'log',
+  xLimits: [1e-2, 10],
+  yLimits: [1e-5, 1],
+  xLabel: 'Acceleration(g)',
+  yLabel: 'Annual Probability of Exceedance',
+  gridColor: '#efefef',
+  backgroundColor: '#f3f6f4',
+  numTickX: 5,
+  numTickY: 5,
+  width: 600,
+  curves: newData,
+  tooltip: false,
+  crosshair: false,
+  heading: 'Group Curve Chart for Hazard',
+  subHeading: 'WLG 250',
+  poe: 0.02,
+  uncertainty: true,
+  spectral: false,
+  timePeriod: 100,
+};
+
+WideDoubleUHS.args = {
+  scaleType: 'log',
+  yScaleType: 'linear',
+  xLabel: 'Period [s]',
+  yLabel: 'Shaking Intensity [g]',
+  xLimits: [0.0001, 10],
+  yLimits: [0, 3.690382289232626],
+  gridColor: '#efefef',
+  backgroundColor: '#ffffff',
+  numTickX: 5,
+  numTickY: 5,
+  width: 600,
+  curves: newSaData,
   tooltip: true,
   crosshair: true,
   heading: 'Spectra with Log Xscale',

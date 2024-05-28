@@ -25,6 +25,7 @@ export interface GroupCurveChartProps {
 }
 
 export interface Curve {
+  strokeDashArray?: string;
   strokeSize?: number;
   strokeOpacity?: number;
   strokeColor?: string;
