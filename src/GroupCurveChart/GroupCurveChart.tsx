@@ -385,12 +385,14 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
                       <LegendItem
                         key={`legend-quantile-${i}`}
                         flexDirection="row"
-                        style={{ display: 'flex', alignItems: 'center', fontSize: width * 0.016 <= 13 ? 13 : width * 0.015, flex: '1 1 0%', margin: '0px', width: '120px' }}
+                        style={{ display: 'flex', alignItems: 'center', fontSize: width * 0.016 <= 13 ? 13 : width * 0.015, flex: '1 1 0%', margin: '0px' }}
                       >
                         <svg width={legendGlyphSize} height={legendGlyphSize} style={{ margin: '0px 4px' }}>
                           {isValidElement ? React.cloneElement(shape as React.ReactElement) : React.createElement(shape as React.ComponentType<{ fill: string }>)}
                         </svg>
-                        <LegendLabel align="left">{label.text}</LegendLabel>
+                        <LegendLabel style={{ margin: '2px', width: '90px' }} align="left">
+                          {label.text}
+                        </LegendLabel>
                       </LegendItem>
                     );
                   })}
