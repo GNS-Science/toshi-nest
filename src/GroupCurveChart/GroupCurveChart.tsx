@@ -276,6 +276,7 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
                           stroke={curves[key]['upper1'].strokeColor}
                           strokeOpacity={curves[key][curveType].strokeOpacity ?? 1}
                           strokeDasharray={curves[key][curveType].strokeDashArray ?? '0'}
+                          strokeWidth={1.3}
                           defined={(d, index) => {
                             if (scaleType === 'log' && index === 0) {
                               return false;
@@ -323,6 +324,7 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
                         stroke={curves[key]['upper1'].strokeColor}
                         strokeOpacity={curves[key]['mean'].strokeOpacity ?? 1}
                         strokeDasharray={spectral ? '0' : curves[key]['mean'].strokeDashArray}
+                        strokeWidth={1.3}
                         defined={(d, index) => {
                           if (scaleType === 'log' && index === 0) {
                             return false;
@@ -383,7 +385,7 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
                       <LegendItem
                         key={`legend-quantile-${i}`}
                         flexDirection="row"
-                        style={{ display: 'flex', alignItems: 'center', fontSize: width * 0.016 <= 13 ? 13 : width * 0.015, flex: '1 1 0%', margin: '0px' }}
+                        style={{ display: 'flex', alignItems: 'center', fontSize: width * 0.016 <= 13 ? 13 : width * 0.015, flex: '1 1 0%', margin: '0px', width: '120px' }}
                       >
                         <svg width={legendGlyphSize} height={legendGlyphSize} style={{ margin: '0px 4px' }}>
                           {isValidElement ? React.cloneElement(shape as React.ReactElement) : React.createElement(shape as React.ComponentType<{ fill: string }>)}
