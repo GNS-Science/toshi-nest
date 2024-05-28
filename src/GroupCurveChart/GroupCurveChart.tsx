@@ -90,6 +90,8 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
     return colorScale;
   }, [curves]);
 
+  console.log(curvesDomain);
+
   const legendGlyphSize = 15;
 
   const ordinalColorScale = useMemo(() => {
@@ -139,17 +141,17 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
       .map((d, i) => {
         switch (d.length) {
           case 1:
-            return [<rect key={'a' + i} fill={curvesDomain.range[i]} width={legendGlyphSize} height={legendGlyphSize / 5} y={7} />];
+            return [<rect key={'a' + i} fill={curvesDomain.range[i * imts.length]} width={legendGlyphSize} height={legendGlyphSize / 5} y={7} />];
           case 2:
             return [
-              <rect key={'a' + i} fill={curvesDomain.range[i]} width={legendGlyphSize} height={legendGlyphSize / 5} y={7} />,
-              <line key={'b' + i} stroke={curvesDomain.range[i]} x1="0" y1="10" x2="250" y2="10" strokeDasharray="4,5" y={7} strokeWidth={legendGlyphSize / 5} />,
+              <rect key={'a' + i} fill={curvesDomain.range[i * imts.length]} width={legendGlyphSize} height={legendGlyphSize / 5} y={7} />,
+              <line key={'b' + i} stroke={curvesDomain.range[i * imts.length]} x1="0" y1="10" x2="250" y2="10" strokeDasharray="4,5" y={7} strokeWidth={legendGlyphSize / 5} />,
             ];
           case 3:
             return [
-              <rect key={'a' + i} fill={curvesDomain.range[i]} width={legendGlyphSize} height={legendGlyphSize / 5} y={7} />,
-              <line key={'b' + i} stroke={curvesDomain.range[i]} x1="0" y1="10" x2="250" y2="10" strokeDasharray="4,5" y={7} strokeWidth={legendGlyphSize / 5} />,
-              <line key={'c' + i} stroke={curvesDomain.range[i]} x1="0" y1="10" x2="250" y2="10" strokeDasharray="1,3" y={7} strokeWidth={legendGlyphSize / 5} />,
+              <rect key={'a' + i} fill={curvesDomain.range[i * imts.length]} width={legendGlyphSize} height={legendGlyphSize / 5} y={7} />,
+              <line key={'b' + i} stroke={curvesDomain.range[i * imts.length]} x1="0" y1="10" x2="250" y2="10" strokeDasharray="4,5" y={7} strokeWidth={legendGlyphSize / 5} />,
+              <line key={'c' + i} stroke={curvesDomain.range[i * imts.length]} x1="0" y1="10" x2="250" y2="10" strokeDasharray="1,3" y={7} strokeWidth={legendGlyphSize / 5} />,
             ];
           default:
             return [];
@@ -157,30 +159,6 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
       })
       .flat();
   };
-
-  const strokeDashArray = (index: number) => {
-    const values = ['0', '4,5', '1,3'];
-    const repeatCount = imts.length === 1 ? 1 : imts.length === 2 ? 2 : imts.length === 3 ? 3 : 1;
-    const valuesIndex = (index % repeatCount) % values.length;
-
-    return values[valuesIndex];
-  };
-
-  function generateColorArray(length: number, interval: number) {
-    const array: string[] = [];
-    let valuesIndex = 0;
-    for (let i = 0; i < length; i++) {
-      if (i % interval === 0) {
-        array.push(curvesDomain.range[valuesIndex]);
-        valuesIndex = (valuesIndex + 1) % curvesDomain.range.length;
-      } else {
-        array.push(array[i - 1]);
-      }
-    }
-    return array;
-  }
-
-  const strokeColorArray = generateColorArray(Object.keys(curves).length, imts.length);
 
   const legendRange = generateLegendRange();
 
@@ -299,6 +277,7 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
                           y={(d) => yScale(d[1])}
                           stroke={curves[key]['upper1'].strokeColor}
                           strokeOpacity={curves[key][curveType].strokeOpacity ?? 1}
+                          strokeDasharray={curves[key][curveType].strokeDashArray ?? '0'}
                           defined={(d, index) => {
                             if (scaleType === 'log' && index === 0) {
                               return false;
@@ -316,8 +295,8 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
                         clipAboveTo={0}
                         clipBelowTo={yMax}
                         aboveAreaProps={{
-                          fill: strokeColorArray[index],
-                          fillOpacity: 0.4,
+                          fill: curves[key]['upper1'].strokeColor,
+                          fillOpacity: 0.2,
                         }}
                         defined={(d, index) => {
                           if (scaleType === 'log' && index === 0) {
@@ -343,9 +322,9 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
                         x={(d) => xScale(d[0])}
                         y={(d) => yScale(d[1])}
                         markerMid="url(#marker-x)"
-                        stroke={spectral ? curves[key]['upper1'].strokeColor : strokeColorArray[index]}
+                        stroke={curves[key]['upper1'].strokeColor}
                         strokeOpacity={curves[key]['mean'].strokeOpacity ?? 1}
-                        strokeDasharray={spectral ? '0' : strokeDashArray(index)}
+                        strokeDasharray={spectral ? '0' : curves[key]['mean'].strokeDashArray}
                         defined={(d, index) => {
                           if (scaleType === 'log' && index === 0) {
                             return false;
@@ -393,7 +372,7 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
           </Group>
         </svg>
         <div style={{ width: width * 0.24, position: 'absolute', top: marginTop, left: width * 0.8, display: 'flex' }}>
-          {uncertainty || spectral ? (
+          {spectral ? (
             <LegendOrdinal direction="column" scale={ordinalColorScale} shape="line" style={{ fontSize: width * 0.016 <= 13 ? 13 : width * 0.015 }} shapeHeight={width * 0.02} />
           ) : (
             <Legend scale={shapeScale}>
