@@ -93,7 +93,7 @@
     "@emotion/styled": "^11.8.1",
     "@mui/icons-material": "^7.3.5",
     "@mui/material": "^7.3.5",
-    "@mui/x-data-grid": "^5.17.13",
+    "@mui/x-data-grid": "^8.18.0",
     "@types/d3-array": "^3.0.3",
     "@types/mathjs": "^9.4.2",
     "@types/plotly.js": "^2.12.2",
