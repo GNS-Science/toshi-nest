@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { DataGrid, GridColDef, GridColumnVisibilityModel, GridToolbar } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridColumnVisibilityModel } from '@mui/x-data-grid';
 
 import { generateFaultModelTable } from './faultModelTable.service';
 import { FaultModelTableProps, RowData } from './faultModelTable.types';
@@ -15,8 +15,8 @@ const columns: GridColDef[] = [
 ];
 
 const columnVisibilityModel: GridColumnVisibilityModel = {
-  id: false
-}
+  id: false,
+};
 
 const FaultModelTable: React.FC<FaultModelTableProps> = ({ id, data }: FaultModelTableProps) => {
   const [rowData, setRowData] = useState<RowData[]>([]);

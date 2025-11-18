@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import RangeSliderWithInputs from './RangeSliderWithInputs';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 describe('RangeSliderWithInputs', () => {
   const Wrapper = () => {

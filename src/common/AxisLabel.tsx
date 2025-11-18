@@ -15,7 +15,11 @@ const AxisLabel: React.FC<AxisLabelProps> = (props: AxisLabelProps) => {
   const xPosition = orientation === 'left' ? -width / 2 : (width - 100) / 2;
 
   useEffect(() => {
-    width * 0.022 >= 22 ? setLabelSize(17) : setLabelSize(width * 0.022);
+    if (width * 0.022 >= 22) {
+      setLabelSize(17);
+    } else {
+      setLabelSize(width * 0.022);
+    }
   }, [width]);
 
   return (

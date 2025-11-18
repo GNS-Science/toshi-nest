@@ -16,6 +16,7 @@ import '../../node_modules/leaflet-timedimension/src/leaflet.timedimension.contr
 
 describe('LeafletMap', () => {
   const Wrapper = () => {
+    /* eslint-disable-next-line @typescript-eslint/no-unused-vars*/
     const [fullscreen, setFullscreen] = useState<boolean>(false);
     const [zoomLevel, setZoomLevel] = useState<number>(5);
     const zoom = 5;
@@ -44,7 +45,7 @@ describe('LeafletMap', () => {
     );
   };
 
-  const user = userEvent.setup();
+  userEvent.setup();
 
   test.skip('should render', () => {
     // this breaks the FullScreen control

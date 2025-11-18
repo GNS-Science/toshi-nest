@@ -3,12 +3,11 @@ import { styled } from '@mui/material/styles';
 import React from 'react';
 import { RangeSliderWithInputsProps } from './RangeSliderWithInputs.types';
 
-
 type InpuEvent = {
   target: {
-    value: string | null
-  }
-}
+    value: string | null;
+  };
+};
 
 const SmallInput = styled(Input)({
   width: 42,

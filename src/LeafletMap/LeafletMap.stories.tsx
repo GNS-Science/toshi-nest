@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useMemo } from 'react';
-import { ComponentMeta } from '@storybook/react';
+import { Meta } from '@storybook/react';
 import { Box } from '@mui/material';
 import { LatLngExpression } from 'leaflet';
 import { Feature, Geometry, GeoJsonObject } from 'geojson';
@@ -20,7 +21,7 @@ export default {
   title: 'Controls/LeafletMap',
   component: LeafletMap,
   subcomponents: { LeafletDrawer, SelectControl },
-} as ComponentMeta<typeof LeafletMap>;
+} as Meta<typeof LeafletMap>;
 
 export const Primary = () => {
   const [fullscreen, setFullscreen] = useState<boolean>(false);
