@@ -2174,23 +2174,6 @@ __metadata:
     webpack: "npm:5"
     yarn-run-all: "npm:^3.1.1"
     zdog: "npm:1.0"
-  peerDependencies:
-    "@emotion/react": ^11.8.2
-    "@emotion/styled": ^11.8.1
-    "@visx/clip-path": ^2.1.0
-    "@visx/group": ^2.1.0
-    "@visx/heatmap": ^3.0.0
-    "@visx/legend": ^2.2.2
-    "@visx/responsive": ^2.8.0
-    "@visx/scale": ^2.2.2
-    "@visx/xychart": ^2.9.0
-    geojson: ^0.5.0
-    leaflet: ^1.8.0
-    react: ^17.0.2
-    react-dom: ^17.0.2
-    react-leaflet: ">=3.1.0 <3.2.0 || ^3.2.1"
-    react-leaflet-fullscreen-plugin: ^1.0.1
-    react-spring: ^9.4.4
   languageName: unknown
   linkType: soft
 
@@ -14667,6 +14650,13 @@ __metadata:
   version: 1.7.1
   resolution: "leaflet@npm:1.7.1"
   checksum: 10c0/1ffd7af8e59c4a459cd5e70e2bb690e77441c73127ef86bcb370599307a33c2dd3b31f3353aae02edefbd4df27a76f3825e9c882814c6fcd8d5f04eec41e9b8f
+  languageName: node
+  linkType: hard
+
+"leaflet@npm:~0.7.4 || ~1":
+  version: 1.9.4
+  resolution: "leaflet@npm:1.9.4"
+  checksum: 10c0/f639441dbb7eb9ae3fcd29ffd7d3508f6c6106892441634b0232fafb9ffb1588b05a8244ec7085de2c98b5ed703894df246898477836cfd0ce5b96d4717b5ca1
   languageName: node
   linkType: hard
 
