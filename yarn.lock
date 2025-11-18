@@ -2114,7 +2114,6 @@ __metadata:
     "@types/react": "npm:^19.2.5"
     "@types/react-leaflet-fullscreen-plugin": "npm:^1.0.0"
     "@types/react-plotly.js": "npm:^2.5.1"
-    "@types/testing-library__jest-dom": "npm:^6.0.0"
     "@typescript-eslint/eslint-plugin": "npm:^5.21.0"
     "@typescript-eslint/parser": "npm:^5.21.0"
     "@visx/axis": "npm:^3.12.0"
@@ -5096,7 +5095,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/jest-dom@npm:*, @testing-library/jest-dom@npm:^6.9.1":
+"@testing-library/jest-dom@npm:^6.9.1":
   version: 6.9.1
   resolution: "@testing-library/jest-dom@npm:6.9.1"
   dependencies:
@@ -5770,15 +5769,6 @@ __metadata:
   version: 1.0.8
   resolution: "@types/tapable@npm:1.0.8"
   checksum: 10c0/01f77d47bac8aaeee7ed298e8e74eb012a28f920106c3c359e1f2730512cd810f2c6165cd2cd769422ae1064e2bf1072778b27fb5ec1973e18c35e2cc1ed5c8d
-  languageName: node
-  linkType: hard
-
-"@types/testing-library__jest-dom@npm:^6.0.0":
-  version: 6.0.0
-  resolution: "@types/testing-library__jest-dom@npm:6.0.0"
-  dependencies:
-    "@testing-library/jest-dom": "npm:*"
-  checksum: 10c0/824950dc82752ddb656fa7ca851bf454804332f7a7a8571231abfc3553902198c6b96de209bb3dd1f1a15ee6a269a1efa56866041f5692ee0129308772e658e0
   languageName: node
   linkType: hard
 
