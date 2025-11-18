@@ -14,7 +14,7 @@ const PlotHeadings: React.FC<PlotHeadingsProps> = ({ heading, subHeading, width 
     alignmnetbaseline: 'middle',
     dominantBaseline: 'middle',
     textAnchor: 'middle',
-  };
+  } as const;
 
   useEffect(() => {
     width * 0.025 >= 25 ? setHeadingSize(20) : setHeadingSize(width * 0.025);
