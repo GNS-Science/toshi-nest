@@ -1,4 +1,5 @@
-import { ComponentMeta } from '@storybook/react';
+import React from 'react';
+import { Meta } from '@storybook/react';
 import DisaggregationBarChart from './DisaggregationBarChart';
 import { ParentSize } from '@visx/responsive';
 import { sampleData } from '../__tests__/testData/sample_data_1dbar';
@@ -6,7 +7,7 @@ import { sampleData } from '../__tests__/testData/sample_data_1dbar';
 export default {
   title: 'Charts/DisaggregationBarChart',
   component: DisaggregationBarChart,
-} as ComponentMeta<typeof DisaggregationBarChart>;
+} as Meta<typeof DisaggregationBarChart>;
 
 export const Primary = () => {
   const colourArray = ['grey', 'blue'];

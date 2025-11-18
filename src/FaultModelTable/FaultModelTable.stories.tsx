@@ -1,11 +1,12 @@
+import React from 'react';
 import FaultModelTable from './FaultModelTable';
-import { ComponentMeta } from '@storybook/react';
+import { Meta } from '@storybook/react';
 import solvisResponse from '../__tests__/testData/leafletMapTestData';
 
 export default {
   title: 'Utils/FaultModelTable',
   component: FaultModelTable,
-} as ComponentMeta<typeof FaultModelTable>;
+} as Meta<typeof FaultModelTable>;
 
 export const Primary = () => {
   const id = solvisResponse.solution_id;
