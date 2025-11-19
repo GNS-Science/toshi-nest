@@ -40,4 +40,5 @@ In storybook, verify that each major component type works:
 For upgrading storybook, follow [these instructions](https://storybook.js.org/docs/releases/upgrading) and do not skip major versions during an upgrade.
 
 - `react-leaflet` is stuck at `3.2.5` because the TimeDimensionLayer breaks from version 4.0.0 on.
+- `ansi-styles` is stuck at `5.2.0` because from `6.0.0` on it is pure ESM and does not seem to work in our setup. This might be because some of our (transitive) dependencies expect the ESM version and some expect the CJS version. It might be worth looking into this https://thedrlambda.medium.com/nodejs-typescript-and-the-infuriating-esm-errors-828b77e7ecd3 when we hhave the time.
 

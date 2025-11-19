@@ -2043,6 +2043,7 @@ __metadata:
     rollup-plugin-delete: "npm:^3.0.1"
     rollup-plugin-typescript2: "npm:^0.36.0"
     storybook: "npm:10.0.8"
+    strip-indent: "npm:3.0.0"
     three: "npm:0.181.2"
     ts-jest: "npm:^29.4.5"
     ts-node: "npm:^10.9.2"
@@ -13675,7 +13676,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"strip-indent@npm:^3.0.0":
+"strip-indent@npm:3.0.0, strip-indent@npm:^3.0.0":
   version: 3.0.0
   resolution: "strip-indent@npm:3.0.0"
   dependencies:

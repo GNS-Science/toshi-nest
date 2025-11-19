@@ -124,7 +124,8 @@
     "react-leaflet-fullscreen-plugin": "^1.0.1",
     "react-plotly.js": "^2.6.0",
     "react-spring": "^10.0.3",
-    "resize-observer-polyfill": "^1.5.1"
+    "resize-observer-polyfill": "^1.5.1",
+    "strip-indent": "3.0.0"
   },
   "packageManager": "yarn@4.11.0"
 }
