@@ -20,8 +20,13 @@ jobs:
       uses: actions/setup-node@v6
       with:
         node-version: 22
-    - run: yarn set version berry    
-    - run: yarn
+
+    - name: Setup Yarn2 package manager, install and list dependencies
+      run: |
+        corepack enable
+        yarn set version berry
+        yarn install --immutable
+        yarn info        
     - run: yarn lint
     - run: yarn build
     - run: yarn test
