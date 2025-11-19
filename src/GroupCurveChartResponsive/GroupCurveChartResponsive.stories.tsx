@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { ComponentMeta, ComponentStory } from '@storybook/react-webpack5';
 
 import GroupCurveChartResponsive from '.';
 import { curveGroup2, curveGroup1 } from '../__tests__/testData/uncertaintyTestData';

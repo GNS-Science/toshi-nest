@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-webpack5';
 import DisaggregationHeatMap from './DisaggregationHeatMap';
 import { ParentSize } from '@visx/responsive';
 import { getSeededRandom } from '@visx/mock-data';

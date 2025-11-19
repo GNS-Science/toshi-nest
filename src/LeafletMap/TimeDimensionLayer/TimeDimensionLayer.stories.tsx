@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useMemo, useContext } from 'react';
-import { ComponentMeta } from '@storybook/react';
+import { ComponentMeta } from '@storybook/react-webpack5';
 import { Box, Typography } from '@mui/material';
 import { LatLngExpression } from 'leaflet';
 

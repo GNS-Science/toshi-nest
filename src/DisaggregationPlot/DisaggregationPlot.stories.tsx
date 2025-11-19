@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-webpack5';
 import DisaggregationPlot from './DisaggregationPlot';
 import { data } from '../__tests__/testData/disaggregationPlotTestData';
 

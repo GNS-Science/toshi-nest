@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-webpack5';
 import DisaggregationBarChart from './DisaggregationBarChart';
 import { ParentSize } from '@visx/responsive';
 import { sampleData } from '../__tests__/testData/sample_data_1dbar';

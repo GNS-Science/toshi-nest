@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useMemo } from 'react';
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-webpack5';
 import { LatLngExpression } from 'leaflet';
 import { Feature, Geometry, GeoJsonObject } from 'geojson';
 import { Layer } from 'leaflet';

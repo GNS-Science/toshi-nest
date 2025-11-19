@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Meta, ComponentStory } from '@storybook/react';
+import { Meta, ComponentStory } from '@storybook/react-webpack5';
 import { Box } from '@mui/material';
 
 import ColorBar from './ColorBar';

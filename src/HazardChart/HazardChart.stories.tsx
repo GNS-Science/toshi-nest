@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { ComponentMeta, ComponentStory } from '@storybook/react-webpack5';
 
 import HazardChart from './HazardChart';
 import { hazardChartCurves, hazardChartColors, hazardChartScalesConfig } from './hazardChartTestData';

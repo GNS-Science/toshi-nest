@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ComponentMeta } from '@storybook/react';
+import { ComponentMeta } from '@storybook/react-webpack5';
 
 import SelectControl from './SelectControl';
 
