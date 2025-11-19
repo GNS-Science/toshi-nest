@@ -18,3 +18,26 @@ to run the component playground, run `yarn i-all`, and then `yarn run dev`
 [MultiSelect](./docs/common/MultiSelect.md)  
 [ControlsBar](./docs/common/ControlsBar.md)  
 [HazardCurves](./docs/charts/HazardCurves.md)
+
+## Dependencies
+
+After upgrading dependencies, run
+
+```bash
+yarn build
+yarn test
+yarn storybook
+```
+
+In storybook, verify that each major component type works:
+- Bar charts
+- Line charts
+- 3D charts
+- Maps
+   - For leaflet maps, verify that the time control and the fullscreen control works.
+- Menus
+
+For upgrading storybook, follow [these instructions](https://storybook.js.org/docs/releases/upgrading) and do not skip major versions during an upgrade.
+
+- `react-leaflet` is stuck at `3.2.5` because the TimeDimensionLayer breaks from version 4.0.0 on.
+
