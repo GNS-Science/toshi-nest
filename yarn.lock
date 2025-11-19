@@ -1988,11 +1988,11 @@ __metadata:
     "@testing-library/user-event": "npm:^14.6.1"
     "@types/d3-array": "npm:^3.2.2"
     "@types/jest": "npm:^30.0.0"
-    "@types/leaflet": "npm:^1.7.9"
+    "@types/leaflet": "npm:^1.9.21"
     "@types/mathjs": "npm:^9.4.2"
     "@types/plotly.js": "npm:^3.0.8"
     "@types/react": "npm:^19.2.6"
-    "@types/react-leaflet-fullscreen-plugin": "npm:^1.0.0"
+    "@types/react-leaflet-fullscreen-plugin": "npm:^1.0.3"
     "@types/react-plotly.js": "npm:^2.6.3"
     "@typescript-eslint/eslint-plugin": "npm:^8.47.0"
     "@typescript-eslint/parser": "npm:^8.47.0"
@@ -2026,7 +2026,7 @@ __metadata:
     identity-obj-proxy: "npm:^3.0.0"
     jest: "npm:^30.2.0"
     jest-environment-jsdom: "npm:^30.2.0"
-    leaflet: "npm:1.7.1"
+    leaflet: "npm:1.9.4"
     leaflet-timedimension: "npm:^1.1.1"
     lint-staged: "npm:^16.2.6"
     mathjs: "npm:^15.1.0"
@@ -2035,7 +2035,7 @@ __metadata:
     react: "npm:^19.2.0"
     react-dom: "npm:^19.2.0"
     react-konva: "npm:^19.2.0"
-    react-leaflet: "npm:>=3.1.0 <3.2.0 || ^3.2.1"
+    react-leaflet: "npm:^3.2.5"
     react-leaflet-fullscreen-plugin: "npm:^1.0.1"
     react-plotly.js: "npm:^2.6.0"
     react-spring: "npm:^10.0.3"
@@ -4390,12 +4390,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/leaflet@npm:^1.7.9":
-  version: 1.7.9
-  resolution: "@types/leaflet@npm:1.7.9"
+"@types/leaflet@npm:^1.9.21":
+  version: 1.9.21
+  resolution: "@types/leaflet@npm:1.9.21"
   dependencies:
     "@types/geojson": "npm:*"
-  checksum: 10c0/0e9b0092877b837412d1c729357a250bb89b02ff9b47090fd8e72cb0becaf55728cae0e003869a8afbc4a2b8a27c5179eb211e5ad8135bc137d1bff39c0b6968
+  checksum: 10c0/96a86bdeff7bf56104242e97536f39005a53dd857853aa0c5de127ce2c72f3f36638f2a5b8d23e2e825a2bfe32113be731ab26634a3143413b891299c29621ce
   languageName: node
   linkType: hard
 
@@ -4493,10 +4493,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-leaflet-fullscreen-plugin@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "@types/react-leaflet-fullscreen-plugin@npm:1.0.0"
-  checksum: 10c0/8760ab553ea068ee09c8028f0b46be6be08d22bf8e67d51dc739bc96810fd81f8e97e122ad8ddd18139e8336f250d4ca43852f1fef915affbf85de5dbe28cd62
+"@types/react-leaflet-fullscreen-plugin@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "@types/react-leaflet-fullscreen-plugin@npm:1.0.3"
+  dependencies:
+    "@types/react": "npm:*"
+  checksum: 10c0/c6824e89a6c9fa2c1a23d4c739a16fc648c276f4b23c8b44eb0ee08c9ad2a634aad0b461fac375478f040ec5890081d254f65be84ccee26af0136687325fdcfc
   languageName: node
   linkType: hard
 
@@ -11603,14 +11605,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"leaflet@npm:1.7.1":
-  version: 1.7.1
-  resolution: "leaflet@npm:1.7.1"
-  checksum: 10c0/1ffd7af8e59c4a459cd5e70e2bb690e77441c73127ef86bcb370599307a33c2dd3b31f3353aae02edefbd4df27a76f3825e9c882814c6fcd8d5f04eec41e9b8f
-  languageName: node
-  linkType: hard
-
-"leaflet@npm:~0.7.4 || ~1":
+"leaflet@npm:1.9.4, leaflet@npm:~0.7.4 || ~1":
   version: 1.9.4
   resolution: "leaflet@npm:1.9.4"
   checksum: 10c0/f639441dbb7eb9ae3fcd29ffd7d3508f6c6106892441634b0232fafb9ffb1588b05a8244ec7085de2c98b5ed703894df246898477836cfd0ce5b96d4717b5ca1
@@ -13543,7 +13538,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-leaflet@npm:>=3.1.0 <3.2.0 || ^3.2.1":
+"react-leaflet@npm:^3.2.5":
   version: 3.2.5
   resolution: "react-leaflet@npm:3.2.5"
   dependencies:
