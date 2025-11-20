@@ -18,7 +18,6 @@
   "scripts": {
     "build": "rollup -c",
     "build-watch": "rollup -c -w",
-    "i-all": "yarn",
     "test": "jest",
     "test:watch": "jest --watch",
     "lint": "eslint ./src/**/*.{js,ts,tsx} --quiet --fix",

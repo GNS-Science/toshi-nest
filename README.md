@@ -1,8 +1,6 @@
 # toshi-nest
 
-The toshi-nest is for fledgling work e.g. reusable Node components to share across TUI and other projects
-
-to run the component playground, run `yarn i-all`, and then `yarn run dev`
+The toshi-nest is for fledgling work e.g. reusable Node components to share across Kororaa and other projects
 
 ### How to add the package to your project
 
@@ -19,7 +17,13 @@ to run the component playground, run `yarn i-all`, and then `yarn run dev`
 [ControlsBar](./docs/common/ControlsBar.md)  
 [HazardCurves](./docs/charts/HazardCurves.md)
 
-## Dependencies
+## Development
+
+This project uses `yarn` 4. See [yarn installation instructions](https://yarnpkg.com/getting-started/install)
+
+Run `yarn storybook` to see all components in action.
+
+### Dependencies
 
 After upgrading dependencies, run
 
@@ -29,16 +33,16 @@ yarn test
 yarn storybook
 ```
 
-In storybook, verify that each major component type works:
-- Bar charts
-- Line charts
-- 3D charts
-- Maps
-   - For leaflet maps, verify that the time control and the fullscreen control works.
-- Menus
+In `storybook`, verify that each component works. For `leaflet` maps, verify that the time control and the fullscreen control works.
 
-For upgrading storybook, follow [these instructions](https://storybook.js.org/docs/releases/upgrading) and do not skip major versions during an upgrade.
+Also check for security issues:
 
-- `react-leaflet` is stuck at `3.2.5` because the TimeDimensionLayer breaks from version 4.0.0 on.
-- `ansi-styles` and `strip-indent` arepinned at pre-ESM versions as these don't seem to work in our setup, even if mentioned in `transformIgnorePatterns`. This might be because some of our (transitive) dependencies expect the ESM version and some expect the CJS version. It might be worth looking into this https://thedrlambda.medium.com/nodejs-typescript-and-the-infuriating-esm-errors-828b77e7ecd3 when we have the time.
+```bash
+yarn npm audit
+```
+
+For upgrading `storybook`, follow [these instructions](https://storybook.js.org/docs/releases/upgrading) and do not skip major versions during an upgrade.
+
+- `react-leaflet` is pinned to `3.2.5` because the TimeDimensionLayer breaks from version `4.0.0` on.
+- `ansi-styles` and `strip-indent` are pinned at pre-ESM versions as these don't seem to work in our setup, even if mentioned in `transformIgnorePatterns`. This might be because some of our (transitive) dependencies expect the ESM version and some expect the CJS version of these libraries. It might be worth looking into this https://thedrlambda.medium.com/nodejs-typescript-and-the-infuriating-esm-errors-828b77e7ecd3 when we have the time.
 
