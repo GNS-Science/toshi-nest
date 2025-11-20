@@ -2009,7 +2009,6 @@ __metadata:
     "@visx/threshold": "npm:^3.12.0"
     "@visx/tooltip": "npm:^3.12.0"
     "@visx/xychart": "npm:^3.12.0"
-    ansi-styles: "npm:^5.2.0"
     babel-jest: "npm:^30.2.0"
     babel-loader: "npm:^10.0.0"
     d3-array: "npm:^3.2.4"
@@ -2043,7 +2042,6 @@ __metadata:
     rollup-plugin-delete: "npm:^3.0.1"
     rollup-plugin-typescript2: "npm:^0.36.0"
     storybook: "npm:10.0.8"
-    strip-indent: "npm:3.0.0"
     three: "npm:0.181.2"
     ts-jest: "npm:^29.4.5"
     ts-node: "npm:^10.9.2"
@@ -5354,33 +5352,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ansi-styles@npm:^2.2.1":
-  version: 2.2.1
-  resolution: "ansi-styles@npm:2.2.1"
-  checksum: 10c0/7c68aed4f1857389e7a12f85537ea5b40d832656babbf511cc7ecd9efc52889b9c3e5653a71a6aade783c3c5e0aa223ad4ff8e83c27ac8a666514e6c79068cab
-  languageName: node
-  linkType: hard
-
-"ansi-styles@npm:^4.0.0, ansi-styles@npm:^4.1.0":
-  version: 4.3.0
-  resolution: "ansi-styles@npm:4.3.0"
-  dependencies:
-    color-convert: "npm:^2.0.1"
-  checksum: 10c0/895a23929da416f2bd3de7e9cb4eabd340949328ab85ddd6e484a637d8f6820d485f53933446f5291c3b760cbc488beb8e88573dd0f9c7daf83dccc8fe81b041
-  languageName: node
-  linkType: hard
-
-"ansi-styles@npm:^5.0.0, ansi-styles@npm:^5.2.0":
+"ansi-styles@npm:^5.2.0":
   version: 5.2.0
   resolution: "ansi-styles@npm:5.2.0"
   checksum: 10c0/9c4ca80eb3c2fb7b33841c210d2f20807f40865d27008d7c3f707b7f95cab7d67462a565e2388ac3285b71cb3d9bb2173de8da37c57692a362885ec34d6e27df
-  languageName: node
-  linkType: hard
-
-"ansi-styles@npm:^6.1.0, ansi-styles@npm:^6.2.1":
-  version: 6.2.3
-  resolution: "ansi-styles@npm:6.2.3"
-  checksum: 10c0/23b8a4ce14e18fb854693b95351e286b771d23d8844057ed2e7d083cd3e708376c3323707ec6a24365f7d7eda3ca00327fe04092e29e551499ec4c8b7bfac868
   languageName: node
   linkType: hard
 
@@ -6180,15 +6155,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"color-convert@npm:^2.0.1":
-  version: 2.0.1
-  resolution: "color-convert@npm:2.0.1"
-  dependencies:
-    color-name: "npm:~1.1.4"
-  checksum: 10c0/37e1150172f2e311fe1b2df62c6293a342ee7380da7b9cfdba67ea539909afbd74da27033208d01d6d5cfc65ee7868a22e18d7e7648e004425441c0f8a15a7d7
-  languageName: node
-  linkType: hard
-
 "color-id@npm:^1.1.0":
   version: 1.1.0
   resolution: "color-id@npm:1.1.0"
@@ -6198,7 +6164,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"color-name@npm:^1.0.0, color-name@npm:~1.1.4":
+"color-name@npm:^1.0.0":
   version: 1.1.4
   resolution: "color-name@npm:1.1.4"
   checksum: 10c0/a1a3f914156960902f46f7f56bc62effc6c94e84b2cae157a526b1c1f74b677a47ec602bf68a61abfa2b42d15b7c5651c6dbe72a43af720bc588dff885b10f95
@@ -13676,19 +13642,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"strip-indent@npm:3.0.0, strip-indent@npm:^3.0.0":
+"strip-indent@npm:3.0.0":
   version: 3.0.0
   resolution: "strip-indent@npm:3.0.0"
   dependencies:
     min-indent: "npm:^1.0.0"
   checksum: 10c0/ae0deaf41c8d1001c5d4fbe16cb553865c1863da4fae036683b474fa926af9fc121e155cb3fc57a68262b2ae7d5b8420aa752c97a6428c315d00efe2a3875679
-  languageName: node
-  linkType: hard
-
-"strip-indent@npm:^4.0.0":
-  version: 4.1.1
-  resolution: "strip-indent@npm:4.1.1"
-  checksum: 10c0/5b23dd5934be0ef6b6fe1b802887f83e56ad9dcd9f6c3896a637da2c6c3a6da3fdf3e51354a98e6cccb6f1c41863e7b9b9deaa348639dfd35f71f3549edb4dff
   languageName: node
   linkType: hard
 
