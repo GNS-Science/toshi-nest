@@ -1985,7 +1985,6 @@ __metadata:
     "@types/d3-array": "npm:^3.2.2"
     "@types/jest": "npm:^30.0.0"
     "@types/leaflet": "npm:^1.9.21"
-    "@types/mathjs": "npm:^9.4.2"
     "@types/plotly.js": "npm:^3.0.8"
     "@types/react": "npm:^19.2.6"
     "@types/react-leaflet-fullscreen-plugin": "npm:^1.0.3"
@@ -4083,15 +4082,6 @@ __metadata:
     "@types/mapbox__point-geometry": "npm:*"
     "@types/pbf": "npm:*"
   checksum: 10c0/082907ed9cf96b82327dabf3b4c3a14746a825e4a81f0abf46b50e2557f25cbda652725d8af002e5edcc344a83c85e1a4b71a2d39ef4d829c243344a85ac13a6
-  languageName: node
-  linkType: hard
-
-"@types/mathjs@npm:^9.4.2":
-  version: 9.4.2
-  resolution: "@types/mathjs@npm:9.4.2"
-  dependencies:
-    mathjs: "npm:*"
-  checksum: 10c0/bcbc5069e8f3f2cf3b46c224d613d86ab86ff05967451bc2b4a9e8801ee79ecf3f37850b453f7615ec89f2f3bf986c4351e254fef033805078bc2a533e46942b
   languageName: node
   linkType: hard
 
@@ -10739,7 +10729,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mathjs@npm:*, mathjs@npm:^15.1.0":
+"mathjs@npm:^15.1.0":
   version: 15.1.0
   resolution: "mathjs@npm:15.1.0"
   dependencies:

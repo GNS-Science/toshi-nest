@@ -93,7 +93,6 @@
     "@mui/material": "^7.3.5",
     "@mui/x-data-grid": "^8.18.0",
     "@types/d3-array": "^3.2.2",
-    "@types/mathjs": "^9.4.2",
     "@types/plotly.js": "^3.0.8",
     "@types/react-plotly.js": "^2.6.3",
     "@visx/axis": "^3.12.0",
