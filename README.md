@@ -38,7 +38,7 @@ In `storybook`, verify that each component works. For `leaflet` maps, verify tha
 Also check for security issues:
 
 ```bash
-yarn npm audit
+yarn npm audit --recursive
 ```
 
 For upgrading `storybook`, follow [these instructions](https://storybook.js.org/docs/releases/upgrading) and do not skip major versions during an upgrade.

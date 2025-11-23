@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 import React from 'react';
 import { RangeSliderWithInputsProps } from './RangeSliderWithInputs.types';
 
-type InpuEvent = {
+type InputEvent = {
   target: {
     value: string | null;
   };
@@ -19,7 +19,7 @@ const RangeSliderWithInputs: React.FC<RangeSliderWithInputsProps> = ({ label, in
       <Typography gutterBottom>{label}</Typography>
       <Grid container spacing={3} alignItems="center">
         <Grid>
-          <SmallInput value={valuesRange[0]} size="small" onChange={(event: InpuEvent) => setValues([Number(event.target.value), valuesRange[1]])} inputProps={inputProps} />
+          <SmallInput value={valuesRange[0]} size="small" onChange={(event: InputEvent) => setValues([Number(event.target.value), valuesRange[1]])} inputProps={inputProps} />
         </Grid>
         <Grid size="grow">
           <Slider
@@ -33,7 +33,7 @@ const RangeSliderWithInputs: React.FC<RangeSliderWithInputsProps> = ({ label, in
           />
         </Grid>
         <Grid>
-          <SmallInput value={valuesRange[1]} size="small" onChange={(event: InpuEvent) => setValues([valuesRange[0], Number(event.target.value)])} inputProps={inputProps} />
+          <SmallInput value={valuesRange[1]} size="small" onChange={(event: InputEvent) => setValues([valuesRange[0], Number(event.target.value)])} inputProps={inputProps} />
         </Grid>
       </Grid>
     </Box>
