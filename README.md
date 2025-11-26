@@ -23,6 +23,15 @@ This project uses `yarn` 4. See [yarn installation instructions](https://yarnpkg
 
 Run `yarn storybook` to see all components in action.
 
+In order to test this library in a web app, call `yarn pack` to create a `package.tgz` file, and then refer to that file in the `package.json` file of your project:
+
+```
+  "dependencies": {
+    "@gns-science/toshi-nest": "/Code/toshi-nest/package.tgz",
+    ....
+  }
+```
+
 ### Dependencies
 
 After upgrading dependencies, run
