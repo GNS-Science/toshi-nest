@@ -44,7 +44,7 @@ const BaseLayerOptions: React.FC = () => {
         <TileLayer
           url={'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'}
           attribution="Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"
-          // maxZoom={13}
+        // maxZoom={13}
         />
       </BaseLayer>
     </>
@@ -58,42 +58,42 @@ const BaseLayerOverlayOptions: React.FC = () => {
         <TileLayer
           url={'https://maps.scinfo.org.nz/mapcache/pwms/tms/1.0.0/text@GoogleMapsCompatible/{z}/{x}/{y}.png'}
           tms={true}
-          // attribution="&copy; Landcare Research NZ Limited 2009-2022. Contains data sourced from LINZ. Crown Copyright Reserved."
+        // attribution="&copy; Landcare Research NZ Limited 2009-2022. Contains data sourced from LINZ. Crown Copyright Reserved."
         />
       </LayersControl.Overlay>
       <LayersControl.Overlay name="Transport">
         <TileLayer
           url={'https://maps.scinfo.org.nz/mapcache/pwms/tms/1.0.0/transport@g/{z}/{x}/{y}.png'}
           tms={true}
-          // attribution="&copy; Landcare Research NZ Limited 2009-2022. Contains data sourced from LINZ. Crown Copyright Reserved."
+        // attribution="&copy; Landcare Research NZ Limited 2009-2022. Contains data sourced from LINZ. Crown Copyright Reserved."
         />
       </LayersControl.Overlay>
       <LayersControl.Overlay name="Water">
         <TileLayer
           url={'https://maps.scinfo.org.nz/mapcache/pwms/tms/1.0.0/water@g/{z}/{x}/{y}.png'}
           tms={true}
-          // attribution="&copy; Landcare Research NZ Limited 2009-2022. Contains data sourced from LINZ. Crown Copyright Reserved."
+        // attribution="&copy; Landcare Research NZ Limited 2009-2022. Contains data sourced from LINZ. Crown Copyright Reserved."
         />
       </LayersControl.Overlay>
       <LayersControl.Overlay name="Contours">
         <TileLayer
           url={'https://maps.scinfo.org.nz/mapcache/pwms/tms/1.0.0/contours@g/{z}/{x}/{y}.png'}
           tms={true}
-          // attribution="&copy; Landcare Research NZ Limited 2009-2022. Contains data sourced from LINZ. Crown Copyright Reserved."
+        // attribution="&copy; Landcare Research NZ Limited 2009-2022. Contains data sourced from LINZ. Crown Copyright Reserved."
         />
       </LayersControl.Overlay>
       <LayersControl.Overlay name="Urban">
         <TileLayer
           url={'https://maps.scinfo.org.nz/mapcache/pwms/tms/1.0.0/urban@g/{z}/{x}/{y}.png'}
           tms={true}
-          // attribution="&copy; Landcare Research NZ Limited 2009-2022. Contains data sourced from LINZ. Crown Copyright Reserved."
+        // attribution="&copy; Landcare Research NZ Limited 2009-2022. Contains data sourced from LINZ. Crown Copyright Reserved."
         />
       </LayersControl.Overlay>
     </Pane>
   );
 };
 
-function LeafletLayers({ style, geoJsonData, overlay, setFullscreen, onEachFeature, zoomLevel, setZoomLevel, timeDimensionLayerProps }: LeafletLayersProps) {
+function LeafletLayers({ style, geoJsonData, overlay, fullscreen, setFullscreen, onEachFeature, zoomLevel, setZoomLevel, timeDimensionLayerProps }: LeafletLayersProps) {
   const mapEvents = useMapEvents({
     zoomend: () => {
       setZoomLevel(mapEvents.getZoom());
@@ -106,13 +106,14 @@ function LeafletLayers({ style, geoJsonData, overlay, setFullscreen, onEachFeatu
 
   return (
     <>
+      (fullscreen &&
       <Fullscreen
         eventHandlers={{
           enterFullscreen: () => setFullscreen(true),
           exitFullscreen: () => setFullscreen(false),
         }}
         forcePseudoFullscreen={true}
-      />
+      />)
 
       <LayersControl>
         <BaseLayerOptions />

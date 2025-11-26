@@ -9,6 +9,7 @@ export interface LeafletMapProps {
   zoom: number;
   height: string;
   width: string;
+  fullscreen?: boolean;
   setFullscreen: (setFullscreen: boolean) => void;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onEachFeature?: (feature: Feature<Geometry, any>, layer: Layer) => void;
@@ -32,6 +33,7 @@ export interface LeafletLayersProps {
   onEachFeature?: (feature: Feature<Geometry, any>, layer: Layer) => void;
   geoJsonData: string[];
   overlay?: boolean;
+  fullscreen?: boolean;
   setFullscreen: (setFullscreen: boolean) => void;
   zoomLevel: number;
   setZoomLevel: (setZoomLevel: number) => void;
