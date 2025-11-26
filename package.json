@@ -124,7 +124,6 @@
   },
   "resolutions": {
     "ansi-styles": "5.2.0",
-    "glob": "^11.1.0",
     "strip-indent": "3.0.0"
   },
   "packageManager": "yarn@4.11.0"

@@ -53,6 +53,5 @@ yarn npm audit --recursive
 For upgrading `storybook`, follow [these instructions](https://storybook.js.org/docs/releases/upgrading) and do not skip major versions during an upgrade.
 
 - `react-leaflet` is pinned to `3.2.5` because the TimeDimensionLayer breaks from version `4.0.0` on.
-- `glob` is explicitly versioned to avoid a aecurity issue.
 - `ansi-styles` and `strip-indent` are pinned at pre-ESM versions as these don't seem to work in our setup, even if mentioned in `transformIgnorePatterns`. This might be because some of our (transitive) dependencies expect the ESM version and some expect the CJS version of these libraries. It might be worth looking into this https://thedrlambda.medium.com/nodejs-typescript-and-the-infuriating-esm-errors-828b77e7ecd3 when we have the time.
 
