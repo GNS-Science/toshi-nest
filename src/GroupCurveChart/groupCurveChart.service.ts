@@ -8,10 +8,7 @@ export const getAreaData = (curveGroup: CurveGroup, scaleType: string) => {
     areaPoint.push(point[0]);
     areaPoint.push(point[1]);
     areaPoint.push(curveGroup['upper1'].data[index][1]);
-    if (scaleType === 'log' && !areaPoint.includes(0)) {
-      area.push(areaPoint);
-    }
-    if (scaleType !== 'log') {
+    if (scaleType !== 'log' || !areaPoint.includes(0)) {
       area.push(areaPoint);
     }
   });
