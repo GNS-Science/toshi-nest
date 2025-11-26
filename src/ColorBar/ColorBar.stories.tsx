@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, ComponentStory } from '@storybook/react-webpack5';
 import { Box } from '@mui/material';
 
 import ColorBar from './ColorBar';
@@ -14,7 +14,7 @@ export default {
   title: 'Utils/ColorBar',
   component: ColorBar,
   subcomponents: { LeafletMap, LeafletDrawer, SelectControl },
-} as ComponentMeta<typeof ColorBar>;
+} as Meta<typeof ColorBar>;
 
 const Template: ComponentStory<typeof ColorBar> = (args) => <ColorBar {...args} />;
 

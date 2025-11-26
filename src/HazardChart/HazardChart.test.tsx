@@ -22,7 +22,7 @@ describe('Hazard Curves works as expected', () => {
       <HazardChart curves={testData} width={500} scalesConfig={scalesConfig} colors={colors} heading={'Test Heading'} subHeading={'Test Subheading'} gridNumTicks={5} poe={undefined} timePeriod={50} />
     );
   };
-  const user = userEvent.setup();
+  userEvent.setup();
 
   test('graph is deplayed', () => {
     render(<Wrapper />);

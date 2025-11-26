@@ -1,6 +1,6 @@
 import React from 'react';
 import MultiSelect from './MultiSelect';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 describe('MultiSelect', () => {
@@ -22,20 +22,21 @@ describe('MultiSelect', () => {
 
   test('should show all items on option list once expanded', async () => {
     render(<Wrapper />);
-    await user.click(screen.getByRole('button'));
+    await user.click(screen.getByRole('combobox'));
     expect(screen.getAllByRole('option')).toHaveLength(3);
   });
 
   test('should show multiple selected once multiple selected', async () => {
     render(<Wrapper />);
-    await user.click(screen.getByRole('button', { name: /1/i }));
+    expect(screen.getByRole('combobox').textContent).toBe('1');
+    await user.click(screen.getByRole('combobox'));
     await user.click(screen.getByRole('option', { name: /3/i }));
     expect(screen.getByText(/multiple selected/i)).toBeInTheDocument();
   });
 
   test('should show selected with one selected', async () => {
     render(<NoSelectionWrapper />);
-    await user.click(screen.getByRole('button'));
+    await user.click(screen.getByRole('combobox'));
     await user.click(screen.getByRole('option', { name: /3/i }));
     expect(screen.getAllByText(/3/i)).toHaveLength(2);
   });

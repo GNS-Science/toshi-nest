@@ -1,4 +1,5 @@
-import { ComponentMeta } from '@storybook/react';
+import React from 'react';
+import { Meta } from '@storybook/react-webpack5';
 import DisaggregationHeatMap from './DisaggregationHeatMap';
 import { ParentSize } from '@visx/responsive';
 import { getSeededRandom } from '@visx/mock-data';
@@ -7,7 +8,7 @@ import genBins from '@visx/mock-data/lib/generators/genBins';
 export default {
   title: 'Charts/DisaggregationHeatMap',
   component: DisaggregationHeatMap,
-} as ComponentMeta<typeof DisaggregationHeatMap>;
+} as Meta<typeof DisaggregationHeatMap>;
 
 export const Primary = () => {
   const cool1 = '#122549';

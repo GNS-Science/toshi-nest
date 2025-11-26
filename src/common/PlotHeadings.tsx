@@ -14,11 +14,19 @@ const PlotHeadings: React.FC<PlotHeadingsProps> = ({ heading, subHeading, width 
     alignmnetbaseline: 'middle',
     dominantBaseline: 'middle',
     textAnchor: 'middle',
-  };
+  } as const;
 
   useEffect(() => {
-    width * 0.025 >= 25 ? setHeadingSize(20) : setHeadingSize(width * 0.025);
-    width * 0.022 >= 22 ? setSubHeadingSize(17) : setSubHeadingSize(width * 0.022);
+    if (width * 0.025 >= 25) {
+      setHeadingSize(20);
+    } else {
+      setHeadingSize(width * 0.025);
+    }
+    if (width * 0.022 >= 22) {
+      setSubHeadingSize(17);
+    } else {
+      setSubHeadingSize(width * 0.022);
+    }
   }, [width]);
 
   return (

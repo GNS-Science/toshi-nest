@@ -226,7 +226,7 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
       showTooltip({
         tooltipLeft: xScale(closest[0]),
         tooltipTop: yScale(closest[1]),
-        tooltipData: [...closest, rangeIndex, pga] ?? [0, 0, ''],
+        tooltipData: [...closest, rangeIndex, pga],
       });
     },
     [showTooltip, meanCurves, xScale, yScale, scaleType],

@@ -15,6 +15,7 @@ const LeafletMap = ({
   zoom,
   height,
   width,
+  fullscreen,
   setFullscreen,
   style,
   minZoom,
@@ -51,6 +52,7 @@ const LeafletMap = ({
           style={style}
           geoJsonData={geoJsonData}
           onEachFeature={onEachFeature}
+          fullscreen={fullscreen}
           setFullscreen={setFullscreen}
           overlay={overlay}
           zoomLevel={zoomLevel}

@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useMemo } from 'react';
-import { ComponentMeta } from '@storybook/react';
+import { Meta } from '@storybook/react-webpack5';
 import { Box } from '@mui/material';
 import { LatLngExpression } from 'leaflet';
 import { Feature, Geometry, GeoJsonObject } from 'geojson';
@@ -20,7 +21,7 @@ export default {
   title: 'Controls/LeafletMap',
   component: LeafletMap,
   subcomponents: { LeafletDrawer, SelectControl },
-} as ComponentMeta<typeof LeafletMap>;
+} as Meta<typeof LeafletMap>;
 
 export const Primary = () => {
   const [fullscreen, setFullscreen] = useState<boolean>(false);
@@ -101,6 +102,39 @@ export const HazardMaps = () => {
       geoJsonData={geojsonTesetDat05}
       height={'700px'}
       width={'100%'}
+      setFullscreen={setFullscreen}
+      onEachFeature={onEachFeature}
+      zoomLevel={zoomLevel}
+      setZoomLevel={setZoomLevel}
+    />
+  );
+};
+
+// this is broken at the moment
+export const HazardMapsWithFullscreen = () => {
+  const [fullscreen, setFullscreen] = useState<boolean>(false);
+  const [zoomLevel, setZoomLevel] = useState(5);
+  const zoom = 5;
+  const nzCentre = [-40.946, 174.167];
+
+  const onEachFeature = (feature: Feature<Geometry, any>, layer: Layer) => {
+    const popupContent = `
+    <div>
+      <p>Location: ${feature.properties?.loc[1]}, ${feature.properties?.loc[0]}</p>
+      <p>Acceleration: ${Number(feature.properties.value).toFixed(2)} (g)</p>
+    </div>
+  `;
+    layer.bindPopup(popupContent);
+  };
+
+  return (
+    <LeafletMap
+      zoom={zoom}
+      nzCentre={nzCentre as LatLngExpression}
+      geoJsonData={geojsonTesetDat05}
+      height={'700px'}
+      width={'100%'}
+      fullscreen={true}
       setFullscreen={setFullscreen}
       onEachFeature={onEachFeature}
       zoomLevel={zoomLevel}

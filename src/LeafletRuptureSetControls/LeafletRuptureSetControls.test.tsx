@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import LeafletRuptureSetControls from './LeafletRuptureSetControls';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 describe('LeafletRuptureSetControls', () => {
@@ -38,7 +38,7 @@ describe('LeafletRuptureSetControls', () => {
       />
     );
   };
-  const user = userEvent.setup();
+  userEvent.setup();
 
   test('renders the label', () => {
     render(<Wrapper />);

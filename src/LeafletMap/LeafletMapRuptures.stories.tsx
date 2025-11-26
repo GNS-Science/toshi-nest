@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useMemo } from 'react';
-import { ComponentMeta } from '@storybook/react';
-import { Box, Typography } from '@mui/material';
+import { Meta } from '@storybook/react-webpack5';
 import { LatLngExpression } from 'leaflet';
 import { Feature, Geometry, GeoJsonObject } from 'geojson';
 import { Layer } from 'leaflet';
@@ -15,8 +15,6 @@ import solvisResponse from '../__tests__/testData/leafletMapTestData';
 // import geojsonTestDataCoV from '../__tests__/testData/geoJson/geojsonTestDataCoV';
 import geojsonTestDataStyled from '../__tests__/testData/geoJson/geojsonTestDataStyled';
 import geojsonTestDataStyledLine from '../__tests__/testData/geoJson/geojsonTestDataStyledLine';
-import surfaceBaseLayer from '../__tests__/testData/geoJson/surfaces_puysegur.json';
-import ruptureArray from '../__tests__/testData/geoJson/wlg_hik_10k.json';
 import ruptureProperties from '../__tests__/testData/wlg_hik_10k_surface_properties.json';
 import crustalFaultSurfacesList from '../__tests__/testData/geoJson/crustal_fault_surfaces_list_sample.json';
 
@@ -24,7 +22,7 @@ export default {
   title: 'Controls/LeafletMap/Crustal Ruptures',
   component: LeafletMap,
   subcomponents: { LeafletDrawer, SelectControl },
-} as ComponentMeta<typeof LeafletMap>;
+} as Meta<typeof LeafletMap>;
 
 export const FaultSurfaces = () => {
   const [fullscreen, setFullscreen] = useState<boolean>(false);

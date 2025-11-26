@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Typography } from '@mui/material';
+import { Card } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import MultiSelect from '../MultiSelect';
 import RangeSliderWithInputs from '../RangeSliderWithInputs/RangeSliderWithInputs';

@@ -1,7 +1,7 @@
 import typescript from 'rollup-plugin-typescript2';
 import del from 'rollup-plugin-delete';
 import css from 'rollup-plugin-css-only';
-import pkg from './package.json';
+import pkg from './package.json' with {type: 'json'}
 
 export default [
   {

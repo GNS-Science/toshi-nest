@@ -7,20 +7,26 @@ on:
   pull_request:
     branches: [ dev, main ]
 
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:  
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
+    - uses: actions/checkout@v5
+    - name: Use Node.js 22
+      uses: actions/setup-node@v6
       with:
-        node-version: ${{ matrix.node-version }}
-    - run: yarn
+        node-version: 22
+
+    - name: Setup Yarn2 package manager, install and list dependencies
+      run: |
+        corepack enable
+        yarn set version berry
+        yarn install --immutable
+        yarn info        
+    - run: yarn lint
     - run: yarn build
     - run: yarn test

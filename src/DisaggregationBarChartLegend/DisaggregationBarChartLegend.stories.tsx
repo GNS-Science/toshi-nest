@@ -1,10 +1,11 @@
-import { ComponentMeta } from '@storybook/react';
+import React from 'react';
+import { Meta } from '@storybook/react-webpack5';
 import DisaggregationBarChartLegend from './DisaggregationBarChartLegend';
 
 export default {
   title: 'Charts/DisaggregationBarChartLegend',
   component: DisaggregationBarChartLegend,
-} as ComponentMeta<typeof DisaggregationBarChartLegend>;
+} as Meta<typeof DisaggregationBarChartLegend>;
 
 export const Primary = () => {
   const colourArray = ['grey', 'blue'];

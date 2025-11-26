@@ -3,12 +3,14 @@ import { CurveGroup, Datum } from './groupCurveChart.types';
 export const getAreaData = (curveGroup: CurveGroup, scaleType: string) => {
   const area: number[][] = [];
 
-  curveGroup['lower1'].data.map((point, index) => {
+  curveGroup['lower1'].data.forEach((point, index) => {
     const areaPoint: number[] = [];
     areaPoint.push(point[0]);
     areaPoint.push(point[1]);
     areaPoint.push(curveGroup['upper1'].data[index][1]);
-    scaleType === 'log' ? !areaPoint.includes(0) && area.push(areaPoint) : area.push(areaPoint);
+    if (scaleType !== 'log' || !areaPoint.includes(0)) {
+      area.push(areaPoint);
+    }
   });
 
   return area;

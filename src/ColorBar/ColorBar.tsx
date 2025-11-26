@@ -54,7 +54,7 @@ const ColorBar: React.FC<ColorBarProps> = (props: ColorBarProps) => {
     alignmnetbaseline: 'middle',
     dominantBaseline: 'middle',
     textAnchor: 'middle',
-  };
+  } as const;
 
   return (
     <div style={style}>
