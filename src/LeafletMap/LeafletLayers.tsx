@@ -106,14 +106,14 @@ function LeafletLayers({ style, geoJsonData, overlay, fullscreen, setFullscreen,
 
   return (
     <>
-      (fullscreen &&
+      {fullscreen &&
       <Fullscreen
         eventHandlers={{
           enterFullscreen: () => setFullscreen(true),
           exitFullscreen: () => setFullscreen(false),
         }}
         forcePseudoFullscreen={true}
-      />)
+      />}
 
       <LayersControl>
         <BaseLayerOptions />
