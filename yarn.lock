@@ -1994,12 +1994,10 @@ __metadata:
     "@visx/axis": "npm:^3.12.0"
     "@visx/clip-path": "npm:^3.12.0"
     "@visx/event": "npm:^3.12.0"
-    "@visx/gradient": "npm:^3.12.0"
     "@visx/grid": "npm:^3.12.0"
     "@visx/group": "npm:^3.12.0"
     "@visx/heatmap": "npm:^3.12.0"
     "@visx/legend": "npm:^3.12.0"
-    "@visx/marker": "npm:^3.12.0"
     "@visx/mock-data": "npm:^3.12.0"
     "@visx/responsive": "npm:^3.12.0"
     "@visx/scale": "npm:^3.12.0"
@@ -4102,9 +4100,9 @@ __metadata:
   linkType: hard
 
 "@types/parse-json@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "@types/parse-json@npm:4.0.0"
-  checksum: 10c0/1d3012ab2fcdad1ba313e1d065b737578f6506c8958e2a7a5bdbdef517c7e930796cb1599ee067d5dee942fb3a764df64b5eef7e9ae98548d776e86dcffba985
+  version: 4.0.2
+  resolution: "@types/parse-json@npm:4.0.2"
+  checksum: 10c0/b1b863ac34a2c2172fbe0807a1ec4d5cb684e48d422d15ec95980b81475fac4fdb3768a8b13eef39130203a7c04340fc167bae057c7ebcafd7dec9fe6c36aeb1
   languageName: node
   linkType: hard
 
@@ -4735,18 +4733,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@visx/gradient@npm:^3.12.0":
-  version: 3.12.0
-  resolution: "@visx/gradient@npm:3.12.0"
-  dependencies:
-    "@types/react": "npm:*"
-    prop-types: "npm:^15.5.7"
-  peerDependencies:
-    react: ^16.0.0-0 || ^17.0.0-0 || ^18.0.0-0
-  checksum: 10c0/449e35bbb7b040cc4bbab44bd80f66f4e030801b01b833dd882f64b07900c3a1179e9b82a18d746d5d5aa765def42456af09338cfaf4f7a2fc0ff91cd7066d8d
-  languageName: node
-  linkType: hard
-
 "@visx/grid@npm:3.12.0, @visx/grid@npm:^3.12.0":
   version: 3.12.0
   resolution: "@visx/grid@npm:3.12.0"
@@ -4804,21 +4790,6 @@ __metadata:
   peerDependencies:
     react: ^16.3.0-0 || ^17.0.0-0 || ^18.0.0-0
   checksum: 10c0/e858bbfa04a158c6172823fb48123f14754d3241afb5dee0a340b28b712d47a9b3c897970ec030ad597ff00342a5e14fd8fe0b09af5ac5f284fbc11a00335159
-  languageName: node
-  linkType: hard
-
-"@visx/marker@npm:^3.12.0":
-  version: 3.12.0
-  resolution: "@visx/marker@npm:3.12.0"
-  dependencies:
-    "@types/react": "npm:*"
-    "@visx/group": "npm:3.12.0"
-    "@visx/shape": "npm:3.12.0"
-    classnames: "npm:^2.3.1"
-    prop-types: "npm:^15.6.2"
-  peerDependencies:
-    react: ^16.0.0-0 || ^17.0.0-0 || ^18.0.0-0
-  checksum: 10c0/b77eb358a429dbb05eb4873ed47b2ff4fcbac2afc8dd2373f63773901de0a772470384bff78d425920aee572fafbddd1dab36863ab87c3da0fd346593260908d
   languageName: node
   linkType: hard
 
@@ -6399,11 +6370,9 @@ __metadata:
   linkType: hard
 
 "convert-source-map@npm:^1.5.0":
-  version: 1.8.0
-  resolution: "convert-source-map@npm:1.8.0"
-  dependencies:
-    safe-buffer: "npm:~5.1.1"
-  checksum: 10c0/da4649990b633c070c0dab1680b89a67b9315dd2b1168d143536f667214c97e4eb4a49e5b7ff912f0196fe303e31fc16a529457436d25b2b5a89613eaf4f27fa
+  version: 1.9.0
+  resolution: "convert-source-map@npm:1.9.0"
+  checksum: 10c0/281da55454bf8126cbc6625385928c43479f2060984180c42f3a86c8b8c12720a24eac260624a7d1e090004028d2dee78602330578ceec1a08e27cb8bb0a8a5b
   languageName: node
   linkType: hard
 
@@ -12051,7 +12020,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.5.10, prop-types@npm:^15.5.7, prop-types@npm:^15.6.0, prop-types@npm:^15.6.1, prop-types@npm:^15.6.2, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
+"prop-types@npm:^15.5.10, prop-types@npm:^15.6.0, prop-types@npm:^15.6.1, prop-types@npm:^15.6.2, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
