@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.4.1] - 2025-12-01
+
+### Changed
+ - moved some prod dependencies to dev dependencies
+ - removed unused dependencies
+
 ## [0.4.0] - 2025-11-25
 
 ### Changed
