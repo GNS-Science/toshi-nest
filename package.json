@@ -35,6 +35,9 @@
     "@babel/preset-react": "^7.28.5",
     "@babel/preset-typescript": "^7.28.5",
     "@chromatic-com/storybook": "^4.1.3",
+    "@eslint/compat": "^2.0.0",
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.39.1",
     "@react-three/fiber": "9.4.0",
     "@storybook/addon-docs": "10.1.0",
     "@storybook/addon-links": "10.1.0",
@@ -73,6 +76,7 @@
     "react-leaflet": "^3.2.5",
     "react-leaflet-fullscreen-plugin": "^1.0.1",
     "react-test-renderer": "^19.2.0",
+    "resize-observer-polyfill": "^1.5.1",
     "rollup": "^4.53.3",
     "rollup-plugin-css-only": "^4.5.5",
     "rollup-plugin-delete": "^3.0.1",
@@ -88,9 +92,6 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
-    "@eslint/compat": "^2.0.0",
-    "@eslint/eslintrc": "^3.3.1",
-    "@eslint/js": "^9.39.1",
     "@mui/icons-material": "^7.3.5",
     "@mui/material": "^7.3.5",
     "@mui/x-data-grid": "^8.20.0",
@@ -119,8 +120,7 @@
     "react-leaflet": "^3.2.5",
     "react-leaflet-fullscreen-plugin": "^1.0.1",
     "react-plotly.js": "^2.6.0",
-    "react-spring": "^10.0.3",
-    "resize-observer-polyfill": "^1.5.1"
+    "react-spring": "^10.0.3"
   },
   "resolutions": {
     "ansi-styles": "5.2.0",
