@@ -1994,12 +1994,10 @@ __metadata:
     "@visx/axis": "npm:^3.12.0"
     "@visx/clip-path": "npm:^3.12.0"
     "@visx/event": "npm:^3.12.0"
-    "@visx/gradient": "npm:^3.12.0"
     "@visx/grid": "npm:^3.12.0"
     "@visx/group": "npm:^3.12.0"
     "@visx/heatmap": "npm:^3.12.0"
     "@visx/legend": "npm:^3.12.0"
-    "@visx/marker": "npm:^3.12.0"
     "@visx/mock-data": "npm:^3.12.0"
     "@visx/responsive": "npm:^3.12.0"
     "@visx/scale": "npm:^3.12.0"
@@ -4735,18 +4733,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@visx/gradient@npm:^3.12.0":
-  version: 3.12.0
-  resolution: "@visx/gradient@npm:3.12.0"
-  dependencies:
-    "@types/react": "npm:*"
-    prop-types: "npm:^15.5.7"
-  peerDependencies:
-    react: ^16.0.0-0 || ^17.0.0-0 || ^18.0.0-0
-  checksum: 10c0/449e35bbb7b040cc4bbab44bd80f66f4e030801b01b833dd882f64b07900c3a1179e9b82a18d746d5d5aa765def42456af09338cfaf4f7a2fc0ff91cd7066d8d
-  languageName: node
-  linkType: hard
-
 "@visx/grid@npm:3.12.0, @visx/grid@npm:^3.12.0":
   version: 3.12.0
   resolution: "@visx/grid@npm:3.12.0"
@@ -4804,21 +4790,6 @@ __metadata:
   peerDependencies:
     react: ^16.3.0-0 || ^17.0.0-0 || ^18.0.0-0
   checksum: 10c0/e858bbfa04a158c6172823fb48123f14754d3241afb5dee0a340b28b712d47a9b3c897970ec030ad597ff00342a5e14fd8fe0b09af5ac5f284fbc11a00335159
-  languageName: node
-  linkType: hard
-
-"@visx/marker@npm:^3.12.0":
-  version: 3.12.0
-  resolution: "@visx/marker@npm:3.12.0"
-  dependencies:
-    "@types/react": "npm:*"
-    "@visx/group": "npm:3.12.0"
-    "@visx/shape": "npm:3.12.0"
-    classnames: "npm:^2.3.1"
-    prop-types: "npm:^15.6.2"
-  peerDependencies:
-    react: ^16.0.0-0 || ^17.0.0-0 || ^18.0.0-0
-  checksum: 10c0/b77eb358a429dbb05eb4873ed47b2ff4fcbac2afc8dd2373f63773901de0a772470384bff78d425920aee572fafbddd1dab36863ab87c3da0fd346593260908d
   languageName: node
   linkType: hard
 
@@ -12049,7 +12020,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.5.10, prop-types@npm:^15.5.7, prop-types@npm:^15.6.0, prop-types@npm:^15.6.1, prop-types@npm:^15.6.2, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
+"prop-types@npm:^15.5.10, prop-types@npm:^15.6.0, prop-types@npm:^15.6.1, prop-types@npm:^15.6.2, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
