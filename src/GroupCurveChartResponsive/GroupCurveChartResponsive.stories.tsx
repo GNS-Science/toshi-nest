@@ -13,6 +13,7 @@ export default {
 const Template: ComponentStory<typeof GroupCurveChartResponsive> = (args) => <GroupCurveChartResponsive {...args} />;
 
 export const Primary = Template.bind({});
+export const AutoXTick = Template.bind({});
 export const SpectralAccelUncertaintyTrue = Template.bind({});
 export const SpectralAccelUncertaintyFalse = Template.bind({});
 
@@ -25,6 +26,24 @@ Primary.args = {
   gridColor: '#efefef',
   backgroundColor: '#ffffff',
   numTickX: 5,
+  numTickY: 5,
+  curves: { curveGroup1: curveGroup1, curveGroup2: curveGroup2 },
+  tooltip: true,
+  crosshair: true,
+  heading: 'Hazard Chart with Uncertainty',
+  subHeading: 'WLG 250',
+  poe: 0.02,
+  timePeriod: 100,
+};
+
+AutoXTick.args = {
+  scaleType: 'log',
+  xLimits: [1e-2, 10],
+  yLimits: [1e-6, 1],
+  xLabel: 'Acceleration(g)',
+  yLabel: 'Annual Probability of Exceedance',
+  gridColor: '#efefef',
+  backgroundColor: '#ffffff',
   numTickY: 5,
   curves: { curveGroup1: curveGroup1, curveGroup2: curveGroup2 },
   tooltip: true,

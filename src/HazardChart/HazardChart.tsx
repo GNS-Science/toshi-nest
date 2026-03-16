@@ -48,8 +48,8 @@ const HazardChart: React.FC<HazardChartProps> = (props: HazardChartProps) => {
       <div style={{ position: 'relative', width: width }}>
         <XYChart height={width * 0.75} width={width} xScale={scalesConfig.x} yScale={scalesConfig.y}>
           <PlotHeadings heading={heading} subHeading={subHeading} width={width} />
-          <AnimatedAxis label="Acceleration (g)" orientation="bottom" />
-          <AnimatedAxis label={`Annual Probability of Exceedance`} labelOffset={20} orientation="left" />
+          <AnimatedAxis label="Acceleration (g)" orientation="bottom" tickFormat={(v: number) => `${v}`} />
+          <AnimatedAxis label={`Annual Probability of Exceedance`} labelOffset={20} orientation="left" tickFormat={(v: number) => `${v}`} />
           <Grid rows columns lineStyle={{ opacity: '90%' }} numTicks={gridNumTicks} />
           <RectClipPath id={parentRef ? 'responsive-clip' : 'clip'} x={50} y={-50} width={width} height={width * 0.75} />
           <Group clipPath={parentRef ? 'url(#responsive-clip)' : 'url(#clip)'}>
