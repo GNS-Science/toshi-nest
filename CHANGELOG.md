@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.4.2] - 2026-03-17
+
+### Changed
+ - GroupCurveChart: format axis ticks as plain numbers to avoid scientific notation
+ - GroupCurveChart: default number of x-axis ticks depends on axis type (log or linear)
+
 ## [0.4.1] - 2025-12-01
 
 ### Changed
