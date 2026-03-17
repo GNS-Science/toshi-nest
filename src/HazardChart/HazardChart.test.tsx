@@ -31,7 +31,7 @@ describe('Hazard Curves works as expected', () => {
     expect(screen.getByText('Acceleration (g)')).toBeInTheDocument();
     expect(screen.getByText('Annual Probability of Exceedance')).toBeInTheDocument();
     expect(screen.getByText('PGA')).toBeInTheDocument();
-    expect(screen.getByText('0.1')).toBeInTheDocument();
+    expect(screen.getAllByText('0.1').length).toBeGreaterThan(0);
   });
 
   test('two curves are printed', async () => {
