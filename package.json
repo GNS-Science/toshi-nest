@@ -121,7 +121,6 @@
     "react-spring": "^10.0.3"
   },
   "resolutions": {
-    "ansi-styles": "5.2.0",
     "strip-indent": "3.0.0"
   },
   "packageManager": "yarn@4.11.0"
