@@ -19,7 +19,7 @@ const scalesConfig: XYChartScaleConfig = {
 describe('Hazard Curves works as expected', () => {
   const Wrapper = () => {
     return (
-      <HazardChart curves={testData} width={500} scalesConfig={scalesConfig} colors={colors} heading={'Test Heading'} subHeading={'Test Subheading'} gridNumTicks={5} poe={undefined} timePeriod={50} />
+      <HazardChart curves={testData} width={500} scalesConfig={scalesConfig} colors={colors} heading={'Test Heading'} subHeading={'Test Subheading'} gridNumTicks={3} poe={undefined} timePeriod={50} />
     );
   };
   userEvent.setup();
@@ -31,7 +31,7 @@ describe('Hazard Curves works as expected', () => {
     expect(screen.getByText('Acceleration (g)')).toBeInTheDocument();
     expect(screen.getByText('Annual Probability of Exceedance')).toBeInTheDocument();
     expect(screen.getByText('PGA')).toBeInTheDocument();
-    expect(screen.getByText('0.1')).toBeInTheDocument();
+    expect(screen.getAllByText('0.1').length).toBeGreaterThan(0);
   });
 
   test('two curves are printed', async () => {

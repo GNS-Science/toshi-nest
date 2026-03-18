@@ -50,6 +50,7 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
   const marginBottom = 50;
   const xMax = width - marginLeft - marginRight;
   const yMax = height - marginBottom - marginTop;
+  const autoNumTickX = scaleType === 'log' ? 3 : 5;
 
   const [boxPlotToolTipActive, setBoxPlotToolTipActive] = useState(false);
 
@@ -241,8 +242,8 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
           <AxisLabel label={xLabel as string} width={width} height={height} orientation="bottom" />
           <AxisLabel label={yLabel as string} width={width} height={height} orientation="left" />
           <Group left={marginLeft} top={marginTop}>
-            <AxisBottom top={yMax} scale={xScale} numTicks={numTickX ?? 5} stroke={gridColor} tickLength={3} tickStroke={gridColor} />
-            <AxisLeft scale={yScale} numTicks={numTickY ?? 5} stroke={gridColor} tickLength={3} tickStroke={gridColor} />
+            <AxisBottom top={yMax} scale={xScale} numTicks={numTickX ?? autoNumTickX} stroke={gridColor} tickLength={3} tickStroke={gridColor} tickFormat={(v) => `${v.valueOf()}`} />
+            <AxisLeft scale={yScale} numTicks={numTickY ?? 5} stroke={gridColor} tickLength={3} tickStroke={gridColor} tickFormat={(v) => `${v.valueOf()}`} />
             <GridColumns scale={xScale} width={xMax} height={yMax} stroke={gridColor ?? '#efefef'} />
             <GridRows scale={yScale} width={xMax} height={yMax} stroke={gridColor ?? '#efefef'} />
             <RectClipPath id="uncertainty-clip" height={yMax} width={xMax} />
