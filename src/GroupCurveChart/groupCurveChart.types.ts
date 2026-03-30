@@ -22,6 +22,7 @@ export interface GroupCurveChartProps {
   poe: number | undefined;
   uncertainty: boolean;
   timePeriod: number;
+  yTickFormat?: (v: number | { valueOf(): number }) => string;
 }
 
 export interface Curve {

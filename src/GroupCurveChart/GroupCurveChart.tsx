@@ -42,6 +42,7 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
     poe,
     uncertainty,
     timePeriod,
+    yTickFormat,
   } = props;
   const height = width * 0.75;
   const marginLeft = 50;
@@ -243,7 +244,7 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
           <AxisLabel label={yLabel as string} width={width} height={height} orientation="left" />
           <Group left={marginLeft} top={marginTop}>
             <AxisBottom top={yMax} scale={xScale} numTicks={numTickX ?? autoNumTickX} stroke={gridColor} tickLength={3} tickStroke={gridColor} tickFormat={(v) => `${v.valueOf()}`} />
-            <AxisLeft scale={yScale} numTicks={numTickY ?? 5} stroke={gridColor} tickLength={3} tickStroke={gridColor} tickFormat={(v) => `${v.valueOf()}`} />
+            <AxisLeft scale={yScale} numTicks={numTickY ?? 5} stroke={gridColor} tickLength={3} tickStroke={gridColor} tickFormat={yTickFormat ?? ((v) => `${v.valueOf()}`)} />
             <GridColumns scale={xScale} width={xMax} height={yMax} stroke={gridColor ?? '#efefef'} />
             <GridRows scale={yScale} width={xMax} height={yMax} stroke={gridColor ?? '#efefef'} />
             <RectClipPath id="uncertainty-clip" height={yMax} width={xMax} />
