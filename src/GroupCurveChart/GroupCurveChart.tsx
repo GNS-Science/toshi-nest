@@ -45,7 +45,7 @@ const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartP
     yTickFormat,
   } = props;
   const height = width * 0.75;
-  const marginLeft = 50;
+  const marginLeft = 60;
   const marginRight = 50;
   const marginTop = 50;
   const marginBottom = 50;
