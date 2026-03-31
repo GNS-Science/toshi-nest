@@ -13,6 +13,7 @@ export default {
 const Template: ComponentStory<typeof GroupCurveChartResponsive> = (args) => <GroupCurveChartResponsive {...args} />;
 
 export const Primary = Template.bind({});
+export const ScientificNotation = Template.bind({});
 export const AutoXTick = Template.bind({});
 export const SpectralAccelUncertaintyTrue = Template.bind({});
 export const SpectralAccelUncertaintyFalse = Template.bind({});
@@ -34,6 +35,13 @@ Primary.args = {
   subHeading: 'WLG 250',
   poe: 0.02,
   timePeriod: 100,
+};
+
+ScientificNotation.args = {
+  ...Primary.args,
+  uncertainty: true,
+  yTickFormat: (v: number | { valueOf(): number }) => v.valueOf().toExponential(1),
+  heading: 'Hazard Chart with Scientific Notation Y-Axis',
 };
 
 AutoXTick.args = {

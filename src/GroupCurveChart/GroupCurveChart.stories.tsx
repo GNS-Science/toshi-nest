@@ -15,6 +15,7 @@ export default {
 const Template: ComponentStory<typeof GroupCurveChart> = (args) => <GroupCurveChart {...args} />;
 
 export const Primary = Template.bind({});
+export const ScientificNotation = Template.bind({});
 export const Tooltip = Template.bind({});
 export const Crosshair = Template.bind({});
 export const TooltipWithCrosshair = Template.bind({});
@@ -49,6 +50,12 @@ Primary.args = {
   uncertainty: true,
   spectral: false,
   timePeriod: 100,
+};
+
+ScientificNotation.args = {
+  ...Primary.args,
+  yTickFormat: (v: number | { valueOf(): number }) => v.valueOf().toExponential(1),
+  heading: 'Group Curve Chart with Scientific Notation Y-Axis',
 };
 
 Tooltip.args = {

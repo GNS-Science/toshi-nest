@@ -22,6 +22,7 @@ export interface GroupCurveChartResponsiveProps {
   poe: number | undefined;
   uncertainty: boolean;
   timePeriod: number;
+  yTickFormat?: (v: number | { valueOf(): number }) => string;
 }
 
 const GroupCurveChartResponsive: React.FC<GroupCurveChartResponsiveProps> = (props: GroupCurveChartResponsiveProps) => {
