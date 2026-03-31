@@ -1,6 +1,12 @@
 # Changelog
 
-## [0.4.2] - 2026-03-17
+## [4.1.2] - 2026-04-01
+
+## Changed
+ - Optional scientific notation on y-axis tick labels for GroupCurveChart
+ - Space y-axis label to reduce crowding for GroupCurveChart
+
+## [4.1.1] - 2026-03-17
 
 ### Changed
  - GroupCurveChart: format axis ticks as plain numbers to avoid scientific notation
