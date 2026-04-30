@@ -2272,7 +2272,7 @@ __metadata:
     rollup-plugin-delete: "npm:3.0.2"
     rollup-plugin-typescript2: "npm:^0.37.0"
     storybook: "npm:10.3.5"
-    three: "npm:0.181.2"
+    three: "npm:0.184.0"
     ts-jest: "npm:29.4.9"
     ts-node: "npm:^10.9.2"
     typescript: "npm:^5.9.3"
@@ -14439,10 +14439,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"three@npm:0.181.2":
-  version: 0.181.2
-  resolution: "three@npm:0.181.2"
-  checksum: 10c0/b34b6240fbedebc7f8a9317c062f7ee5339de0e56250ba2ae3de52edb9c517dc8e9aaf6fe242e1bfff56808081e095db28be5ef1a05947e0c82aefada95c628b
+"three@npm:0.184.0":
+  version: 0.184.0
+  resolution: "three@npm:0.184.0"
+  checksum: 10c0/6af4a36dd97e7082c8daca57af162a36df0ca18337a805913bdb6787dd5b2626face8b51d361a0cb2f767e18fdb1ad7e73ab945ae32647741af9278311f5369d
   languageName: node
   linkType: hard
 
