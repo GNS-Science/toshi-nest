@@ -85,7 +85,7 @@
     "three": "0.184.0",
     "ts-jest": "29.4.9",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.3",
+    "typescript": "6",
     "webpack": "5.106.2",
     "yarn-run-all": "^3.1.1"
   },
