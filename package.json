@@ -126,6 +126,8 @@
     "diff": "4.0.4",
     "es5-ext": "0.10.63",
     "handlebars": "4.7.9",
+    "cross-spawn": "6.0.6",
+    "serialize-javascript": "7.0.5",
     "brace-expansion": "2.0.3",
     "flatted": "3.4.2",
     "js-yaml": "4.1.1",
