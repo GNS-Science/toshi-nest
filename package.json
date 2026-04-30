@@ -94,7 +94,7 @@
     "@emotion/styled": "^11.14.1",
     "@mui/icons-material": "9",
     "@mui/material": "9",
-    "@mui/x-data-grid": "^8.20.0",
+    "@mui/x-data-grid": "9",
     "@visx/axis": "^3.12.0",
     "@visx/clip-path": "^3.12.0",
     "@visx/event": "^3.12.0",
