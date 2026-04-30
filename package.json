@@ -37,7 +37,7 @@
     "@chromatic-com/storybook": "5",
     "@eslint/compat": "2.0.5",
     "@eslint/eslintrc": "3.3.5",
-    "@eslint/js": "^9.39.1",
+    "@eslint/js": "10",
     "@react-three/fiber": "9.6.0",
     "@storybook/addon-docs": "10.3.5",
     "@storybook/addon-links": "10.3.5",
