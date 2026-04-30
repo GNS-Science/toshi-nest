@@ -1,5 +1,12 @@
 # Changelog
 
+## [Unreleased]
+
+### Changed
+- deps: patch (14 direct, 12 transitive); skipped: whatwg-encoding (no 3.1.2), inflight (no 1.0.7), querystring (no 0.2.2), rimraf (no 3.0.3 in 3.x), glob (11.1.1 not published → 11.1.0), minimatch (10.2.3 breaks test-exclude)
+- deps: minor (15 direct, 5 transitive + storybook/webpack/three suite); skipped: minimatch (breaks test-exclude)
+- deps: major: @chromatic-com/storybook 4→5, @eslint/js 9→10, @mui/icons-material+material 7→9, @mui/x-data-grid 8→9, three 0.181.2→0.184.0, typescript 5→6, cross-spawn 4→6 (transitive), serialize-javascript 6→7.0.5 (transitive); skipped: eslint 10 (eslint-plugin-react incompatible), react-leaflet 5 (ESM-only breaks Jest)
+
 ## [4.1.2] - 2026-04-01
 
 ## Changed
