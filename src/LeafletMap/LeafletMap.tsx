@@ -6,7 +6,6 @@ import { MapContainer } from 'react-leaflet';
 
 import { LeafletMapProps } from './LeafletMap.types';
 
-
 import LeafletLayers from './LeafletLayers';
 
 const LeafletMap = ({

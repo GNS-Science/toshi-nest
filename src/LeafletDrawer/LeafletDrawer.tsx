@@ -39,12 +39,14 @@ const LeafletDrawer: React.FC<LeafletDrawerProps> = ({ children, drawerHeight, h
 
   const fullscreenDrawer = (
     <StyledDrawer
-      slotProps={{ paper: {
-        sx: {
-          width: width,
-          boxSizing: 'border-box',
+      slotProps={{
+        paper: {
+          sx: {
+            width: width,
+            boxSizing: 'border-box',
+          },
         },
-      } }}
+      }}
       variant="persistent"
       anchor="left"
       open={open}
@@ -58,14 +60,16 @@ const LeafletDrawer: React.FC<LeafletDrawerProps> = ({ children, drawerHeight, h
 
   const drawer = (
     <StyledDrawer
-      slotProps={{ paper: {
-        sx: {
-          width: width,
-          boxSizing: 'border-box',
-          height: drawerHeight,
-          marginTop: headerHeight,
+      slotProps={{
+        paper: {
+          sx: {
+            width: width,
+            boxSizing: 'border-box',
+            height: drawerHeight,
+            marginTop: headerHeight,
+          },
         },
-      } }}
+      }}
       variant="persistent"
       anchor="left"
       open={open}
