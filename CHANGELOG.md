@@ -1,5 +1,11 @@
 # Changelog
 
+## [4.1.3] - 2026-05-04
+
+### Changed
+- upgraded dependencies.major: @chromatic-com/storybook 4→5, @eslint/js 9→10, @mui/icons-material+material 7→9, @mui/x-data-grid 8→9, three 0.181.2→0.184.0, typescript 5→6, cross-spawn 4→6 (transitive), serialize-javascript 6→7.0.5 (transitive)
+
+
 ## [4.1.2] - 2026-04-01
 
 ## Changed

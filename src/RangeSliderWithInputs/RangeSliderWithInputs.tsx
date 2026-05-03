@@ -17,7 +17,7 @@ const RangeSliderWithInputs: React.FC<RangeSliderWithInputsProps> = ({ label, in
   return (
     <Box sx={{ width: 300, marginRight: 5 }}>
       <Typography gutterBottom>{label}</Typography>
-      <Grid container spacing={3} alignItems="center">
+      <Grid container spacing={3} sx={{ alignItems: 'center' }}>
         <Grid>
           <SmallInput value={valuesRange[0]} size="small" onChange={(event: InputEvent) => setValues([Number(event.target.value), valuesRange[1]])} inputProps={inputProps} />
         </Grid>
