@@ -1,4 +1,4 @@
-import { Bins } from '@visx/mock-data/lib/generators/genBins';
+import type { Bins } from '@visx/mock-data';
 
 export type HeatmapProps = {
   width: number;

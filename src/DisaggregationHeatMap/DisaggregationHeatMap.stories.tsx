@@ -2,8 +2,7 @@ import React from 'react';
 import { Meta } from '@storybook/react-webpack5';
 import DisaggregationHeatMap from './DisaggregationHeatMap';
 import { ParentSize } from '@visx/responsive';
-import { getSeededRandom } from '@visx/mock-data';
-import genBins from '@visx/mock-data/lib/generators/genBins';
+import { genBins, getSeededRandom } from '@visx/mock-data';
 
 export default {
   title: 'Charts/DisaggregationHeatMap',

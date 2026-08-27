@@ -14,7 +14,7 @@ import geojsonTestDataStyledLine from '../../__tests__/testData/geoJson/geojsonT
 import ruptureProperties from '../../__tests__/testData/wlg_hik_10k_surface_properties.json';
 import crustalFaultSurfacesList from '../../__tests__/testData/geoJson/crustal_fault_surfaces_list_sample.json';
 
-import TimeDimensionLayerContext, { TimeDimensionLayerState } from './store';
+import TimeDimensionLayerContext, { type TimeDimensionLayerState } from './store';
 
 export default {
   title: 'Controls/LeafletMap/TimeDimensionLayer',

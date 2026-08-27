@@ -1,6 +1,6 @@
 import React from 'react';
 import { Group } from '@visx/group';
-import { Bin, Bins } from '@visx/mock-data/lib/generators/genBins';
+import type { GenBin as Bin, Bins } from '@visx/mock-data';
 import { scaleLinear } from '@visx/scale';
 import { HeatmapRect } from '@visx/heatmap';
 import { AxisBottom, AxisLeft } from '@visx/axis';

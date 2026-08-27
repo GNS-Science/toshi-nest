@@ -8,6 +8,8 @@ module.exports = {
     "@storybook/addon-docs"
   ],
 
+  "typescript": { "reactDocgen": "react-docgen-typescript" },
+
   "framework": {
     name: "@storybook/react-webpack5",
     options: {}
