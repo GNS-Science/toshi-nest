@@ -1,6 +1,6 @@
 # Changelog
 
-## [Unreleased]
+## [4.1.4] - 2026-08-27
 
 ### Changed
 - upgraded dev dependencies
