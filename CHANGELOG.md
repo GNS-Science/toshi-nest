@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased]
+
+### Changed
+- deps (devDependencies only): patch (11 pkgs), minor (16 pkgs), major: @babel/core+preset-env+preset-react+preset-typescript 7→8, @testing-library/jest-dom 6→7, @visx/mock-data 3→4, lint-staged 16→17, three 0.184→0.185
+- deps skipped: eslint 10 (eslint-plugin-react incompatible), typescript 7 (rollup-plugin-typescript2 + typescript-eslint incompatible)
+
 ## [4.1.3] - 2026-05-04
 
 ### Changed
