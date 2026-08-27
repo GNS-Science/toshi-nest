@@ -2152,7 +2152,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/eslintrc@npm:3.3.5, @eslint/eslintrc@npm:^3.3.5":
+"@eslint/eslintrc@npm:3.3.6":
+  version: 3.3.6
+  resolution: "@eslint/eslintrc@npm:3.3.6"
+  dependencies:
+    ajv: "npm:^6.14.0"
+    debug: "npm:^4.3.2"
+    espree: "npm:^10.0.1"
+    globals: "npm:^14.0.0"
+    ignore: "npm:^5.2.0"
+    import-fresh: "npm:^3.2.1"
+    js-yaml: "npm:^4.3.0"
+    minimatch: "npm:^3.1.5"
+    strip-json-comments: "npm:^3.1.1"
+  checksum: 10c0/349697171ee116f501a2f483bf47cd38937a61880aeb1c23481a69afc95e95859430a0947acbe1f5507f223180bf57530ecf2989e73bcbea763a6dcffdf1d010
+  languageName: node
+  linkType: hard
+
+"@eslint/eslintrc@npm:^3.3.5":
   version: 3.3.5
   resolution: "@eslint/eslintrc@npm:3.3.5"
   dependencies:
@@ -2217,7 +2234,7 @@ __metadata:
     "@emotion/react": "npm:^11.14.0"
     "@emotion/styled": "npm:^11.14.1"
     "@eslint/compat": "npm:2.0.5"
-    "@eslint/eslintrc": "npm:3.3.5"
+    "@eslint/eslintrc": "npm:3.3.6"
     "@eslint/js": "npm:10"
     "@mui/icons-material": "npm:9"
     "@mui/material": "npm:9"
@@ -2230,12 +2247,12 @@ __metadata:
     "@testing-library/dom": "npm:^10.4.1"
     "@testing-library/jest-dom": "npm:^6.9.1"
     "@testing-library/react": "npm:^16.3.2"
-    "@testing-library/user-event": "npm:^14.6.1"
+    "@testing-library/user-event": "npm:^14.6.5"
     "@types/d3-array": "npm:^3.2.2"
     "@types/jest": "npm:^30.0.0"
-    "@types/leaflet": "npm:^1.9.21"
-    "@types/plotly.js": "npm:^3.0.10"
-    "@types/react": "npm:^19.2.14"
+    "@types/leaflet": "npm:^1.9.22"
+    "@types/plotly.js": "npm:^3.0.13"
+    "@types/react": "npm:^19.2.18"
     "@types/react-leaflet-fullscreen-plugin": "npm:^1.0.3"
     "@types/react-plotly.js": "npm:^2.6.4"
     "@typescript-eslint/eslint-plugin": "npm:^8.59.0"
@@ -2260,7 +2277,7 @@ __metadata:
     d3-array: "npm:^3.2.4"
     eslint: "npm:9"
     eslint-config-prettier: "npm:^10.1.8"
-    eslint-plugin-prettier: "npm:5.5.5"
+    eslint-plugin-prettier: "npm:5.5.6"
     eslint-plugin-react: "npm:^7.37.5"
     eslint-plugin-react-hooks: "npm:^7.1.1"
     eslint-plugin-storybook: "npm:10.3.5"
@@ -2274,14 +2291,14 @@ __metadata:
     mathjs: "npm:^15.2.0"
     plotly.js: "npm:^3.5.0"
     prettier: "npm:^3.8.3"
-    react: "npm:19.2.5"
-    react-dom: "npm:19.2.5"
-    react-konva: "npm:19.2.3"
+    react: "npm:19.2.8"
+    react-dom: "npm:19.2.8"
+    react-konva: "npm:19.2.5"
     react-leaflet: "npm:^3.2.5"
     react-leaflet-fullscreen-plugin: "npm:^1.0.1"
     react-plotly.js: "npm:^2.6.0"
     react-spring: "npm:^10.0.3"
-    react-test-renderer: "npm:19.2.5"
+    react-test-renderer: "npm:19.2.8"
     resize-observer-polyfill: "npm:^1.5.1"
     rollup: "npm:^4.60.2"
     rollup-plugin-css-only: "npm:^4.5.5"
@@ -2289,7 +2306,7 @@ __metadata:
     rollup-plugin-typescript2: "npm:^0.37.0"
     storybook: "npm:10.3.5"
     three: "npm:0.184.0"
-    ts-jest: "npm:29.4.9"
+    ts-jest: "npm:29.4.12"
     ts-node: "npm:^10.9.2"
     typescript: "npm:6"
     webpack: "npm:5.106.2"
@@ -3172,6 +3189,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@pkgr/core@npm:^0.3.6":
+  version: 0.3.6
+  resolution: "@pkgr/core@npm:0.3.6"
+  checksum: 10c0/153f0f4563f505faeba13c733efa0e05e467ce1c6b941055a5fd3b4560da60fbf1dff4b11da0075f034ddda11f2842b90395f60895dde5825875b616edccc11c
+  languageName: node
+  linkType: hard
+
 "@plotly/d3-sankey-circular@npm:0.33.1":
   version: 0.33.1
   resolution: "@plotly/d3-sankey-circular@npm:0.33.1"
@@ -3951,6 +3975,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@testing-library/user-event@npm:^14.6.5":
+  version: 14.6.5
+  resolution: "@testing-library/user-event@npm:14.6.5"
+  peerDependencies:
+    "@testing-library/dom": ">=7.21.4"
+  checksum: 10c0/874ad9548fb286bf1b42d9bdc7080b5b9e82cf975608b5e082cc5bbb506816291b6117305477c0a30670914279c2b35039cd07e7559ee993c5f5211722a95660
+  languageName: node
+  linkType: hard
+
 "@tsconfig/node10@npm:^1.0.7":
   version: 1.0.8
   resolution: "@tsconfig/node10@npm:1.0.8"
@@ -4339,12 +4372,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/leaflet@npm:^1.9.21":
-  version: 1.9.21
-  resolution: "@types/leaflet@npm:1.9.21"
+"@types/leaflet@npm:^1.9.22":
+  version: 1.9.22
+  resolution: "@types/leaflet@npm:1.9.22"
   dependencies:
     "@types/geojson": "npm:*"
-  checksum: 10c0/96a86bdeff7bf56104242e97536f39005a53dd857853aa0c5de127ce2c72f3f36638f2a5b8d23e2e825a2bfe32113be731ab26634a3143413b891299c29621ce
+  checksum: 10c0/ce2e09d0f208244478c6103ba64726b33a474f89f303860c7b0494ca1bb44f1744285d93c90093c95669497c7dbdc7c206495af0b741fe6e251bf106b0415593
   languageName: node
   linkType: hard
 
@@ -4408,10 +4441,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/plotly.js@npm:^3.0.10":
-  version: 3.0.10
-  resolution: "@types/plotly.js@npm:3.0.10"
-  checksum: 10c0/72f33ce44df74b53bcde5c0e503d5bf89424bed89791aed030da33c82d787d1d49c40748b764d3c65715a6b28b0c3bc78761a99f576e40fcd2078a9764d19192
+"@types/plotly.js@npm:^3.0.13":
+  version: 3.0.13
+  resolution: "@types/plotly.js@npm:3.0.13"
+  checksum: 10c0/10ffe58c172366221b67a85c531218481b6fd40152836b88da1db2e58b90fd4f19bdfe781f89be8b3b656b5c01d459502336d6a7ad3b5b7069f5b7f56a67aa67
   languageName: node
   linkType: hard
 
@@ -4486,12 +4519,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:^19.2.14":
-  version: 19.2.14
-  resolution: "@types/react@npm:19.2.14"
+"@types/react@npm:^19.2.18":
+  version: 19.2.18
+  resolution: "@types/react@npm:19.2.18"
   dependencies:
     csstype: "npm:^3.2.2"
-  checksum: 10c0/7d25bf41b57719452d86d2ac0570b659210402707313a36ee612666bf11275a1c69824f8c3ee1fdca077ccfe15452f6da8f1224529b917050eb2d861e52b59b7
+  checksum: 10c0/d04216172b4b4362b310017c210dfbe019fb4f4e7dffd0313e70b3acb3051d5c3e76e7e84e3cf4c6a3c824993ffadfe3949e589a6398a09d4200e7670e2962de
   languageName: node
   linkType: hard
 
@@ -8038,12 +8071,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-prettier@npm:5.5.5":
-  version: 5.5.5
-  resolution: "eslint-plugin-prettier@npm:5.5.5"
+"eslint-plugin-prettier@npm:5.5.6":
+  version: 5.5.6
+  resolution: "eslint-plugin-prettier@npm:5.5.6"
   dependencies:
     prettier-linter-helpers: "npm:^1.0.1"
-    synckit: "npm:^0.11.12"
+    synckit: "npm:^0.11.13"
   peerDependencies:
     "@types/eslint": ">=8.0.0"
     eslint: ">=8.0.0"
@@ -8054,7 +8087,7 @@ __metadata:
       optional: true
     eslint-config-prettier:
       optional: true
-  checksum: 10c0/091449b28c77ab2efbbf674e977181f2c8453d95a4df68218bddd87a4dfaa9ecc4eda60164e416f5986fb5d577e66e8d8e1e23d81e8555f8d735375598b03257
+  checksum: 10c0/af37126c947ff3e87ff1ea76408db8cb1c7da966ebdaba68c6dd5924da7eb1b43b1abc4796d753a97b1bc26ea94c5497093e6ab9f8588fffe558d5a554e19bbf
   languageName: node
   linkType: hard
 
@@ -12613,14 +12646,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:19.2.5":
-  version: 19.2.5
-  resolution: "react-dom@npm:19.2.5"
+"react-dom@npm:19.2.8":
+  version: 19.2.8
+  resolution: "react-dom@npm:19.2.8"
   dependencies:
     scheduler: "npm:^0.27.0"
   peerDependencies:
-    react: ^19.2.5
-  checksum: 10c0/8067606e9f58e4c2e8cb5f09570217dbc71c4843ebcaa20ae2085912d3e3a351f17d8f7c1713313cdda7f272840c8c34ff6c860fcb840862071bceea218e0c63
+    react: ^19.2.8
+  checksum: 10c0/41ba2247b76f687fcfe5bbc99f514d6b851d8c8041c2f5ded36ed05bd7fdc5208cacbac9de51e3e6633e77f96f44cec9f0d4a5a55184dba4e00738f224439134
   languageName: node
   linkType: hard
 
@@ -12656,16 +12689,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-is@npm:^19.2.4, react-is@npm:^19.2.5":
+"react-is@npm:^19.2.4":
   version: 19.2.5
   resolution: "react-is@npm:19.2.5"
   checksum: 10c0/58c28ab2f7f868f9836c728fa164a16dcf20246ab84a3ae6a09e617b0e4d9bbb3acdddfdc40452f0134d27b121d3359227602a050c0be554cb20069cb52a67f4
   languageName: node
   linkType: hard
 
-"react-konva@npm:19.2.3":
-  version: 19.2.3
-  resolution: "react-konva@npm:19.2.3"
+"react-is@npm:^19.2.8":
+  version: 19.2.8
+  resolution: "react-is@npm:19.2.8"
+  checksum: 10c0/ed5322c84efe035c8fc814b1614ff5ca7fb8c2872a7c045197daf99f9b1bd68f32a2c79ffcbcfcff2fc5d93924ff9f9447400898f5b1534e6302bb0736a257f0
+  languageName: node
+  linkType: hard
+
+"react-konva@npm:19.2.5":
+  version: 19.2.5
+  resolution: "react-konva@npm:19.2.5"
   dependencies:
     "@types/react-reconciler": "npm:^0.33.0"
     its-fine: "npm:^2.0.0"
@@ -12675,7 +12715,7 @@ __metadata:
     konva: ^8.0.1 || ^7.2.5 || ^9.0.0 || ^10.0.0
     react: ^19.2.0
     react-dom: ^19.2.0
-  checksum: 10c0/7a7fa60d1e85d794be13bfab5890939f7adc39b29857118103de07bbe4b441281050376bf3e75d0bf6758d4a38dd04100d2a0686e855dc54a8845799cc5d99e6
+  checksum: 10c0/6f222c47cc4c105a3f4b662a9a86a31983c77bf254aebac9ca21c4e0bf7d3f78a6c2b0c6c2cf23d44fbded1260c69e2a90766ef4eeec85d19457f8aebd978ad1
   languageName: node
   linkType: hard
 
@@ -12748,15 +12788,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-test-renderer@npm:19.2.5":
-  version: 19.2.5
-  resolution: "react-test-renderer@npm:19.2.5"
+"react-test-renderer@npm:19.2.8":
+  version: 19.2.8
+  resolution: "react-test-renderer@npm:19.2.8"
   dependencies:
-    react-is: "npm:^19.2.5"
+    react-is: "npm:^19.2.8"
     scheduler: "npm:^0.27.0"
   peerDependencies:
-    react: ^19.2.5
-  checksum: 10c0/d135dd5e5cc4ed76680fc130e90a4459186faa860989996f3f17c24befc037a5170919744bbd710295a0a0082f3a411398483bb113b85e78a65dbe25c86326d8
+    react: ^19.2.8
+  checksum: 10c0/3ecb6b68f9658050bbe7f8e04fed58644c5693b1a5a716d78dd4ad9defac184e658f8a153265903e75b438f4aee5a7f2c6a9565ccce8e6321a93bb0237c04e66
   languageName: node
   linkType: hard
 
@@ -12788,10 +12828,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:19.2.5":
-  version: 19.2.5
-  resolution: "react@npm:19.2.5"
-  checksum: 10c0/4b5f231dbef92886f602533c9ce3bde04d99f0e71dfb5d794c43e02726efaad0421c08688f75fc98a6d6e1dc017372e1af7abbfecdc86a79968f461675931a7a
+"react@npm:19.2.8":
+  version: 19.2.8
+  resolution: "react@npm:19.2.8"
+  checksum: 10c0/5f86bdb56426652fd6d989d30a6f2e603c057272c47c9ca3a3fbe190a3a39ee9ccce937d63cfc039717abed1b8891d6a499134bc35311acc07eafdacd86537cd
   languageName: node
   linkType: hard
 
@@ -13589,12 +13629,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semver@npm:^7.7.3, semver@npm:^7.7.4":
+"semver@npm:^7.7.3":
   version: 7.7.4
   resolution: "semver@npm:7.7.4"
   bin:
     semver: bin/semver.js
   checksum: 10c0/5215ad0234e2845d4ea5bb9d836d42b03499546ddafb12075566899fc617f68794bb6f146076b6881d755de17d6c6cc73372555879ec7dce2c2feee947866ad2
+  languageName: node
+  linkType: hard
+
+"semver@npm:^7.8.5":
+  version: 7.8.5
+  resolution: "semver@npm:7.8.5"
+  bin:
+    semver: bin/semver.js
+  checksum: 10c0/b1f3127a5be8125a94f37188b361c212466c292c6910adce3ec106cff5dc211ccaedc4739c11bb70fda59d6fc1f040a9bca289f4e093451521a2372e5231fe0c
   languageName: node
   linkType: hard
 
@@ -14358,12 +14407,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"synckit@npm:^0.11.12":
-  version: 0.11.12
-  resolution: "synckit@npm:0.11.12"
+"synckit@npm:^0.11.13":
+  version: 0.11.13
+  resolution: "synckit@npm:0.11.13"
   dependencies:
-    "@pkgr/core": "npm:^0.2.9"
-  checksum: 10c0/cc4d446806688ae0d728ae7bb3f53176d065cf9536647fb85bdd721dcefbd7bf94874df6799ff61580f2b03a392659219b778a9254ad499f9a1f56c34787c235
+    "@pkgr/core": "npm:^0.3.6"
+  checksum: 10c0/5a6c19f4f79045aaa7994106401bff6dbe7cca23a6d0a0723ff14eb8b1bebeb4a71729118f6914905598e304ea2fa13509885e11ba07d92e7cb68a06740cb328
   languageName: node
   linkType: hard
 
@@ -14677,9 +14726,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ts-jest@npm:29.4.9":
-  version: 29.4.9
-  resolution: "ts-jest@npm:29.4.9"
+"ts-jest@npm:29.4.12":
+  version: 29.4.12
+  resolution: "ts-jest@npm:29.4.12"
   dependencies:
     bs-logger: "npm:^0.2.6"
     fast-json-stable-stringify: "npm:^2.1.0"
@@ -14687,7 +14736,7 @@ __metadata:
     json5: "npm:^2.2.3"
     lodash.memoize: "npm:^4.1.2"
     make-error: "npm:^1.3.6"
-    semver: "npm:^7.7.4"
+    semver: "npm:^7.8.5"
     type-fest: "npm:^4.41.0"
     yargs-parser: "npm:^21.1.1"
   peerDependencies:
@@ -14713,7 +14762,7 @@ __metadata:
       optional: true
   bin:
     ts-jest: cli.js
-  checksum: 10c0/901eb382817d1f48fc56b6c9b82de989f176660295695ae1fcd55f06f71d2c107766e1413ab24a59fa964c2ef79a60dd23ac1f382b05ae04f2b454fb4eb5ad4f
+  checksum: 10c0/cf08cf4b417085578db038b525c8b22cf6af689601eab697fe84a46fa07bddcd506bd961c607c8f25c705e90ea8ac8ecf258fc200161f4e0882d0d7db4db9ec9
   languageName: node
   linkType: hard
 
