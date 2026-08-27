@@ -3,11 +3,10 @@
 ## [Unreleased]
 
 ### Changed
-- deps (devDependencies only): patch (11 pkgs), minor (16 pkgs), major: @babel/core+preset-env+preset-react+preset-typescript 7→8, @testing-library/jest-dom 6→7, @visx/mock-data 3→4, lint-staged 16→17, three 0.184→0.185
-- deps skipped: eslint 10 (eslint-plugin-react incompatible), typescript 7 (rollup-plugin-typescript2 + typescript-eslint incompatible), @babel/core + presets 8 (storybook's babel-loader requires babel 7)
+- upgraded dev dependencies
 
 ### Fixed
-- storybook build: @visx/mock-data v4 import paths, type-only import of `TimeDimensionLayerState`, and switched `reactDocgen` to `react-docgen-typescript` (babel-based react-docgen failed on call-site generics in GroupCurveChart)
+- Changed leaflet default basemap to OpenStreetMap
 
 ## [4.1.3] - 2026-05-04
 
