@@ -2274,7 +2274,7 @@ __metadata:
     "@visx/group": "npm:^3.12.0"
     "@visx/heatmap": "npm:^3.12.0"
     "@visx/legend": "npm:^3.12.0"
-    "@visx/mock-data": "npm:^3.12.0"
+    "@visx/mock-data": "npm:^4.0.0"
     "@visx/responsive": "npm:^3.12.0"
     "@visx/scale": "npm:^3.12.0"
     "@visx/shape": "npm:^3.12.0"
@@ -5443,13 +5443,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@visx/mock-data@npm:^3.12.0":
-  version: 3.12.0
-  resolution: "@visx/mock-data@npm:3.12.0"
+"@visx/mock-data@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "@visx/mock-data@npm:4.0.0"
   dependencies:
     "@types/d3-random": "npm:^2.2.0"
     d3-random: "npm:^2.2.2"
-  checksum: 10c0/d7ce5360bc60bd5c1187d2f5a88726965ecf89a44c36998e5f57387ee6fb13e36ba397e09d3e42b95700ff38f5cac0a484279dfee62e1851b5a05a64a0c5ca89
+  checksum: 10c0/2841172abdc65a8979ef81d3c6f6477083ad717b9508b614b15d297ae6d5214262643ee9aaa05ea2c3887f0d17b549d16ed5c9cb4b2186473b66d0cde79cd146
   languageName: node
   linkType: hard
 
