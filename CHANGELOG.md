@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased]
+
+### Changed
+- upgraded dev dependencies
+
+### Fixed
+- Changed leaflet default basemap to OpenStreetMap
+
 ## [4.1.3] - 2026-05-04
 
 ### Changed
