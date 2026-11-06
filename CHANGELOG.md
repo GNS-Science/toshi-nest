@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased]
+
+### Changed
+- deps: major: @babel/* 7→8, plotly.js 3→4, react-plotly.js 2→4, @visx/* 3→4
+- deps: minor (23 pkgs), patch (10 pkgs), transitive security resolutions
+
 ## [4.1.4] - 2026-08-27
 
 ### Changed
