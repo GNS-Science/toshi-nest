@@ -114,7 +114,7 @@
     "leaflet": "1.9.4",
     "leaflet-timedimension": "^1.1.1",
     "mathjs": "^15.2.0",
-    "plotly.js": "^3.5.0",
+    "plotly.js": "4",
     "react-leaflet": "^3.2.5",
     "react-leaflet-fullscreen-plugin": "^1.0.1",
     "react-plotly.js": "^2.6.0",
