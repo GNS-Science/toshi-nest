@@ -59,7 +59,7 @@
     "@visx/mock-data": "^4.0.0",
     "babel-jest": "^30.4.1",
     "babel-loader": "^10.1.1",
-    "eslint": "9",
+    "eslint": "10",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "5.5.6",
     "eslint-plugin-react": "^7.37.5",
