@@ -1,4 +1,6 @@
+import type { Data, Layout } from 'plotly.js';
+
 export interface DisaggregationPlotProps {
-  data: Plotly.Data[];
-  layout: Partial<Plotly.Layout>;
+  data: Data[];
+  layout: Partial<Layout>;
 }

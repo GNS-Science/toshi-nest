@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased]
+
+### Changed
+- deps: major: @visx/* 3→4, eslint 9→10, plotly.js 3→4, react-plotly.js 2→4, three 0.185.1→0.186.1; transitive: minimatch 9/10→11.0.3, glob 10/11/13→14.0.3, webpack-dev-middleware 6→8.6.0
+- deps: minor (23 direct pkgs incl. storybook 10.6.5, MUI 9.5, react 19.3.1; 11 transitive incl. ws, zod, browserslist, js-yaml, brace-expansion, serialize-javascript)
+- deps: patch (10 direct pkgs; 7 transitive incl. handlebars, postcss, tar, fast-uri, nanoid); storybook's nested webpack 5.103.0→5.112.2
+- eslint config: set `settings.react.version` explicitly (eslint-plugin-react version detection is incompatible with ESLint 10)
+
 ## [4.1.4] - 2026-08-27
 
 ### Changed
