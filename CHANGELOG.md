@@ -1,6 +1,6 @@
 # Changelog
 
-## [Unreleased]
+## [4.1.5] - 2026-11-10
 
 ### Changed
 - deps: major: @visx/* 3→4, eslint 9→10, plotly.js 3→4, react-plotly.js 2→4, three 0.185.1→0.186.1; transitive: minimatch 9/10→11.0.3, glob 10/11/13→14.0.3, webpack-dev-middleware 6→8.6.0
