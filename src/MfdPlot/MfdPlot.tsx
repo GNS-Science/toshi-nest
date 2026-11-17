@@ -7,7 +7,7 @@ import { RectClipPath } from '@visx/clip-path';
 import { Group } from '@visx/group';
 import SettingsIcon from '@mui/icons-material/Settings';
 
-import { MfdPlotProps } from './MfdPlot.types';
+import type { MfdPlotProps } from './MfdPlot.types';
 
 export const MfdPlot = ({
   data,

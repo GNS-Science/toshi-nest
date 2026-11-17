@@ -14,10 +14,10 @@ import { bisector } from 'd3-array';
 import { Legend, LegendItem, LegendLabel, LegendOrdinal } from '@visx/legend';
 import { GlyphSquare } from '@visx/glyph';
 
-import { GroupCurveChartProps, Datum } from './groupCurveChart.types';
+import type { GroupCurveChartProps, Datum } from './groupCurveChart.types';
 import { getAreaData, getSortedMeanCurves } from './groupCurveChart.service';
 import PlotHeadings from '../common/PlotHeadings';
-import { HazardColorScale } from '../types/hazardCharts.types';
+import type { HazardColorScale } from '../types/hazardCharts.types';
 import AxisLabel from '../common/AxisLabel';
 
 const GroupCurveChart: React.FC<GroupCurveChartProps> = (props: GroupCurveChartProps) => {

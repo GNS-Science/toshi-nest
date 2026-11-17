@@ -1,4 +1,4 @@
-import { XY } from '../types/common.types';
+import type { XY } from '../types/common.types';
 
 export type SpectralAccelChartProps = {
   data: Record<string, XY[]>;

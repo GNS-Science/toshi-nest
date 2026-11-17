@@ -1,7 +1,8 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
-import { FormControl, Input, InputLabel, MenuItem, Select, SelectChangeEvent, Tooltip } from '@mui/material';
-import { SelectControlProps } from './SelectControl.types';
+import type { SelectChangeEvent } from '@mui/material';
+import { FormControl, Input, InputLabel, MenuItem, Select, Tooltip } from '@mui/material';
+import type { SelectControlProps } from './SelectControl.types';
 
 const SelectControlContainer = styled('div')({
   minWidth: 200,

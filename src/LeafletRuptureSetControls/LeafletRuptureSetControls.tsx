@@ -4,7 +4,7 @@ import { styled } from '@mui/material/styles';
 import MultiSelect from '../MultiSelect';
 import RangeSliderWithInputs from '../RangeSliderWithInputs/RangeSliderWithInputs';
 import ControlsBar from '../common/ControlsBar';
-import { LeafletRuptureSetControlsProps } from './LeafletRuptureSetControls.types';
+import type { LeafletRuptureSetControlsProps } from './LeafletRuptureSetControls.types';
 
 const StyledCard = styled(Card)({
   margin: '50px',

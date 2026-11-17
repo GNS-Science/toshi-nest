@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { ComponentMeta } from '@storybook/react-webpack5';
+import type { Meta } from '@storybook/react-webpack5';
 
 import SelectControl from './SelectControl';
 
 export default {
   title: 'Controls/SelectControl',
   component: SelectControl,
-} as ComponentMeta<typeof SelectControl>;
+} as Meta<typeof SelectControl>;
 
 export const Primary = () => {
   // Sets the hooks for both the label and primary props

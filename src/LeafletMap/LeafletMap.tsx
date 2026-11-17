@@ -4,7 +4,7 @@ import 'leaflet/dist/leaflet.css';
 import 'leaflet-timedimension';
 import { MapContainer } from 'react-leaflet';
 
-import { LeafletMapProps } from './LeafletMap.types';
+import type { LeafletMapProps } from './LeafletMap.types';
 
 import LeafletLayers from './LeafletLayers';
 

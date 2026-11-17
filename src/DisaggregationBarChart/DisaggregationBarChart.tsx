@@ -3,7 +3,7 @@ import { Bar } from '@visx/shape';
 import { Group } from '@visx/group';
 import { AxisBottom, AxisLeft } from '@visx/axis';
 import { scaleBand, scaleLinear } from '@visx/scale';
-import { DisaggregationBarChartProps } from './DisaggregationBarChart.types';
+import type { DisaggregationBarChartProps } from './DisaggregationBarChart.types';
 
 export const DisaggregationBarChart = ({ barData, colourArray, width, height, verticalMargin, xLabel, yLabel, xNumTicks, yNumTicks, leftMargin }: DisaggregationBarChartProps) => {
   // bounds

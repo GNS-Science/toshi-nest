@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, styled, Typography } from '@mui/material';
-import { SurfaceProperties } from './TimeDimensionLayer.types';
+import type { SurfaceProperties } from './TimeDimensionLayer.types';
 // import 'leaflet/dist/leaflet.css';
 
 export interface TimeDimensionInfoBoxProps {

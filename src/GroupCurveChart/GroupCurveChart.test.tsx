@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 
 import GroupCurveChart from './GroupCurveChart';
-import { GroupCurveChartProps } from './groupCurveChart.types';
+import type { GroupCurveChartProps } from './groupCurveChart.types';
 import { curveGroup1, curveGroup2 } from '../__tests__/testData/uncertaintyTestData';
 
 const props: GroupCurveChartProps = {

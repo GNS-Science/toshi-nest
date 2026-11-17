@@ -5,9 +5,9 @@ import { Group } from '@visx/group';
 import { scaleOrdinal } from '@visx/scale';
 import { LegendOrdinal } from '@visx/legend';
 
-import { XY } from '../types/common.types';
+import type { XY } from '../types/common.types';
 import { Typography } from '@mui/material';
-import { HazardChartProps, HazardColorScale } from '../types/hazardCharts.types';
+import type { HazardChartProps, HazardColorScale } from '../types/hazardCharts.types';
 import PlotHeadings from '../common/PlotHeadings';
 
 const HazardChart: React.FC<HazardChartProps> = (props: HazardChartProps) => {

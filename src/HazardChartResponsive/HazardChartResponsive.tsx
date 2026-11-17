@@ -2,7 +2,7 @@ import React from 'react';
 import { ParentSize } from '@visx/responsive';
 
 import HazardChart from '../HazardChart/HazardChart';
-import { HazardChartResponsiveProps } from '../types/hazardCharts.types';
+import type { HazardChartResponsiveProps } from '../types/hazardCharts.types';
 
 const HazardChartResponsive: React.FC<HazardChartResponsiveProps> = ({ curves, scalesConfig, colors, heading, subHeading, gridNumTicks, poe, timePeriod }: HazardChartResponsiveProps) => {
   return (

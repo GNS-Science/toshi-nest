@@ -4,7 +4,7 @@ import { Drawer, Button } from '@mui/material';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
-import { LeafletDrawerProps } from './LeafletDrawer.types';
+import type { LeafletDrawerProps } from './LeafletDrawer.types';
 
 const MenuOpenButton = styled(Button)({
   position: 'absolute',

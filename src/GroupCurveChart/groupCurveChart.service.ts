@@ -1,4 +1,4 @@
-import { CurveGroup, Datum } from './groupCurveChart.types';
+import type { CurveGroup, Datum } from './groupCurveChart.types';
 
 export const getAreaData = (curveGroup: CurveGroup, scaleType: string) => {
   const area: number[][] = [];

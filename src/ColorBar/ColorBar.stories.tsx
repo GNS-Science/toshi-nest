@@ -1,9 +1,9 @@
 import React, { useState, useMemo } from 'react';
-import { Meta, ComponentStory } from '@storybook/react-webpack5';
+import type { Meta, StoryFn } from '@storybook/react-webpack5';
 import { Box } from '@mui/material';
 
 import ColorBar from './ColorBar';
-import { LatLngExpression } from 'leaflet';
+import type { LatLngExpression } from 'leaflet';
 import LeafletMap from '../LeafletMap';
 import geojsonTesetDat05 from '../__tests__/testData/geoJson/geojsonTestData0.5';
 import LeafletDrawer from '../LeafletDrawer';
@@ -16,7 +16,7 @@ export default {
   subcomponents: { LeafletMap, LeafletDrawer, SelectControl },
 } as Meta<typeof ColorBar>;
 
-const Template: ComponentStory<typeof ColorBar> = (args) => <ColorBar {...args} />;
+const Template: StoryFn<typeof ColorBar> = (args) => <ColorBar {...args} />;
 
 export const Primary = Template.bind({});
 
