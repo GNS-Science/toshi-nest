@@ -1,5 +1,12 @@
 # Changelog
 
+## [Unreleased]
+
+### Changed
+- deps: major: @babel/* 7→8, react-leaflet 3→5; typescript kept on 6 (tooling does not yet support 7)
+- CI: Node 22→24
+- jest config: transform `.mjs` and ESM-only `react-leaflet`
+
 ## [4.1.5] - 2026-11-10
 
 ### Changed
