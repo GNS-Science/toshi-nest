@@ -7,9 +7,9 @@ export default {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
   transform: {
-    '^.+\\.(ts|js)x?$': 'ts-jest',
+    '^.+\\.(ts|js|mjs)x?$': 'ts-jest',
   },
-  transformIgnorePatterns: ['<rootDir>/node_modules/(?!d3-array|internmap|d3-interpolate|d3-scale|d3-selection|d3-shape|d3-axis|d3-color|d3-format|d3-time|d3-time-format)'],
+  transformIgnorePatterns: ['<rootDir>/node_modules/(?!d3-array|react-leaflet|@react-leaflet|internmap|d3-interpolate|d3-scale|d3-selection|d3-shape|d3-axis|d3-color|d3-format|d3-time|d3-time-format)'],
   moduleDirectories: ['node_modules', '<rootDir>/src'],
   setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
   // All imported modules in your tests should be mocked automatically

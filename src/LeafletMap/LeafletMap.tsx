@@ -42,10 +42,12 @@ const LeafletMap = ({
         maxZoom={maxZoom || 12}
         zoomSnap={zoomSnap || 1}
         zoomDelta={zoomDelta || 1}
-        timeDimension={timeDimension}
-        timeDimensionOptions={timeDimensionOptions}
-        timeDimensionControl={timeDimension}
-        timeDimensionControlOptions={timeDimensionControlOptions}
+        {...({
+          timeDimension,
+          timeDimensionOptions,
+          timeDimensionControl: timeDimension,
+          timeDimensionControlOptions,
+        } as Record<string, unknown>)}
       >
         <LeafletLayers
           style={style}
