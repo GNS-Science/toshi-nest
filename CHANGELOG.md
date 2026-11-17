@@ -1,5 +1,10 @@
 # Changelog
 
+## [Unreleased]
+
+### Changed
+- CI: build, test and publish with Node 24
+
 ## [4.1.5] - 2026-11-10
 
 ### Changed
