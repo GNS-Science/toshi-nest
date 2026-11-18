@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-`toshi-nest` (`@gns-science/toshi-nest`) is a React component library published to GitHub's NPM registry, providing shared UI components for GNS Science projects (primarily Kororaa and TUI apps). It outputs both CJS and ESM bundles via Rollup.
+`toshi-nest` (`@gns-science/toshi-nest`) is a React component library published to npmjs (public), providing shared UI components for GNS Science projects (primarily Kororaa and TUI apps). It outputs both CJS and ESM bundles via Rollup.
 
 ## Commands
 
