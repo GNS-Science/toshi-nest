@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react-webpack5';
+import type { Meta, StoryFn } from '@storybook/react-webpack5';
 
 import GroupCurveChart from './GroupCurveChart';
 import { curveGroup4, curveGroup3, curveGroup2, curveGroup1 } from '../__tests__/testData/uncertaintyTestData';
@@ -10,9 +10,9 @@ import { multipleImtData, uhsData, uhsData2, saData2, newData, newSaData } from 
 export default {
   title: 'Charts/GroupCurveChart',
   component: GroupCurveChart,
-} as ComponentMeta<typeof GroupCurveChart>;
+} as Meta<typeof GroupCurveChart>;
 
-const Template: ComponentStory<typeof GroupCurveChart> = (args) => <GroupCurveChart {...args} />;
+const Template: StoryFn<typeof GroupCurveChart> = (args) => <GroupCurveChart {...args} />;
 
 export const Primary = Template.bind({});
 export const ScientificNotation = Template.bind({});

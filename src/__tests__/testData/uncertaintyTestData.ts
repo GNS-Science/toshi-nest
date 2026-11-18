@@ -1,4 +1,4 @@
-import { CurveGroup } from '../../GroupCurveChart/groupCurveChart.types';
+import type { CurveGroup } from '../../GroupCurveChart/groupCurveChart.types';
 
 export const curveGroup1: CurveGroup = {
   mean: {

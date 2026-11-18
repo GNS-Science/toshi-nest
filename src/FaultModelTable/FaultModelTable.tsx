@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { DataGrid, GridColDef, GridColumnVisibilityModel } from '@mui/x-data-grid';
+import type { GridColDef, GridColumnVisibilityModel } from '@mui/x-data-grid';
+import { DataGrid } from '@mui/x-data-grid';
 
 import { generateFaultModelTable } from './faultModelTable.service';
-import { FaultModelTableProps, RowData } from './faultModelTable.types';
+import type { FaultModelTableProps, RowData } from './faultModelTable.types';
 
 const columns: GridColDef[] = [
   { field: 'id' },

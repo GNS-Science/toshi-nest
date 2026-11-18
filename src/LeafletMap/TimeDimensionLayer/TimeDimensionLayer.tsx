@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect, useMemo } from 'react';
 import { GeoJSON, useMap } from 'react-leaflet';
-import { TimeDimensionLayerProps } from './TimeDimensionLayer.types';
+import type { TimeDimensionLayerProps } from './TimeDimensionLayer.types';
 
 import TimeDimensionInfoBox from './TimeDimensionInfoBox';
-import { GeoJsonObject } from 'geojson';
+import type { GeoJsonObject } from 'geojson';
 
 const dummyGeoJson = {
   type: 'FeatureCollection',

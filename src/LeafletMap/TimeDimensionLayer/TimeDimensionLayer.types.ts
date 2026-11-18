@@ -1,4 +1,4 @@
-import { GeoJsonObject } from 'geojson';
+import type { GeoJsonObject } from 'geojson';
 
 export interface TimeDimensionOptions {
   timeInterval: string;

@@ -1,7 +1,7 @@
-import { LatLngExpression } from 'leaflet';
-import { Feature, Geometry } from 'geojson';
-import { Layer } from 'leaflet';
-import { TimeDimensionLayerProps, TimeDimensionOptions, TimeDimensionControlOptions } from './TimeDimensionLayer';
+import type { LatLngExpression } from 'leaflet';
+import type { Feature, Geometry } from 'geojson';
+import type { Layer } from 'leaflet';
+import type { TimeDimensionLayerProps, TimeDimensionOptions, TimeDimensionControlOptions } from './TimeDimensionLayer';
 
 export interface LeafletMapProps {
   geoJsonData: string[];

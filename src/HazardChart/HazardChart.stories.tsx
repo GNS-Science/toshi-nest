@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react-webpack5';
+import type { Meta, StoryFn } from '@storybook/react-webpack5';
 
 import HazardChart from './HazardChart';
 import { hazardChartCurves, hazardChartColors, hazardChartScalesConfig } from './hazardChartTestData';
@@ -7,9 +7,9 @@ import { hazardChartCurves, hazardChartColors, hazardChartScalesConfig } from '.
 export default {
   title: 'Charts/HazardChart',
   component: HazardChart,
-} as ComponentMeta<typeof HazardChart>;
+} as Meta<typeof HazardChart>;
 
-const Template: ComponentStory<typeof HazardChart> = (args) => <HazardChart {...args} />;
+const Template: StoryFn<typeof HazardChart> = (args) => <HazardChart {...args} />;
 
 export const Primary = Template.bind({});
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react-webpack5';
+import type { Meta, StoryFn } from '@storybook/react-webpack5';
 
 import GroupCurveChartResponsive from '.';
 import { curveGroup2, curveGroup1 } from '../__tests__/testData/uncertaintyTestData';
@@ -8,9 +8,9 @@ import spectralAccelUncertaintyTestData from '../__tests__/testData/spectralAcce
 export default {
   title: 'Charts/GroupCurveChartResponsive',
   component: GroupCurveChartResponsive,
-} as ComponentMeta<typeof GroupCurveChartResponsive>;
+} as Meta<typeof GroupCurveChartResponsive>;
 
-const Template: ComponentStory<typeof GroupCurveChartResponsive> = (args) => <GroupCurveChartResponsive {...args} />;
+const Template: StoryFn<typeof GroupCurveChartResponsive> = (args) => <GroupCurveChartResponsive {...args} />;
 
 export const Primary = Template.bind({});
 export const ScientificNotation = Template.bind({});

@@ -1,7 +1,7 @@
 import { Box, Grid, Input, Slider, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import React from 'react';
-import { RangeSliderWithInputsProps } from './RangeSliderWithInputs.types';
+import type { RangeSliderWithInputsProps } from './RangeSliderWithInputs.types';
 
 type InputEvent = {
   target: {

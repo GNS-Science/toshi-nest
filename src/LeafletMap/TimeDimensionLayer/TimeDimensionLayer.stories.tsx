@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useMemo, useContext } from 'react';
-import { ComponentMeta } from '@storybook/react-webpack5';
+import type { Meta } from '@storybook/react-webpack5';
 import { Box, Typography } from '@mui/material';
-import { LatLngExpression } from 'leaflet';
+import type { LatLngExpression } from 'leaflet';
 
 import SelectControl from '../../SelectControl';
 import LeafletMap from '../../LeafletMap';
@@ -20,7 +20,7 @@ export default {
   title: 'Controls/LeafletMap/TimeDimensionLayer',
   component: LeafletMap,
   subcomponents: { LeafletDrawer, SelectControl },
-} as ComponentMeta<typeof LeafletMap>;
+} as Meta<typeof LeafletMap>;
 
 const InfoBox = () => {
   const context = useContext(TimeDimensionLayerContext);

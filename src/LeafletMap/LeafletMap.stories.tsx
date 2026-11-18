@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useMemo } from 'react';
-import { Meta } from '@storybook/react-webpack5';
+import type { Meta } from '@storybook/react-webpack5';
 import { Box } from '@mui/material';
-import { LatLngExpression } from 'leaflet';
-import { Feature, Geometry, GeoJsonObject } from 'geojson';
-import { Layer } from 'leaflet';
+import type { LatLngExpression } from 'leaflet';
+import type { Feature, Geometry, GeoJsonObject } from 'geojson';
+import type { Layer } from 'leaflet';
 
 import SelectControl from '../SelectControl';
 import LeafletMap from './LeafletMap';

@@ -1,7 +1,7 @@
 import { ParentSize } from '@visx/responsive';
 import React from 'react';
 import GroupCurveChart from '../GroupCurveChart/GroupCurveChart';
-import { GroupCurveChartData } from '../GroupCurveChart/groupCurveChart.types';
+import type { GroupCurveChartData } from '../GroupCurveChart/groupCurveChart.types';
 
 export interface GroupCurveChartResponsiveProps {
   scaleType: 'log' | 'linear';

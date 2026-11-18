@@ -1,7 +1,8 @@
-import { Checkbox, FormControl, Input, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
+import type { SelectChangeEvent } from '@mui/material';
+import { Checkbox, FormControl, Input, InputLabel, MenuItem, Select } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import React, { useEffect } from 'react';
-import { MultiSelectProps } from './MultiSelect.types';
+import type { MultiSelectProps } from './MultiSelect.types';
 const MultiSelectContainer = styled('div')({
   margin: 10,
   minWidth: 200,

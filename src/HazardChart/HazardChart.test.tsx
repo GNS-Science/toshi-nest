@@ -1,7 +1,7 @@
 import React from 'react';
 import HazardChart from './HazardChart';
 import { screen } from '@testing-library/react';
-import { HazardChartColors, XYChartScaleConfig } from '../types/hazardCharts.types';
+import type { HazardChartColors, XYChartScaleConfig } from '../types/hazardCharts.types';
 import { render } from '@testing-library/react';
 import { testData } from '../__tests__/testData/hazardChartTestData';
 import userEvent from '@testing-library/user-event';

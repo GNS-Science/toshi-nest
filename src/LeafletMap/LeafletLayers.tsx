@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
-import { GeoJsonObject } from 'geojson';
+import type { GeoJsonObject } from 'geojson';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-timedimension';
 import { TileLayer, GeoJSON, LayersControl, Pane, LayerGroup, useMapEvents } from 'react-leaflet';
 import Fullscreen from 'react-leaflet-fullscreen-plugin';
 
-import { LeafletLayersProps } from './LeafletMap.types';
+import type { LeafletLayersProps } from './LeafletMap.types';
 import '../../node_modules/leaflet/dist/leaflet.css';
 import '../../node_modules/leaflet-timedimension/src/leaflet.timedimension.control.css';
 import TimeDimensionLayer from './TimeDimensionLayer';

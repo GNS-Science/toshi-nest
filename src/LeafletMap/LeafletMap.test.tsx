@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react';
 
 import userEvent from '@testing-library/user-event';
 import LeafletMap from './LeafletMap';
-import { LatLngExpression } from 'leaflet';
+import type { LatLngExpression } from 'leaflet';
 
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-timedimension';

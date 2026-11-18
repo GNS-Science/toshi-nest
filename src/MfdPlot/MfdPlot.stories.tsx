@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { MfdPlot } from './MfdPlot';
-import { Datum } from './MfdPlot.types';
-import { ComponentMeta } from '@storybook/react-webpack5';
+import type { Datum } from './MfdPlot.types';
+import type { Meta } from '@storybook/react-webpack5';
 import ColorBar from '../ColorBar/ColorBar';
-import { LatLngExpression } from 'leaflet';
+import type { LatLngExpression } from 'leaflet';
 import LeafletMap from '../LeafletMap';
 import geojsonTestDataPGA from '../__tests__/testData/geoJson/geojsonTestDataPGA';
 import { Box, Typography } from '@mui/material';
@@ -11,7 +11,7 @@ import { Box, Typography } from '@mui/material';
 export default {
   title: 'Charts/MFDPlot',
   component: MfdPlot,
-} as ComponentMeta<typeof MfdPlot>;
+} as Meta<typeof MfdPlot>;
 
 const data = [
   {

@@ -1,6 +1,6 @@
 import React from 'react';
 import Plot from 'react-plotly.js';
-import { DisaggregationPlotProps } from '../types/disaggregationPlot.types';
+import type { DisaggregationPlotProps } from '../types/disaggregationPlot.types';
 
 const DisaggregationPlot: React.FC<DisaggregationPlotProps> = (props: DisaggregationPlotProps) => {
   return (

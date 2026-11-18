@@ -6,10 +6,10 @@ import { LegendOrdinal } from '@visx/legend';
 import { scaleOrdinal } from '@visx/scale';
 import { Group } from '@visx/group';
 
-import { SpectralAccelChartProps } from './spectralAccelChart.types';
-import { XY } from '../types/common.types';
+import type { SpectralAccelChartProps } from './spectralAccelChart.types';
+import type { XY } from '../types/common.types';
 import PlotHeadings from '../common/PlotHeadings';
-import { HazardColorScale } from '../types/hazardCharts.types';
+import type { HazardColorScale } from '../types/hazardCharts.types';
 
 const SpectralAccelChart: React.FC<SpectralAccelChartProps> = ({ data, colors, heading, subHeading, width }: SpectralAccelChartProps) => {
   const curvesDomain = useMemo(() => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react-webpack5';
+import type { Meta, StoryFn } from '@storybook/react-webpack5';
 
 import SpectralAccelChart from './SpectralAccelChart';
 import { saChartTestColors, saChartTestData } from '../__tests__/testData/spectralAccelChartTestData';
@@ -7,9 +7,9 @@ import { saChartTestColors, saChartTestData } from '../__tests__/testData/spectr
 export default {
   title: 'Charts/SpectralAccelChart',
   component: SpectralAccelChart,
-} as ComponentMeta<typeof SpectralAccelChart>;
+} as Meta<typeof SpectralAccelChart>;
 
-const Template: ComponentStory<typeof SpectralAccelChart> = (args) => <SpectralAccelChart {...args} />;
+const Template: StoryFn<typeof SpectralAccelChart> = (args) => <SpectralAccelChart {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {

@@ -5,7 +5,7 @@ import { scaleLinear } from '@visx/scale';
 import { HeatmapRect } from '@visx/heatmap';
 import { AxisBottom, AxisLeft } from '@visx/axis';
 import ColorBar from '../ColorBar/ColorBar';
-import { HeatmapProps } from './disaggregationHeatMap.types';
+import type { HeatmapProps } from './disaggregationHeatMap.types';
 
 const defaultMargin = { top: 10, left: 20, right: 20, bottom: 110 };
 

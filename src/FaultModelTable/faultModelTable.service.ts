@@ -1,5 +1,5 @@
 import * as mathjs from 'mathjs';
-import { RowData, FaultModelGeojsonFeature } from './faultModelTable.types';
+import type { RowData, FaultModelGeojsonFeature } from './faultModelTable.types';
 
 export const generateFaultModelTable = (data: string): RowData[] => {
   const dataParsed = JSON.parse(data);
