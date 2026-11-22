@@ -1,6 +1,6 @@
 # Changelog
 
-## [Unreleased]
+## [4.2.0] - 2026-11-18
 
 ### Changed
 - deps: major: @babel/* 7→8, react-leaflet 3→5; typescript stays on 6 (tooling does not yet support 7)
